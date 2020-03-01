@@ -1,0 +1,44 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion '28.0.2'
+
+    defaultConfig {
+        applicationId "io.agora.agoraplayerquickstart"
+        minSdkVersion 18
+        targetSdkVersion 26
+		versionCode 5
+		versionName "1.4"
+        ndk {
+            abiFilters "armeabi-v7a"
+            // DO NOT MODIFY THIS LINE, IT'S UPDATED BY BUILD MACHINE AUTOMATICALLY.
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+
+    repositories {
+        flatDir {
+            dirs 'lib'
+        }
+    }
+
+}
+
+
+dependencies {
+    implementation(name: 'RtcChannelPublishHelper', ext: 'aar')
+    implementation 'io.agora.rtc:full-sdk:2.9.0'
+    implementation 'com.android.support:support-v4:23.2.0'
+    implementation files('lib/AgoraMediaPlayer.jar')
+}
