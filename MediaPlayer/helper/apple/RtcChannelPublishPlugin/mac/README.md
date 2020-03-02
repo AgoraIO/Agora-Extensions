@@ -1,0 +1,3 @@
+# 相关framework
+AgoraRtcEngineKit.framework
+AgoraMediaPlayer.framework
