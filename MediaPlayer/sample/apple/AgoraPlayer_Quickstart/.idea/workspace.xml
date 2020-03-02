@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="b3826ea2-775f-41a0-8e03-fb3bf5192680" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/shareObjects/MediaPlayerKit.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shareObjects/MediaPlayerKit.mm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BUILD.gn" beforeDir="false" afterPath="$PROJECT_DIR$/../../BUILD.gn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/player_demo_apple.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/player_demo_apple.xcodeproj/project.pbxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/player_demo_apple.xcodeproj/project.xcworkspace/xcuserdata/zhanxiaochao.xcuserdatad/UserInterfaceState.xcuserstate" beforeDir="false" afterPath="$PROJECT_DIR$/player_demo_apple.xcodeproj/project.xcworkspace/xcuserdata/zhanxiaochao.xcuserdatad/UserInterfaceState.xcuserstate" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/player_demo_apple.xcodeproj/xcuserdata/zhanxiaochao.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist" beforeDir="false" afterPath="$PROJECT_DIR$/player_demo_apple.xcodeproj/xcuserdata/zhanxiaochao.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/player_demo_apple.xcodeproj/xcuserdata/zhanxiaochao.xcuserdatad/xcschemes/xcschememanagement.plist" beforeDir="false" afterPath="$PROJECT_DIR$/player_demo_apple.xcodeproj/xcuserdata/zhanxiaochao.xcuserdatad/xcschemes/xcschememanagement.plist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/player_demo_iOS/Info.plist" beforeDir="false" afterPath="$PROJECT_DIR$/player_demo_iOS/Info.plist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/player_demo_iOS/ViewController.m" beforeDir="false" afterPath="$PROJECT_DIR$/player_demo_iOS/ViewController.mm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/player_demo_mac/Base.lproj/Main.storyboard" beforeDir="false" afterPath="$PROJECT_DIR$/player_demo_mac/Base.lproj/Main.storyboard" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/player_demo_mac/ViewController.mm" beforeDir="false" afterPath="$PROJECT_DIR$/player_demo_mac/ViewController.mm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/media_decoder_impl.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/media_decoder_impl.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/media_stream_sync_impl.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/media_stream_sync_impl.cc" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="macos_macos_x86_64" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectId" id="1UmeTgG5ZPKMya1xLn2xPcU6wdu" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+  </component>
+  <component name="RunManager" selected="Application.player_demo_mac">
+    <list>
+      <item itemvalue="Application.player_demo_mac" />
+      <item itemvalue="Application.player_demo_iOS" />
+    </list>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b3826ea2-775f-41a0-8e03-fb3bf5192680" name="Default Changelist" comment="" />
+      <created>1575966207057</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1575966207057</updated>
+      <workItem from="1575966216001" duration="2422000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="2320" y="385" key="#Inspections" timestamp="1575968057806">
+      <screen x="1440" y="0" width="2560" height="1440" />
+    </state>
+    <state x="2320" y="385" key="#Inspections/0.0.1440.900/1440.0.2560.1440@1440.0.2560.1440" timestamp="1575968057806" />
+    <state x="2320" y="385" key="#Notifications" timestamp="1576030712405">
+      <screen x="1440" y="0" width="2560" height="1440" />
+    </state>
+    <state x="2320" y="385" key="#Notifications/0.0.1440.900/1440.0.2560.1440@1440.0.2560.1440" timestamp="1576030712405" />
+    <state x="2184" y="382" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1576037472546">
+      <screen x="1440" y="0" width="2560" height="1440" />
+    </state>
+    <state x="2184" y="382" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.900/1440.0.2560.1440@1440.0.2560.1440" timestamp="1576037472546" />
+    <state x="2519" y="436" key="#com.intellij.ide.util.MemberChooser" timestamp="1575968260298">
+      <screen x="1440" y="0" width="2560" height="1440" />
+    </state>
+    <state x="2519" y="436" key="#com.intellij.ide.util.MemberChooser/0.0.1440.900/1440.0.2560.1440@1440.0.2560.1440" timestamp="1575968260298" />
+    <state width="2518" height="423" key="GridCell.Tab.0.bottom" timestamp="1576065136533">
+      <screen x="1440" y="0" width="2560" height="1440" />
+    </state>
+    <state width="2518" height="423" key="GridCell.Tab.0.bottom/0.0.1440.900/1440.0.2560.1440@1440.0.2560.1440" timestamp="1576065136533" />
+    <state width="2518" height="423" key="GridCell.Tab.0.center" timestamp="1576065136531">
+      <screen x="1440" y="0" width="2560" height="1440" />
+    </state>
+    <state width="2518" height="423" key="GridCell.Tab.0.center/0.0.1440.900/1440.0.2560.1440@1440.0.2560.1440" timestamp="1576065136531" />
+    <state width="2518" height="423" key="GridCell.Tab.0.left" timestamp="1576065136531">
+      <screen x="1440" y="0" width="2560" height="1440" />
+    </state>
+    <state width="2518" height="423" key="GridCell.Tab.0.left/0.0.1440.900/1440.0.2560.1440@1440.0.2560.1440" timestamp="1576065136531" />
+    <state width="2518" height="423" key="GridCell.Tab.0.right" timestamp="1576065136532">
+      <screen x="1440" y="0" width="2560" height="1440" />
+    </state>
+    <state width="2518" height="423" key="GridCell.Tab.0.right/0.0.1440.900/1440.0.2560.1440@1440.0.2560.1440" timestamp="1576065136532" />
+    <state x="399" y="294" key="com.intellij.ide.util.TipDialog" timestamp="1575966219538">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="399" y="294" key="com.intellij.ide.util.TipDialog/0.23.1440.877/1440.23.2560.1417@0.23.1440.877" timestamp="1575966219538" />
+  </component>
+</project>
