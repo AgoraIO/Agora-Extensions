@@ -32,7 +32,6 @@ android {
     }
 }
 
-
 dependencies {
     implementation(name: 'RtcChannelPublishHelper', ext: 'aar')
     implementation 'io.agora.rtc:full-sdk:2.9.0'

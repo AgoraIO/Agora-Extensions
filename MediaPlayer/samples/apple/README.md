@@ -22,7 +22,7 @@
 ### 创建 Agora 账号并获取 App ID
 
 在编译和启动实例程序前，您需要首先获取一个可用的 App ID:
-1. 在[agora.io](https://dashboard.agora.io/signin/)创建一个开发者账号
+1. 在[agora.io](https://console.agora.io/signin/)创建一个开发者账号
 2. 前往后台页面，点击左部导航栏的 **项目 > 项目列表** 菜单
 3. 复制后台的 **App ID** 并备注，稍后启动应用时会用到它
 
@@ -61,7 +61,7 @@
 - 完整的 API 文档见 [文档中心](https://docs.agora.io/cn/)
 - 如果在集成中遇到问题, 你可以到 [开发者社区](https://dev.agora.io/cn/) 提问
 - 如果有售前咨询问题, 可以拨打 400 632 6626，或加入官方 Q 群 12742516 提问
-- 如果需要售后技术支持, 你可以在 [Agora Dashboard](https://console.agora.io/) 提交工单
+- 如果需要售后技术支持, 你可以在 [Agora Console](https://console.agora.io/) 提交工单
 - 如果发现了示例代码的 bug, 欢迎提交 [issue](https://github.com/AgoraIO/Agora-Extensions/issues)
 
 ## 代码许可
