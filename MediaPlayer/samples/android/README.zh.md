@@ -1,6 +1,6 @@
 # AgoraPlayer_Quickstart
 
-这个开源示例项目演示了如何快速集成 Android 平台的媒体播放器组件:[Agora MediaPlayer Kit](https://download.agora.io/sdk/release/Agora_Media_Player_for_Android_rel.v1.1.0.91_20200228_2154.zip?_ga=2.22269240.208564419.1583061888-277459906.1543911509)，实现媒体资源的本地播放，以及通过 Agora 视频 SDK 推送到远端播放的功能。
+这个开源示例项目演示了如何快速集成 Android 平台的媒体播放器组件 [Agora MediaPlayer Kit](https://download.agora.io/sdk/release/Agora_Media_Player_for_Android_rel.v1.1.0.91_20200228_2154.zip?_ga=2.22269240.208564419.1583061888-277459906.1543911509)，实现媒体资源的本地播放，以及通过 Agora 视频 SDK 推送到远端播放的功能。
 
 在这个示例项目中包含了以下功能：
 
@@ -33,38 +33,39 @@
 
 ### 集成 媒体播放器组件 SDK
 
-	- 在 [Agora.io SDK](https://www.agora.io/cn/download/)，下载最新版 Agora MediaPlayer Kit，然后解压。
+- 在 [Agora.io SDK](https://www.agora.io/cn/download/)，下载最新版 Agora MediaPlayer Kit，然后解压。
 
-  - 按以下对应关系将 **libs** 目录的内容复制到项目内。
-                       
-      SDK 目录|项目目录
-      ---|---
-      .jar file|**/apps/lib** folder
-      **arm64-v8a** folder|**/app/src/main/jniLibs** folder
-      **x86** folder|**/app/src/main/jniLibs** folder
-      **armeabi-v7a** folder|**/app/src/main/jniLibs** folder
+- 按以下对应关系将 **libs** 目录的内容复制到项目内。
+
+	SDK 目录|项目目录
+	---|---
+	.jar file|**/apps/lib** folder
+	**arm64-v8a** folder|**/app/src/main/jniLibs** folder
+	**x86** folder|**/app/src/main/jniLibs** folder
+	**armeabi-v7a** folder|**/app/src/main/jniLibs** folder
 
 ### 集成 RtcChannelPublishHelper 插件包
 
-	- 前往本项目的 https://github.com/AgoraIO/Agora-Extensions/releases 页面，下载最新的 RtcChannelPublishHelper，然后解压。
+- 前往本项目的 [GitHub/Agora-Extensions](https://github.com/AgoraIO/Agora-Extensions/releases) 页面，下载最新的 `RtcChannelPublishHelper`，然后解压。
 
-	- 选择 Android 平台 2.9.0 版本的 RtcChannelPublishHelper
+- 选择 Android 平台 2.9.0 版本的 `RtcChannelPublishHelper`
 
-  - 复制 RtcChannelPublishHelper.aar 到本项目的 `apps/lib` 目录下
+- 复制 `RtcChannelPublishHelper.aar` 到本项目的 `apps/lib` 目录下
 
 ### 集成 Agora 视频 SDK
 
 集成方式有以下两种：
-  - 首选集成方式：
-    - 在项目对应的模块的 `app/build.gradle` 文件的依赖属性中加入通过 JCenter 自动集成 Agora 视频 SDK 的地址：
+
+- 首选集成方式：
+	- 在项目对应的模块的 `app/build.gradle` 文件的依赖属性中加入通过 JCenter 自动集成 Agora 视频 SDK 的地址：
+
       ```
       implementation 'io.agora.rtc:full-sdk:2.9.0'
       ```
       (如果要在自己的应用中集成 Agora 视频 SDK，添加链接地址是最重要的一步。）
-    - 在 [Agora.io SDK](https://www.agora.io/cn/download/) 下载 **视频通话 + 直播 SDK**，解压后将其中的 **libs**/**include** 文件夹下的 ***.h** 复制到本项目的 **app**/**src**/**main**/**cpp**/**agora** 下。
-  - 次选集成方式：
+- 次选集成方式：
     - 在 [Agora.io SDK](https://www.agora.io/cn/download/) 下载 **视频通话 + 直播 SDK**并解压，按以下对应关系将 **libs** 目录的内容复制到项目内。
-      
+
       SDK 目录|项目目录
       ---|---
       .jar file|**/apps/lib** folder
