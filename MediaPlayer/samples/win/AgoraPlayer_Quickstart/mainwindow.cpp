@@ -294,6 +294,7 @@ void MainWindow::init_agora_sdk()
 	rtc_engine_->setClientRole(CLIENT_ROLE_BROADCASTER);
 	rtc_engine_->enableVideo();
 	rtc_engine_->enableAudio();
+    ui->containerView->setUpdatesEnabled(false);
 	VideoCanvas canvas;
 	canvas.uid = 0;
 	canvas.view = (view_t)ui->containerView->winId();
