@@ -42,7 +42,7 @@
       SDK 目录|项目目录
       ---|---
       .libs file|**Agora-Extensions/MediaPlayer/helper/apple/RtcChannelPublishPlugin/ios** folder
-      **AgoraRtcEngineKit.framework** folder|**Agora-Extensions/MediaPlayer/helper/apple/RtcChannelPublishPlugin/ios** folder
+      **AgoraRtcEngineKit.framework** |**Agora-Extensions/MediaPlayer/helper/apple/RtcChannelPublishPlugin/ios** ）注意:将AgoraRtcEngineKit.framework拷贝到Agora-Extensions/MediaPlayer/helper/apple/RtcChannelPublishPlugin/ios文件夹下。
 ### 集成 RtcChannelPublishHelper 插件包
 
   - 复制 Agora-Extensions/MediaPlayer/helper/apple/RtcChannelPublishPlugin 中的 RtcChannelPublishPlugin 到本项目的目录下(此 sample 默认集成好的)
