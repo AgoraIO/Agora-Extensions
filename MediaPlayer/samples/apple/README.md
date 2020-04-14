@@ -1,69 +1,78 @@
+
+READ THIS IN OTHER LANGUAGES [🇨🇳](README.zh.md). Contributions welcome!
+
 # AgoraPlayer_Quickstart
 
+This tutorial enables you to quickly get started in your development efforts to create an iOS app with media player provided by [Agora.io](https://www.agora.io/en/). With [Agora MediaPlayer Kit](https://download.agora.io/sdk/release/Agora_Media_Player_for_iOS_rel.v1.1.0.8352_20200228_2230.zip?_ga=2.104458880.1681401152.1583073151-1045091424.1511772004) you can play most popular multimedia files and various streaming protocols. Besides that, you can publish video/audio stream playing to Agora RTC channel with Agora RTC SDK(`RtcChannelPublishHelper` is just what you need)
 
-这个开源示例项目演示了如何快速集成 iOS/macOS 平台的媒体播放器组件:[Agora MediaPlayer Kit](https://download.agora.io/sdk/release/Agora_Media_Player_for_iOS_rel.v1.1.0.8352_20200228_2230.zip?_ga=2.104458880.1681401152.1583073151-1045091424.1511772004)，实现媒体资源的本地播放，以及通过 Agora 视频 SDK 推送到远端播放的功能。
+With this sample app, you can:
 
-在这个示例项目中包含了以下功能：
-
-- 播放本地和点播的视频文件以及播放控制；
-- 同时播放多个媒体资源
-- 本地播放视频的同时，推送视频到远端播放；
-
-## 环境准备
-
-- xCode 9.0+
-- iOS 10.0+
-- 部分模拟器会存在功能缺失或者性能问题，所以推荐使用真机
-
-## 运行示例程序
-
-这个段落主要讲解了如何编译和运行实例程序。
-
-### 创建 Agora 账号并获取 App ID
-
-在编译和启动实例程序前，您需要首先获取一个可用的 App ID:
-1. 在[agora.io](https://console.agora.io/signin/)创建一个开发者账号
-2. 前往后台页面，点击左部导航栏的 **项目 > 项目列表** 菜单
-3. 复制后台的 **App ID** 并备注，稍后启动应用时会用到它
+- Play multimedia files or streaming progocols.
+- Play multi at the same time
+- Control the playback(pause/resume/mute/volume-control and etc.).
+- Publish to Agora RTC channel.
 
 
-5. 将 AppID 填写进 
+## Prerequisites
+
+- Xcode 9.0+  or above
+- iOS 10.0 +
+- Recommend Real-machine running the App.
+
+
+## Quick Start
+
+This section shows you how to prepare, build, and run the sample application.
+
+### Obtain an App ID
+
+To build and run the sample application, get an App ID:
+
+1. Create a developer account at [agora.io](https://console.agora.io/signin/). Once you finish the signup process, you will be redirected to the Console.
+2. Navigate in the Console tree on the left to **Projects** > **Project List**.
+3. Save the **App ID** from the Console for later use.
+4. Locate the file **AgoraPlayer_Quickstart_Mac/ViewController.mm or AgoraPlayer_Quickstart_iOS/ViewControlle.mm** and replace <#YOUR APP ID#> with the App ID in the console.
+
   ```
- _rtcEnginekit = [AgoraRtcEngineKit sharedEngineWithAppId:YOUR_APP_ID delegate:self];
-
+  _rtcEnginekit = [AgoraRtcEngineKit sharedEngineWithAppId:<#YOUR_APPID#> delegate:self];
   ```
 
-### 集成 媒体播放器组件 SDK
+### Integrate the Agora MediaPlayer Kit
 
-	- 在 [Agora.io SDK](https://www.agora.io/cn/download/)，下载最新版 Agora MediaPlayer Kit，然后解压。
+1. Download Agora MediaPlayer Kit from [Agora.io SDK](https://www.agora.io/en/download/).
+2. Unzip the downloaded package.
+3. Copy the following files from from the **libs** folder of the downloaded SDK package:
 
-  - 按以下对应关系将 **libs** 目录的内容复制到项目内。
-                       
-      SDK 目录|项目目录
-      ---|---
-      .libs file|**Agora-Extensions/MediaPlayer/helper/apple/RtcChannelPublishPlugin/ios** folder
-      **AgoraRtcEngineKit.framework** |**Agora-Extensions/MediaPlayer/helper/apple/RtcChannelPublishPlugin/ios** (注意:将AgoraRtcEngineKit.framework文件拷贝到Agora-Extensions/MediaPlayer/helper/apple/RtcChannelPublishPlugin/ios文件夹下。)
-### 集成 RtcChannelPublishHelper 插件包
+Copy from SDK|Copy to Project Folder
+---|---
+.libs file|**Agora-Extensions/MediaPlayer/helper/apple/RtcChannelPublishPlugin/ios** folder
+.libs file|**Agora-Extensions/MediaPlayer/helper/apple/RtcChannelPublishPlugin/mac** folder
+**AgoraRtcEngineKit.framework** folder|**Agora-Extensions/MediaPlayer/helper/apple/RtcChannelPublishPlugin/ios or Agora-Extensions/MediaPlayer/helper/apple/RtcChannelPublishPlugin/mac** folder
 
-  - 复制 Agora-Extensions/MediaPlayer/helper/apple/RtcChannelPublishPlugin 中的 RtcChannelPublishPlugin 到本项目的目录下(此 sample 默认集成好的)
+### Integrate the RtcChannelPublishHelper
 
-### 集成 Agora 视频 SDK
- ```
-    https://docs.agora.io/cn/Interactive%20Broadcast/start_live_ios?platform=iOS
- ```
- 
-### 启动应用程序
+1. Download `RtcChannelPublishHelper` from [GitHub/Agora-Extensions](https://github.com/AgoraIO/Agora-Extensions/releases).
+2. Unzip the downloaded package.
+3. Copy `RtcChannelPublishHelper files` under 2.9.0 to project folder `Project's path`.
 
-用 Xcode 打开该项目，连上设备，编译并运行。
+### Integrate the Agora Video SDK
+```
+   https://docs.agora.io/cn/Interactive%20Broadcast/start_live_ios?platform=iOS
+```
 
-## 联系我们
+### Run the Application
 
-- 完整的 API 文档见 [文档中心](https://docs.agora.io/cn/)
-- 如果在集成中遇到问题, 你可以到 [开发者社区](https://dev.agora.io/cn/) 提问
-- 如果有售前咨询问题, 可以拨打 400 632 6626，或加入官方 Q 群 12742516 提问
-- 如果需要售后技术支持, 你可以在 [Agora Console](https://console.agora.io/) 提交工单
-- 如果发现了示例代码的 bug, 欢迎提交 [issue](https://github.com/AgoraIO/Agora-Extensions/issues)
+Open project with Xcode, connect your iOS device, build and run.
 
-## 代码许可
+Or use `Archive` to build and run.
+
+
+## Resources
+
+- You can find full API document at [Document Center](https://docs.agora.io/en/)
+- You can file bugs about this sample at [issue](https://github.com/AgoraIO/Agora-Extensions/issues)
+
+
+## License
 
 The MIT License (MIT)

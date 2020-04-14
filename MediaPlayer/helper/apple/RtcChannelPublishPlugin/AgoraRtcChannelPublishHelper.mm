@@ -48,7 +48,6 @@ public:
                 int16_t *tmpBuf = (int16_t *)malloc(sizeof(int16_t)*bytes);
                 memcpy(tmpBuf, audioFrame.buffer, bytes);
                 if (agoraAudioBuf->mAvailSamples < bytes) {
-                    memcpy(audioFrame.buffer, tmpBuf, sizeof(int16_t)*bytes);
                     free(tmpBuf);
                     return true;
                 }
@@ -282,9 +281,7 @@ static AgoraRtcChannelPublishHelper *instance = NULL;
     if (totalBytes == 0) {
         return;
     }
-    char dataPointer[totalBytes];
-    err  = CMBlockBufferCopyDataBytes(audioBuffer, 0, totalBytes, dataPointer);
-    audioFrameObserver->pushData(dataPointer, (int)totalBytes);
+    audioFrameObserver->pushData(samples, (int)totalBytes);
 
 }
 @synthesize consumer;

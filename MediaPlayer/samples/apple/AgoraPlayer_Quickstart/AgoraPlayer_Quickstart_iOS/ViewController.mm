@@ -50,7 +50,7 @@
 
 }
 - (void)initAgoraSdk{
-    _rtcEnginekit = [AgoraRtcEngineKit sharedEngineWithAppId:<#YOUR_APP_ID#><##> delegate:self];
+    _rtcEnginekit = [AgoraRtcEngineKit sharedEngineWithAppId:@"" delegate:self];
     [_rtcEnginekit setChannelProfile:AgoraChannelProfileLiveBroadcasting];
     [_rtcEnginekit setClientRole:AgoraClientRoleBroadcaster];
     [_rtcEnginekit enableAudio];

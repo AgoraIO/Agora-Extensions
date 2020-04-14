@@ -150,23 +150,6 @@
 		8B8161DB239685B2007625AA /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS13.2.sdk/usr/lib/libresolv.tbd; sourceTree = DEVELOPER_DIR; };
 		8B8163EE2396941C007625AA /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS13.2.sdk/System/Library/Frameworks/CoreTelephony.framework; sourceTree = DEVELOPER_DIR; };
 		8B8163F0239694E2007625AA /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS13.2.sdk/System/Library/Frameworks/GLKit.framework; sourceTree = DEVELOPER_DIR; };
-		8B8163F223969923007625AA /* libavcodec.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libavcodec.a; path = "../../../../../srt-ios/ffmpeg-srt/FFmpeg-iOS/lib/libavcodec.a"; sourceTree = "<group>"; };
-		8B8163F323969923007625AA /* libavformat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libavformat.a; path = "../../../../../srt-ios/ffmpeg-srt/FFmpeg-iOS/lib/libavformat.a"; sourceTree = "<group>"; };
-		8B8163F423969924007625AA /* libavutil.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libavutil.a; path = "../../../../../srt-ios/ffmpeg-srt/FFmpeg-iOS/lib/libavutil.a"; sourceTree = "<group>"; };
-		8B8163F523969924007625AA /* libpostproc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpostproc.a; path = "../../../../../srt-ios/ffmpeg-srt/FFmpeg-iOS/lib/libpostproc.a"; sourceTree = "<group>"; };
-		8B8163F623969924007625AA /* libavfilter.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libavfilter.a; path = "../../../../../srt-ios/ffmpeg-srt/FFmpeg-iOS/lib/libavfilter.a"; sourceTree = "<group>"; };
-		8B8163F723969924007625AA /* libavdevice.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libavdevice.a; path = "../../../../../srt-ios/ffmpeg-srt/FFmpeg-iOS/lib/libavdevice.a"; sourceTree = "<group>"; };
-		8B8163F823969924007625AA /* libswscale.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libswscale.a; path = "../../../../../srt-ios/ffmpeg-srt/FFmpeg-iOS/lib/libswscale.a"; sourceTree = "<group>"; };
-		8B8163F923969924007625AA /* libswresample.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libswresample.a; path = "../../../../../srt-ios/ffmpeg-srt/FFmpeg-iOS/lib/libswresample.a"; sourceTree = "<group>"; };
-		8B816402239699A4007625AA /* libass.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libass.a; path = "../../../../../srt-ios/ffmpeg-srt/libs-third_party/libass-universal/lib/libass.a"; sourceTree = "<group>"; };
-		8B81640423969A69007625AA /* libfribidi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfribidi.a; path = "../../../../../srt-ios/ffmpeg-srt/libs-third_party/fribidi-universal/lib/libfribidi.a"; sourceTree = "<group>"; };
-		8B81640623969A70007625AA /* libfreetype.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfreetype.a; path = "../../../../../srt-ios/ffmpeg-srt/libs-third_party/freetype-universal/lib/libfreetype.a"; sourceTree = "<group>"; };
-		8B81640823969A82007625AA /* libfontconfig.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfontconfig.a; path = "../../../../../srt-ios/ffmpeg-srt/libs-third_party/fontconfig-universal/lib/libfontconfig.a"; sourceTree = "<group>"; };
-		8B81640A23969A8E007625AA /* libiconv.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libiconv.a; path = "../../../../../srt-ios/ffmpeg-srt/libs-third_party/libiconv-universal/lib/libiconv.a"; sourceTree = "<group>"; };
-		8B81640C23969AEC007625AA /* libpng.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpng.a; path = "../../../../../srt-ios/ffmpeg-srt/libs-third_party/libpng-universal/lib/libpng.a"; sourceTree = "<group>"; };
-		8B81640E23969C97007625AA /* libcharset.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcharset.a; path = "../../../../../srt-ios/ffmpeg-srt/libs-third_party/libcharset-universal/lib/libcharset.a"; sourceTree = "<group>"; };
-		8B81641023969CC5007625AA /* libuuid.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libuuid.a; path = "../../../../../srt-ios/ffmpeg-srt/libs-third_party/libuuid-universal/lib/libuuid.a"; sourceTree = "<group>"; };
-		8B81641223969CEC007625AA /* libexpat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libexpat.a; path = "../../../../../srt-ios/ffmpeg-srt/libs-third_party/expat-universal/lib/libexpat.a"; sourceTree = "<group>"; };
 		8B81641423969E04007625AA /* libiconv.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.2.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS13.2.sdk/usr/lib/libiconv.2.tbd; sourceTree = DEVELOPER_DIR; };
 		8BAB5C9323D5C540003FB923 /* CoreML.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreML.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS13.2.sdk/System/Library/Frameworks/CoreML.framework; sourceTree = DEVELOPER_DIR; };
 		8BEE697723A38712008AB3EE /* UITextViewWorkaround.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITextViewWorkaround.h; sourceTree = "<group>"; };
@@ -226,7 +209,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		8B2EE99D2394B5A9009FD6DD /* player_demo_iOS */ = {
+		8B2EE99D2394B5A9009FD6DD /* AgoraPlayer_Quickstart_iOS */ = {
 			isa = PBXGroup;
 			children = (
 				8B81603B23953CD3007625AA /* resources.bundle */,
@@ -244,7 +227,7 @@
 				8BEE697723A38712008AB3EE /* UITextViewWorkaround.h */,
 				8BEE697823A38712008AB3EE /* UITextViewWorkaround.m */,
 			);
-			path = player_demo_iOS;
+			path = AgoraPlayer_Quickstart_iOS;
 			sourceTree = "<group>";
 		};
 		8B34A18B240D4FEE0043E21B /* RtcChannelPublishPlugin */ = {
@@ -273,8 +256,8 @@
 			isa = PBXGroup;
 			children = (
 				8B34A18B240D4FEE0043E21B /* RtcChannelPublishPlugin */,
-				8B5FB307239123A00025B0C1 /* player_demo_mac */,
-				8B2EE99D2394B5A9009FD6DD /* player_demo_iOS */,
+				8B5FB307239123A00025B0C1 /* AgoraPlayer_Quickstart_Mac */,
+				8B2EE99D2394B5A9009FD6DD /* AgoraPlayer_Quickstart_iOS */,
 				8B5FB306239123A00025B0C1 /* Products */,
 				8B815CE92395031F007625AA /* Frameworks */,
 			);
@@ -289,7 +272,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		8B5FB307239123A00025B0C1 /* player_demo_mac */ = {
+		8B5FB307239123A00025B0C1 /* AgoraPlayer_Quickstart_Mac */ = {
 			isa = PBXGroup;
 			children = (
 				8B5FB308239123A00025B0C1 /* AppDelegate.h */,
@@ -304,7 +287,7 @@
 				8B5FB314239123A40025B0C1 /* main.m */,
 				8B5FB316239123A40025B0C1 /* player_demo_apple.entitlements */,
 			);
-			path = player_demo_mac;
+			path = AgoraPlayer_Quickstart_Mac;
 			sourceTree = "<group>";
 		};
 		8B815CE92395031F007625AA /* Frameworks */ = {
@@ -312,23 +295,6 @@
 			children = (
 				8BAB5C9323D5C540003FB923 /* CoreML.framework */,
 				8B81641423969E04007625AA /* libiconv.2.tbd */,
-				8B81641223969CEC007625AA /* libexpat.a */,
-				8B81641023969CC5007625AA /* libuuid.a */,
-				8B81640E23969C97007625AA /* libcharset.a */,
-				8B81640C23969AEC007625AA /* libpng.a */,
-				8B81640A23969A8E007625AA /* libiconv.a */,
-				8B81640823969A82007625AA /* libfontconfig.a */,
-				8B81640623969A70007625AA /* libfreetype.a */,
-				8B81640423969A69007625AA /* libfribidi.a */,
-				8B816402239699A4007625AA /* libass.a */,
-				8B8163F223969923007625AA /* libavcodec.a */,
-				8B8163F723969924007625AA /* libavdevice.a */,
-				8B8163F623969924007625AA /* libavfilter.a */,
-				8B8163F323969923007625AA /* libavformat.a */,
-				8B8163F423969924007625AA /* libavutil.a */,
-				8B8163F523969924007625AA /* libpostproc.a */,
-				8B8163F923969924007625AA /* libswresample.a */,
-				8B8163F823969924007625AA /* libswscale.a */,
 				8B8163F0239694E2007625AA /* GLKit.framework */,
 				8B8163EE2396941C007625AA /* CoreTelephony.framework */,
 				8B8161DB239685B2007625AA /* libresolv.tbd */,
@@ -521,14 +487,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = F2X6A556NK;
+				DEVELOPMENT_TEAM = 7289G77ZF3;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../../../helper/apple/RtcChannelPublishPlugin/ios\"";
 				HEADER_SEARCH_PATHS = "";
-				INFOPLIST_FILE = player_demo_iOS/Info.plist;
+				INFOPLIST_FILE = AgoraPlayer_Quickstart_iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -539,7 +505,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = io.agora.mangoiOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = AgoraIOTest2019;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "arm64 arm64e armv7 armv7s";
@@ -550,14 +516,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = F2X6A556NK;
+				DEVELOPMENT_TEAM = 7289G77ZF3;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../../../helper/apple/RtcChannelPublishPlugin/ios\"";
 				HEADER_SEARCH_PATHS = "";
-				INFOPLIST_FILE = player_demo_iOS/Info.plist;
+				INFOPLIST_FILE = AgoraPlayer_Quickstart_iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -567,7 +533,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = io.agora.mangoiOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = AgoraIOTest2019;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -693,7 +659,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../../../helper/apple/RtcChannelPublishPlugin/mac\"";
 				HEADER_SEARCH_PATHS = "";
-				INFOPLIST_FILE = player_demo_mac/Info.plist;
+				INFOPLIST_FILE = AgoraPlayer_Quickstart_Mac/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -715,7 +681,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../../../helper/apple/RtcChannelPublishPlugin/mac\"";
 				HEADER_SEARCH_PATHS = "";
-				INFOPLIST_FILE = player_demo_mac/Info.plist;
+				INFOPLIST_FILE = AgoraPlayer_Quickstart_Mac/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
