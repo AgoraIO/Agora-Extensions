@@ -1,11 +1,14 @@
 READ THIS IN OTHER LANGUAGES [🇨🇳](README.zh.md). Contributions welcome!
 
-# RtcChannelPublishHelper
+# Introduction
 
-This project provides samples for AgoraMediaplayer on iOS/macOS/Android/Windowns, and a helper utility package `RtcChannelPublishHelper`  which can easily help to pass video/audio stream from AgoraMediaplayer to Agora RTC channel and then remote participants can watch them with very low latency as you do.
+The `samples` folder provides the sample projects for Agora MediaPlayer Kit. You can download and view the source codes first.
 
-- `helper` hepler classes for different platforms
-- `samples` samples codes for dirrerent platforms
+When integrating the MediaPlayer Kit, you need the tool named as `RtcChannelPublishHelper` to publish the video and audio streams during playback to remote audience in Agora channel. Agora provides `RtcChannelPublishHelper` for Android, iOS, macOS, and Windows platforms. 
+> For the Android platforms, ensure that the version of `RtcChannelPublishHelper` is the same as the SDK version you are using. For example, if your SDK is v2.4.x, use the helper in the `2_4_0` folder.
+
+For more details, see the [integration guide](https://docs.agora.io/en/Interactive%20Broadcast/mediaplayer_android?platform=Android
+).
 
 ## Resources
 - You can find full API document at [Document Center](https://docs.agora.io/en/)
