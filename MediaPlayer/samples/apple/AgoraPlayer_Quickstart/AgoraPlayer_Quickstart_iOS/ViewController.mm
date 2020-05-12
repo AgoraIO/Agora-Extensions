@@ -61,7 +61,7 @@
     config.frameRate = AgoraVideoBitrateStandard;
     config.orientationMode = AgoraVideoOutputOrientationModeAdaptative;
     [_rtcEnginekit setVideoEncoderConfiguration:config];
-    [[AgoraRtcChannelPublishHelper shareInstance] attachPlayerToRtc:_mediaPlayerKit RtcEngine:_rtcEnginekit];
+    [[AgoraRtcChannelPublishHelper shareInstance] attachPlayerToRtc:_mediaPlayerKit RtcEngine:_rtcEnginekit enableVideoSource:true];
     [[AgoraRtcChannelPublishHelper shareInstance] registerRtcChannelPublishHelperDelegate:self];
     [_rtcEnginekit joinChannelByToken:@"" channelId:@"123456" info:@"" uid:0 joinSuccess:NULL];
 }

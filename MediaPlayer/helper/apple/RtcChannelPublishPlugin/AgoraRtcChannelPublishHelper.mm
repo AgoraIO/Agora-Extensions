@@ -167,15 +167,17 @@ static AgoraRtcChannelPublishHelper *instance = NULL;
     return instance;
 }
 // 连接 MediaPlayer 到主版本 RTC SDK
-- (void)attachPlayerToRtc:(AgoraMediaPlayer *)playerKit RtcEngine:(AgoraRtcEngineKit *)rtcEngine{
+- (void)attachPlayerToRtc:(AgoraMediaPlayer *)playerKit RtcEngine:(AgoraRtcEngineKit *)rtcEngine enableVideoSource:(bool)enable{
     audioFrameObserver = std::make_unique<AgoraAudioFrameObserver>();
     isPublishVideo = false;
     audioFrameObserver->setPublishSignalVolume(0);
     self.isDispatchMainQueue = false;
     playerKit.delegate = self;
-    [rtcEngine setVideoSource:self];
+    if (enable) {
+        [rtcEngine setVideoSource:self];
+    }
     [rtcEngine setParameters:@"{\"che.audio.keep.audiosession\":true}"];
-    [rtcEngine setAudioProfile:AgoraAudioProfileMusicStandardStereo scenario:AgoraAudioScenarioGameStreaming];
+    [rtcEngine setAudioProfile:AgoraAudioProfileMusicStandardStereo scenario:AgoraAudioScenarioChatRoomEntertainment];
     [rtcEngine setRecordingAudioFrameParametersWithSampleRate:48000 channel:2 mode:AgoraAudioRawFrameOperationModeReadWrite samplesPerCall:960];
     [rtcEngine setPlaybackAudioFrameParametersWithSampleRate:48000 channel:2 mode:AgoraAudioRawFrameOperationModeReadWrite samplesPerCall:960];
 

@@ -49,7 +49,7 @@ NS_ASSUME_NONNULL_BEGIN
 +(instancetype)shareInstance;
 // 连接 MediaPlayer 到主版本 RTC SDK
 - (void)registerRtcChannelPublishHelperDelegate:(id<AgoraRtcChannelPublishHelperDelegate>)delegate;
-- (void)attachPlayerToRtc:(AgoraMediaPlayer *)playerKit RtcEngine:(AgoraRtcEngineKit *)rtcEngine;
+- (void)attachPlayerToRtc:(AgoraMediaPlayer *)playerKit RtcEngine:(AgoraRtcEngineKit *)rtcEngine enableVideoSource:(bool)enable;
 // 启动/停止推送音频流到频道
 - (void)publishAudio;
 - (void)unpublishAudio;
