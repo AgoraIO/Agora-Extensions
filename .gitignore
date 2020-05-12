@@ -30,3 +30,4 @@ MediaPlayer/samples/win/AgoraPlayer_Quickstart/AgoraSdk/include/IAgoraLiveSubscr
 MediaPlayer/samples/win/AgoraPlayer_Quickstart/AgoraSdk/include/IAgoraMediaEngine.h
 MediaPlayer/samples/win/AgoraPlayer_Quickstart/AgoraSdk/include/IAgoraRtcEngine.h
 MediaPlayer/samples/win/AgoraPlayer_Quickstart/AgoraSdk/include/IAgoraService.h
+*.xcuserstate
