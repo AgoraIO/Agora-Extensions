@@ -22,7 +22,7 @@ import io.agora.capture.framework.modules.processors.IPreprocessor;
  * Although it is ok to create an instance every time it needs
  * control over cameras, such behavior is unlikely to bring benefits.
  */
-public class CameraManager {
+public class CameraVideoManager {
     // CameraManager only controls camera channel
     private static final int CHANNEL_ID = ChannelManager.ChannelID.CAMERA;
 
@@ -40,11 +40,11 @@ public class CameraManager {
      *               and Constant.CAMERA_FACING_BACK
      * @see io.agora.capture.video.camera.Constant
      */
-    public CameraManager(Context context, IPreprocessor preprocessor, int facing) {
+    public CameraVideoManager(Context context, IPreprocessor preprocessor, int facing) {
         init(context, preprocessor, facing);
     }
 
-    public CameraManager(Context context, IPreprocessor preprocessor) {
+    public CameraVideoManager(Context context, IPreprocessor preprocessor) {
         init(context, preprocessor, DEFAULT_FACING);
     }
 

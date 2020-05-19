@@ -12,7 +12,7 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.widget.FrameLayout;
 
-import io.agora.capture.video.camera.CameraManager;
+import io.agora.capture.video.camera.CameraVideoManager;
 import io.agora.capture.video.camera.Constant;
 
 public class MainActivity extends AppCompatActivity {
@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
             Manifest.permission.CAMERA
     };
 
-    private CameraManager mCameraManager;
+    private CameraVideoManager mCameraVideoManager;
     private FrameLayout mVideoLayout;
     private SurfaceView mVideoSurface;
     private boolean mPermissionGranted;
@@ -79,47 +79,47 @@ public class MainActivity extends AppCompatActivity {
         // needs to loads resource files from local storage.
         // The loading may block the video rendering for a
         // little while.
-        mCameraManager = new CameraManager(this, null);
+        mCameraVideoManager = new CameraVideoManager(this, null);
 
         // Set camera capture configuration
-        mCameraManager.setPictureSize(640, 480);
-        mCameraManager.setFrameRate(24);
-        mCameraManager.setFacing(Constant.CAMERA_FACING_FRONT);
+        mCameraVideoManager.setPictureSize(640, 480);
+        mCameraVideoManager.setFrameRate(24);
+        mCameraVideoManager.setFacing(Constant.CAMERA_FACING_FRONT);
 
         // The preview surface is actually considered as
         // an on-screen consumer under the hood.
         mVideoSurface = new SurfaceView(this);
-        mCameraManager.setLocalPreview(mVideoSurface);
+        mCameraVideoManager.setLocalPreview(mVideoSurface);
         mVideoLayout.addView(mVideoSurface);
 
         // Can attach other consumers here,
         // For example, rtc consumer or rtmp module
 
-        mCameraManager.startCapture();
+        mCameraVideoManager.startCapture();
     }
 
     public void onCameraChange(View view) {
-        if (mCameraManager != null) {
-            mCameraManager.switchCamera();
+        if (mCameraVideoManager != null) {
+            mCameraVideoManager.switchCamera();
         }
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        if (mPermissionGranted && mCameraManager != null) mCameraManager.startCapture();
+        if (mPermissionGranted && mCameraVideoManager != null) mCameraVideoManager.startCapture();
     }
 
     @Override
     public void finish() {
         super.finish();
         mFinished = true;
-        if (mCameraManager != null) mCameraManager.stopCapture();
+        if (mCameraVideoManager != null) mCameraVideoManager.stopCapture();
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        if (!mFinished && mCameraManager != null) mCameraManager.stopCapture();
+        if (!mFinished && mCameraVideoManager != null) mCameraVideoManager.stopCapture();
     }
 }
