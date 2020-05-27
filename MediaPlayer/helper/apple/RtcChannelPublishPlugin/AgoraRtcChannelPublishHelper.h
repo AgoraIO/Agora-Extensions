@@ -47,6 +47,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface AgoraRtcChannelPublishHelper : NSObject
 
 +(instancetype)shareInstance;
+
 // 连接 MediaPlayer 到主版本 RTC SDK
 - (void)registerRtcChannelPublishHelperDelegate:(id<AgoraRtcChannelPublishHelperDelegate>)delegate;
 - (void)attachPlayerToRtc:(AgoraMediaPlayer *)playerKit RtcEngine:(AgoraRtcEngineKit *)rtcEngine enableVideoSource:(bool)enable;

@@ -90,7 +90,7 @@
 }
 - (IBAction)attach:(UIButton *)sender {
     if (isAttach) {
-        [[AgoraRtcChannelPublishHelper shareInstance] attachPlayerToRtc:_mediaPlayerKit RtcEngine:_rtcEnginekit];
+        [[AgoraRtcChannelPublishHelper shareInstance] attachPlayerToRtc:_mediaPlayerKit RtcEngine:_rtcEnginekit enableVideoSource:true];
         [sender setTitle:@"detach" forState:UIControlStateNormal];
         [self.publishAudio setTitle:@"publishAudio" forState:UIControlStateNormal];
         [self.publishVideo setTitle:@"publishVideo" forState:UIControlStateNormal];
