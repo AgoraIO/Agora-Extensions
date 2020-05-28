@@ -210,15 +210,13 @@ public class VideoChannel extends HandlerThread {
 
         mHandler.post(() -> {
             if (type == IVideoConsumer.TYPE_ON_SCREEN) {
-                if (!mOnScreenConsumers.contains(consumer)) {
-                    Log.d(TAG, "On-screen consumer connected:" + consumer);
-                    mOnScreenConsumers.add(consumer);
-                }
+                Log.d(TAG, "On-screen consumer connected:" + consumer);
+                mOnScreenConsumers.remove(consumer);
+                mOnScreenConsumers.add(consumer);
             } else if (type == IVideoConsumer.TYPE_OFF_SCREEN) {
-                if (!mOffScreenConsumers.contains(consumer)) {
-                    Log.d(TAG, "Off-screen consumer connected:" + consumer);
-                    mOffScreenConsumers.add(consumer);
-                }
+                Log.d(TAG, "Off-screen consumer connected:" + consumer);
+                mOffScreenConsumers.remove(consumer);
+                mOffScreenConsumers.add(consumer);
             }
         });
     }
@@ -306,30 +304,6 @@ public class VideoChannel extends HandlerThread {
 
     void enableOffscreenMode(boolean enabled) {
         mOffScreenMode = enabled;
-    }
-
-    public void setBlurValue(float blur) {
-        if (mPreprocessor != null) {
-            mPreprocessor.setBlurValue(blur);
-        }
-    }
-
-    public void setWhitenValue(float whiten) {
-        if (mPreprocessor != null) {
-            mPreprocessor.setWhitenValue(whiten);
-        }
-    }
-
-    public void setCheekValue(float cheek) {
-        if (mPreprocessor != null) {
-            mPreprocessor.setCheekValue(cheek);
-        }
-    }
-
-    public void setEyeValue(float eye) {
-        if (mPreprocessor != null) {
-            mPreprocessor.setEyeValue(eye);
-        }
     }
 
     public static class ChannelContext {
