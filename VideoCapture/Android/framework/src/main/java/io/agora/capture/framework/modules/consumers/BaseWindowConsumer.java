@@ -4,6 +4,8 @@ import android.opengl.EGL14;
 import android.opengl.EGLSurface;
 import android.opengl.GLES11Ext;
 import android.opengl.GLES20;
+import android.opengl.Matrix;
+import android.util.Log;
 
 import io.agora.capture.framework.gles.core.EglCore;
 import io.agora.capture.framework.gles.core.GlUtil;
@@ -18,11 +20,13 @@ public abstract class BaseWindowConsumer implements IVideoConsumer {
 
     VideoModule videoModule;
     VideoChannel videoChannel;
+    boolean mirrored;
 
     private EGLSurface drawingEglSurface;
     volatile boolean needResetSurface = true;
     volatile boolean surfaceDestroyed;
     private float[] mMVPMatrix = new float[16];
+    private float[] mMirrorMatrix = new float[16];
     private boolean mMVPInit;
 
     BaseWindowConsumer(VideoModule videoModule) {
@@ -81,16 +85,28 @@ public abstract class BaseWindowConsumer implements IVideoConsumer {
             mMVPInit = true;
         }
 
+        Log.i("BaseWindowConsumer", frame.mirrored + ":" + mirrored);
+
+        float[] mvp = mMVPMatrix;
+        if (frame.mirrored != mirrored) {
+            Matrix.rotateM(mMirrorMatrix, 0, mMVPMatrix, 0, 180, 0, 1f, 0);
+            mvp = mMirrorMatrix;
+        }
+
         if (frame.format.getTexFormat() == GLES20.GL_TEXTURE_2D) {
             context.getProgram2D().drawFrame(
-                    frame.textureId, frame.textureTransform, mMVPMatrix);
+                    frame.textureId, frame.textureTransform, mvp);
         } else if (frame.format.getTexFormat() == GLES11Ext.GL_TEXTURE_EXTERNAL_OES) {
             context.getProgramOES().drawFrame(
-                    frame.textureId, frame.textureTransform, mMVPMatrix);
+                    frame.textureId, frame.textureTransform, mvp);
         }
 
         if (drawingEglSurface != null) {
             eglCore.swapBuffers(drawingEglSurface);
         }
+    }
+
+    public void setMirror(boolean isMirrored) {
+        mirrored = isMirrored;
     }
 }

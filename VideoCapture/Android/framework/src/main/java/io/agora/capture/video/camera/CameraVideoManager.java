@@ -176,4 +176,10 @@ public class CameraVideoManager {
 
         return null;
     }
+
+    public void setLocalPreviewMirror(boolean mirrored) {
+        if (mCameraChannel != null) {
+            mCameraChannel.setOnScreenConsumerMirror(mirrored);
+        }
+    }
 }

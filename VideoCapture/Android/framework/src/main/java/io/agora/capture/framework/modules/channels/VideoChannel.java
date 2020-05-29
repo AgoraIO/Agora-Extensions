@@ -28,6 +28,7 @@ public class VideoChannel extends HandlerThread {
     private IVideoProducer mProducer;
     private List<IVideoConsumer> mOnScreenConsumers = new ArrayList<>();
     private List<IVideoConsumer> mOffScreenConsumers = new ArrayList<>();
+    private boolean mOnScreenConsumerMirror;
     private IPreprocessor mPreprocessor;
 
     // Used to rotate the image to normal direction according
@@ -160,12 +161,7 @@ public class VideoChannel extends HandlerThread {
     }
 
     private void resetOpenGLSurface() {
-        mHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                makeDummySurfaceCurrent();
-            }
-        });
+        mHandler.post(this::makeDummySurfaceCurrent);
     }
 
     private void removeOnScreenConsumer() {
@@ -213,10 +209,20 @@ public class VideoChannel extends HandlerThread {
                 Log.d(TAG, "On-screen consumer connected:" + consumer);
                 mOnScreenConsumers.remove(consumer);
                 mOnScreenConsumers.add(consumer);
+                consumer.setMirror(mOnScreenConsumerMirror);
             } else if (type == IVideoConsumer.TYPE_OFF_SCREEN) {
                 Log.d(TAG, "Off-screen consumer connected:" + consumer);
                 mOffScreenConsumers.remove(consumer);
                 mOffScreenConsumers.add(consumer);
+            }
+        });
+    }
+
+    public void setOnScreenConsumerMirror(boolean mirrored) {
+        mOnScreenConsumerMirror = mirrored;
+        mHandler.post(() -> {
+            for (IVideoConsumer consumer : mOnScreenConsumers) {
+                consumer.setMirror(mOnScreenConsumerMirror);
             }
         });
     }

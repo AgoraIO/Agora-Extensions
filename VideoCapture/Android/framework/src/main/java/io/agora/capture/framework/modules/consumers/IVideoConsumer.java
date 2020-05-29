@@ -11,6 +11,8 @@ public interface IVideoConsumer {
     void connectChannel(int channelId);
     void disconnectChannel(int channelId);
 
+    void setMirror(boolean isMirrored);
+
     /**
      * Give a chance for subclasses to return a drawing target
      * object. This object can only be either a Surface or a
