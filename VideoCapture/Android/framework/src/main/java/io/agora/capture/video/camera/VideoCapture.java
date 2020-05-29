@@ -77,7 +77,9 @@ public abstract class VideoCapture extends VideoProducer {
 
     int mCameraId;
     String mCamera2Id;
-    int mFacing;
+    int curCameraFacing;
+    int lastCameraFacing;
+    boolean cameraSteady;
 
     VideoCapture(Context context) {
         pContext = context;
@@ -154,7 +156,8 @@ public abstract class VideoCapture extends VideoProducer {
 
     void onFrameAvailable() {
         // The images from front system camera are mirrored by default.
-        boolean mirrored = (mFacing == Constant.CAMERA_FACING_FRONT);
+        int facing = cameraSteady ? curCameraFacing : lastCameraFacing;
+        boolean mirrored = (facing == Constant.CAMERA_FACING_FRONT);
 
         VideoCaptureFrame frame = new VideoCaptureFrame(
                 // The format may be changed during processing.

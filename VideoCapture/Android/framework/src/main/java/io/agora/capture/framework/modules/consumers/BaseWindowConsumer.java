@@ -85,8 +85,6 @@ public abstract class BaseWindowConsumer implements IVideoConsumer {
             mMVPInit = true;
         }
 
-        Log.i("BaseWindowConsumer", frame.mirrored + ":" + mirrored);
-
         float[] mvp = mMVPMatrix;
         if (frame.mirrored != mirrored) {
             Matrix.rotateM(mMirrorMatrix, 0, mMVPMatrix, 0, 180, 0, 1f, 0);

@@ -41,7 +41,6 @@ public class VideoCaptureCamera
     private ReentrantLock mPreviewBufferLock = new ReentrantLock();
     private final Object mCameraStateLock = new Object();
     private volatile CameraState mCameraState = CameraState.STOPPED;
-    private volatile boolean mPendingStartRequest;
 
     private Camera.CameraInfo getCameraInfo(int id) {
         Camera.CameraInfo cameraInfo = new Camera.CameraInfo();
@@ -92,17 +91,17 @@ public class VideoCaptureCamera
             }
         }
 
-        mFacing = facing;
+        curCameraFacing = facing;
         Camera.CameraInfo info = new Camera.CameraInfo();
         int numCameras = getNumberOfCameras();
         for (int i = 0; i < numCameras; i++) {
             Camera.getCameraInfo(i, info);
-            if (mFacing == Constant.CAMERA_FACING_FRONT && info.facing == Camera.CameraInfo.CAMERA_FACING_FRONT) {
+            if (curCameraFacing == Constant.CAMERA_FACING_FRONT && info.facing == Camera.CameraInfo.CAMERA_FACING_FRONT) {
                 mCameraId = i;
                 break;
             }
 
-            if (mFacing == Constant.CAMERA_FACING_BACK && info.facing == Camera.CameraInfo.CAMERA_FACING_BACK) {
+            if (curCameraFacing == Constant.CAMERA_FACING_BACK && info.facing == Camera.CameraInfo.CAMERA_FACING_BACK) {
                 mCameraId = i;
                 break;
             }
@@ -217,6 +216,8 @@ public class VideoCaptureCamera
             mCamera.setPreviewCallbackWithBuffer(this);
             mCamera.setPreviewTexture(pPreviewSurfaceTexture);
             mCamera.startPreview();
+            lastCameraFacing = curCameraFacing;
+            cameraSteady = true;
         } catch (IOException | RuntimeException ex) {
             ex.printStackTrace();
         }
@@ -232,7 +233,6 @@ public class VideoCaptureCamera
 
         synchronized (mCameraStateLock) {
             if (mCameraState == CameraState.STOPPING) {
-                mPendingStartRequest = true;
                 Log.d(TAG, "startCaptureMaybeAsync pending start request");
             } else if (mCameraState == CameraState.OPENING) {
                 if (pPreviewTextureId == -1) pPreviewTextureId = GlUtil.createTextureObject(GLES11Ext.GL_TEXTURE_EXTERNAL_OES);
@@ -273,6 +273,7 @@ public class VideoCaptureCamera
 
         if (mCamera == null) return;
 
+        cameraSteady = false;
         stopCaptureAndBlockUntilStopped();
 
         if (pPreviewTextureId != -1) {

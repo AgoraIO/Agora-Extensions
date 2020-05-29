@@ -42,13 +42,14 @@ import io.agora.capture.framework.gles.core.GlUtil;
  **/
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
 public class VideoCaptureCamera2 extends VideoCapture {
-    // Inner class to extend a CameraDevice state change listener.
     private class CameraStateListener extends CameraDevice.StateCallback {
         @Override
         public void onOpened(CameraDevice cameraDevice) {
             Log.e(TAG, "CameraDevice.StateCallback onOpened");
             mCameraDevice = cameraDevice;
             changeCameraStateAndNotify(CameraState.CONFIGURING);
+            lastCameraFacing = curCameraFacing;
+            cameraSteady = true;
             createPreviewObjectsAndStartPreviewOrFail();
         }
 
@@ -124,35 +125,33 @@ public class VideoCaptureCamera2 extends VideoCapture {
         @Override
         public void onClosed(CameraCaptureSession cameraCaptureSession) {
             Log.d(TAG, "CameraPreviewSessionListener.onClosed");
-
-            // The preview session gets closed temporarily when a takePhoto
-            // request is being processed. A new preview session will be
-            // started after that.
             mPreviewSession = null;
         }
     };
 
-    // Internal class implementing an ImageReader listener for Preview frames. Gets pinged when a
-    // new frame is been captured and downloads it to memory-backed buffers.
     private class CameraPreviewReaderListener implements ImageReader.OnImageAvailableListener {
         @Override
         public void onImageAvailable(ImageReader reader) {
+            // There is a case where the frame callbacks are
+            // still called a short while after the camera
+            // capture is stopped.
+            if (mCameraState != CameraState.STARTED) return;
+
             try (Image image = reader.acquireLatestImage()) {
-                if (image == null) {
-                    return;
-                }
+                if (image == null) return;
 
                 if (image.getFormat() != ImageFormat.YUV_420_888 || image.getPlanes().length != 3) {
-                    Log.e(TAG,"Unexpected image format: " + image.getFormat()
-                                    + " or #planes: " + image.getPlanes().length);
+                    Log.e(TAG,"Unexpected image format: " +
+                            image.getFormat() + " or #planes: " +
+                            image.getPlanes().length);
                     throw new IllegalStateException();
                 }
 
                 if (reader.getWidth() != image.getWidth()
                         || reader.getHeight() != image.getHeight()) {
-                    Log.e(TAG,"ImageReader size (" + reader.getWidth() + "x" + reader.getHeight()
-                                    + ") did not match Image size (" + image.getWidth() + "x"
-                                    + image.getHeight() + ")");
+                    Log.e(TAG,"ImageReader size (" + reader.getWidth() +
+                            "x" + reader.getHeight() + ") did not match Image size (" +
+                            image.getWidth() + "x" + image.getHeight() + ")");
                     throw new IllegalStateException();
                 }
 
@@ -309,7 +308,7 @@ public class VideoCaptureCamera2 extends VideoCapture {
     public boolean allocate(int width, int height, int frameRate, int facing) {
         Log.d(TAG, "allocate: requested width: " + width + " height: " + height + " fps: " + frameRate);
 
-        mFacing = facing;
+        curCameraFacing = facing;
         synchronized (mCameraStateLock) {
             if (mCameraState == CameraState.OPENING || mCameraState == CameraState.CONFIGURING) {
                 Log.e(TAG, "allocate() invoked while Camera is busy opening/configuring.");
@@ -323,12 +322,12 @@ public class VideoCaptureCamera2 extends VideoCapture {
                         = getCameraCharacteristics(cameraId);
 
                 Integer face = characteristics.get(CameraCharacteristics.LENS_FACING);
-                if (mFacing == Constant.CAMERA_FACING_FRONT && face == characteristics.LENS_FACING_FRONT) {
+                if (curCameraFacing == Constant.CAMERA_FACING_FRONT && face == characteristics.LENS_FACING_FRONT) {
                     mCamera2Id = cameraId;
                     break;
                 }
 
-                if (mFacing == Constant.CAMERA_FACING_BACK && face == characteristics.LENS_FACING_BACK) {
+                if (curCameraFacing == Constant.CAMERA_FACING_BACK && face == characteristics.LENS_FACING_BACK) {
                     mCamera2Id = cameraId;
                     break;
                 }
@@ -426,6 +425,14 @@ public class VideoCaptureCamera2 extends VideoCapture {
         synchronized (mCameraStateLock) {
             if (mCameraState != CameraState.STOPPED &&
                     mCameraState != CameraState.STOPPING) {
+                if (mPreviewSession != null) {
+                    try {
+                        mPreviewSession.abortCaptures();
+                        mPreviewSession = null;
+                    } catch (CameraAccessException e) {
+                        e.printStackTrace();
+                    }
+                }
                 mCameraDevice.close();
                 changeCameraStateAndNotify(CameraState.STOPPING);
             } else {
@@ -437,7 +444,7 @@ public class VideoCaptureCamera2 extends VideoCapture {
     @Override
     public void deallocate(boolean disconnect) {
         Log.d(TAG, "deallocate " + disconnect);
-
+        cameraSteady = false;
         stopCaptureAndBlockUntilStopped();
 
         if (pPreviewTextureId != -1) {
