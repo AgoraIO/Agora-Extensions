@@ -62,24 +62,28 @@ public class CameraVideoChannel extends VideoChannel {
     }
 
     public void startCapture() {
-        if (isRunning() && !mCapturedStarted) {
+        if (isRunning()) {
             getHandler().post(() -> {
-                mVideoCapture.connectChannel(ChannelManager.ChannelID.CAMERA);
-                mVideoCapture.setSharedContext(getChannelContext().getEglCore().getEGLContext());
-                mVideoCapture.allocate(mWidth, mHeight, mFrameRate, mFacing);
-                mVideoCapture.startCaptureMaybeAsync(false);
-                mCapturedStarted = true;
+                if (!mCapturedStarted) {
+                    mVideoCapture.connectChannel(ChannelManager.ChannelID.CAMERA);
+                    mVideoCapture.setSharedContext(getChannelContext().getEglCore().getEGLContext());
+                    mVideoCapture.allocate(mWidth, mHeight, mFrameRate, mFacing);
+                    mVideoCapture.startCaptureMaybeAsync(false);
+                    mCapturedStarted = true;
+                }
             });
         }
     }
 
     public void switchCamera() {
-        if (isRunning() && mCapturedStarted) {
+        if (isRunning()) {
             getHandler().post(() -> {
-                mVideoCapture.deallocate();
-                switchCameraFacing();
-                mVideoCapture.allocate(mWidth, mHeight, mFrameRate, mFacing);
-                mVideoCapture.startCaptureMaybeAsync(false);
+                if (mCapturedStarted) {
+                    mVideoCapture.deallocate();
+                    switchCameraFacing();
+                    mVideoCapture.allocate(mWidth, mHeight, mFrameRate, mFacing);
+                    mVideoCapture.startCaptureMaybeAsync(false);
+                }
             });
         }
     }
@@ -93,10 +97,12 @@ public class CameraVideoChannel extends VideoChannel {
     }
 
     public void stopCapture() {
-        if (isRunning() && mCapturedStarted) {
+        if (isRunning()) {
             getHandler().post(() -> {
-                mVideoCapture.deallocate();
-                mCapturedStarted = false;
+                if (mCapturedStarted) {
+                    mVideoCapture.deallocate();
+                    mCapturedStarted = false;
+                }
             });
         }
     }

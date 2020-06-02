@@ -11,7 +11,7 @@ public interface IVideoConsumer {
     void connectChannel(int channelId);
     void disconnectChannel(int channelId);
 
-    void setMirror(boolean isMirrored);
+    void setMirrorMode(int mode);
 
     /**
      * Give a chance for subclasses to return a drawing target

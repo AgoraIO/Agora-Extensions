@@ -5,12 +5,12 @@ import android.opengl.EGLSurface;
 import android.opengl.GLES11Ext;
 import android.opengl.GLES20;
 import android.opengl.Matrix;
-import android.util.Log;
 
 import io.agora.capture.framework.gles.core.EglCore;
 import io.agora.capture.framework.gles.core.GlUtil;
 import io.agora.capture.framework.modules.channels.ChannelManager;
 import io.agora.capture.framework.modules.channels.VideoChannel;
+import io.agora.capture.video.camera.Constant;
 import io.agora.capture.video.camera.VideoCaptureFrame;
 import io.agora.capture.video.camera.VideoModule;
 
@@ -20,7 +20,7 @@ public abstract class BaseWindowConsumer implements IVideoConsumer {
 
     VideoModule videoModule;
     VideoChannel videoChannel;
-    boolean mirrored;
+    int mirrorMode;
 
     private EGLSurface drawingEglSurface;
     volatile boolean needResetSurface = true;
@@ -86,7 +86,8 @@ public abstract class BaseWindowConsumer implements IVideoConsumer {
         }
 
         float[] mvp = mMVPMatrix;
-        if (frame.mirrored != mirrored) {
+        boolean mirrored = mirrorMode == Constant.MIRROR_MODE_ENABLED;
+        if (mirrorMode != Constant.MIRROR_MODE_AUTO && frame.mirrored != mirrored) {
             Matrix.rotateM(mMirrorMatrix, 0, mMVPMatrix, 0, 180, 0, 1f, 0);
             mvp = mMirrorMatrix;
         }
@@ -104,7 +105,7 @@ public abstract class BaseWindowConsumer implements IVideoConsumer {
         }
     }
 
-    public void setMirror(boolean isMirrored) {
-        mirrored = isMirrored;
+    public void setMirrorMode(int mode) {
+        mirrorMode = mode;
     }
 }

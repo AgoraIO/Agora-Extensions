@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
         mCameraVideoManager.setPictureSize(640, 480);
         mCameraVideoManager.setFrameRate(24);
         mCameraVideoManager.setFacing(Constant.CAMERA_FACING_FRONT);
-        mCameraVideoManager.setLocalPreviewMirror(true);
+        mCameraVideoManager.setLocalPreviewMirror(toMirrorMode(mIsMirrored));
 
         // The preview surface is actually considered as
         // an on-screen consumer under the hood.
@@ -109,8 +109,12 @@ public class MainActivity extends AppCompatActivity {
     public void onMirrorModeChanged(View view) {
         if (mCameraVideoManager != null) {
             mIsMirrored = !mIsMirrored;
-            mCameraVideoManager.setLocalPreviewMirror(mIsMirrored);
+            mCameraVideoManager.setLocalPreviewMirror(toMirrorMode(mIsMirrored));
         }
+    }
+
+    private int toMirrorMode(boolean isMirrored) {
+        return isMirrored ? Constant.MIRROR_MODE_ENABLED : Constant.MIRROR_MODE_DISABLED;
     }
 
     @Override
