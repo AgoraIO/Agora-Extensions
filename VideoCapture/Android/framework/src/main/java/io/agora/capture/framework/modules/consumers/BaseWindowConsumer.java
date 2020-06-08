@@ -21,6 +21,7 @@ public abstract class BaseWindowConsumer implements IVideoConsumer {
     VideoModule videoModule;
     VideoChannel videoChannel;
     int mirrorMode;
+    String tag;
 
     private EGLSurface drawingEglSurface;
     volatile boolean needResetSurface = true;
@@ -41,6 +42,25 @@ public abstract class BaseWindowConsumer implements IVideoConsumer {
     @Override
     public void disconnectChannel(int channelId) {
         videoModule.disconnectConsumer(this, channelId);
+    }
+
+    /**
+     * Tag is used to identify different consumer instances
+     * which can be seen as the same.
+     * A consumer is attached to a channel and will replace
+     * any consumers of the same type (on screen or off screen)
+     * in the consumer list.
+     * Consumers of the same type with null or empty tags will be
+     * considered as different consumers.
+     * @param tag tag of the consumer
+     */
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+
+    @Override
+    public String getTag() {
+        return this.tag;
     }
 
     @Override
@@ -107,5 +127,16 @@ public abstract class BaseWindowConsumer implements IVideoConsumer {
 
     public void setMirrorMode(int mode) {
         mirrorMode = mode;
+    }
+
+    @Override
+    public void recycle() {
+        if (videoChannel != null && drawingEglSurface != null
+                && drawingEglSurface != EGL14.EGL_NO_SURFACE) {
+            EglCore eglCore = videoChannel.getChannelContext().getEglCore();
+            eglCore.releaseSurface(drawingEglSurface);
+            drawingEglSurface = null;
+            needResetSurface = true;
+        }
     }
 }

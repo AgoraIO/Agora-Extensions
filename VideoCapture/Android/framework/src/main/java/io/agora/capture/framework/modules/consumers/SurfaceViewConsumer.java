@@ -44,11 +44,24 @@ public class SurfaceViewConsumer extends BaseWindowConsumer implements SurfaceHo
     }
 
     @Override
+    public String getTag() {
+        return tag;
+    }
+
+    @Override
     public void surfaceCreated(final SurfaceHolder holder) {
         Log.i(TAG, "surfaceCreated");
         surfaceDestroyed = false;
         needResetSurface = true;
         connectChannel(CHANNEL_ID);
+    }
+
+    /**
+     * Called when the SurfaceView has been attached to
+     * the window.
+     */
+    public void setDefault() {
+        needResetSurface = true;
     }
 
     @Override

@@ -87,10 +87,32 @@ public class CameraVideoManager {
      * If the TextureView is detached from the window,
      * it's previewing will be automatically stopped and it
      * is removed from the consumer list.
+     * The tag is set to null
      * @param textureView
      */
     public void setLocalPreview(TextureView textureView) {
-        textureView.setSurfaceTextureListener(new TextureViewConsumer());
+        setLocalPreview(textureView, null);
+    }
+
+    /**
+     * Set the local preview with a tag.
+     * If the tag is not null or empty, set the
+     * local preview will replace any local preview
+     * with the same tag.
+     * @param textureView
+     * @param tag tag for the preview, nullable.
+     */
+    public void setLocalPreview(TextureView textureView, String tag) {
+        TextureViewConsumer consumer = new TextureViewConsumer();
+        consumer.setTag(tag);
+        textureView.setSurfaceTextureListener(consumer);
+
+        if (textureView.isAttachedToWindow()) {
+            consumer.setDefault(textureView.getSurfaceTexture(),
+                    textureView.getMeasuredWidth(),
+                    textureView.getMeasuredHeight());
+            consumer.connectChannel(CHANNEL_ID);
+        }
     }
 
     /**
@@ -104,8 +126,19 @@ public class CameraVideoManager {
      * @param surfaceView
      */
     public void setLocalPreview(SurfaceView surfaceView) {
-        surfaceView.getHolder().addCallback(
-                new SurfaceViewConsumer(surfaceView));
+        setLocalPreview(surfaceView, null);
+    }
+
+    public void setLocalPreview(SurfaceView surfaceView, String tag) {
+        SurfaceViewConsumer consumer =
+                new SurfaceViewConsumer(surfaceView);
+        consumer.setTag(tag);
+        surfaceView.getHolder().addCallback(consumer);
+
+        if (surfaceView.isAttachedToWindow()) {
+            consumer.setDefault();
+            consumer.connectChannel(CHANNEL_ID);
+        }
     }
 
     public void setFacing(int facing) {

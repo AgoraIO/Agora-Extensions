@@ -23,4 +23,19 @@ public interface IVideoConsumer {
 
     int onMeasuredWidth();
     int onMeasuredHeight();
+
+    /**
+     * Called when the consumer is intended to stay
+     * in a channel but its rendering pauses maybe
+     * because this consumer is not current.
+     */
+    void recycle();
+
+    /**
+     * The tag is used to identify consumers that
+     * are considered to be the same, although
+     * they are different object instances.
+     * @return tag of this consumer
+     */
+    String getTag();
 }

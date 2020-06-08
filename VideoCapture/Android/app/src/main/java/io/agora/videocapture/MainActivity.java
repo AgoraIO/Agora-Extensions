@@ -9,8 +9,8 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.SurfaceView;
+import android.view.TextureView;
 import android.view.View;
-import android.widget.FrameLayout;
 
 import io.agora.capture.video.camera.CameraVideoManager;
 import io.agora.capture.video.camera.Constant;
@@ -18,13 +18,15 @@ import io.agora.capture.video.camera.Constant;
 public class MainActivity extends AppCompatActivity {
     private static final int REQUEST = 1;
 
+    private int mViewPosition = 1;
+
     private static final String[] PERMISSIONS = {
             Manifest.permission.CAMERA
     };
 
     private CameraVideoManager mCameraVideoManager;
-    private FrameLayout mVideoLayout;
-    private SurfaceView mVideoSurface;
+    private SurfaceView mVideoSurface1;
+    private TextureView mVideoSurface2;
     private boolean mPermissionGranted;
     private boolean mFinished;
     private boolean mIsMirrored = true;
@@ -33,7 +35,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mVideoLayout = findViewById(R.id.video_layout);
+        mVideoSurface1 = findViewById(R.id.video_surface_1);
+        mVideoSurface2 = findViewById(R.id.video_surface_2);
         checkCameraPermission();
     }
 
@@ -90,9 +93,7 @@ public class MainActivity extends AppCompatActivity {
 
         // The preview surface is actually considered as
         // an on-screen consumer under the hood.
-        mVideoSurface = new SurfaceView(this);
-        mCameraVideoManager.setLocalPreview(mVideoSurface);
-        mVideoLayout.addView(mVideoSurface);
+        mCameraVideoManager.setLocalPreview(mVideoSurface2, "Surface2");
 
         // Can attach other consumers here,
         // For example, rtc consumer or rtmp module
@@ -115,6 +116,16 @@ public class MainActivity extends AppCompatActivity {
 
     private int toMirrorMode(boolean isMirrored) {
         return isMirrored ? Constant.MIRROR_MODE_ENABLED : Constant.MIRROR_MODE_DISABLED;
+    }
+
+    public void onViewSwitched(View view) {
+        if (mViewPosition == 0) {
+            mCameraVideoManager.setLocalPreview(mVideoSurface2, "Surface2");
+            mViewPosition = 1;
+        } else if (mViewPosition == 1) {
+            mCameraVideoManager.setLocalPreview(mVideoSurface1, "Surface1");
+            mViewPosition = 0;
+        }
     }
 
     @Override

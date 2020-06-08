@@ -47,11 +47,25 @@ public class TextureViewConsumer extends BaseWindowConsumer implements TextureVi
     @Override
     public void onSurfaceTextureAvailable(SurfaceTexture surface, int width, int height) {
         Log.i(TAG, "onSurfaceTextureAvailable");
+        setDefault(surface, width, height);
+        connectChannel(CHANNEL_ID);
+    }
+
+    /**
+     * Called to initialize surface attributes. Normally it is
+     * called automatically when the surface is available.
+     * But it is important to call the method when the surface
+     * has already been attached to the window and
+     * onSurfaceTextureAvailable() has lost its chance to be called.
+     * @param surface
+     * @param width
+     * @param height
+     */
+    public void setDefault(SurfaceTexture surface, int width, int height) {
         mSurfaceTexture = surface;
         surfaceDestroyed = false;
         needResetSurface = true;
         setSize(width, height);
-        connectChannel(CHANNEL_ID);
     }
 
     @Override

@@ -5,6 +5,7 @@ import android.opengl.EGLContext;
 import android.opengl.EGLSurface;
 import android.os.Handler;
 import android.os.HandlerThread;
+import android.text.TextUtils;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -151,6 +152,7 @@ public class VideoChannel extends HandlerThread {
 
         if (!mOffScreenConsumers.isEmpty()) {
             for (IVideoConsumer consumer : mOffScreenConsumers) {
+                consumer.recycle();
                 consumer.disconnectChannel(mChannelId);
             }
         }
@@ -166,15 +168,17 @@ public class VideoChannel extends HandlerThread {
 
     private void removeOnScreenConsumer() {
         if (mOnScreenConsumers != null) {
-            mHandler.post(new Runnable() {
-                @Override
-                public void run() {
-                    mOnScreenConsumers.clear();
-                    // To remove on-screen consumer, we need
-                    // to reset the GLSurface and maintain
-                    // the OpenGL context properly.
-                    makeDummySurfaceCurrent();
+            mHandler.post(() -> {
+                for (IVideoConsumer consumer : mOnScreenConsumers) {
+                    consumer.recycle();
+                    consumer.disconnectChannel(mChannelId);
                 }
+
+                mOnScreenConsumers.clear();
+                // To remove on-screen consumer, we need
+                // to reset the GLSurface and maintain
+                // the OpenGL context properly.
+                makeDummySurfaceCurrent();
             });
         }
     }
@@ -202,20 +206,40 @@ public class VideoChannel extends HandlerThread {
      * @see io.agora.capture.framework.modules.consumers.IVideoConsumer
      */
     public void connectConsumer(final IVideoConsumer consumer, int type) {
+        if (consumer == null) return;
         checkThreadRunningState();
 
         mHandler.post(() -> {
             if (type == IVideoConsumer.TYPE_ON_SCREEN) {
                 Log.d(TAG, "On-screen consumer connected:" + consumer);
-                mOnScreenConsumers.remove(consumer);
+                recycleAndRemoveConsumerWithSameTag(mOnScreenConsumers, consumer.getTag());
                 mOnScreenConsumers.add(consumer);
                 consumer.setMirrorMode(mOnScreenConsumerMirrorMode);
             } else if (type == IVideoConsumer.TYPE_OFF_SCREEN) {
                 Log.d(TAG, "Off-screen consumer connected:" + consumer);
-                mOffScreenConsumers.remove(consumer);
+                recycleAndRemoveConsumerWithSameTag(mOffScreenConsumers, consumer.getTag());
                 mOffScreenConsumers.add(consumer);
             }
         });
+    }
+
+    private void recycleAndRemoveConsumerWithSameTag(
+            List<IVideoConsumer> consumers, String tag) {
+        List<IVideoConsumer> removed = new ArrayList<>();
+        for (IVideoConsumer consumer : consumers) {
+            String t = consumer.getTag();
+            if (!TextUtils.isEmpty(t) &&
+                    t.equals(tag)) {
+                removed.add(consumer);
+            }
+        }
+
+        for (IVideoConsumer consumer : removed) {
+            consumer.recycle();
+            consumers.remove(consumer);
+        }
+
+        removed.clear();
     }
 
     public void setOnScreenConsumerMirror(int mode) {
@@ -232,18 +256,21 @@ public class VideoChannel extends HandlerThread {
 
         mHandler.post(() -> {
             if (mOnScreenConsumers.contains(consumer)) {
+                consumer.recycle();
                 mOnScreenConsumers.remove(consumer);
                 Log.d(TAG, "On-screen consumer disconnected:" + consumer);
-            } else {
+            } else if (mOffScreenConsumers.contains(consumer)) {
+                consumer.recycle();
                 mOffScreenConsumers.remove(consumer);
                 Log.d(TAG, "Off-screen consumer disconnected:" + consumer);
-                if (mOnScreenConsumers.isEmpty() &&
-                        mOffScreenConsumers.isEmpty()) {
-                    // If there's no consumer after remove
-                    // this off screen consumer, the OpenGL
-                    // drawing surface must be reset
-                    resetOpenGLSurface();
-                }
+            }
+
+            if (mOnScreenConsumers.isEmpty() &&
+                    mOffScreenConsumers.isEmpty()) {
+                // If there's no consumer after remove
+                // this off screen consumer, the OpenGL
+                // drawing surface must be reset
+                resetOpenGLSurface();
             }
         });
     }
