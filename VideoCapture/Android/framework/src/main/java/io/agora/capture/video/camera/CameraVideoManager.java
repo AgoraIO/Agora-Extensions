@@ -88,6 +88,11 @@ public class CameraVideoManager {
      * it's previewing will be automatically stopped and it
      * is removed from the consumer list.
      * The tag is set to null
+     * Note: the same TextureView cannot be set as local
+     * preview more than once with empty tag or with
+     * different tags. Otherwise it will cause crashes
+     * because receiving and initializing the same
+     * view will cause invalid OpenGl operations.
      * @param textureView
      */
     public void setLocalPreview(TextureView textureView) {
@@ -99,6 +104,11 @@ public class CameraVideoManager {
      * If the tag is not null or empty, set the
      * local preview will replace any local preview
      * with the same tag.
+     * Note: the same TextureView cannot be set as local
+     * preview more than once with empty tag or with
+     * different tags. Otherwise it will cause crashes
+     * because receiving and initializing the same
+     * view will cause invalid OpenGl operations.
      * @param textureView
      * @param tag tag for the preview, nullable.
      */
@@ -123,12 +133,24 @@ public class CameraVideoManager {
      * If the SurfaceView is detached from the window, it's
      * previewing will be automatically stopped and it
      * is removed from the consumer list.
+     * Note: the same SurfaceView cannot be set as local
+     * preview more than once with empty tag or with
+     * different tags. Otherwise it will cause crashes
+     * because receiving and initializing the same
+     * view will cause invalid OpenGl operations.
      * @param surfaceView
      */
     public void setLocalPreview(SurfaceView surfaceView) {
         setLocalPreview(surfaceView, null);
     }
 
+    /**
+     * Note: the same TextureView cannot be set as local
+     * preview more than once with empty tag or with
+     * different tags. Otherwise it will cause crashes
+     * because receiving and initializing the same
+     * view will cause invalid OpenGl operations.
+     */
     public void setLocalPreview(SurfaceView surfaceView, String tag) {
         SurfaceViewConsumer consumer =
                 new SurfaceViewConsumer(surfaceView);
