@@ -1,10 +1,11 @@
-package io.agora.mediaplayer.quickstart;
+package io.agora.mediaplayer;
 
 import android.app.Fragment;
 import android.graphics.PixelFormat;
 import android.graphics.SurfaceTexture;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -17,26 +18,33 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ScrollView;
 import android.widget.SeekBar;
+import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
+import java.util.Locale;
+
 import io.agora.RtcChannelPublishHelper;
 
-import io.agora.mediaplayer.AgoraMediaPlayerKit;
-import io.agora.mediaplayer.AudioFrameObserver;
-import io.agora.mediaplayer.MediaPlayerObserver;
-import io.agora.mediaplayer.VideoFrameObserver;
 import io.agora.mediaplayer.data.AudioFrame;
 import io.agora.mediaplayer.data.MediaStreamInfo;
 import io.agora.mediaplayer.data.VideoFrame;
 
 import io.agora.mediaplayer.Constants.*;
+import io.agora.mediaplayer.utils.ToolUtil;
 import io.agora.rtc.Constants;
 import io.agora.rtc.IRtcEngineEventHandler;
 import io.agora.rtc.RtcEngine;
 import io.agora.rtc.mediaio.AgoraDefaultSource;
 import io.agora.rtc.video.VideoEncoderConfiguration;
 import io.agora.utils.LogUtil;
+
+import static io.agora.rtc.Constants.AUDIO_PROFILE_DEFAULT;
+import static io.agora.rtc.Constants.AUDIO_SCENARIO_CHATROOM_GAMING;
+import static io.agora.rtc.Constants.AUDIO_SCENARIO_GAME_STREAMING;
+import static io.agora.rtc.Constants.CLIENT_ROLE_AUDIENCE;
+
 
 public class PlayerFragment extends Fragment implements SurfaceHolder.Callback, TextureView.SurfaceTextureListener {
     private AgoraMediaPlayerKit agoraMediaPlayerKit1;
@@ -91,6 +99,7 @@ public class PlayerFragment extends Fragment implements SurfaceHolder.Callback, 
     private long player2Duration = 0;
 
     public PlayerFragment() {
+        // need default constructor
     }
 
     private RtcChannelPublishHelper rtcChannelPublishHelper = null;
@@ -105,6 +114,8 @@ public class PlayerFragment extends Fragment implements SurfaceHolder.Callback, 
         }
         rtcChannelPublishHelper = RtcChannelPublishHelper.getInstance();
         setupAgoraEngineAndJoinChannel();
+        // For Debug
+        // mRtcEngine.setParameters("{\"rtc.log_filter\": 65535}");
         final View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         initPlayer();
         initUI(rootView);
@@ -117,27 +128,27 @@ public class PlayerFragment extends Fragment implements SurfaceHolder.Callback, 
         agoraMediaPlayerKit1.registerPlayerObserver(new MediaPlayerObserver() {
             @Override
             public void onPlayerStateChanged(MediaPlayerState state, MediaPlayerError error) {
-                LogUtil.i("agoraMediaPlayerKit1 onPlayerStateChanged: " + state + " " + error);
-                if (getActivity() == null || getActivity().isFinishing()) {
+                LogUtil.i("agoraMediaPlayerKit1 onPlayerStateChanged:" + state + " " + error);
+                if(getActivity() == null || getActivity().isFinishing()){
                     return;
                 }
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        video1State.setText("state: " + MediaPlayerState.getValue(state) + " error: " + MediaPlayerError.getValue(error));
+                        video1State.setText("state:" + MediaPlayerState.getValue(state) + " error:" + MediaPlayerError.getValue(error));
                     }
                 });
             }
 
             @Override
             public void onPositionChanged(final long position) {
-                LogUtil.i("agoraMediaPlayerKit1 seekPosition: " + position + " duration: " + player1Duration);
+                LogUtil.i("agoraMediaPlayerKit1 seekPosition:" + position + " duration:" + player1Duration);
                 if (player1Duration > 0) {
-                    if (getActivity() == null || getActivity().isFinishing()) {
+                    if(getActivity() == null || getActivity().isFinishing()){
                         return;
                     }
                     final int result = (int) ((float) position / (float) player1Duration * 100);
-                    LogUtil.i("agoraMediaPlayerKit1 seek: " + result);
+                    LogUtil.i("agoraMediaPlayerKit1 seek:" + result);
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
@@ -153,9 +164,9 @@ public class PlayerFragment extends Fragment implements SurfaceHolder.Callback, 
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        setInfo1Text("eventCode: " + MediaPlayerEvent.getValue(eventCode));
+                        setInfo1Text("eventCode:" + MediaPlayerEvent.getValue(eventCode));
                         if (MediaPlayerEvent.getValue(eventCode) == 1) {
-                            LogUtil.i("seekPosition 4: " + agoraMediaPlayerKit1.getPlayPosition());
+                            LogUtil.i( "seekPosition 4:" + agoraMediaPlayerKit1.getPlayPosition());
                         }
                     }
                 });
@@ -163,11 +174,11 @@ public class PlayerFragment extends Fragment implements SurfaceHolder.Callback, 
 
             @Override
             public void onMetaData(MediaPlayerMetadataType type, byte[] data) {
-                LogUtil.i("agoraMediaPlayerKit1 onMetaData " + new String(data) + " type: " + type);
+                LogUtil.i("agoraMediaPlayerKit1 onMetaData " + new String(data) + " type:" + type);
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        setInfo1Text("metaData: " + new String(data));
+                        setInfo1Text("metaData:" + new String(data));
                     }
                 });
             }
@@ -176,7 +187,7 @@ public class PlayerFragment extends Fragment implements SurfaceHolder.Callback, 
         agoraMediaPlayerKit1.registerVideoFrameObserver(new VideoFrameObserver() {
             @Override
             public void onFrame(VideoFrame videoFrame) {
-                LogUtil.i("agoraMediaPlayerKit1 video onFrame: " + videoFrame);
+                LogUtil.i("agoraMediaPlayerKit1 video onFrame :" + videoFrame);
 
             }
         });
@@ -184,7 +195,7 @@ public class PlayerFragment extends Fragment implements SurfaceHolder.Callback, 
         agoraMediaPlayerKit1.registerAudioFrameObserver(new AudioFrameObserver() {
             @Override
             public void onFrame(AudioFrame audioFrame) {
-                LogUtil.i("agoraMediaPlayerKit1 audio onFrame: " + audioFrame);
+                LogUtil.i("agoraMediaPlayerKit1 audio onFrame :" + audioFrame);
             }
         });
 
@@ -192,24 +203,24 @@ public class PlayerFragment extends Fragment implements SurfaceHolder.Callback, 
             agoraMediaPlayerKit2.registerPlayerObserver(new MediaPlayerObserver() {
                 @Override
                 public void onPlayerStateChanged(MediaPlayerState state, MediaPlayerError error) {
-                    LogUtil.i("agoraMediaPlayerKit2 onPlayerStateChanged: " + state + " " + error);
-                    if (getActivity() == null || getActivity().isFinishing()) {
+                    LogUtil.i("agoraMediaPlayerKit2 onPlayerStateChanged:" + state + " " + error);
+                    if(getActivity() == null || getActivity().isFinishing()){
                         return;
                     }
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            video2State.setText("state: " + MediaPlayerState.getValue(state) + " error: " + MediaPlayerError.getValue(error));
+                            video2State.setText("state:" + MediaPlayerState.getValue(state) + " error:" + MediaPlayerError.getValue(error));
                         }
                     });
                 }
 
                 @Override
                 public void onPositionChanged(final long position) {
-                    LogUtil.i("agoraMediaPlayerKit2 onPositionChanged: " + position);
+                    LogUtil.i("agoraMediaPlayerKit2 onPositionChanged:" + position);
                     if (player2Duration > 0) {
                         final int result = (int) ((float) position / (float) player2Duration * 100);
-                        LogUtil.i("agoraMediaPlayerKit2 position: " + result);
+                        LogUtil.i("agoraMediaPlayerKit2 position:" + result);
                         getActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
@@ -221,22 +232,22 @@ public class PlayerFragment extends Fragment implements SurfaceHolder.Callback, 
 
                 @Override
                 public void onPlayerEvent(MediaPlayerEvent eventCode) {
-                    LogUtil.i(" agoraMediaPlayerKit2 onEvent: " + eventCode);
+                    LogUtil.i(" agoraMediaPlayerKit2 onEvent:" + eventCode);
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            setInfo2Text("eventCode: " + MediaPlayerEvent.getValue(eventCode));
+                            setInfo2Text("eventCode:" + MediaPlayerEvent.getValue(eventCode));
                         }
                     });
                 }
 
                 @Override
                 public void onMetaData(MediaPlayerMetadataType type, byte[] data) {
-                    LogUtil.i("agoraMediaPlayerKit1 onMetaData: " + new String(data) + " type: " + type);
+                    LogUtil.i("agoraMediaPlayerKit1 onMetaData " + new String(data) + " type:" + type);
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            setInfo2Text("metaData: " + new String(data));
+                            setInfo2Text("metaData:" + new String(data));
                         }
                     });
                 }
@@ -254,6 +265,8 @@ public class PlayerFragment extends Fragment implements SurfaceHolder.Callback, 
                 }
             });
         }
+
+
     }
 
     public void initUI(View rootView) {
@@ -272,6 +285,7 @@ public class PlayerFragment extends Fragment implements SurfaceHolder.Callback, 
         video1Info.setMovementMethod(ScrollingMovementMethod.getInstance());
         video1Container = (FrameLayout) rootView.findViewById(R.id.player_view_1);
 
+
         video1mute = (Button) rootView.findViewById(R.id.bt_mute1);
         video1mute.setOnClickListener(mOnClickListener);
         video1Duration = (Button) rootView.findViewById(R.id.bt_get_duration1);
@@ -281,6 +295,7 @@ public class PlayerFragment extends Fragment implements SurfaceHolder.Callback, 
         video1GetStreamInfo = (Button) rootView.findViewById(R.id.bt_get_stream_info1);
         video1GetStreamInfo.setOnClickListener(mOnClickListener);
 
+
         video1Connect = (Button) rootView.findViewById(R.id.bt_connect_rtc1);
         video1Connect.setOnClickListener(mOnClickListener);
         video1PubVideo = (Button) rootView.findViewById(R.id.bt_publish_video1);
@@ -289,6 +304,7 @@ public class PlayerFragment extends Fragment implements SurfaceHolder.Callback, 
         video1PuAudio.setOnClickListener(mOnClickListener);
         video1Disconnect = (Button) rootView.findViewById(R.id.bt_disconnet_rtc1);
         video1Disconnect.setOnClickListener(mOnClickListener);
+
 
         video1Bar = (SeekBar) rootView.findViewById(R.id.sb_1);
         video1Bar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -304,8 +320,9 @@ public class PlayerFragment extends Fragment implements SurfaceHolder.Callback, 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 if (agoraMediaPlayerKit1 != null && player1Duration > 0) {
+
                     long durationTemp = (long) (player1Duration * ((float) seekBar.getProgress() / 100));
-                    LogUtil.i("onStopTrackingTouch1: " + seekBar.getProgress() + " seek duration: " + durationTemp);
+                    LogUtil.i("onStopTrackingTouch1:" + seekBar.getProgress() + " seek duration:" + durationTemp);
                     agoraMediaPlayerKit1.seek(durationTemp);
                 }
             }
@@ -357,6 +374,7 @@ public class PlayerFragment extends Fragment implements SurfaceHolder.Callback, 
         //rtc.startPreview();
         agoraMediaPlayerKit1.setView(videoView1);
         video1Container.addView(videoView1);
+
 
         video2Open = (Button) rootView.findViewById(R.id.bt_load2);
         video2Open.setOnClickListener(mOnClickListener);
@@ -580,27 +598,31 @@ public class PlayerFragment extends Fragment implements SurfaceHolder.Callback, 
     };
 
     private void video1Mute() {
-        if (video1mute.getTag() == null || (boolean) (video1mute.getTag()) == false) {
+
+        if(video1mute.getTag() == null || (boolean) (video1mute.getTag()) == false) {
             video1mute.setTag(true);
             video1mute.setText("unMute");
             agoraMediaPlayerKit1.mute(true);
+            //mRtcEngine.muteLocalAudioStream(true);
         } else {
             video1mute.setTag(false);
             video1mute.setText("Mute");
             agoraMediaPlayerKit1.mute(false);
+            //mRtcEngine.muteLocalAudioStream(false);
         }
         boolean muteState = agoraMediaPlayerKit1.isMuted();
-        setInfo1Text("Mute: " + muteState);
+        setInfo1Text("Mute:"+muteState);
     }
 
     private void video1Duration() {
         long duration = agoraMediaPlayerKit1.getDuration();
-        setInfo1Text("duration: " + duration);
+        mRtcEngine.setClientRole(CLIENT_ROLE_AUDIENCE);
+        setInfo1Text("duration:" + duration);
     }
 
     private void video1GetStream() {
         int streamCount = agoraMediaPlayerKit1.getStreamCount();
-        setInfo1Text("streamCount: " + streamCount);
+        setInfo1Text("streamCount:" + streamCount);
 
     }
 
@@ -610,10 +632,10 @@ public class PlayerFragment extends Fragment implements SurfaceHolder.Callback, 
         for (int i = 0; i < streamCount; i++) {
             String streamInfo = agoraMediaPlayerKit1.getStreamInfo(i).toString();
             streamInfos = streamInfos + streamInfo + "\n";
-            LogUtil.i("streamInfo: " + streamInfo);
+            LogUtil.i( "streamInfo:" + streamInfo);
         }
         agoraMediaPlayerKit1.getStreamInfo(streamCount);
-        setInfo1Text("streamInfos: " + streamInfos);
+        setInfo1Text("streamInfos:" + streamInfos);
     }
 
     private void video1Stop() {
@@ -625,22 +647,25 @@ public class PlayerFragment extends Fragment implements SurfaceHolder.Callback, 
     }
 
     private void video1Play() {
+        //
         agoraMediaPlayerKit1.play();
         player1Duration = agoraMediaPlayerKit1.getDuration();
-        LogUtil.i("player1Duration: " + player1Duration);
+        LogUtil.i("player1Duration:" + player1Duration);
         int count = agoraMediaPlayerKit1.getStreamCount();
-        LogUtil.i("video1Play count: " + count);
+        LogUtil.i("video1Play count:" + count);
         for (int i = 0; i < count; i++) {
             MediaStreamInfo mediaStreamInfo = agoraMediaPlayerKit1.getStreamInfo(i);
-            LogUtil.i("video1Play mediaStreamInfo: " + mediaStreamInfo);
+            LogUtil.i("video1Play mediaStreamInfo:" + mediaStreamInfo);
         }
+
+
     }
 
     private int test = 0;
 
     private void video1Load() {
         agoraMediaPlayerKit1.open(video1Path.getText().toString(), 0);
-        LogUtil.i("player1Duration: " + player1Duration);
+
     }
 
     private void video1Connect() {
@@ -648,12 +673,14 @@ public class PlayerFragment extends Fragment implements SurfaceHolder.Callback, 
             video1Connect.setTag(true);
             video1Connect.setText("断开");
             rtcChannelPublishHelper.attachPlayerToRtc(agoraMediaPlayerKit1, this.mRtcEngine);
-
+            //rtcChannelPublishHelper.enableLocalPlayoutVolume(true);
+            //agoraMediaPlayerKit1.mute(true);
         } else {
             video1Connect.setTag(false);
             video1Connect.setText("链接");
             rtcChannelPublishHelper.detachPlayerFromRtc();
-            // switch to camera view
+            //agoraMediaPlayerKit1.mute(false);
+            //switch to camera view
             mRtcEngine.setVideoSource(new AgoraDefaultSource());
         }
 
@@ -691,6 +718,7 @@ public class PlayerFragment extends Fragment implements SurfaceHolder.Callback, 
         }
     }
 
+
     private void video2Stop() {
         agoraMediaPlayerKit2.stop();
     }
@@ -725,7 +753,7 @@ public class PlayerFragment extends Fragment implements SurfaceHolder.Callback, 
             video2Connect.setTag(false);
             video2Connect.setText("链接");
             rtcChannelPublishHelper.detachPlayerFromRtc();
-            // switch to camera view
+            //switch to camera view
             mRtcEngine.setVideoSource(new AgoraDefaultSource());
         }
     }
@@ -763,10 +791,12 @@ public class PlayerFragment extends Fragment implements SurfaceHolder.Callback, 
             video2mute.setTag(true);
             video2mute.setText("unMute");
             agoraMediaPlayerKit2.mute(true);
+            mRtcEngine.muteLocalAudioStream(true);
         } else {
             video2mute.setTag(false);
             video2mute.setText("Mute");
             agoraMediaPlayerKit2.mute(false);
+            mRtcEngine.muteLocalAudioStream(false);
         }
         boolean muteState = agoraMediaPlayerKit2.isMuted();
         setInfo2Text("Mute:" + muteState);
@@ -789,7 +819,7 @@ public class PlayerFragment extends Fragment implements SurfaceHolder.Callback, 
             String streamInfo = agoraMediaPlayerKit2.getStreamInfo(i).toString();
             streamInfos = streamInfos + streamInfo + "\n";
         }
-        setInfo2Text("streamInfos: " + streamInfos);
+        setInfo2Text("streamInfos:" + streamInfos);
     }
 
     private void showToast(String msg) {
@@ -797,14 +827,18 @@ public class PlayerFragment extends Fragment implements SurfaceHolder.Callback, 
     }
 
     private void setInfo1Text(String msg) {
-        video1Info.setText("info: " + msg);
+        video1Info.setText("info:" + msg);
     }
 
     private void setInfo2Text(String msg) {
-        video2Info.setText("info: " + msg);
+        video2Info.setText("info:" + msg);
     }
 
-    // surfaceview deal with
+    /**
+     * ******************************************** view callback deal with******************************************
+     */
+
+    //surfaceview deal with
     @Override
     public void surfaceCreated(SurfaceHolder surfaceHolder) {
         LogUtil.i("surfaceCreated :" + surfaceHolder);
@@ -813,14 +847,15 @@ public class PlayerFragment extends Fragment implements SurfaceHolder.Callback, 
 
     @Override
     public void surfaceChanged(SurfaceHolder surfaceHolder, int format, int width, int height) {
-        LogUtil.i("surfaceChanged: " + surfaceHolder.getSurface() + " format: " + format);
+        LogUtil.i("surfaceChanged :" + surfaceHolder.getSurface() + " format:" + format);
     }
 
     @Override
     public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
-        LogUtil.i("surfaceDestroyed: " + surfaceHolder);
+        LogUtil.i("surfaceDestroyed :" + surfaceHolder);
     }
 
+    //textureView deal with
     @Override
     public void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int width, int height) {
         LogUtil.i("onSurfaceTextureAvailable");
@@ -841,6 +876,11 @@ public class PlayerFragment extends Fragment implements SurfaceHolder.Callback, 
     public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
         LogUtil.i("onSurfaceTextureUpdated");
     }
+
+
+    /**
+     * ******************************************** Agora*********************************************
+     */
 
     private RtcEngine mRtcEngine;
     private final IRtcEngineEventHandler mRtcEventHandler = new IRtcEngineEventHandler() {
@@ -865,6 +905,7 @@ public class PlayerFragment extends Fragment implements SurfaceHolder.Callback, 
             LogUtil.i("onUserMuteVideo");
         }
 
+
         public void onVideoSizeChanged(int uid, int width, int height, int rotation) {
             LogUtil.i("onVideoSizeChanged");
         }
@@ -879,6 +920,7 @@ public class PlayerFragment extends Fragment implements SurfaceHolder.Callback, 
     private void setupAgoraEngineAndJoinChannel() {
         setupVideoProfile();
         joinChannel();
+
     }
 
 
@@ -886,23 +928,28 @@ public class PlayerFragment extends Fragment implements SurfaceHolder.Callback, 
         mRtcEngine.setChannelProfile(Constants.CHANNEL_PROFILE_LIVE_BROADCASTING);
         mRtcEngine.setClientRole(Constants.CLIENT_ROLE_BROADCASTER);
         mRtcEngine.enableVideo();
-        // mRtcEngine.muteLocalAudioStream(true);
-        // mRtcEngine.setExternalVideoSource(true,false,true);
-        // mRtcEngine.setVideoProfile(Constants.VIDEO_PROFILE_360P, false); // Earlier than 2.3.0
+        mRtcEngine.setAudioProfile(AUDIO_PROFILE_DEFAULT,AUDIO_SCENARIO_CHATROOM_GAMING);
+        //mRtcEngine.muteLocalAudioStream(true);
+        //mRtcEngine.setExternalVideoSource(true,false,true);
+//      mRtcEngine.setVideoProfile(Constants.VIDEO_PROFILE_360P, false); // Earlier than 2.3.0
         mRtcEngine.setVideoEncoderConfiguration(new VideoEncoderConfiguration(VideoEncoderConfiguration.VD_1280x720, VideoEncoderConfiguration.FRAME_RATE.FRAME_RATE_FPS_15,
                 VideoEncoderConfiguration.STANDARD_BITRATE,
                 VideoEncoderConfiguration.ORIENTATION_MODE.ORIENTATION_MODE_ADAPTIVE));
     }
 
     private void joinChannel() {
-        // mRtcEngine.setParameters("{\"rtc.log_filter\": 65535}");
+        //mRtcEngine.startPreview();
+
+        //mRtcEngine.setParameters("{\"rtc.log_filter\": 65535}");
         mRtcEngine.joinChannel(null, "yong135", "Extra Optional Data", 0); // if you do not specify the uid, we will generate the uid for you
 
     }
 
     private void leaveChannel() {
+        //mRtcEngine.startPreview();
         if (mRtcEngine != null) {
-            mRtcEngine.leaveChannel();
+            mRtcEngine.leaveChannel(); // if you do not specify the uid, we will generate the uid for you
         }
+
     }
 }

@@ -2,15 +2,22 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 26
+    buildToolsVersion '28.0.2'
 
     defaultConfig {
         applicationId "io.agora.mediaplayer.quickstart"
         minSdkVersion 18
         targetSdkVersion 26
 		versionCode 5
-		versionName "1.1.0"
+		versionName "1.4"
+        externalNativeBuild {
+            cmake {
+                cppFlags "-std=c++11 "
+            }
+        }
         ndk {
-            abiFilters "armeabi-v7a" // DO NOT MODIFY THIS LINE, IT'S UPDATED BY BUILD MACHINE AUTOMATICALLY.
+            abiFilters "armeabi-v7a"
+            // DO NOT MODIFY THIS LINE, IT'S UPDATED BY BUILD MACHINE AUTOMATICALLY.
         }
     }
 
@@ -25,16 +32,25 @@ android {
         targetCompatibility 1.8
     }
 
+    externalNativeBuild {
+        cmake {
+            path "CMakeLists.txt"
+        }
+    }
+
     repositories {
         flatDir {
             dirs 'lib'
         }
     }
+
 }
+
 
 dependencies {
     implementation(name: 'RtcChannelPublishHelper', ext: 'aar')
-    implementation 'io.agora.rtc:full-sdk:2.9.0'
-    implementation 'com.android.support:support-v4:26.0.0'
+    implementation 'io.agora.rtc:full-sdk:3.0.0'
+    //implementation 'io.agora:agoraplayer:1.1.2'
+    implementation 'com.android.support:support-v4:23.2.0'
     implementation files('lib/AgoraMediaPlayer.jar')
 }

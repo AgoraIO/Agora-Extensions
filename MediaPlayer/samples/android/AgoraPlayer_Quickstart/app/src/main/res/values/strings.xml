@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">AgoraMediaPlayer_Quickstart</string>
+    <string name="app_name">agoraPlayer_Quickstart</string>
 
-    <string name="agora_app_id"><#YOUR APP ID#></string>
+    <string name="agora_app_id">aab8b8f5a8cd4469a63042fcfafe7063</string>
 </resources>

@@ -91,7 +91,7 @@
                     android:id="@+id/video1_path"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:text="/sdcard/82.mp4"
+                    android:text="http://download.agora.io/usecase/ktv01.mp4"
                     android:textSize="20dp" />
 
                 <TextView
@@ -197,7 +197,7 @@
                     android:layout_marginLeft="3dp"
                     android:layout_weight="1"
                     android:background="@android:color/holo_blue_dark"
-                    android:text="duration"
+                    android:text="切换麦"
                     android:textSize="20dp" />
                 <Button
                     android:id="@+id/bt_get_streams1"

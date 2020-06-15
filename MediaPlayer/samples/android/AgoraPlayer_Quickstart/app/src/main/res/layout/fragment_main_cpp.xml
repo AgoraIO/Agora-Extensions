@@ -1,0 +1,210 @@
+<!--
+/*
+ * AudioVideoRecordingSample
+ * Sample project to cature audio and video from internal mic/camera and save as MPEG4 file.
+ *
+ * Copyright (c) 2014-2015 saki t_sagoraiant.com
+ *
+ * File name: fragment_main.xml
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ *
+ * All files in the folder are under this Apache License, Version 2.0.
+*/
+-->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollview"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:keepScreenOn="true"
+    android:orientation="vertical"
+    android:descendantFocusability="blocksDescendants"
+    android:scrollbars="none"
+    tools:context="io.agora.mediaplayer.PlayerCppFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:id="@+id/ll_view_cpp"
+            android:layout_marginTop="1dp"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:id="@+id/player_view_cpp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:layout_weight="1"
+                android:background="#a7d84c" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/ll_config_cpp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#a7d84c"
+            android:orientation="vertical">
+
+            <SeekBar
+                android:id="@+id/sb_seek_cpp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="100"
+                android:tooltipText="进度"
+                android:progress="0" />
+            <SeekBar
+                android:id="@+id/sb_volume_cpp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="400"
+                android:tooltipText="音量"
+                android:progress="0" />
+        </LinearLayout>
+        <Button
+            android:id="@+id/bt_init_cpp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_weight="1"
+            android:layout_marginTop="3dp"
+            android:background="@android:color/holo_blue_dark"
+            android:text="初始化"
+            android:textSize="20dp" />
+
+    <LinearLayout
+        android:id="@+id/ll_config_cpp_0"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/bt_load_cpp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_weight="1"
+            android:background="@android:color/holo_blue_dark"
+            android:text="打开"
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/bt_play_cpp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="3dp"
+            android:layout_weight="1"
+            android:background="@android:color/holo_blue_dark"
+            android:text="播放"
+            android:textSize="20dp" />
+    </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_config_cpp_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/bt_pause_cpp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_weight="1"
+                android:background="@android:color/holo_blue_dark"
+                android:text="暂停"
+                android:textSize="20dp" />
+
+            <Button
+                android:id="@+id/bt_stop_cpp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="3dp"
+                android:layout_weight="1"
+                android:background="@android:color/holo_blue_dark"
+                android:text="停止"
+                android:textSize="20dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/ll_config_cpp_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/bt_mute_cpp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_weight="1"
+                android:background="@android:color/holo_blue_dark"
+                android:text="静音"
+                android:textSize="20dp" />
+
+            <Button
+                android:id="@+id/bt_duration_cpp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="3dp"
+                android:layout_weight="1"
+                android:background="@android:color/holo_blue_dark"
+                android:text="时长"
+                android:textSize="20dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_config_cpp_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/bt_streams_cpp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_weight="1"
+                android:background="@android:color/holo_blue_dark"
+                android:text="streams"
+                android:textSize="20dp" />
+
+            <Button
+                android:id="@+id/bt_info_cpp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="3dp"
+                android:layout_weight="1"
+                android:background="@android:color/holo_blue_dark"
+                android:text="infos"
+                android:textSize="20dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>
