@@ -29,7 +29,7 @@ public class SurfaceViewConsumer extends BaseWindowConsumer implements SurfaceHo
     }
 
     @Override
-    public Object onGetDrawingTarget() {
+    public Object getDrawingTarget() {
         return mSurfaceView != null ? mSurfaceView.getHolder().getSurface() : null;
     }
 
@@ -41,11 +41,6 @@ public class SurfaceViewConsumer extends BaseWindowConsumer implements SurfaceHo
     @Override
     public int onMeasuredHeight() {
         return mSurfaceView.getMeasuredHeight();
-    }
-
-    @Override
-    public String getTag() {
-        return tag;
     }
 
     @Override

@@ -30,7 +30,7 @@ public class TextureViewConsumer extends BaseWindowConsumer implements TextureVi
     }
 
     @Override
-    public Object onGetDrawingTarget() {
+    public Object getDrawingTarget() {
         return mSurfaceTexture;
     }
 

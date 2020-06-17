@@ -93,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
 
         // The preview surface is actually considered as
         // an on-screen consumer under the hood.
+        mCameraVideoManager.setLocalPreview(mVideoSurface1, "Surface1");
         mCameraVideoManager.setLocalPreview(mVideoSurface2, "Surface2");
 
         // Can attach other consumers here,

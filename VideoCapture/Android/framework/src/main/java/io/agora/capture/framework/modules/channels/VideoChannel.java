@@ -211,35 +211,41 @@ public class VideoChannel extends HandlerThread {
 
         mHandler.post(() -> {
             if (type == IVideoConsumer.TYPE_ON_SCREEN) {
-                Log.d(TAG, "On-screen consumer connected:" + consumer);
-                recycleAndRemoveConsumerWithSameTag(mOnScreenConsumers, consumer.getTag());
+                removeSameConsumers(mOnScreenConsumers,
+                        consumer.getDrawingTarget(), consumer.getId());
                 mOnScreenConsumers.add(consumer);
                 consumer.setMirrorMode(mOnScreenConsumerMirrorMode);
             } else if (type == IVideoConsumer.TYPE_OFF_SCREEN) {
-                Log.d(TAG, "Off-screen consumer connected:" + consumer);
-                recycleAndRemoveConsumerWithSameTag(mOffScreenConsumers, consumer.getTag());
+                removeSameConsumers(mOffScreenConsumers,
+                        consumer.getDrawingTarget(), consumer.getId());
                 mOffScreenConsumers.add(consumer);
             }
         });
     }
 
-    private void recycleAndRemoveConsumerWithSameTag(
-            List<IVideoConsumer> consumers, String tag) {
-        List<IVideoConsumer> removed = new ArrayList<>();
+    private void removeSameConsumers(List<IVideoConsumer> consumers,
+                                     Object newTarget, String newId) {
+        List<IVideoConsumer> removeList = new ArrayList<>();
+
         for (IVideoConsumer consumer : consumers) {
-            String t = consumer.getTag();
-            if (!TextUtils.isEmpty(t) &&
-                    t.equals(tag)) {
-                removed.add(consumer);
+            Object target = consumer.getDrawingTarget();
+            String t = consumer.getId();
+
+            if (target == newTarget) {
+                // Consumers with the same drawing target
+                // should be considered the same
+                removeList.add(consumer);
+            } else if (!TextUtils.isEmpty(t) && t.equals(newId)) {
+                removeList.add(consumer);
             }
         }
 
-        for (IVideoConsumer consumer : removed) {
+        for (IVideoConsumer consumer : removeList) {
             consumer.recycle();
             consumers.remove(consumer);
         }
 
-        removed.clear();
+        removeList.clear();
     }
 
     public void setOnScreenConsumerMirror(int mode) {
@@ -298,11 +304,11 @@ public class VideoChannel extends HandlerThread {
         }
 
         if (mOnScreenConsumers.size() > 0) {
-            // Currently we only render to the latest
-            // registered on-screen consumer.
-            // Multiple on-screen consumers are not supported yet.
-            mOnScreenConsumers.get(mOnScreenConsumers.size() - 1).onConsumeFrame(frame, mContext);
-            makeDummySurfaceCurrent();
+            // Multiple on-screen consumers are drawn there
+            for (IVideoConsumer consumer : mOnScreenConsumers) {
+                consumer.onConsumeFrame(frame, mContext);
+                makeDummySurfaceCurrent();
+            }
         }
 
         if (mOnScreenConsumers.size() > 0 || mOffScreenMode) {

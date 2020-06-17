@@ -80,41 +80,27 @@ public class CameraVideoManager {
     }
 
     /**
-     * Set camera preview. The view must be set before
-     * attached to the window.
-     * Currently only the latest preview set will display
-     * local videos
-     * If the TextureView is detached from the window,
-     * it's previewing will be automatically stopped and it
-     * is removed from the consumer list.
-     * The tag is set to null
-     * Note: the same TextureView cannot be set as local
-     * preview more than once with empty tag or with
-     * different tags. Otherwise it will cause crashes
-     * because receiving and initializing the same
-     * view will cause invalid OpenGl operations.
-     * @param textureView
+     * Set a TextureView to be the camera local preview
+     * without an identifier
+     * @param textureView the local preview surface
      */
     public void setLocalPreview(TextureView textureView) {
         setLocalPreview(textureView, null);
     }
 
     /**
-     * Set the local preview with a tag.
-     * If the tag is not null or empty, set the
-     * local preview will replace any local preview
-     * with the same tag.
-     * Note: the same TextureView cannot be set as local
-     * preview more than once with empty tag or with
-     * different tags. Otherwise it will cause crashes
-     * because receiving and initializing the same
-     * view will cause invalid OpenGl operations.
-     * @param textureView
-     * @param tag tag for the preview, nullable.
+     * Set a TextureView as the local preview with an identifier.
+     * The local preview can be attached or not attached
+     * to the window system.
+     * The preview surface will replace any other consumers
+     * with the same drawing target. Otherwise, it will
+     * replace any consumers that has the same identifier.
+     * @param textureView the local preview surface
+     * @param id identifier for the preview, nullable.
      */
-    public void setLocalPreview(TextureView textureView, String tag) {
+    public void setLocalPreview(TextureView textureView, String id) {
         TextureViewConsumer consumer = new TextureViewConsumer();
-        consumer.setTag(tag);
+        consumer.setId(id);
         textureView.setSurfaceTextureListener(consumer);
 
         if (textureView.isAttachedToWindow()) {
@@ -126,35 +112,28 @@ public class CameraVideoManager {
     }
 
     /**
-     * Set camera preview. The view must be set before
-     * attached to the window.
-     * Currently only the latest preview set will display
-     * local videos
-     * If the SurfaceView is detached from the window, it's
-     * previewing will be automatically stopped and it
-     * is removed from the consumer list.
-     * Note: the same SurfaceView cannot be set as local
-     * preview more than once with empty tag or with
-     * different tags. Otherwise it will cause crashes
-     * because receiving and initializing the same
-     * view will cause invalid OpenGl operations.
-     * @param surfaceView
+     * Set a SurfaceView to be the camera local preview
+     * without an identifier
+     * @param surfaceView the local preview surface
      */
     public void setLocalPreview(SurfaceView surfaceView) {
         setLocalPreview(surfaceView, null);
     }
 
     /**
-     * Note: the same TextureView cannot be set as local
-     * preview more than once with empty tag or with
-     * different tags. Otherwise it will cause crashes
-     * because receiving and initializing the same
-     * view will cause invalid OpenGl operations.
+     * Set a SurfaceView as the local preview with an identifier.
+     * The local preview can be attached or not attached
+     * to the window system.
+     * The preview surface will replace any other consumers
+     * with the same drawing target. Otherwise, it will
+     * replace any consumers that has the same identifier.
+     * @param surfaceView the local preview surface
+     * @param id identifier for the preview, nullable.
      */
-    public void setLocalPreview(SurfaceView surfaceView, String tag) {
+    public void setLocalPreview(SurfaceView surfaceView, String id) {
         SurfaceViewConsumer consumer =
                 new SurfaceViewConsumer(surfaceView);
-        consumer.setTag(tag);
+        consumer.setId(id);
         surfaceView.getHolder().addCallback(consumer);
 
         if (surfaceView.isAttachedToWindow()) {
