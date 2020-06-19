@@ -6,9 +6,10 @@ Android VideoCapture is a helper library for using Android system cameras easily
 
 * Create a camera manager
 ```java
-// The second parameter is a preprocessor for image
-// pre processing, pass null if not used.
-CameraVideoManager videoManager = new CameraVideoManager(this, null);
+// "this" refers to an Android context, usually it is
+// current Activity or Application.
+// The same for the rest of readme.
+CameraVideoManager videoManager = new CameraVideoManager(this);
 ```
 
 * Set camera parameters
@@ -29,8 +30,6 @@ videoManager.setLocalPreviewMirror(Constant.MIRROR_MODE_AUTO);
 ```java
 videoManager.startCapture();
 videoManager.switchCamera();
-
-// Calling stopCapture() will release the camera device
 videoManager.stopCapture();
 ```
 
@@ -38,7 +37,7 @@ videoManager.stopCapture();
 
 #### Threading
 
-When a `CameraVideoManager` is created, a camera thread is provided for lifecycle callbacks and image processing.
+When a `CameraVideoManager` is created, a camera thread is provided for camera-related lifecycle callbacks and image processing.
 
 The thread maintains an OpenGL context and will be available as long as the thread is alive. Once created, the thread is waken up when starting to capture and goes to sleep when the capture is stopped until the thread quits.
 
@@ -147,8 +146,8 @@ CameraVideoManager videoManager = new CameraVideoManager(this, agoraProcessor);
 AgoraPreprocessor preProcessor = (AgoraPreprocessor) videoManager.getPreprocessor();
 ```
 
-Method `initPreprocessor()` is called when the video channel is initialized. When a frame capture is completed, it will be passed into `onPreProcessFrame()` in the format of a VideoCaptureFrame along with some important information in it.
+Method `initPreprocessor()` is called at the beginning of the initialization of video channels. Once a frame capture is completed, it will be passed into `onPreProcessFrame()` as a VideoCaptureFrame instance.
 
-Also, because the video channel is actually an OpenGL thread, a channel context is given for processing images and also releasing the pre-processor.
+Also, because the video channel is actually an OpenGL thread, a channel context is given for processing and pre-processor releasing. A channel context contains OpenGL context, Android context, frame drawer and so on.
 
-The image processing can be paused at any time using `enablePreProcess()`, but what is actually doing when it is paused / resumed should be implemented according to the users' needs.
+The pre processor can be paused at any time using `enablePreProcess()`, but what is actually doing when paused / resumed should be implemented to the users' needs.
