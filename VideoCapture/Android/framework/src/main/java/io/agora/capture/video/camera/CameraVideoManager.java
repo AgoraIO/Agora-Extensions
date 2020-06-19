@@ -48,6 +48,10 @@ public class CameraVideoManager {
         init(context, preprocessor, DEFAULT_FACING);
     }
 
+    public CameraVideoManager(Context context) {
+        init(context, null, DEFAULT_FACING);
+    }
+
     /**
      * Initializes the camera video channel, loads all the
      * resources needed during camera capturing.
