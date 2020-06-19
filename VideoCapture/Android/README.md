@@ -50,13 +50,13 @@ VideoModule.instance().stopChannel(ChannelManager.ChannelID.CAMERA);
 VideoModule.instance().stopAllChannels();
 ```
 
-The video channel (channel for short) is the implementation of the camera thread. Once the camera channel is stopped, the CameraVideoManager instance will not be available, you should recreate it.
+The video channel (or channel for short) is the implementation of the camera thread. Once the camera channel is stopped, the previous CameraVideoManager instance will not be valid any more, you should recreate it.
 
 #### Local previews
 
-The library is designed to support flexible local preview strategies. For example, you can set as many local previews as you like (of course, as long as the device's performance can cover),  and they can be added or removed whenever wanted.
+The library is designed to support flexible local preview strategies. For example, you can set as many local previews as you like (of course, if the device's performance can cover), and they can be added or removed whenever wanted.
 
-Only SurfaceView or TextureView can be set to be previews, but it is enough for most cases. They can be used no matter whether they have already been attached to the window hierarchy or not, if the application's logic allows that.
+Only SurfaceView or TextureView can be set to be previews, but it is enough for most cases. They can be used no matter whether they have already been attached to the window hierarchy or not, only if the application's logic allows that.
 
 Local previews can be replaced, it may be useful when there are interactions between different surfaces.
 
@@ -73,13 +73,15 @@ videoManager.setLocalPreview(surfaceView);
 ```
 
 ```java
-// If the local preview is give an identifier, it can be replaced
-// Even the old surface still stays in the view, the preview will
-// not be drawn onto the old surface any more. 
+// If a preview surface is given an identifier, it can be replaced.
+// Even the old surface still stays in the view hierarchy, the 
+// preview content will not be drawn onto the old surface any more. 
 SurfaceView surfaceView = new SurfaceView(this);
 videoManager.setLocalPreview(surfaceView, "User1");
 
-// We use a TextureView to replace the old SurfaceView with the same identifier
+// Create a TextureView to replace the old SurfaceView with the same identifier
 TextureView textureView = new TextureView(this);
 videoManager.setLocalPreview(textureView, "User1");
 ```
+
+The previews will be removed automatically if they are detached from the view system, without affecting the rest of other surfaces.
