@@ -220,4 +220,10 @@ public class CameraVideoManager {
             mCameraChannel.setOnScreenConsumerMirror(mode);
         }
     }
+
+    public void setCameraStateListener(VideoCapture.VideoCaptureStateListener listener) {
+        if (mCameraChannel != null) {
+            mCameraChannel.setCameraStateListener(listener);
+        }
+    }
 }

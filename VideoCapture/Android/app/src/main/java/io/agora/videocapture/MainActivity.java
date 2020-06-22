@@ -8,25 +8,24 @@ import androidx.core.content.ContextCompat;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.view.SurfaceView;
+import android.util.Log;
 import android.view.TextureView;
 import android.view.View;
 
 import io.agora.capture.video.camera.CameraVideoManager;
 import io.agora.capture.video.camera.Constant;
+import io.agora.capture.video.camera.VideoCapture;
 
 public class MainActivity extends AppCompatActivity {
+    private static final String TAG = MainActivity.class.getSimpleName();
     private static final int REQUEST = 1;
-
-    private int mViewPosition = 1;
 
     private static final String[] PERMISSIONS = {
             Manifest.permission.CAMERA
     };
 
     private CameraVideoManager mCameraVideoManager;
-    private SurfaceView mVideoSurface1;
-    private TextureView mVideoSurface2;
+    private TextureView mVideoSurface1;
     private boolean mPermissionGranted;
     private boolean mFinished;
     private boolean mIsMirrored = true;
@@ -36,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mVideoSurface1 = findViewById(R.id.video_surface_1);
-        mVideoSurface2 = findViewById(R.id.video_surface_2);
         checkCameraPermission();
     }
 
@@ -75,15 +73,36 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void onPermissionGranted() {
+        initCamera();
+    }
+
+    private void initCamera() {
         // Preprocessor for Face Unity can be defined here
         // Now we ignore preprocessor
         // If there is a third-party preprocessor available,
         // say, FaceUnity, the camera manager is better to
         // be initialized asynchronously because FaceUnity
-        // needs to loads resource files from local storage.
+        // needs to load resource files from local storage.
         // The loading may block the video rendering for a
         // little while.
         mCameraVideoManager = new CameraVideoManager(this, null);
+
+        mCameraVideoManager.setCameraStateListener(new VideoCapture.VideoCaptureStateListener() {
+            @Override
+            public void onFirstCapturedFrame(int width, int height) {
+                Log.i(TAG, "onFirstCapturedFrame: " + width + "x" + height);
+            }
+
+            @Override
+            public void onCameraCaptureError(int error, String message) {
+                Log.i(TAG, "onCameraCaptureError: error:" + error + " " + message);
+                if (mCameraVideoManager != null) {
+                    // When there is a camera error, the capture should
+                    // be stopped to reset the internal states.
+                    mCameraVideoManager.stopCapture();
+                }
+            }
+        });
 
         // Set camera capture configuration
         mCameraVideoManager.setPictureSize(640, 480);
@@ -94,7 +113,6 @@ public class MainActivity extends AppCompatActivity {
         // The preview surface is actually considered as
         // an on-screen consumer under the hood.
         mCameraVideoManager.setLocalPreview(mVideoSurface1, "Surface1");
-        mCameraVideoManager.setLocalPreview(mVideoSurface2, "Surface2");
 
         // Can attach other consumers here,
         // For example, rtc consumer or rtmp module
@@ -119,20 +137,12 @@ public class MainActivity extends AppCompatActivity {
         return isMirrored ? Constant.MIRROR_MODE_ENABLED : Constant.MIRROR_MODE_DISABLED;
     }
 
-    public void onViewSwitched(View view) {
-        if (mViewPosition == 0) {
-            mCameraVideoManager.setLocalPreview(mVideoSurface2, "Surface2");
-            mViewPosition = 1;
-        } else if (mViewPosition == 1) {
-            mCameraVideoManager.setLocalPreview(mVideoSurface1, "Surface1");
-            mViewPosition = 0;
-        }
-    }
-
     @Override
     public void onStart() {
         super.onStart();
-        if (mPermissionGranted && mCameraVideoManager != null) mCameraVideoManager.startCapture();
+        if (mPermissionGranted && mCameraVideoManager != null) {
+            mCameraVideoManager.startCapture();
+        }
     }
 
     @Override

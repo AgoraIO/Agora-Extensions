@@ -1,6 +1,7 @@
 package io.agora.capture.video.camera;
 
 import android.content.Context;
+import android.graphics.Camera;
 
 import io.agora.capture.framework.modules.channels.ChannelManager;
 import io.agora.capture.framework.modules.channels.VideoChannel;
@@ -96,7 +97,7 @@ public class CameraVideoChannel extends VideoChannel {
         }
     }
 
-    public void stopCapture() {
+    void stopCapture() {
         if (isRunning()) {
             getHandler().post(() -> {
                 if (mCapturedStarted) {
@@ -109,5 +110,11 @@ public class CameraVideoChannel extends VideoChannel {
 
     public boolean hasCaptureStarted() {
         return mCapturedStarted;
+    }
+
+    void setCameraStateListener(VideoCapture.VideoCaptureStateListener listener) {
+        if (isRunning()) {
+            getHandler().post(() -> mVideoCapture.setCaptureStateListener(listener));
+        }
     }
 }

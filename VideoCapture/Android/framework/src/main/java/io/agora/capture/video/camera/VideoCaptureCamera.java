@@ -66,10 +66,35 @@ public class VideoCaptureCamera
         return parameters;
     }
 
-    private static class CaptureErrorCallback implements Camera.ErrorCallback {
+    private class CaptureErrorCallback implements Camera.ErrorCallback {
         @Override
         public void onError(int error, Camera camera) {
             Log.e(TAG, "Camera capture error: " + error);
+            handleCaptureError(error);
+        }
+    }
+
+    protected void handleCaptureError(int error) {
+        if (stateListener != null) {
+            int errorCode = -1;
+            String errorMessage = null;
+            String hint = "Camera: ";
+            switch (error) {
+                case Camera.CAMERA_ERROR_UNKNOWN:
+                    errorCode = ERROR_UNKNOWN;
+                    errorMessage = hint + "unspecific camera error";
+                    break;
+                case Camera.CAMERA_ERROR_EVICTED:
+                    errorCode = ERROR_IN_USE;
+                    errorMessage = hint + "Camera was disconnected due to use by higher priority user";
+                    break;
+                case Camera.CAMERA_ERROR_SERVER_DIED:
+                    errorCode = ERROR_CAMERA_SERVICE;
+                    errorMessage = hint + "media server/service died, must release the Camera and create a new one";
+                    break;
+            }
+
+            stateListener.onCameraCaptureError(errorCode, errorMessage);
         }
     }
 
@@ -218,8 +243,11 @@ public class VideoCaptureCamera
             mCamera.startPreview();
             lastCameraFacing = curCameraFacing;
             cameraSteady = true;
+            firstFrame = true;
         } catch (IOException | RuntimeException ex) {
             ex.printStackTrace();
+            cameraSteady = false;
+            firstFrame = false;
         }
 
         synchronized (mCameraStateLock) {
