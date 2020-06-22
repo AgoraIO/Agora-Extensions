@@ -26,6 +26,8 @@ import android.util.Range;
 import android.util.Size;
 import android.view.Surface;
 
+import androidx.annotation.NonNull;
+
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -44,12 +46,13 @@ import io.agora.capture.framework.gles.core.GlUtil;
 public class VideoCaptureCamera2 extends VideoCapture {
     private class CameraStateListener extends CameraDevice.StateCallback {
         @Override
-        public void onOpened(CameraDevice cameraDevice) {
-            Log.e(TAG, "CameraDevice.StateCallback onOpened");
+        public void onOpened(@NonNull CameraDevice cameraDevice) {
+            Log.i(TAG, "CameraDevice.StateCallback onOpened");
             mCameraDevice = cameraDevice;
             changeCameraStateAndNotify(CameraState.CONFIGURING);
             lastCameraFacing = curCameraFacing;
             cameraSteady = true;
+            firstFrame = true;
             createPreviewObjectsAndStartPreviewOrFail();
         }
 
@@ -58,21 +61,25 @@ public class VideoCaptureCamera2 extends VideoCapture {
             Log.e(TAG, "cameraDevice was closed unexpectedly");
             cameraDevice.close();
             mCameraDevice = null;
+            cameraSteady = false;
+            firstFrame = false;
+            handleCaptureError(ERROR_CAMERA_DISCONNECTED);
             changeCameraStateAndNotify(CameraState.STOPPED);
         }
 
         @Override
         public void onError(CameraDevice cameraDevice, int error) {
-            Log.e(TAG, "cameraDevice encountered an error");
-
+            Log.e(TAG, "Camera device error: " + error);
             cameraDevice.close();
             mCameraDevice = null;
-            Log.e(TAG, "Camera device error " + Integer.toString(error));
+            cameraSteady = false;
+            firstFrame = false;
+            handleCaptureError(error);
         }
 
         @Override
-        public void onClosed(CameraDevice camera) {
-            Log.d(TAG, "cameraDevice closed");
+        public void onClosed(@NonNull CameraDevice camera) {
+            Log.i(TAG, "cameraDevice closed");
             if (mPreviewSession != null) {
                 mPreviewSession = null;
             }
@@ -85,6 +92,42 @@ public class VideoCaptureCamera2 extends VideoCapture {
         }
     };
 
+    protected void handleCaptureError(int error) {
+        if (stateListener != null) {
+            int errorCode = -1;
+            String errorMessage = null;
+            String hint = "Camera2: ";
+            switch (error) {
+                case CameraDevice.StateCallback.ERROR_CAMERA_IN_USE:
+                    errorCode = ERROR_IN_USE;
+                    errorMessage = hint + "the camera is already in use maybe because a higher-priority camera API client";
+                    break;
+                case CameraDevice.StateCallback.ERROR_MAX_CAMERAS_IN_USE:
+                    errorCode = ERROR_CANNOT_OPEN_MORE;
+                    errorMessage = hint + "you may try to open too more cameras than available";
+                    break;
+                case CameraDevice.StateCallback.ERROR_CAMERA_DISABLED:
+                    errorCode = ERROR_CAMERA_DISABLED;
+                    errorMessage = hint + "the camera may be disabled by policy";
+                    break;
+                case CameraDevice.StateCallback.ERROR_CAMERA_DEVICE:
+                    errorCode = ERROR_CAMERA_DEVICE;
+                    errorMessage = hint + "the camera encounters an fatal error and it needs to be reopened again.";
+                    break;
+                case CameraDevice.StateCallback.ERROR_CAMERA_SERVICE:
+                    errorCode = ERROR_CAMERA_SERVICE;
+                    errorMessage = hint + "camera service has encountered a fatal error, maybe a hardware issue or the device needs to be restarted";
+                    break;
+                case ERROR_CAMERA_DISCONNECTED:
+                    errorCode = error;
+                    errorMessage = hint + "camera capture is disconnected";
+                    break;
+            }
+
+            stateListener.onCameraCaptureError(errorCode, errorMessage);
+        }
+    }
+
     private class CameraPreviewSessionListener extends CameraCaptureSession.StateCallback {
         private final CaptureRequest mPreviewRequest;
         CameraPreviewSessionListener(CaptureRequest previewRequest) {
@@ -92,7 +135,7 @@ public class VideoCaptureCamera2 extends VideoCapture {
         }
 
         @Override
-        public void onConfigured(CameraCaptureSession cameraCaptureSession) {
+        public void onConfigured(@NonNull CameraCaptureSession cameraCaptureSession) {
             Log.d(TAG, "CameraPreviewSessionListener.onConfigured");
             mPreviewSession = cameraCaptureSession;
             try {
@@ -114,7 +157,7 @@ public class VideoCaptureCamera2 extends VideoCapture {
         }
 
         @Override
-        public void onConfigureFailed(CameraCaptureSession cameraCaptureSession) {
+        public void onConfigureFailed(@NonNull CameraCaptureSession cameraCaptureSession) {
             Log.e(TAG, "CameraPreviewSessionListener.onConfigureFailed");
 
             changeCameraStateAndNotify(CameraState.STOPPED);
@@ -123,7 +166,7 @@ public class VideoCaptureCamera2 extends VideoCapture {
         }
 
         @Override
-        public void onClosed(CameraCaptureSession cameraCaptureSession) {
+        public void onClosed(@NonNull CameraCaptureSession cameraCaptureSession) {
             Log.d(TAG, "CameraPreviewSessionListener.onClosed");
             mPreviewSession = null;
         }

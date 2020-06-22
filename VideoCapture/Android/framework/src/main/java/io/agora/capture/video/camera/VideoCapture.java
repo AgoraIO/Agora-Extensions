@@ -7,6 +7,7 @@ package io.agora.capture.video.camera;
 import android.content.Context;
 import android.graphics.SurfaceTexture;
 import android.opengl.EGLContext;
+import android.util.Log;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -20,6 +21,14 @@ import io.agora.capture.framework.modules.producers.VideoProducer;
  * provides some necessary data type(s) with accessors.
  **/
 public abstract class VideoCapture extends VideoProducer {
+    public static final int ERROR_UNKNOWN = 0;
+    public static final int ERROR_IN_USE = 1;
+    public static final int ERROR_CANNOT_OPEN_MORE = 2;
+    public static final int ERROR_CAMERA_DISABLED = 3;
+    public static final int ERROR_CAMERA_DEVICE = 4;
+    public static final int ERROR_CAMERA_SERVICE = 5;
+    public static final int ERROR_CAMERA_DISCONNECTED = 6;
+
     /**
      * Common class for storing a frameRate range. Values should be multiplied by 1000.
      */
@@ -53,6 +62,12 @@ public abstract class VideoCapture extends VideoProducer {
         }
     }
 
+    public interface VideoCaptureStateListener {
+        void onFirstCapturedFrame(int width, int height);
+
+        void onCameraCaptureError(int error, String message);
+    }
+
     private static final String TAG = VideoCapture.class.getSimpleName();
 
     // The angle (0, 90, 180, 270) that the image needs to be rotated to show in
@@ -80,6 +95,9 @@ public abstract class VideoCapture extends VideoProducer {
     int curCameraFacing;
     int lastCameraFacing;
     boolean cameraSteady;
+    boolean firstFrame;
+
+    VideoCaptureStateListener stateListener;
 
     VideoCapture(Context context) {
         pContext = context;
@@ -150,6 +168,8 @@ public abstract class VideoCapture extends VideoProducer {
 
     protected abstract void startPreview();
 
+    protected abstract void handleCaptureError(int error);
+
     void setSharedContext(EGLContext eglContext) {
         pEGLContext = eglContext;
     }
@@ -174,5 +194,22 @@ public abstract class VideoCapture extends VideoProducer {
                 mirrored);
 
         pushVideoFrame(frame);
+
+        if (firstFrame) {
+            if (stateListener != null) {
+                stateListener.onFirstCapturedFrame(frame.format.getWidth(), frame.format.getHeight());
+            }
+            Log.i(TAG, "first capture frame detected");
+            firstFrame = false;
+        }
+    }
+
+    /**
+     * The state listener should be set before starting capture, or
+     * some state callbacks may be missing
+     * @param listener state callback listener
+     */
+    void setCaptureStateListener(VideoCaptureStateListener listener) {
+        stateListener = listener;
     }
 }
