@@ -15,9 +15,11 @@ CameraVideoManager videoManager = new CameraVideoManager(this);
 * Set camera parameters
 ```java
 // Captured picture size, frame rate and facing should be set before the capture started.
-// Facing is not needed when switching cameras.
 videoManager.setPictureSize(640, 480);
 videoManager.setFrameRate(24);
+
+// Note the behaivor of setting camera facing before
+// switching camera is undefined.
 videoManager.setFacing(Constant.CAMERA_FACING_FRONT);
 
 SurfaceView surfaceView = new SurfaceView(this);
@@ -63,20 +65,20 @@ Local previews can be replaced, it may be useful when there are interactions bet
 
 ```java
 // Set multiple local previews
-SurfaceView surfaceView = new SurfaceView(this);
-videoManager.setLocalPreview(surfaceView);
+SurfaceView surface1 = new SurfaceView(this);
+TextureView surface2 = new TextureView(this);
 
-TextureView textureView = new TextureView(this);
-videoManager.setLocalPreview(textureView);
+videoManager.setLocalPreview(surface1);
+videoManager.setLocalPreview(surface2);
 
 // Repeatedly setting the same surface object affects nothing
-videoManager.setLocalPreview(surfaceView);
+videoManager.setLocalPreview(surface1);
 ```
 
+If a preview surface is given an identifier, it can be replaced. Even the old surface still stays in the view hierarchy, the preview content will not be drawn onto the old surface any more.
+
 ```java
-// If a preview surface is given an identifier, it can be replaced.
-// Even the old surface still stays in the view hierarchy, the 
-// preview content will not be drawn onto the old surface any more. 
+
 SurfaceView surfaceView = new SurfaceView(this);
 videoManager.setLocalPreview(surfaceView, "User1");
 
@@ -89,10 +91,10 @@ The previews will be removed automatically if they are detached from the view sy
 
 #### Mirror Mode
 
-For now the mirror mode only works for local previews. The definition of mirroring is consistent with the system camera. By default, images from front-facing system camera is mirrored and it looks like seeing into a mirror; images from the back-facing camera is not mirrored.
+For now the mirror mode only works for local previews. The definition of mirror mode is consistent with system camera. By default, images from front-facing system camera is mirrored and it looks like seeing into a mirror; images from the back-facing camera is not mirrored.
 
 ```java
-// If want to use system camera setting, use MIRROR_MODE_AUTO
+// If want to use system camera default, use MIRROR_MODE_AUTO
 videoManager.setLocalPreviewMirror(Constant.MIRROR_MODE_AUTO);
 
 // If want to set mirror mode for both front and back facing cameras
@@ -105,7 +107,7 @@ Note: currently the mirror mode is not reset when switching cameras.
 
 The `startCapture` / `stopCapture` APIs are independent of any Android life cycles. Users should design their own way to control the camera behavior.
 
-The `tartCapture` method opens a camera and starts the camera preview, while `stopCapture` stops preview and release the camera resource.
+The `startCapture` method opens a camera and starts the camera preview, while `stopCapture` stops preview and release the camera resource.
 
 #### Pre processor
 
@@ -119,7 +121,8 @@ class AgoraPreprocessor implements IPreprocessor {
 
     @Override
     public VideoCaptureFrame onPreProcessFrame(VideoCaptureFrame outFrame, VideoChannel.ChannelContext context) {
-        return null;
+        // returns your own frame here, by default just returns the original frame
+        return outFrame;
     }
 
     @Override
@@ -142,7 +145,7 @@ class AgoraPreprocessor implements IPreprocessor {
 AgoraPreprocessor agoraProcessor = new AgoraPreprocessor();
 CameraVideoManager videoManager = new CameraVideoManager(this, agoraProcessor); 
 
-// And you can obtain the pre-processor instance like this way
+// Obtain the pre-processor instance
 AgoraPreprocessor preProcessor = (AgoraPreprocessor) videoManager.getPreprocessor();
 ```
 
@@ -150,4 +153,41 @@ Method `initPreprocessor()` is called at the beginning of the initialization of 
 
 Also, because the video channel is actually an OpenGL thread, a channel context is given for processing and pre-processor releasing. A channel context contains OpenGL context, Android context, frame drawer and so on.
 
-The pre processor can be paused at any time using `enablePreProcess()`, but what is actually doing when paused / resumed should be implemented to the users' needs.
+The pre processor can be paused at any time using `enablePreProcess()`, but what is actually done by calling this method should be implemented to the application's needs.
+
+#### Rotation
+
+Captured frames will be rotated to what they are like as previews.
+
+For example, if the captured picture size is set to 640x480, horizontally, but the devices is put naturally (for most Android phones, in portrait mode). The frames will be rotated to 480x640.
+
+Note, the frames may be cropped to not to be distorted in local previews, but that does not affect the frame objects at all.
+
+#### Camera State Callbacks
+
+The camera state callback listener is better to be set before starting preview.
+
+In some cases, developers want to do some initialization right after the first frame is obtained, because the latency for opening the camera hardware is not ideal. **onFirstCapturedFrame** callback is for this purpose.
+
+**onCameraCaptureError** is called when camera encounters errors. It is useful when the app wants to reset states and capture.
+
+Note, the appropriate handling of life cycles is more recommended. Developers should control the camera when the Activity is started or goes to background, for example. The error handling should be seen as the assistant method.
+
+```java
+mCameraVideoManager.setCameraStateListener(new VideoCapture.VideoCaptureStateListener() {
+    @Override
+    public void onFirstCapturedFrame(int width, int height) {
+        Log.i(TAG, "onFirstCapturedFrame: " + width + "x" + height);
+    }
+
+    @Override
+    public void onCameraCaptureError(int error, String message) {
+        Log.i(TAG, "onCameraCaptureError: error:" + error + " " + message);
+        if (mCameraVideoManager != null) {
+            // When there is a camera error, the capture should
+            // be stopped to reset the internal states.
+            mCameraVideoManager.stopCapture();
+        }
+    }
+});
+```
