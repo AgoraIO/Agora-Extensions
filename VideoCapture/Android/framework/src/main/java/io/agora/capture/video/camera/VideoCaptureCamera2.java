@@ -468,16 +468,17 @@ public class VideoCaptureCamera2 extends VideoCapture {
         synchronized (mCameraStateLock) {
             if (mCameraState != CameraState.STOPPED &&
                     mCameraState != CameraState.STOPPING) {
-                if (mPreviewSession != null) {
+                if (mPreviewSession != null && mCameraDevice != null) {
                     try {
                         mPreviewSession.abortCaptures();
                         mPreviewSession = null;
                     } catch (CameraAccessException e) {
                         e.printStackTrace();
                     }
+
+                    mCameraDevice.close();
+                    changeCameraStateAndNotify(CameraState.STOPPING);
                 }
-                mCameraDevice.close();
-                changeCameraStateAndNotify(CameraState.STOPPING);
             } else {
                 Log.w(TAG, "Camera is already stopped.");
             }
