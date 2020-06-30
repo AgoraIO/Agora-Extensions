@@ -159,16 +159,12 @@ public class VideoCaptureCamera2 extends VideoCapture {
         @Override
         public void onConfigureFailed(@NonNull CameraCaptureSession cameraCaptureSession) {
             Log.e(TAG, "CameraPreviewSessionListener.onConfigureFailed");
-
             changeCameraStateAndNotify(CameraState.STOPPED);
-            mPreviewSession = null;
-            Log.e(TAG,"Camera session configuration error");
         }
 
         @Override
         public void onClosed(@NonNull CameraCaptureSession cameraCaptureSession) {
             Log.d(TAG, "CameraPreviewSessionListener.onClosed");
-            mPreviewSession = null;
         }
     };
 
