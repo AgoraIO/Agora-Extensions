@@ -2,6 +2,7 @@ package io.agora.capture.framework.modules.consumers;
 
 import android.opengl.GLES20;
 import android.util.Log;
+import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
@@ -13,6 +14,8 @@ public class SurfaceViewConsumer extends BaseWindowConsumer implements SurfaceHo
     private static final String TAG = SurfaceViewConsumer.class.getSimpleName();
 
     private SurfaceView mSurfaceView;
+    private int mWidth;
+    private int mHeight;
 
     public SurfaceViewConsumer(SurfaceView surfaceView) {
         super(VideoModule.instance());
@@ -30,17 +33,26 @@ public class SurfaceViewConsumer extends BaseWindowConsumer implements SurfaceHo
 
     @Override
     public Object getDrawingTarget() {
-        return mSurfaceView != null ? mSurfaceView.getHolder().getSurface() : null;
+        if (mSurfaceView != null) {
+            SurfaceHolder holder = mSurfaceView.getHolder();
+            if (holder != null) {
+                Surface surface = holder.getSurface();
+                if (surface != null && surface.isValid()) {
+                    return surface;
+                }
+            }
+        }
+        return null;
     }
 
     @Override
     public int onMeasuredWidth() {
-        return mSurfaceView.getMeasuredWidth();
+        return mSurfaceView != null ? mSurfaceView.getMeasuredWidth() : mWidth;
     }
 
     @Override
     public int onMeasuredHeight() {
-        return mSurfaceView.getMeasuredHeight();
+        return mSurfaceView != null ? mSurfaceView.getMeasuredHeight() : mHeight;
     }
 
     @Override
@@ -63,12 +75,15 @@ public class SurfaceViewConsumer extends BaseWindowConsumer implements SurfaceHo
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
         Log.i(TAG, "surfaceChanged:" + width + "x" + height);
         GLES20.glViewport(0, 0, width, height);
+        mWidth = width;
+        mHeight = height;
         needResetSurface = true;
     }
 
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
         Log.i(TAG, "surfaceDestroyed");
+        mSurfaceView = null;
         disconnectChannel(CHANNEL_ID);
         surfaceDestroyed = true;
     }
