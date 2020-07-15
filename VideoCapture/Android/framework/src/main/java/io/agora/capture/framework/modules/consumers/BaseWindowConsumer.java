@@ -84,8 +84,11 @@ public abstract class BaseWindowConsumer implements IVideoConsumer {
 
             Object surface = getDrawingTarget();
             if (surface != null) {
-                drawingEglSurface = eglCore.createWindowSurface(getDrawingTarget());
-                needResetSurface = false;
+                Object target = getDrawingTarget();
+                if (target != null) {
+                    drawingEglSurface = eglCore.createWindowSurface(target);
+                    needResetSurface = false;
+                }
             }
         }
 

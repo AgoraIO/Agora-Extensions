@@ -108,10 +108,12 @@ public class CameraVideoManager {
         textureView.setSurfaceTextureListener(consumer);
 
         if (textureView.isAttachedToWindow()) {
-            consumer.setDefault(textureView.getSurfaceTexture(),
-                    textureView.getMeasuredWidth(),
-                    textureView.getMeasuredHeight());
             consumer.connectChannel(CHANNEL_ID);
+            if (textureView.getSurfaceTexture() != null) {
+                consumer.setDefault(textureView.getSurfaceTexture(),
+                        textureView.getMeasuredWidth(),
+                        textureView.getMeasuredHeight());
+            }
         }
     }
 
