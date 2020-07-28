@@ -83,7 +83,6 @@ public class SurfaceViewConsumer extends BaseWindowConsumer implements SurfaceHo
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
         Log.i(TAG, "surfaceDestroyed");
-        mSurfaceView = null;
         disconnectChannel(CHANNEL_ID);
         surfaceDestroyed = true;
     }

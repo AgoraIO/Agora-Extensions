@@ -1,16 +1,17 @@
 package io.agora.videocapture;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.TextureView;
+import android.view.SurfaceView;
 import android.view.View;
+import android.widget.RelativeLayout;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import io.agora.capture.video.camera.CameraVideoManager;
 import io.agora.capture.video.camera.Constant;
@@ -25,7 +26,8 @@ public class MainActivity extends AppCompatActivity {
     };
 
     private CameraVideoManager mCameraVideoManager;
-    private TextureView mVideoSurface1;
+    private SurfaceView mVideoSurface;
+    private RelativeLayout mVideoLayout;
     private boolean mPermissionGranted;
     private boolean mFinished;
     private boolean mIsMirrored = true;
@@ -34,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mVideoSurface1 = findViewById(R.id.video_surface_1);
         checkCameraPermission();
     }
 
@@ -112,7 +113,10 @@ public class MainActivity extends AppCompatActivity {
 
         // The preview surface is actually considered as
         // an on-screen consumer under the hood.
-        mCameraVideoManager.setLocalPreview(mVideoSurface1, "Surface1");
+        mVideoSurface = new SurfaceView(this);
+        mVideoLayout = findViewById(R.id.video_layout);
+        mVideoLayout.addView(mVideoSurface);
+        mCameraVideoManager.setLocalPreview(mVideoSurface, "Surface1");
 
         // Can attach other consumers here,
         // For example, rtc consumer or rtmp module
