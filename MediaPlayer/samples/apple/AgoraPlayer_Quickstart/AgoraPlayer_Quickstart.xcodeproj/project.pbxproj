@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B1D6DF424D1789A0061E782 /* AgoraMediaPlayer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8B34A1A5240D501E0043E21B /* AgoraMediaPlayer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8B2EE9A02394B5A9009FD6DD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B2EE99F2394B5A9009FD6DD /* AppDelegate.m */; };
 		8B2EE9A32394B5AA009FD6DD /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8B2EE9A22394B5AA009FD6DD /* ViewController.mm */; };
 		8B2EE9A62394B5AA009FD6DD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B2EE9A42394B5AA009FD6DD /* Main.storyboard */; };
@@ -23,7 +24,6 @@
 		8B34A1AB240D50540043E21B /* AgoraMediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B34A1A9240D50540043E21B /* AgoraMediaPlayer.framework */; };
 		8B34A1AC240D50540043E21B /* AgoraRtcEngineKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B34A1AA240D50540043E21B /* AgoraRtcEngineKit.framework */; };
 		8B34A1AD240D508E0043E21B /* AgoraMediaPlayer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8B34A1A9240D50540043E21B /* AgoraMediaPlayer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8B34A1AE240D50950043E21B /* AgoraMediaPlayer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8B34A1A9240D50540043E21B /* AgoraMediaPlayer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8B5FB30A239123A00025B0C1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B5FB309239123A00025B0C1 /* AppDelegate.m */; };
 		8B5FB30D239123A00025B0C1 /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8B5FB30C239123A00025B0C1 /* ViewController.mm */; };
 		8B5FB30F239123A30025B0C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B5FB30E239123A30025B0C1 /* Assets.xcassets */; };
@@ -81,7 +81,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				8B34A1AE240D50950043E21B /* AgoraMediaPlayer.framework in Embed Frameworks */,
+				8B1D6DF424D1789A0061E782 /* AgoraMediaPlayer.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -487,7 +487,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development: Junjie Liu (ZU7LZHDW27)";
 				CODE_SIGN_STYLE = Manual;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 7289G77ZF3;
@@ -516,7 +516,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development: Junjie Liu (ZU7LZHDW27)";
 				CODE_SIGN_STYLE = Manual;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 7289G77ZF3;

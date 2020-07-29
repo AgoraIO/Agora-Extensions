@@ -23,10 +23,14 @@ class AgoraAudioFrameObserver:public agora::media::IAudioFrameObserver
 public:
     std::atomic<float>  publishSignalValue_{1.0f};
     std::atomic<float>  playOutSignalValue_{1.0f};
+    std::atomic<bool>   isOnlyAudioPlay_{false};
     void setPublishSignalVolume(int volume){
         @synchronized (threadLockPush) {
             publishSignalValue_ = volume/100.0f;
         }
+    }
+    void enableOnlyAudioPlay(bool isEnable){
+        isOnlyAudioPlay_ = isEnable;
     }
     void setPlayoutSignalVolume(int volume){
          @synchronized (threadLockPlay) {
@@ -35,7 +39,9 @@ public:
      }
     void pushData(char *data,int length){
         @synchronized (threadLockPush) {
-           agoraAudioBuf->Push(data, length);
+            if (!isOnlyAudioPlay_) {
+                agoraAudioBuf->Push(data, length);
+            }
         }
         @synchronized (threadLockPlay) {
             agoraPlayoutBuf->Push(data, length);
@@ -91,7 +97,6 @@ public:
         int16_t *tmpBuf = (int16_t *)malloc(bytes);
         memcpy(tmpBuf, audioFrame.buffer, bytes);
         if (agoraPlayoutBuf->mAvailSamples < bytes) {
-            memcpy(audioFrame.buffer, tmpBuf,bytes);
             free(tmpBuf);
             return true;
         }
@@ -199,6 +204,13 @@ static AgoraRtcChannelPublishHelper *instance = NULL;
     }
 
 }
+- (void)enableOnlyLocalAudioPlay:(bool)isEnable
+
+{
+    @synchronized (self) {
+        audioFrameObserver->enableOnlyAudioPlay(isEnable);
+    }
+}
 // 启动/停止推送视频流到频道
 - (void)publishVideo{
     @synchronized (self) {
@@ -228,10 +240,10 @@ static AgoraRtcChannelPublishHelper *instance = NULL;
     @synchronized (self) {
         isPublishVideo=false;
         audioFrameObserver->setPublishSignalVolume(0);
-        _playerKit.delegate = NULL;
-        [_rtcEngineKit setVideoSource:NULL];
         [self unregisterRtcEngine:_rtcEngineKit];
-
+        [_rtcEngineKit setVideoSource:NULL];
+        _playerKit.delegate = NULL;
+        
     }
 }
 - (void)resetAudioBuf{
@@ -392,4 +404,5 @@ static AgoraRtcChannelPublishHelper *instance = NULL;
 }
 
 @end
+
 
