@@ -36,9 +36,4 @@
     <string name="start_rtmp_streaming">开启RTMP推流</string>
     <string name="switch_to_rtmp_streaming">切换到RTMP推流</string>
     <string name="switch_to_agora_channel">切换到声网频道</string>
-
-    <!-- face beauty -->
-    <string name="fu_base_is_tracking_text">未检测到人脸</string>
-    <string name="fu_face_tracking_time_tips">人脸检测可能耗时</string>
-
 </resources>

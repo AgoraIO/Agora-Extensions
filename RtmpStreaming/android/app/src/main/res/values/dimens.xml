@@ -72,8 +72,4 @@
     <dimen name="role_block_content_width">120dp</dimen>
     <dimen name="role_block_content_margin_right">32dp</dimen>
     <dimen name="role_block_hint_margin_top">6dp</dimen>
-
-    <!-- Effect panel -->
-    <dimen name="effect_type_item_height">52dp</dimen>
-    <dimen name="effect_type_item_width">64dp</dimen>
 </resources>
