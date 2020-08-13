@@ -222,6 +222,10 @@ public class LiveActivity extends BaseActivity {
         mPresenter.setPreview(mLocalView);
     }
 
+    public void onBeautyClicked(View view) {
+        // do nothing for now
+    }
+
     public void onMuteAudioClicked(View view) {
         view.setActivated(!view.isActivated());
         mLocalAudioMuted = !view.isActivated();
