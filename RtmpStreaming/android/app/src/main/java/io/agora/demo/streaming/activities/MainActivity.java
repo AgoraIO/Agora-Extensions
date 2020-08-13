@@ -242,12 +242,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private void gotoLiveActivity() {
-        int screenOrientation =
-            PrefManager.SCREEN_ORIENTATIONS[PrefManager.getScreenOrientationIndex(this)];
-        Class<?> cls = (screenOrientation == Configuration.ORIENTATION_PORTRAIT) ? LiveActivity.class
-            : (screenOrientation == Configuration.ORIENTATION_LANDSCAPE) ? LandscapeLiveActivity.class
-            : DynamicLiveActivity.class;
-        Intent intent = new Intent(getApplicationContext(), cls);
+        Intent intent = new Intent(getApplicationContext(), LiveActivity.class);
         intent.putExtra(LiveActivity.KEY_ROOM_NAME, mTopicEdit.getText().toString());
         startActivity(intent);
     }

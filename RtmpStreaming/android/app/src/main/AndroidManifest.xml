@@ -44,13 +44,6 @@
         <activity
             android:name=".activities.LiveActivity"
             android:screenOrientation="portrait"/>
-        <activity
-            android:name=".activities.LandscapeLiveActivity"
-            android:screenOrientation="landscape" />
-        <activity
-            android:name=".activities.DynamicLiveActivity"
-            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
-            android:screenOrientation="fullSensor" />
     </application>
 
 </manifest>

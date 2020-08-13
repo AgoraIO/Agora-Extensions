@@ -60,13 +60,6 @@ public class StreamingKitWrapper {
     StreamingContext streamingContext = new StreamingContext(mEventHandler,
         mAppContext.getString(R.string.private_app_id), mAppContext, videoStreamConfig, audioStreamConfig);
 
-//    int streamType = PrefManager.STREAM_TYPES[PrefManager.getStreamTypeIndex(mAppContext)];
-//    if (streamType == PrefManager.StreamType.TYPE_AUDIO_ONLY) {
-//        streamingContext.enableVideoStreaming = false;
-//    } else if (streamType == PrefManager.StreamType.TYPE_VIDEO_ONLY) {
-//        streamingContext.enableAudioStreaming = false;
-//    }
-
     try {
       if (PrefManager.IS_DEV_DEBUG) {
         Field f_lib = StreamingKitImpl.class.getDeclaredField("LIB_NAME");

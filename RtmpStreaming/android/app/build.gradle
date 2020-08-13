@@ -7,8 +7,8 @@ android {
         applicationId "io.agora.demo.streaming"
         minSdkVersion 18
         targetSdkVersion 29
-        versionCode 12
-        versionName "5.5"
+        versionCode 10
+        versionName "1.0.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -26,35 +26,14 @@ android {
 
     sourceSets {
         main {
-//            jniLibs.srcDirs = ['src/main/jniLibs']
-            jniLibs.srcDirs = ["${SDK_PATH}/libs"]
+            jniLibs.srcDirs = ['src/main/jniLibs']
         }
-    }
-    compileOptions {
-        sourceCompatibility = 1.8
-        targetCompatibility = 1.8
-    }
-    packagingOptions {
-        doNotStrip "**/*.so"
     }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'io.agora.rtc:full-sdk:3.0.0'
-
-    if (buildWithFaceBeauty) {
-        implementation project(':appwithfu')
-    }
-
-//    if (buildWithAgoraProjAndroidStreaming) {
-//        api project(':proj.android.streaming')
-//    }
-    implementation fileTree(dir: "${SDK_PATH}/libs", include: ['*.jar'])
-
-    // bugly crash report
-    implementation 'com.tencent.bugly:crashreport:2.8.6.0'
-    implementation 'com.tencent.bugly:nativecrashreport:3.7.1'
 
     implementation 'com.github.yuzhiqiang1993:zxing:2.2.8'
     implementation 'androidx.appcompat:appcompat:1.1.0'
