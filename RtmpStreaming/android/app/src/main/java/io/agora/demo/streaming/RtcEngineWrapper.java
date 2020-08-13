@@ -1,11 +1,7 @@
 package io.agora.demo.streaming;
 
 import android.content.Context;
-import android.os.Handler;
 import android.util.Log;
-import android.view.SurfaceView;
-
-import androidx.annotation.NonNull;
 
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
@@ -13,9 +9,9 @@ import java.util.List;
 import java.util.concurrent.Callable;
 
 import io.agora.base.AudioFrame;
-import io.agora.base.internal.video.RendererCommon;
 import io.agora.base.TextureBufferHelper;
 import io.agora.base.VideoFrame;
+import io.agora.base.internal.video.RendererCommon;
 import io.agora.base.internal.video.YuvHelper;
 import io.agora.demo.streaming.utils.FileUtil;
 import io.agora.demo.streaming.utils.PrefManager;
@@ -34,7 +30,6 @@ import io.agora.streaming.VideoFrameObserver;
 public class RtcEngineWrapper implements AudioFrameObserver, VideoFrameObserver {
   private static final String TAG = RtcEngineWrapper.class.getSimpleName();
 
-  private Handler mWorkHandler;
   private Context mAppContext;
   private RtcEngine mRtcEngine;
   private MyVideoSource mVideoSource = new MyVideoSource();
@@ -43,20 +38,16 @@ public class RtcEngineWrapper implements AudioFrameObserver, VideoFrameObserver 
   private boolean mMuteLocalAudio = false;
   private boolean mMuteLocalVideo = false;
 
-  public RtcEngineWrapper(Context context, @NonNull Handler handler) {
-    mWorkHandler = handler;
+  public RtcEngineWrapper(Context context) {
     mAppContext = context.getApplicationContext();
-    mPublishUrl = PrefManager.getRtmpUrl(context) + (PrefManager.IS_SIMUL_TEST ? "1" : "");
+    mPublishUrl = PrefManager.getRtmpUrl(context);
   }
 
-  public void init(IRtcEngineEventHandler rtcEventHandler) {
+  public void create(IRtcEngineEventHandler rtcEventHandler) {
     try {
       mRtcEngine = RtcEngine.create(mAppContext, mAppContext.getString(R.string.private_app_id),
           rtcEventHandler);
       mRtcEngine.setLogFile(FileUtil.getLogFilePath(mAppContext, "agora-rtc.log"));
-      if (PrefManager.IS_DEV_DEBUG) {
-        mRtcEngine.setParameters("{\"rtc.log_filter\": 65535}");
-      }
       mRtcEngine.setChannelProfile(io.agora.rtc.Constants.CHANNEL_PROFILE_LIVE_BROADCASTING);
       mRtcEngine.setClientRole(io.agora.rtc.Constants.CLIENT_ROLE_BROADCASTER);
       mRtcEngine.enableVideo();
@@ -66,19 +57,16 @@ public class RtcEngineWrapper implements AudioFrameObserver, VideoFrameObserver 
     configVideo();
   }
 
-  public void deinit() {
-    mWorkHandler.post(new Runnable() {
-      @Override
-      public void run() {
-        RtcEngine.destroy();
-      }
-    });
+  public void destroy() {
+    RtcEngine.destroy();
+    mRtcEngine = null;
   }
 
   public void setExternalAudioSource(boolean enabled) {
     Log.i(TAG, "setExternalAudioSource enabled: " + enabled);
     if (enabled) {
-      final int sampleRate = PrefManager.getAudioSampleRate(mAppContext);
+      // audio sample rate of audio data callback from Streaming Kit is fixed at 44.1KHz
+      final int sampleRate = 44100;
       final int channels = PrefManager.getAudioType(mAppContext);
       mRtcEngine.setExternalAudioSource(true, sampleRate, channels);
     } else {
@@ -86,7 +74,7 @@ public class RtcEngineWrapper implements AudioFrameObserver, VideoFrameObserver 
     }
   }
 
-  public void setVideoSource(boolean enabled) {
+  public void setExternalVideoSource(boolean enabled) {
     Log.i(TAG, "setVideoSource enabled: " + enabled);
     if (enabled) {
       mRtcEngine.setVideoSource(mVideoSource);
@@ -107,15 +95,11 @@ public class RtcEngineWrapper implements AudioFrameObserver, VideoFrameObserver 
     mRtcEngine.muteLocalVideoStream(muted);
   }
 
-  public void setupRemoteVideo(SurfaceView view, int renderMode, int uid) {
-    Log.i(TAG, "setupRemoteVideo view: " + view + " renderMode: " + renderMode + " uid: " + uid);
-      mRtcEngine.setupRemoteVideo(new VideoCanvas(view, renderMode, uid));
-  }
-
-  public void setupRemoteVideo(SurfaceView view, int renderMode, int uid, int mirrorMode) {
-    Log.i(TAG, "setupRemoteVideo view: " + view + " renderMode: " + renderMode + " uid: " + uid
-        + " mirrorMode: " + mirrorMode);
-    mRtcEngine.setupRemoteVideo(new VideoCanvas(view, renderMode, uid, mirrorMode));
+  public void setupRemoteVideo(VideoCanvas videoCanvas) {
+    Log.i(TAG, "setupRemoteVideo view: " + videoCanvas.view + " renderMode: "
+        + videoCanvas.renderMode + " uid: " + videoCanvas.uid + " mirrorMode: "
+        + videoCanvas.mirrorMode);
+    mRtcEngine.setupRemoteVideo(videoCanvas);
   }
 
   public void joinChannel(String channelName) {

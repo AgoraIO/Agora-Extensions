@@ -1,42 +1,36 @@
 package io.agora.demo.streaming;
 
 import android.content.Context;
-import android.os.Handler;
 import android.util.Log;
 import android.view.SurfaceView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.UiThread;
 
-import java.lang.reflect.Field;
-
 import io.agora.demo.streaming.utils.PrefManager;
 import io.agora.rtc.video.VideoEncoderConfiguration;
 import io.agora.streaming.AudioFrameObserver;
 import io.agora.streaming.AudioStreamConfiguration;
-import io.agora.streaming.VideoFrameObserver;
-import io.agora.streaming.VideoRenderMode;
 import io.agora.streaming.StreamingContext;
 import io.agora.streaming.StreamingEventHandler;
 import io.agora.streaming.StreamingKit;
 import io.agora.streaming.VideoFilter;
+import io.agora.streaming.VideoFrameObserver;
 import io.agora.streaming.VideoPreviewRenderer;
+import io.agora.streaming.VideoRenderMode;
 import io.agora.streaming.VideoStreamConfiguration;
-import io.agora.streaming.internal.StreamingKitImpl;
 
 public class StreamingKitWrapper {
   private static final String TAG = StreamingKitWrapper.class.getSimpleName();
 
   private Context mAppContext;
-  private Handler mWorkHandler;
   private StreamingKit mStreamingKit;
   private StreamingEventHandler mEventHandler;
   private VideoPreviewRenderer mPreviewRenderer;
   private boolean mIsCameraFacingFront = true; // StreamingKit uses front camera by default
 
-  public StreamingKitWrapper(Context appContext, @NonNull Handler handler) {
+  public StreamingKitWrapper(Context appContext) {
     mAppContext = appContext.getApplicationContext();
-    mWorkHandler = handler;
   }
 
   public void init(@NonNull StreamingEventHandler eventHandler) {
@@ -61,36 +55,23 @@ public class StreamingKitWrapper {
         mAppContext.getString(R.string.private_app_id), mAppContext, videoStreamConfig, audioStreamConfig);
 
     try {
-      if (PrefManager.IS_DEV_DEBUG) {
-        Field f_lib = StreamingKitImpl.class.getDeclaredField("LIB_NAME");
-        f_lib.setAccessible(true);
-        f_lib.set(null, "streaming_kit_shared-jni");
-      }
       mStreamingKit = StreamingKit.create(streamingContext);
       mStreamingKit.setLogFilter(PrefManager.LOG_FILTERS[PrefManager.getLogFilterIndex(mAppContext)]);
       mStreamingKit.setLogFile(PrefManager.getLogPath(mAppContext));
-      if (PrefManager.IS_DEV_DEBUG) {
-        mStreamingKit.setLogFilter(0xFFFFFFFF);
-      }
     } catch (Exception e) {
       e.printStackTrace();
     }
   }
 
-  public void deinit() {
-    mWorkHandler.post(new Runnable() {
-      @Override
-      public void run() {
-        StreamingKit.destroy();
-      }
-    });
+  public void destroy() {
+    StreamingKit.destroy();
     mStreamingKit = null;
     mEventHandler = null;
   }
 
   @UiThread
-  public void setPreviewRenderer(SurfaceView view) {
-    Log.i(TAG, "setPreviewRenderer view: " + view);
+  public void setPreview(SurfaceView view) {
+    Log.i(TAG, "setPreview view: " + view);
     if (view == null) {
       if (mPreviewRenderer == null) return;
       mPreviewRenderer.setView(null);

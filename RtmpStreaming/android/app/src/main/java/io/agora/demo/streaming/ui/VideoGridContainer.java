@@ -2,7 +2,6 @@ package io.agora.demo.streaming.ui;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.os.Handler;
 import android.util.AttributeSet;
 import android.util.SparseArray;
 import android.view.SurfaceView;
@@ -14,19 +13,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.agora.demo.streaming.R;
-import io.agora.demo.streaming.stats.StatsData;
-import io.agora.demo.streaming.stats.StatsManager;
 
-public class VideoGridContainer extends RelativeLayout implements Runnable {
+public class VideoGridContainer extends RelativeLayout {
     private static final int MAX_USER = 4;
-    private static final int STATS_REFRESH_INTERVAL = 2000;
     private static final int STAT_LEFT_MARGIN = 34;
     private static final int STAT_TEXT_SIZE = 10;
 
     private SparseArray<ViewGroup> mUserViewList = new SparseArray<>(MAX_USER);
     private List<Integer> mUidList = new ArrayList<>(MAX_USER);
-    private StatsManager mStatsManager;
-    private Handler mHandler;
     private int mStatMarginBottom;
 
     public VideoGridContainer(Context context) {
@@ -48,11 +42,6 @@ public class VideoGridContainer extends RelativeLayout implements Runnable {
         setBackgroundResource(R.drawable.live_room_bg);
         mStatMarginBottom = getResources().getDimensionPixelSize(
                 R.dimen.live_stat_margin_bottom);
-        mHandler = new Handler(getContext().getMainLooper());
-    }
-
-    public void setStatsManager(StatsManager manager) {
-        mStatsManager = manager;
     }
 
     public void addUserVideo(int uid, SurfaceView surface, boolean isLocal) {
@@ -88,15 +77,6 @@ public class VideoGridContainer extends RelativeLayout implements Runnable {
 
         if (id != -1) {
             mUserViewList.append(uid, createVideoView(surface));
-
-            if (mStatsManager != null) {
-                mStatsManager.addUserStats(uid, isLocal);
-                if (mStatsManager.isEnabled()) {
-                    mHandler.removeCallbacks(this);
-                    mHandler.postDelayed(this, STATS_REFRESH_INTERVAL);
-                }
-            }
-
             requestGridLayout();
         }
     }
@@ -137,14 +117,7 @@ public class VideoGridContainer extends RelativeLayout implements Runnable {
             mUserViewList.remove(uid);
         }
 
-        if (mStatsManager != null) {
-            mStatsManager.removeUserStats(uid);
-        }
         requestGridLayout();
-
-        if (getChildCount() == 0) {
-            mHandler.removeCallbacks(this);
-        }
     }
 
     private void requestGridLayout() {
@@ -212,24 +185,5 @@ public class VideoGridContainer extends RelativeLayout implements Runnable {
         removeAllViews();
         mUserViewList.clear();
         mUidList.clear();
-        mHandler.removeCallbacks(this);
-    }
-
-    @Override
-    public void run() {
-        if (mStatsManager != null && mStatsManager.isEnabled()) {
-            int count = getChildCount();
-            for (int i = 0; i < count; i++) {
-                RelativeLayout layout = (RelativeLayout) getChildAt(i);
-                TextView text = layout.findViewById(layout.hashCode());
-                if (text != null) {
-                    StatsData data = mStatsManager.getStatsData(mUidList.get(i));
-                    String info = data != null ? data.toString() : null;
-                    if (info != null) text.setText(info);
-                }
-            }
-
-            mHandler.postDelayed(this, STATS_REFRESH_INTERVAL);
-        }
     }
 }

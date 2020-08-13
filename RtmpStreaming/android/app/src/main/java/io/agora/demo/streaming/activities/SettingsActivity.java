@@ -44,8 +44,6 @@ public class SettingsActivity extends BaseActivity {
     private TextView mAudioBitrateText;
     private EditText mLogPathEditText;
     private TextView mLogFilterText;
-    private TextView mStreamTypeText;
-    private TextView mVideoStatCheck;
     private TextView mMirrorLocalText;
     private TextView mMirrorRemoteText;
 
@@ -114,10 +112,6 @@ public class SettingsActivity extends BaseActivity {
         mVideoOrientationModeText.setText(
             PrefManager.VIDEO_ORIENTATION_MODE_STRINGS[PrefManager.getVideoOrientationModeIndex(this)]);
 
-        mScreenOrientationText = findViewById(R.id.setting_screen_orientation_value);
-        mScreenOrientationText.setText(
-            PrefManager.SCREEN_ORIENTATION_STRINGS[PrefManager.getScreenOrientationIndex(this)]);
-
         mAudioSampleRateText = findViewById(R.id.setting_audio_sample_rate_value);
         mAudioSampleRateText.setText(
             PrefManager.AUDIO_SAMPLE_RATE_STRINGS[PrefManager.getAudioSampleRateIndex(this)]);
@@ -135,13 +129,6 @@ public class SettingsActivity extends BaseActivity {
         mLogFilterText = findViewById(R.id.setting_log_filter_value);
         mLogFilterText.setText(PrefManager.LOG_FILTER_STRINGS[
             PrefManager.getLogFilterIndex(this)]);
-
-        mStreamTypeText = findViewById(R.id.setting_stream_type_value);
-        mStreamTypeText.setText(PrefManager.STREAM_TYPES_STRINGS[
-            PrefManager.getStreamTypeIndex(this)]);
-
-        mVideoStatCheck = findViewById(R.id.setting_stats_checkbox);
-        mVideoStatCheck.setActivated(PrefManager.isStatsEnabled(this));
 
         mMirrorLocalText = findViewById(R.id.setting_mirror_local_value);
         mMirrorLocalText.setText(PrefManager.VIDEO_MIRROR_MODE_STRINGS[
@@ -202,7 +189,6 @@ public class SettingsActivity extends BaseActivity {
         saveRtmpUrl();
         saveResolution();
         saveLogPath();
-        saveShowStats();
         finish();
     }
 
@@ -223,11 +209,6 @@ public class SettingsActivity extends BaseActivity {
         if (logPathEditable != null) {
             mPref.edit().putString(PrefManager.PREF_LOG_PATH, logPathEditable.toString()).apply();
         }
-    }
-
-    private void saveShowStats() {
-        mPref.edit().putBoolean(PrefManager.PREF_ENABLE_STATS,
-                mVideoStatCheck.isActivated()).apply();
     }
 
     public void onStatsChecked(View view) {
@@ -254,10 +235,6 @@ public class SettingsActivity extends BaseActivity {
                 showChoiceDialog(PrefManager.VIDEO_ORIENTATION_MODE_STRINGS,
                     PrefManager.PREF_VIDEO_ORIENTATION_MODE_INDEX, mVideoOrientationModeText);
                 break;
-            case R.id.setting_screen_orientation_view:
-                showChoiceDialog(PrefManager.SCREEN_ORIENTATION_STRINGS,
-                    PrefManager.PREF_SCREEN_ORIENTATION_INDEX, mScreenOrientationText);
-                break;
             case R.id.setting_audio_sample_rate_view:
                 showChoiceDialog(PrefManager.AUDIO_SAMPLE_RATE_STRINGS,
                     PrefManager.PREF_AUDIO_SAMPLE_RATE_INDEX, mAudioSampleRateText);
@@ -279,10 +256,6 @@ public class SettingsActivity extends BaseActivity {
                 break;
             case R.id.setting_log_share_view:
                 onShareLogClicked(view);
-                break;
-            case R.id.setting_stream_type_view:
-                showChoiceDialog(PrefManager.STREAM_TYPES_STRINGS,
-                    PrefManager.PREF_STREAM_TYPE_INDEX, mStreamTypeText);
                 break;
             case R.id.setting_mirror_local_view:
                 showChoiceDialog(PrefManager.VIDEO_MIRROR_MODE_STRINGS,

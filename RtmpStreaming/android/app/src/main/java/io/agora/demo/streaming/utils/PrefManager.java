@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 
+import io.agora.demo.streaming.R;
 import io.agora.rtc.Constants;
 import io.agora.rtc.video.VideoEncoderConfiguration;
 import io.agora.streaming.AudioStreamConfiguration;
@@ -12,10 +13,6 @@ import io.agora.streaming.VideoStreamConfiguration;
 
 
 public class PrefManager {
-    public static final boolean IS_DEV_DEBUG = false;
-    public static final boolean IS_SIMUL_TEST = false;
-    private static final String DEFAULT_RTMP_URL = "rtmp://ks-push.broadcastapp.agoraio.cn/live/yutest";
-
     public static final String PREF_FILE_NAME = "io.agora.demo.streaming";
 
     public static final String PREF_RTMP_URL = "pref_rtmp_url";
@@ -146,22 +143,6 @@ public class PrefManager {
     private static final int DEFAULT_LOG_FILTER_INDEX = 1;
 
     /************************************** other settings **************************************/
-    // stream type
-    public @interface StreamType {
-        int TYPE_AUDIO_AND_VIDEO = 0;
-        int TYPE_AUDIO_ONLY = 1;
-        int TYPE_VIDEO_ONLY = 2;
-    }
-    public static final @StreamType int[] STREAM_TYPES = new int[] {
-        StreamType.TYPE_AUDIO_AND_VIDEO,
-        StreamType.TYPE_AUDIO_ONLY,
-        StreamType.TYPE_VIDEO_ONLY,
-    };
-    public static final String[] STREAM_TYPES_STRINGS = new String[] {
-        "Audio and Video", "Audio Only", "Video Only"
-    };
-    private static final int DEFAULT_STREAM_TYPE_INDEX = 0;
-
     private static SharedPreferences mPref;
 
     public static synchronized SharedPreferences getPreferences(Context context) {
@@ -172,11 +153,15 @@ public class PrefManager {
     }
 
     public static String getRtmpUrl(Context context) {
-        return getPreferences(context).getString(PREF_RTMP_URL, DEFAULT_RTMP_URL);
+        return getPreferences(context).getString(PREF_RTMP_URL, context.getString(R.string.test_rtmp_url));
     }
 
     public static int getVideoDimensionsIndex(Context context) {
         return getPreferences(context).getInt(PREF_VIDEO_DIMENSIONS_INDEX, DEFAULT_VIDEO_DIMENSIONS_INDEX);
+    }
+
+    public static VideoEncoderConfiguration.VideoDimensions getVideoDimensions(Context context) {
+     return VIDEO_DIMENSIONS[getVideoDimensionsIndex(context)];
     }
 
     public static int getVideoFramerateIndex(Context context) {
@@ -199,8 +184,16 @@ public class PrefManager {
         return getPreferences(context).getInt(PREF_MIRROR_LOCAL, DEFAULT_LOCAL_VIDEO_MIRROR_INDEX);
     }
 
+    public static int getMirrorLocalMode(Context context) {
+        return VIDEO_MIRROR_MODES[getMirrorLocalIndex(context)];
+    }
+
     public static int getMirrorRemoteIndex(Context context) {
         return getPreferences(context).getInt(PREF_MIRROR_REMOTE, DEFAULT_REMOTE_VIDEO_MIRROR_INDEX);
+    }
+
+    public static int getMirrorRemoteMode(Context context) {
+        return VIDEO_MIRROR_MODES[getMirrorRemoteIndex(context)];
     }
 
     public static int getAudioSampleRateIndex(Context context) {
@@ -237,13 +230,5 @@ public class PrefManager {
 
     public static int getLogFileSize(Context context) {
         return getPreferences(context).getInt(PREF_LOG_FILE_SIZE, DEFAULT_LOG_FILE_SIZE);
-    }
-
-    public static int getStreamTypeIndex(Context context) {
-        return getPreferences(context).getInt(PREF_STREAM_TYPE_INDEX, DEFAULT_STREAM_TYPE_INDEX);
-    }
-
-    public static boolean isStatsEnabled(Context context) {
-        return getPreferences(context).getBoolean(PREF_ENABLE_STATS, false);
     }
 }

@@ -5,7 +5,6 @@ import android.animation.Animator;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.content.res.Configuration;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.text.Editable;
@@ -24,8 +23,8 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import io.agora.demo.streaming.LiveStreamingPresenter;
 import io.agora.demo.streaming.R;
-import io.agora.demo.streaming.utils.PrefManager;
 
 public class MainActivity extends BaseActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
@@ -179,6 +178,8 @@ public class MainActivity extends BaseActivity {
     }
 
     public void onSettingClicked(View view) {
+        // required for some of the settings to take effect
+        LiveStreamingPresenter.destroyEngineAndKit();
         Intent i = new Intent(this, SettingsActivity.class);
         startActivity(i);
     }
