@@ -163,7 +163,7 @@ public class LiveActivity extends BaseActivity {
     private SurfaceView prepareRemoteVideo(int uid) {
         SurfaceView surface = RtcEngine.CreateRendererView(getApplicationContext());
         mPresenter.setupRemoteVideo(new VideoCanvas(surface, VideoCanvas.RENDER_MODE_HIDDEN, uid,
-            PrefManager.getMirrorRemoteMode(this)));
+            PrefManager.getMirrorMoteRemote(this)));
         return surface;
     }
 
@@ -214,11 +214,9 @@ public class LiveActivity extends BaseActivity {
     }
 
     public void onSwitchCameraClicked(View view) {
-        // Disable renderer to avoid unexpected render effect while switching camera
+        // disable renderer before switching camera to avoid unexpected render effect
         mPresenter.setPreview(null);
         mPresenter.switchCamera();
-
-        // Re-enable renderer
         mPresenter.setPreview(mLocalView);
     }
 

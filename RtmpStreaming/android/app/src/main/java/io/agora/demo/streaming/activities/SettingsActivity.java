@@ -132,11 +132,11 @@ public class SettingsActivity extends BaseActivity {
 
         mMirrorLocalText = findViewById(R.id.setting_mirror_local_value);
         mMirrorLocalText.setText(PrefManager.VIDEO_MIRROR_MODE_STRINGS[
-            PrefManager.VIDEO_MIRROR_MODES[PrefManager.getMirrorLocalIndex(this)]]);
+            PrefManager.VIDEO_MIRROR_MODES[PrefManager.getMirrorModeIndexLocal(this)]]);
 
         mMirrorRemoteText = findViewById(R.id.setting_mirror_remote_value);
         mMirrorRemoteText.setText(PrefManager.VIDEO_MIRROR_MODE_STRINGS[
-            PrefManager.VIDEO_MIRROR_MODES[PrefManager.getMirrorRemoteIndex(this)]]);
+            PrefManager.VIDEO_MIRROR_MODES[PrefManager.getMirrorModeIndexRemote(this)]]);
     }
 
     private void gotoQRCodeActivity() {

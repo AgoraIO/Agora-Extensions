@@ -176,7 +176,7 @@ public class RtcEngineWrapper implements AudioFrameObserver, VideoFrameObserver 
   private void configVideo() {
     Log.i(TAG, "configVideo");
     VideoEncoderConfiguration configuration = new VideoEncoderConfiguration(
-        PrefManager.VIDEO_DIMENSIONS[PrefManager.getVideoDimensionsIndex(mAppContext)],
+        PrefManager.getVideoDimensions(mAppContext),
         VideoEncoderConfiguration.FRAME_RATE.FRAME_RATE_FPS_15,
         VideoEncoderConfiguration.STANDARD_BITRATE,
         VideoEncoderConfiguration.ORIENTATION_MODE.ORIENTATION_MODE_ADAPTIVE

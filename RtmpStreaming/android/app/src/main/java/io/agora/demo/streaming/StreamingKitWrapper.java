@@ -37,18 +37,18 @@ public class StreamingKitWrapper {
     mEventHandler =  eventHandler;
 
     VideoEncoderConfiguration.VideoDimensions videoDimensions =
-        PrefManager.VIDEO_DIMENSIONS[PrefManager.getVideoDimensionsIndex(mAppContext)];
+        PrefManager.getVideoDimensions(mAppContext);
 
     VideoStreamConfiguration videoStreamConfig = new VideoStreamConfiguration(
         videoDimensions.width, videoDimensions.height,
-        PrefManager.VIDEO_FRAMERATES[PrefManager.getVideoFramerateIndex(mAppContext)].getValue(),
-        PrefManager.VIDEO_BITRATES[PrefManager.getVideoBitrateIndex(mAppContext)],
-        PrefManager.VIDEO_ORIENTATION_MODES[PrefManager.getVideoOrientationModeIndex(mAppContext)]);
+        PrefManager.getVideoFramerate(mAppContext),
+        PrefManager.getVideoBitrate(mAppContext),
+        PrefManager.getVideoOrientationMode(mAppContext));
 
     AudioStreamConfiguration audioStreamConfig = new AudioStreamConfiguration(
-        PrefManager.AUDIO_SAMPLE_RATES[PrefManager.getAudioSampleRateIndex(mAppContext)],
-        PrefManager.AUDIO_TYPES[PrefManager.getAudioTypeIndex(mAppContext)],
-        PrefManager.AUDIO_BITRATES[PrefManager.getAudioBitrateIndex(mAppContext)]
+        PrefManager.getAudioSampleRate(mAppContext),
+        PrefManager.getAudioType(mAppContext),
+        PrefManager.getAudioBitrate(mAppContext)
     );
 
     StreamingContext streamingContext = new StreamingContext(mEventHandler,
@@ -56,7 +56,7 @@ public class StreamingKitWrapper {
 
     try {
       mStreamingKit = StreamingKit.create(streamingContext);
-      mStreamingKit.setLogFilter(PrefManager.LOG_FILTERS[PrefManager.getLogFilterIndex(mAppContext)]);
+      mStreamingKit.setLogFilter(PrefManager.getLogFilter(mAppContext));
       mStreamingKit.setLogFile(PrefManager.getLogPath(mAppContext));
     } catch (Exception e) {
       e.printStackTrace();
@@ -81,12 +81,8 @@ public class StreamingKitWrapper {
       }
       mPreviewRenderer.setView(view);
       mPreviewRenderer.setRenderMode(VideoRenderMode.RENDER_MODE_HIDDEN);
-      mPreviewRenderer.setMirrorMode(PrefManager.VIDEO_MIRROR_MODES[PrefManager.getMirrorLocalIndex(mAppContext)]);
+      mPreviewRenderer.setMirrorMode(PrefManager.getMirrorModeLocal(mAppContext));
     }
-  }
-
-  public StreamingKit impl() {
-    return mStreamingKit;
   }
 
   public void enableAudioRecording(boolean enabled) {

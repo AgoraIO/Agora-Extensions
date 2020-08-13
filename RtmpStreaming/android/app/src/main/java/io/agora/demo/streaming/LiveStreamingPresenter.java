@@ -165,11 +165,11 @@ public class LiveStreamingPresenter {
         });
     }
 
-    public int switchCamera() {
-        return invokeOnWorkerThread(new Callable<Integer>() {
+    public void switchCamera() {
+        mWorkHandler.post(new Runnable() {
             @Override
-            public Integer call() throws Exception {
-                return mStreamingKitWrapper.switchCamera();
+            public void run() {
+                mStreamingKitWrapper.switchCamera();
             }
         });
     }
@@ -232,7 +232,7 @@ public class LiveStreamingPresenter {
                         // this has to be called in UI thread
                         mRtcEngineWrapper.setupRemoteVideo(
                             new VideoCanvas(null, VideoCanvas.RENDER_MODE_HIDDEN, uid,
-                            PrefManager.getMirrorRemoteMode(mContext)));
+                            PrefManager.getMirrorMoteRemote(mContext)));
                     }
                 });
             }
