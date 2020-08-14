@@ -7,7 +7,7 @@
 在这个示例项目中包含了以下功能：
 
 - 摄像头视频流直推 CDN
-- 加入通话和离开通话；
+- 加入和离开声网频道；
 - 静音和解除静音；
 - 切换前置摄像头和后置摄像头；
 - 选择分辨率、码率和帧率；
@@ -61,13 +61,13 @@
 ### 集成 Agora 推流 Kit
 
 集成方式有以下两种：
-  - 通过JCenter集成（推荐方式，Demo 也是采用这种方式）：
+  - 通过JCenter集成（推荐方式，本开源项目也是采用这种方式）：
     - 在项目对应的模块的 `app/build.gradle` 文件的依赖属性中加入通过 JCenter 自动集成 Agora 推流 Kit 的地址：
       ```
       implementation 'io.agora:streamingkit:1.0.0'
       ```
   - 手动集成：
-    - 在 [Agora.io SDK](https://www.agora.io/cn/download/) 下载 ** Agora 推流 Kit **并解压，按以下对应关系将 **libs** 目录的内容复制到项目内。
+    - 在 [Agora.io SDK](https://www.agora.io/cn/download/) 下载 **Agora 推流 Kit**并解压，按以下对应关系将 **libs** 目录的内容复制到项目内。
       
       SDK目录|项目目录
       ---|---

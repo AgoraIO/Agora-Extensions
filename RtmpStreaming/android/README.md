@@ -71,7 +71,7 @@ Copy from SDK|Copy to Project Folder
 
 ### Integrate the Agora Streaming Kit
 
-The Streaming Kit must be integrated into the sample project before it can opened and built. There are two methods for integrating the Agora Video SDK into the sample project. The first method uses JCenter to automatically integrate the SDK files. The second method requires you to manually copy the SDK files to the project.
+The Streaming Kit must be integrated into the sample project before it can opened and built. There are two methods for integrating the Agora Streaming Kit into the sample project. The first method uses JCenter to automatically integrate the SDK files. The second method requires you to manually copy the SDK files to the project.
 
 #### Method 1 - Integrate the Kit Automatically Using JCenter (Recommended, and it's the way this demo uses)
 
