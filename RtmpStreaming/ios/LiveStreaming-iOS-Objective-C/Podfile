@@ -1,0 +1,13 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'LiveStreaming' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for LiveStreaming
+  pod 'SVProgressHUD'
+  pod 'AgoraRtcEngine_iOS'
+  pod 'AgoraStreamingKit_iOS'
+  
+end
