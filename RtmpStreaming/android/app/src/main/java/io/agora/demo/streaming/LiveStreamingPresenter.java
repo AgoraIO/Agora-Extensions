@@ -1,6 +1,5 @@
 package io.agora.demo.streaming;
 
-import android.content.Context;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Looper;
@@ -25,11 +24,10 @@ public class LiveStreamingPresenter {
     private static final LiveStreamingPresenter mPresenter = new LiveStreamingPresenter();
 
     public static LiveStreamingPresenter getInstance() {
-        mPresenter.createIfNeeded(DemoApplication.getAppContext());
+        mPresenter.createIfNeeded();
         return mPresenter;
     }
 
-    private Context mContext;
     private Handler mUiHandler;
     private HandlerThread mWorkThread;
     private Handler mWorkHandler;
@@ -46,13 +44,11 @@ public class LiveStreamingPresenter {
         new StreamingEventHandlerWrapper();
     private StreamingEventHandler mStreamingEventHandlerReal;
 
-    // TODO(Haonong Yu): 2020/8/10 thread safety for belows?
     private List<Integer> mUidList = new ArrayList<>();
     private boolean mPendingServerStreaming = false;
     private boolean mIsServerStreaming = false;
 
     private LiveStreamingPresenter() {
-        mContext = DemoApplication.getAppContext();
         mUiHandler = new Handler(Looper.getMainLooper());
 
         mWorkThread = new HandlerThread("StreamingWorker");
@@ -64,17 +60,17 @@ public class LiveStreamingPresenter {
         mEventHandler = new Handler(mEventThread.getLooper());
     }
 
-    private void createIfNeeded(Context appContext) {
+    private void createIfNeeded() {
         Log.i(TAG, "create");
         mWorkHandler.post(new Runnable() {
             @Override
             public void run() {
                 if (mStreamingKitWrapper == null) {
-                    mStreamingKitWrapper = new StreamingKitWrapper(mContext);
+                    mStreamingKitWrapper = new StreamingKitWrapper(MyApplication.getAppContext());
                     mStreamingKitWrapper.init(mStreamingEventHandlerWrapper);
                 }
                 if (mRtcEngineWrapper == null) {
-                    mRtcEngineWrapper = new RtcEngineWrapper(mContext);
+                    mRtcEngineWrapper = new RtcEngineWrapper(MyApplication.getAppContext());
                     mRtcEngineWrapper.create(mRtcEngineEventHandlerWrapper);
                 }
             }
@@ -232,7 +228,7 @@ public class LiveStreamingPresenter {
                         // this has to be called in UI thread
                         mRtcEngineWrapper.setupRemoteVideo(
                             new VideoCanvas(null, VideoCanvas.RENDER_MODE_HIDDEN, uid,
-                            PrefManager.getMirrorMoteRemote(mContext)));
+                            PrefManager.getMirrorMoteRemote()));
                     }
                 });
             }
@@ -350,11 +346,11 @@ public class LiveStreamingPresenter {
                     if (mPendingServerStreaming) {
                         mPendingServerStreaming = false;
                         VideoEncoderConfiguration.VideoDimensions videoDimension =
-                            PrefManager.VIDEO_DIMENSIONS[PrefManager.getVideoDimensionsIndex(mContext)];
+                            PrefManager.VIDEO_DIMENSIONS[PrefManager.getVideoDimensionsIndex()];
                         int videoBitrate =
-                            PrefManager.VIDEO_BITRATES[PrefManager.getVideoBitrateIndex(mContext)];
+                            PrefManager.VIDEO_BITRATES[PrefManager.getVideoBitrateIndex()];
                         int videoFramerate =
-                            PrefManager.VIDEO_FRAMERATES[PrefManager.getVideoFramerateIndex(mContext)].getValue();
+                            PrefManager.VIDEO_FRAMERATES[PrefManager.getVideoFramerateIndex()].getValue();
                         mPresenter.setRtcLiveTranscoding(mUidList, videoDimension.width,
                             videoDimension.height, videoBitrate, videoFramerate);
                         int ret = mPresenter.addRtcPublishStreamUrl();

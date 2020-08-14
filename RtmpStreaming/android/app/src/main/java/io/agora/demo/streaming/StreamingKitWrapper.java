@@ -30,34 +30,34 @@ public class StreamingKitWrapper {
   private boolean mIsCameraFacingFront = true; // StreamingKit uses front camera by default
 
   public StreamingKitWrapper(Context appContext) {
-    mAppContext = appContext.getApplicationContext();
+     mAppContext = appContext.getApplicationContext();
   }
 
   public void init(@NonNull StreamingEventHandler eventHandler) {
     mEventHandler =  eventHandler;
 
     VideoEncoderConfiguration.VideoDimensions videoDimensions =
-        PrefManager.getVideoDimensions(mAppContext);
+        PrefManager.getVideoDimensions();
 
     VideoStreamConfiguration videoStreamConfig = new VideoStreamConfiguration(
         videoDimensions.width, videoDimensions.height,
-        PrefManager.getVideoFramerate(mAppContext),
-        PrefManager.getVideoBitrate(mAppContext),
-        PrefManager.getVideoOrientationMode(mAppContext));
+        PrefManager.getVideoFramerate(),
+        PrefManager.getVideoBitrate(),
+        PrefManager.getVideoOrientationMode());
 
     AudioStreamConfiguration audioStreamConfig = new AudioStreamConfiguration(
-        PrefManager.getAudioSampleRate(mAppContext),
-        PrefManager.getAudioType(mAppContext),
-        PrefManager.getAudioBitrate(mAppContext)
+        PrefManager.getAudioSampleRate(),
+        PrefManager.getAudioType(),
+        PrefManager.getAudioBitrate()
     );
 
     StreamingContext streamingContext = new StreamingContext(mEventHandler,
-        mAppContext.getString(R.string.private_app_id), mAppContext, videoStreamConfig, audioStreamConfig);
+        PrefManager.getAppID(), mAppContext, videoStreamConfig, audioStreamConfig);
 
     try {
       mStreamingKit = StreamingKit.create(streamingContext);
-      mStreamingKit.setLogFilter(PrefManager.getLogFilter(mAppContext));
-      mStreamingKit.setLogFile(PrefManager.getLogPath(mAppContext));
+      mStreamingKit.setLogFilter(PrefManager.getLogFilter());
+      mStreamingKit.setLogFile(PrefManager.getLogPath());
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -81,7 +81,7 @@ public class StreamingKitWrapper {
       }
       mPreviewRenderer.setView(view);
       mPreviewRenderer.setRenderMode(VideoRenderMode.RENDER_MODE_HIDDEN);
-      mPreviewRenderer.setMirrorMode(PrefManager.getMirrorModeLocal(mAppContext));
+      mPreviewRenderer.setMirrorMode(PrefManager.getMirrorModeLocal());
     }
   }
 
@@ -96,7 +96,7 @@ public class StreamingKitWrapper {
   }
 
   public void startStreaming() {
-    String rtmpUrl = PrefManager.getRtmpUrl(mAppContext);
+    String rtmpUrl = PrefManager.getRtmpUrl();
     Log.i(TAG, "startStreaming url: " + rtmpUrl);
     mStreamingKit.startStreaming(rtmpUrl);
   }

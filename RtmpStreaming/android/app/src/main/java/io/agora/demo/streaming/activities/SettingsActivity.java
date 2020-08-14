@@ -74,7 +74,7 @@ public class SettingsActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-        mPref = PrefManager.getPreferences(getApplicationContext());
+        mPref = PrefManager.getPreferences();
         initUI();
     }
 
@@ -82,7 +82,7 @@ public class SettingsActivity extends BaseActivity {
         mItemPadding = getResources().getDimensionPixelSize(R.dimen.setting_resolution_item_padding);
 
         mUrlEditText = findViewById(R.id.rtmp_url_edittext);
-        mUrlEditText.setText(PrefManager.getRtmpUrl(this));
+        mUrlEditText.setText(PrefManager.getRtmpUrl());
         ImageView codeScanBtn = findViewById(R.id.qrcode_scan_imageview);
         codeScanBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,47 +96,47 @@ public class SettingsActivity extends BaseActivity {
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, DEFAULT_SPAN);
         resolutionList.setLayoutManager(layoutManager);
 
-        mResolutionAdapter = new ResolutionAdapter(this, PrefManager.getVideoDimensionsIndex(this));
+        mResolutionAdapter = new ResolutionAdapter(this, PrefManager.getVideoDimensionsIndex());
         resolutionList.setAdapter(mResolutionAdapter);
         resolutionList.addItemDecoration(mItemDecoration);
 
         mFrameRateText = findViewById(R.id.setting_framerate_value);
         mFrameRateText.setText(String.valueOf(
-            PrefManager.VIDEO_FRAMERATES[PrefManager.getVideoFramerateIndex(this)].getValue()));
+            PrefManager.VIDEO_FRAMERATES[PrefManager.getVideoFramerateIndex()].getValue()));
 
         mVideoBitrateText = findViewById(R.id.setting_video_bitrate_value);
         mVideoBitrateText.setText(String.valueOf(
-            PrefManager.VIDEO_BITRATES[PrefManager.getVideoBitrateIndex(this)]));
+            PrefManager.VIDEO_BITRATES[PrefManager.getVideoBitrateIndex()]));
 
         mVideoOrientationModeText = findViewById(R.id.setting_video_orientation_mode_value);
         mVideoOrientationModeText.setText(
-            PrefManager.VIDEO_ORIENTATION_MODE_STRINGS[PrefManager.getVideoOrientationModeIndex(this)]);
+            PrefManager.VIDEO_ORIENTATION_MODE_STRINGS[PrefManager.getVideoOrientationModeIndex()]);
 
         mAudioSampleRateText = findViewById(R.id.setting_audio_sample_rate_value);
         mAudioSampleRateText.setText(
-            PrefManager.AUDIO_SAMPLE_RATE_STRINGS[PrefManager.getAudioSampleRateIndex(this)]);
+            PrefManager.AUDIO_SAMPLE_RATE_STRINGS[PrefManager.getAudioSampleRateIndex()]);
 
         mAudioTypeText = findViewById(R.id.setting_audio_type_value);
-        mAudioTypeText.setText(PrefManager.AUDIO_TYPE_STRINGS[PrefManager.getAudioTypeIndex(this)]);
+        mAudioTypeText.setText(PrefManager.AUDIO_TYPE_STRINGS[PrefManager.getAudioTypeIndex()]);
 
         mAudioBitrateText = findViewById(R.id.setting_audio_bitrate_value);
         mAudioBitrateText.setText(String.valueOf(
-            PrefManager.AUDIO_BITRATES[PrefManager.getAudioBitrateIndex(this)]));
+            PrefManager.AUDIO_BITRATES[PrefManager.getAudioBitrateIndex()]));
 
         mLogPathEditText = findViewById(R.id.log_path_edittext);
-        mLogPathEditText.setText(PrefManager.getLogPath(this));
+        mLogPathEditText.setText(PrefManager.getLogPath());
 
         mLogFilterText = findViewById(R.id.setting_log_filter_value);
         mLogFilterText.setText(PrefManager.LOG_FILTER_STRINGS[
-            PrefManager.getLogFilterIndex(this)]);
+            PrefManager.getLogFilterIndex()]);
 
         mMirrorLocalText = findViewById(R.id.setting_mirror_local_value);
         mMirrorLocalText.setText(PrefManager.VIDEO_MIRROR_MODE_STRINGS[
-            PrefManager.VIDEO_MIRROR_MODES[PrefManager.getMirrorModeIndexLocal(this)]]);
+            PrefManager.VIDEO_MIRROR_MODES[PrefManager.getMirrorModeIndexLocal()]]);
 
         mMirrorRemoteText = findViewById(R.id.setting_mirror_remote_value);
         mMirrorRemoteText.setText(PrefManager.VIDEO_MIRROR_MODE_STRINGS[
-            PrefManager.VIDEO_MIRROR_MODES[PrefManager.getMirrorModeIndexRemote(this)]]);
+            PrefManager.VIDEO_MIRROR_MODES[PrefManager.getMirrorModeIndexRemote()]]);
     }
 
     private void gotoQRCodeActivity() {
@@ -145,7 +145,7 @@ public class SettingsActivity extends BaseActivity {
     }
 
     private void onShareLogClicked(View view) {
-        String logPath = PrefManager.getLogPath(this);
+        String logPath = PrefManager.getLogPath();
         File file = new File(logPath);
         if (file.exists()) {
             Intent share = new Intent(Intent.ACTION_SEND);

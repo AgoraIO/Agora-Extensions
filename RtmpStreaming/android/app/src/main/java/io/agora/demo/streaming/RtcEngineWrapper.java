@@ -40,13 +40,12 @@ public class RtcEngineWrapper implements AudioFrameObserver, VideoFrameObserver 
 
   public RtcEngineWrapper(Context context) {
     mAppContext = context.getApplicationContext();
-    mPublishUrl = PrefManager.getRtmpUrl(context);
+    mPublishUrl = PrefManager.getRtmpUrl();
   }
 
   public void create(IRtcEngineEventHandler rtcEventHandler) {
     try {
-      mRtcEngine = RtcEngine.create(mAppContext, mAppContext.getString(R.string.private_app_id),
-          rtcEventHandler);
+      mRtcEngine = RtcEngine.create(mAppContext, PrefManager.getAppID(), rtcEventHandler);
       mRtcEngine.setLogFile(FileUtil.getLogFilePath(mAppContext, "agora-rtc.log"));
       mRtcEngine.setChannelProfile(io.agora.rtc.Constants.CHANNEL_PROFILE_LIVE_BROADCASTING);
       mRtcEngine.setClientRole(io.agora.rtc.Constants.CLIENT_ROLE_BROADCASTER);
@@ -67,7 +66,7 @@ public class RtcEngineWrapper implements AudioFrameObserver, VideoFrameObserver 
     if (enabled) {
       // audio sample rate of audio data callback from Streaming Kit is fixed at 44.1KHz
       final int sampleRate = 44100;
-      final int channels = PrefManager.getAudioType(mAppContext);
+      final int channels = PrefManager.getAudioType();
       mRtcEngine.setExternalAudioSource(true, sampleRate, channels);
     } else {
       mRtcEngine.setExternalAudioSource(false, 0, 0);
@@ -176,7 +175,7 @@ public class RtcEngineWrapper implements AudioFrameObserver, VideoFrameObserver 
   private void configVideo() {
     Log.i(TAG, "configVideo");
     VideoEncoderConfiguration configuration = new VideoEncoderConfiguration(
-        PrefManager.getVideoDimensions(mAppContext),
+        PrefManager.getVideoDimensions(),
         VideoEncoderConfiguration.FRAME_RATE.FRAME_RATE_FPS_15,
         VideoEncoderConfiguration.STANDARD_BITRATE,
         VideoEncoderConfiguration.ORIENTATION_MODE.ORIENTATION_MODE_ADAPTIVE

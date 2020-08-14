@@ -3,6 +3,7 @@ package io.agora.demo.streaming.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import io.agora.demo.streaming.MyApplication;
 import io.agora.demo.streaming.R;
 import io.agora.rtc.Constants;
 import io.agora.rtc.video.VideoEncoderConfiguration;
@@ -129,106 +130,110 @@ public class PrefManager {
 
     private static SharedPreferences mPref;
 
-    public static synchronized SharedPreferences getPreferences(Context context) {
+    public static synchronized SharedPreferences getPreferences() {
         if (mPref == null) {
-            mPref = context.getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE);
+            mPref = MyApplication.getAppContext().getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE);
         }
         return mPref;
     }
 
-    public static String getRtmpUrl(Context context) {
-        return getPreferences(context).getString(PREF_RTMP_URL, context.getString(R.string.test_rtmp_url));
+    public static String getAppID() {
+        return MyApplication.getAppContext().getString(R.string.private_app_id);
     }
 
-    public static int getVideoDimensionsIndex(Context context) {
-        return getPreferences(context).getInt(PREF_VIDEO_DIMENSIONS_INDEX, DEFAULT_VIDEO_DIMENSIONS_INDEX);
+    public static String getRtmpUrl() {
+        return getPreferences().getString(PREF_RTMP_URL, MyApplication.getAppContext().getString(R.string.test_rtmp_url));
     }
 
-    public static VideoEncoderConfiguration.VideoDimensions getVideoDimensions(Context context) {
-     return VIDEO_DIMENSIONS[getVideoDimensionsIndex(context)];
+    public static int getVideoDimensionsIndex() {
+        return getPreferences().getInt(PREF_VIDEO_DIMENSIONS_INDEX, DEFAULT_VIDEO_DIMENSIONS_INDEX);
     }
 
-    public static int getVideoFramerateIndex(Context context) {
-        return getPreferences(context).getInt(PREF_VIDEO_FRAMERATE_INDEX, DEFAULT_VIDEO_FRAMERATE_INDEX);
+    public static VideoEncoderConfiguration.VideoDimensions getVideoDimensions() {
+     return VIDEO_DIMENSIONS[getVideoDimensionsIndex()];
     }
 
-    public static int getVideoFramerate(Context context) {
-        return VIDEO_FRAMERATES[getVideoFramerateIndex(context)].getValue();
+    public static int getVideoFramerateIndex() {
+        return getPreferences().getInt(PREF_VIDEO_FRAMERATE_INDEX, DEFAULT_VIDEO_FRAMERATE_INDEX);
     }
 
-    public static int getVideoBitrateIndex(Context context) {
-        return getPreferences(context).getInt(PREF_VIDEO_BITRATE_INDEX, DEFAULT_VIDEO_BITRATE_INDEX);
+    public static int getVideoFramerate() {
+        return VIDEO_FRAMERATES[getVideoFramerateIndex()].getValue();
     }
 
-    public static int getVideoBitrate(Context context) {
-        return VIDEO_BITRATES[getVideoBitrateIndex(context)];
+    public static int getVideoBitrateIndex() {
+        return getPreferences().getInt(PREF_VIDEO_BITRATE_INDEX, DEFAULT_VIDEO_BITRATE_INDEX);
     }
 
-    public static int getVideoOrientationModeIndex(Context context) {
-        return getPreferences(context).getInt(PREF_VIDEO_ORIENTATION_MODE_INDEX, DEFAULT_VIDEO_ORIENTATION_MODE_INDEX);
+    public static int getVideoBitrate() {
+        return VIDEO_BITRATES[getVideoBitrateIndex()];
     }
 
-    public static VideoStreamConfiguration.ORIENTATION_MODE getVideoOrientationMode(Context context) {
-        return VIDEO_ORIENTATION_MODES[getVideoOrientationModeIndex(context)];
+    public static int getVideoOrientationModeIndex() {
+        return getPreferences().getInt(PREF_VIDEO_ORIENTATION_MODE_INDEX, DEFAULT_VIDEO_ORIENTATION_MODE_INDEX);
     }
 
-    public static int getMirrorModeIndexLocal(Context context) {
-        return getPreferences(context).getInt(PREF_MIRROR_LOCAL, DEFAULT_MIRROR_MODE_INDEX_LOCAL);
+    public static VideoStreamConfiguration.ORIENTATION_MODE getVideoOrientationMode() {
+        return VIDEO_ORIENTATION_MODES[getVideoOrientationModeIndex()];
     }
 
-    public static int getMirrorModeLocal(Context context) {
-        return VIDEO_MIRROR_MODES[getMirrorModeIndexLocal(context)];
+    public static int getMirrorModeIndexLocal() {
+        return getPreferences().getInt(PREF_MIRROR_LOCAL, DEFAULT_MIRROR_MODE_INDEX_LOCAL);
     }
 
-    public static int getMirrorModeIndexRemote(Context context) {
-        return getPreferences(context).getInt(PREF_MIRROR_REMOTE, DEFAULT_MIRROR_MODE_INDEX_REMOTE);
+    public static int getMirrorModeLocal() {
+        return VIDEO_MIRROR_MODES[getMirrorModeIndexLocal()];
     }
 
-    public static int getMirrorMoteRemote(Context context) {
-        return VIDEO_MIRROR_MODES[getMirrorModeIndexRemote(context)];
+    public static int getMirrorModeIndexRemote() {
+        return getPreferences().getInt(PREF_MIRROR_REMOTE, DEFAULT_MIRROR_MODE_INDEX_REMOTE);
     }
 
-    public static int getAudioSampleRateIndex(Context context) {
-        return getPreferences(context).getInt(PREF_AUDIO_SAMPLE_RATE_INDEX, DEFAULT_AUDIO_SAMPLE_RATE_INDEX);
+    public static int getMirrorMoteRemote() {
+        return VIDEO_MIRROR_MODES[getMirrorModeIndexRemote()];
     }
 
-    public static int getAudioSampleRate(Context context) {
-        return AUDIO_SAMPLE_RATES[getAudioSampleRateIndex(context)];
+    public static int getAudioSampleRateIndex() {
+        return getPreferences().getInt(PREF_AUDIO_SAMPLE_RATE_INDEX, DEFAULT_AUDIO_SAMPLE_RATE_INDEX);
     }
 
-    public static int getAudioTypeIndex(Context context) {
-        return getPreferences(context).getInt(PREF_AUDIO_TYPE_INDEX, DEFAULT_AUDIO_TYPE_INDEX);
+    public static int getAudioSampleRate() {
+        return AUDIO_SAMPLE_RATES[getAudioSampleRateIndex()];
     }
 
-    public static int getAudioType(Context context) {
-        return AUDIO_TYPES[getAudioTypeIndex(context)];
+    public static int getAudioTypeIndex() {
+        return getPreferences().getInt(PREF_AUDIO_TYPE_INDEX, DEFAULT_AUDIO_TYPE_INDEX);
     }
 
-    public static int getAudioBitrateIndex(Context context) {
-        return getPreferences(context).getInt(PREF_AUDIO_BITRATE_INDEX, DEFAULT_AUDIO_BITRATE_INDEX);
+    public static int getAudioType() {
+        return AUDIO_TYPES[getAudioTypeIndex()];
     }
 
-    public static int getAudioBitrate(Context context) {
-        return AUDIO_BITRATES[getAudioBitrateIndex(context)];
+    public static int getAudioBitrateIndex() {
+        return getPreferences().getInt(PREF_AUDIO_BITRATE_INDEX, DEFAULT_AUDIO_BITRATE_INDEX);
     }
 
-    public static String getDefaultLogPath(Context context) {
-        return FileUtil.getLogFilePath(context, "streaming-kit.log");
+    public static int getAudioBitrate() {
+        return AUDIO_BITRATES[getAudioBitrateIndex()];
     }
 
-    public static String getLogPath(Context context) {
-        return getPreferences(context).getString(PREF_LOG_PATH, getDefaultLogPath(context));
+    public static String getDefaultLogPath() {
+        return FileUtil.getLogFilePath(MyApplication.getAppContext(), "streaming-kit.log");
     }
 
-    public static int getLogFilterIndex(Context context) {
-        return getPreferences(context).getInt(PREF_LOG_FILTER_INDEX, DEFAULT_LOG_FILTER_INDEX);
+    public static String getLogPath() {
+        return getPreferences().getString(PREF_LOG_PATH, getDefaultLogPath());
     }
 
-    public static int getLogFilter(Context context) {
-        return LOG_FILTERS[getLogFilterIndex(context)];
+    public static int getLogFilterIndex() {
+        return getPreferences().getInt(PREF_LOG_FILTER_INDEX, DEFAULT_LOG_FILTER_INDEX);
     }
 
-    public static int getLogFileSize(Context context) {
-        return getPreferences(context).getInt(PREF_LOG_FILE_SIZE, DEFAULT_LOG_FILE_SIZE);
+    public static int getLogFilter() {
+        return LOG_FILTERS[getLogFilterIndex()];
+    }
+
+    public static int getLogFileSize() {
+        return getPreferences().getInt(PREF_LOG_FILE_SIZE, DEFAULT_LOG_FILE_SIZE);
     }
 }

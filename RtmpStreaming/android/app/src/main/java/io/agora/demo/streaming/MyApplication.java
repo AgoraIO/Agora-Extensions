@@ -4,7 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.os.StrictMode;
 
-public class DemoApplication extends Application {
+public class MyApplication extends Application {
     private static Context appContext;
 
     @Override
