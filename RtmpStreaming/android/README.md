@@ -2,12 +2,12 @@
 
 *English | [中文](README.zh.md)*
 
-The OpenLive for Android Sample App is an open-source demo that will help you get live video broadcasting integrated directly into your Android applications using the Agora Video SDK.
+The RtmpStreaming for Android Sample App is an open-source demo that will help you get live streaming integrated directly into your Android applications using the Agora Video SDK and Agora Streaming Kit.
 
 With this sample app, you can:
 
+- Publish camera stream to CDN
 - Join / leave channel
-- Set role as broadcaster or audience
 - Mute / unmute audio
 - Switch camera
 - Setup resolution, frame rate and bit rate
@@ -43,7 +43,7 @@ To build and run the sample application, get an App ID:
 
 The SDK must be integrated into the sample project before it can opened and built. There are two methods for integrating the Agora Video SDK into the sample project. The first method uses JCenter to automatically integrate the SDK files. The second method requires you to manually copy the SDK files to the project.
 
-#### Method 1 - Integrate the SDK Automatically Using JCenter (Recommended)
+#### Method 1 - Integrate the SDK Automatically Using JCenter (Recommended, and it's the way this demo uses)
 
 1. Clone this repository.
 2. Open **app/build.gradle** and add the following line to the `dependencies` list:
@@ -69,7 +69,35 @@ Copy from SDK|Copy to Project Folder
 **x86** folder|**/app/src/main/jniLibs** folder
 **armeabi-v7a** folder|**/app/src/main/jniLibs** folder
 
-    
+### Integrate the Agora Streaming Kit
+
+The Streaming Kit must be integrated into the sample project before it can opened and built. There are two methods for integrating the Agora Video SDK into the sample project. The first method uses JCenter to automatically integrate the SDK files. The second method requires you to manually copy the SDK files to the project.
+
+#### Method 1 - Integrate the Kit Automatically Using JCenter (Recommended, and it's the way this demo uses)
+
+1. Clone this repository.
+2. Open **app/build.gradle** and add the following line to the `dependencies` list:
+
+  ```
+  ...
+  dependencies {
+      ...
+      implementation 'io.agora:streamingkit:1.0.0'
+  }
+  ```
+
+#### Method 2 - Manually copy the SDK files
+
+1. Download the Agora Streaming Kit from [Agora.io SDK](https://www.agora.io/en/download/).
+2. Unzip the downloaded package.
+3. Copy the following files from from the **libs** folder of the downloaded SDK package:
+
+Copy from SDK|Copy to Project Folder
+---|---
+.jar file|**/apps/libs** folder
+**arm64-v8a** folder|**/app/src/main/jniLibs** folder
+**x86** folder|**/app/src/main/jniLibs** folder
+**armeabi-v7a** folder|**/app/src/main/jniLibs** folder    
 
 ### Run the Application
 
