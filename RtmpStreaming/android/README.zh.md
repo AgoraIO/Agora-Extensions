@@ -1,4 +1,4 @@
-# OpenLive for Android
+# RtmpStreaming for Android
 
 *[English](README.md) | 中文*
 
