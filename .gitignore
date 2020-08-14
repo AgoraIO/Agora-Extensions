@@ -31,3 +31,5 @@ MediaPlayer/samples/win/AgoraPlayer_Quickstart/AgoraSdk/include/IAgoraMediaEngin
 MediaPlayer/samples/win/AgoraPlayer_Quickstart/AgoraSdk/include/IAgoraRtcEngine.h
 MediaPlayer/samples/win/AgoraPlayer_Quickstart/AgoraSdk/include/IAgoraService.h
 *.xcuserstate
+.vscode
+.idea
