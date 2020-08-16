@@ -74,7 +74,7 @@ public class LiveActivity extends BaseActivity {
         getWindow().setAttributes(params);
 
         mRoomName = getIntent().getStringExtra(KEY_ROOM_NAME);
-        mVideoFilterWrapper = VideoFilterWrapper.createFuVideoFilter();
+        mVideoFilterWrapper = VideoFilterWrapper.createFuVideoFilter(this);
 
         initUIAndData();
         initLiveStreaming();

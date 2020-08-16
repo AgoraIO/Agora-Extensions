@@ -30,7 +30,7 @@ public class FuBeautyContainer extends RelativeLayout implements
 
     public FuBeautyContainer(Context context) {
         super(context);
-        View viewRoot = LayoutInflater.from(context).inflate(R.layout.effect_and_filter_item_view,
+        View viewRoot = LayoutInflater.from(context).inflate(R.layout.layout_beauty_container,
             this, true);
         mDescriptionText = viewRoot.findViewById(R.id.effect_desc_text);
         mTrackingText = viewRoot.findViewById(R.id.iv_face_detect);

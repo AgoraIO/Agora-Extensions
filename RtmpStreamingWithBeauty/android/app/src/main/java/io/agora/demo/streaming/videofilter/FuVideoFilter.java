@@ -25,7 +25,7 @@ class FuVideoFilter extends VideoFilterWrapper
     private static final String TAG = FuVideoFilter.class.getSimpleName();
 
     private SurfaceView mSurfaceView;
-    private FuBeautyContainer mBeautyContainer;
+    private final FuBeautyContainer mBeautyContainer;
 
     private SensorManager mSensorManager;
     private Sensor mSensor;
@@ -36,8 +36,11 @@ class FuVideoFilter extends VideoFilterWrapper
     private TextureBufferHelper mTextureBufferHelper;
     private int lastInputTextureId = 0;
 
-    public void init(Context context, SurfaceView surfaceView) {
+    public FuVideoFilter(Context context) {
         mBeautyContainer = new FuBeautyContainer(context);
+    }
+
+    public void init(Context context, SurfaceView surfaceView) {
         mSurfaceView = surfaceView;
         mSurfaceView.getHolder().addCallback(this);
 

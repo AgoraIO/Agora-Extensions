@@ -9,8 +9,8 @@ import io.agora.streaming.VideoFilter;
 
 public abstract class VideoFilterWrapper extends VideoFilter {
 
-    public static VideoFilterWrapper createFuVideoFilter() {
-        return new FuVideoFilter();
+    public static VideoFilterWrapper createFuVideoFilter(Context context) {
+        return new FuVideoFilter(context);
     }
 
     public void init(Context context, SurfaceView surfaceView) {

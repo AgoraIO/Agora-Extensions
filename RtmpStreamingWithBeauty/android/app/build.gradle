@@ -4,7 +4,7 @@ android {
     compileSdkVersion 29
 
     defaultConfig {
-        applicationId "io.agora.demo.streaming"
+        applicationId "io.agora.rtcwithfu"
         minSdkVersion 18
         targetSdkVersion 29
         versionCode 10
@@ -34,6 +34,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'io.agora.rtc:full-sdk:3.0.0'
+    implementation 'io.agora:streamingkit:1.0.0'
     implementation project(':appwithfu')
 
     implementation 'com.github.yuzhiqiang1993:zxing:2.2.8'
