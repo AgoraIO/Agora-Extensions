@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/effect_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/effect_panel_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/percent50translucentBlack"
+            android:orientation="vertical"
+            android:visibility="gone" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/effect_type_list"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/effect_type_item_height"
+            android:background="@color/percent60translucentBlack" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/iv_face_detect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="@string/fu_base_is_tracking_text"
+        android:textColor="@color/colorWhite"
+        android:textSize="17sp" />
+
+    <TextView
+        android:id="@+id/effect_desc_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:textColor="@color/colorWhite"
+        android:textSize="17sp"
+        android:visibility="gone" />
+</RelativeLayout>

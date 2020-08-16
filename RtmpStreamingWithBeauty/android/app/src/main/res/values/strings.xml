@@ -52,4 +52,8 @@
 
     <!-- Legal digits for channel names -->
     <string name="legal_channel_name_characters" translatable="false">&#xA0;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!#$%&amp;()+,-:;&lt;=.>?@[]^_`{|}~</string>
+
+    <!-- face beauty -->
+    <string name="fu_base_is_tracking_text">No Face Tracking</string>
+    <string name="fu_face_tracking_time_tips">Face tracking may take a while</string>
 </resources>

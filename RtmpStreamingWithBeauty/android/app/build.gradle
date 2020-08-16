@@ -34,6 +34,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'io.agora.rtc:full-sdk:3.0.0'
+    implementation project(':appwithfu')
 
     implementation 'com.github.yuzhiqiang1993:zxing:2.2.8'
     implementation 'androidx.appcompat:appcompat:1.1.0'
