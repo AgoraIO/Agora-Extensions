@@ -55,6 +55,7 @@
 }
 
 - (void)setupLiveStreaming {
+    [self.containerView layoutIfNeeded];
     self.localRenderView = [[UIView alloc] initWithFrame:self.containerView.bounds];
     self.liveStreamingWrapper = [[LiveStreamingWrapper alloc] initWithEventDelegate:self streamingModel:self.streamingModel];
     [self.containerView insertSubview:self.localRenderView atIndex:0];
