@@ -624,13 +624,26 @@
                                             <action selector="startStreamingBtnDidClicked:" destination="pE8-Xi-s9j" eventType="touchUpInside" id="s8L-6e-kpo"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oeO-Lw-dRE">
+                                        <rect key="frame" x="332" y="815.5" width="54" height="54"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="54" id="159-dz-29R"/>
+                                            <constraint firstAttribute="height" constant="54" id="m75-Au-kxb"/>
+                                        </constraints>
+                                        <state key="normal" image="camera_btn_filter_normal"/>
+                                        <connections>
+                                            <action selector="filterBtnDidClicked:" destination="pE8-Xi-s9j" eventType="touchUpInside" id="WZU-8r-K4h"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="Ej5-0w-0ky" firstAttribute="leading" secondItem="Sp1-P4-5Cb" secondAttribute="trailing" constant="10" id="2VX-H6-9Yv"/>
                                     <constraint firstAttribute="trailing" secondItem="76H-FJ-NR4" secondAttribute="trailing" constant="24" id="7Xu-TG-Faz"/>
                                     <constraint firstAttribute="bottom" secondItem="Sp1-P4-5Cb" secondAttribute="bottom" constant="26" id="CbB-yF-yW8"/>
+                                    <constraint firstAttribute="trailing" secondItem="oeO-Lw-dRE" secondAttribute="trailing" constant="28" id="EVk-Ic-sqz"/>
                                     <constraint firstAttribute="bottom" secondItem="Ej5-0w-0ky" secondAttribute="bottom" constant="26" id="IlZ-3c-DRs"/>
+                                    <constraint firstItem="oeO-Lw-dRE" firstAttribute="centerY" secondItem="VRo-sA-GCb" secondAttribute="centerY" id="LGq-QE-liu"/>
                                     <constraint firstItem="Ej5-0w-0ky" firstAttribute="leading" secondItem="Sp1-P4-5Cb" secondAttribute="trailing" constant="10" id="NTm-4z-IFe"/>
                                     <constraint firstAttribute="top" secondItem="76H-FJ-NR4" secondAttribute="bottom" constant="-73" id="Q5u-WR-voQ"/>
                                     <constraint firstItem="Sp1-P4-5Cb" firstAttribute="leading" secondItem="z18-rS-5O4" secondAttribute="leading" constant="25" id="Smb-UO-pLO"/>
@@ -656,6 +669,7 @@
                     <navigationItem key="navigationItem" id="TdD-F7-uV3"/>
                     <connections>
                         <outlet property="containerView" destination="z18-rS-5O4" id="xT4-GR-32y"/>
+                        <outlet property="filterBtn" destination="oeO-Lw-dRE" id="cbb-gX-3Hb"/>
                         <outlet property="startStreamingBtn" destination="f3j-po-wLH" id="jkK-Gj-EGO"/>
                     </connections>
                 </viewController>
@@ -666,6 +680,7 @@
     </scenes>
     <resources>
         <image name="btn_setting" width="23" height="23"/>
+        <image name="camera_btn_filter_normal" width="55" height="55"/>
         <image name="camera_btn_shotcut_normal" width="55" height="55"/>
         <image name="close" width="42.666667938232422" height="42.666667938232422"/>
         <image name="icon-camera" width="38" height="38"/>

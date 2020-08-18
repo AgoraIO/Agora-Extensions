@@ -12,15 +12,32 @@
 		07D24D011D866704002C69BF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07D24CFF1D866704002C69BF /* Main.storyboard */; };
 		07D24D031D866704002C69BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07D24D021D866704002C69BF /* Assets.xcassets */; };
 		07D24D061D866704002C69BF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07D24D041D866704002C69BF /* LaunchScreen.storyboard */; };
-		07D24D301D867644002C69BF /* KeyCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 07D24D231D867644002C69BF /* KeyCenter.m */; };
-		07D24D321D867644002C69BF /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07D24D271D867644002C69BF /* MainViewController.m */; };
 		094C8C2124E531F100BF9F73 /* LiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 094C8C2024E531F100BF9F73 /* LiveViewController.m */; };
-		097EEF7024767ED4008DAB82 /* LiveStreamingWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 097EEF6F24767ED4008DAB82 /* LiveStreamingWrapper.m */; };
-		097EEF7324767F08008DAB82 /* RtcEngineWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 097EEF7224767F08008DAB82 /* RtcEngineWrapper.m */; };
-		09B8A7A324C08C4800943CCB /* ToastTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 09B8A7A224C08C4800943CCB /* ToastTool.m */; };
-		09C1B35524907F0F00BAC74E /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09C1B35324907F0E00BAC74E /* ProfileViewController.m */; };
-		09FCE79A2491080800BE0BF4 /* StreamingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 09FCE7992491080800BE0BF4 /* StreamingModel.m */; };
-		BEA7A7F65A3918DF0D25304E /* Pods_LiveStreaming.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4015B7EF677E1FE2E5D647B4 /* Pods_LiveStreaming.framework */; };
+		0961A92924EBAA5900683DC8 /* KeyCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0961A92724EBAA5900683DC8 /* KeyCenter.m */; };
+		0961A92A24EBAA5900683DC8 /* StreamingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0961A92824EBAA5900683DC8 /* StreamingModel.m */; };
+		0961A93124EBAA6400683DC8 /* RtcEngineWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0961A92D24EBAA6400683DC8 /* RtcEngineWrapper.m */; };
+		0961A93224EBAA6400683DC8 /* ToastTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 0961A92E24EBAA6400683DC8 /* ToastTool.m */; };
+		0961A93324EBAA6400683DC8 /* LiveStreamingWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0961A93024EBAA6400683DC8 /* LiveStreamingWrapper.m */; };
+		0961A93824EBAABB00683DC8 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0961A93624EBAABB00683DC8 /* ProfileViewController.m */; };
+		0961A93924EBAABB00683DC8 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0961A93724EBAABB00683DC8 /* MainViewController.m */; };
+		0961A93D24EBB08A00683DC8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 07D24CFA1D866704002C69BF /* AppDelegate.m */; };
+		0961A93E24EBB08A00683DC8 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0961A93624EBAABB00683DC8 /* ProfileViewController.m */; };
+		0961A93F24EBB08A00683DC8 /* LiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 094C8C2024E531F100BF9F73 /* LiveViewController.m */; };
+		0961A94024EBB08A00683DC8 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0961A93724EBAABB00683DC8 /* MainViewController.m */; };
+		0961A94124EBB08A00683DC8 /* KeyCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0961A92724EBAA5900683DC8 /* KeyCenter.m */; };
+		0961A94224EBB08A00683DC8 /* RtcEngineWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0961A92D24EBAA6400683DC8 /* RtcEngineWrapper.m */; };
+		0961A94324EBB08A00683DC8 /* LiveStreamingWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0961A93024EBAA6400683DC8 /* LiveStreamingWrapper.m */; };
+		0961A94424EBB08A00683DC8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 07D24CF71D866704002C69BF /* main.m */; };
+		0961A94524EBB08A00683DC8 /* ToastTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 0961A92E24EBAA6400683DC8 /* ToastTool.m */; };
+		0961A94624EBB08A00683DC8 /* StreamingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0961A92824EBAA5900683DC8 /* StreamingModel.m */; };
+		0961A94A24EBB08A00683DC8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07D24D041D866704002C69BF /* LaunchScreen.storyboard */; };
+		0961A94B24EBB08A00683DC8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07D24D021D866704002C69BF /* Assets.xcassets */; };
+		0961A94C24EBB08A00683DC8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07D24CFF1D866704002C69BF /* Main.storyboard */; };
+		0961A95924EBB55900683DC8 /* FaceUnityVideoFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0961A95824EBB55900683DC8 /* FaceUnityVideoFilter.m */; };
+		0961A95D24EBB94400683DC8 /* CoreML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0961A95C24EBB94400683DC8 /* CoreML.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		796CDC9783195C9FACFA51E2 /* Pods_LiveStreamingWithFU.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04B419CD8E48662DE091AE41 /* Pods_LiveStreamingWithFU.framework */; };
+		98551B7EBBCB7ECC995F62FF /* Pods_LiveStreaming.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47E79B08886F4974EFF74EB4 /* Pods_LiveStreaming.framework */; };
+		BEA7A7F65A3918DF0D25304E /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -34,9 +51,20 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0961A94D24EBB08A00683DC8 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		04B419CD8E48662DE091AE41 /* Pods_LiveStreamingWithFU.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LiveStreamingWithFU.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		07D24CF31D866704002C69BF /* LiveStreaming.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiveStreaming.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07D24CF71D866704002C69BF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		07D24CF91D866704002C69BF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -45,25 +73,33 @@
 		07D24D021D866704002C69BF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		07D24D051D866704002C69BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		07D24D071D866704002C69BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		07D24D221D867644002C69BF /* KeyCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeyCenter.h; path = ../KeyCenter.h; sourceTree = "<group>"; };
-		07D24D231D867644002C69BF /* KeyCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeyCenter.m; path = ../KeyCenter.m; sourceTree = "<group>"; };
-		07D24D261D867644002C69BF /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainViewController.h; path = ../MainViewController.h; sourceTree = "<group>"; };
-		07D24D271D867644002C69BF /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainViewController.m; path = ../MainViewController.m; sourceTree = "<group>"; };
 		094C8C1F24E531F100BF9F73 /* LiveViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LiveViewController.h; sourceTree = "<group>"; };
 		094C8C2024E531F100BF9F73 /* LiveViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LiveViewController.m; sourceTree = "<group>"; };
-		097EEF6E24767ED4008DAB82 /* LiveStreamingWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LiveStreamingWrapper.h; path = ../LiveStreamingWrapper.h; sourceTree = "<group>"; };
-		097EEF6F24767ED4008DAB82 /* LiveStreamingWrapper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = LiveStreamingWrapper.m; path = ../LiveStreamingWrapper.m; sourceTree = "<group>"; };
-		097EEF7124767F08008DAB82 /* RtcEngineWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RtcEngineWrapper.h; path = ../RtcEngineWrapper.h; sourceTree = "<group>"; };
-		097EEF7224767F08008DAB82 /* RtcEngineWrapper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = RtcEngineWrapper.m; path = ../RtcEngineWrapper.m; sourceTree = "<group>"; };
-		09B8A7A124C08C4800943CCB /* ToastTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ToastTool.h; path = ../ToastTool.h; sourceTree = "<group>"; };
-		09B8A7A224C08C4800943CCB /* ToastTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ToastTool.m; path = ../ToastTool.m; sourceTree = "<group>"; };
-		09C1B35324907F0E00BAC74E /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfileViewController.m; path = ../ProfileViewController.m; sourceTree = "<group>"; };
-		09C1B35424907F0F00BAC74E /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfileViewController.h; path = ../ProfileViewController.h; sourceTree = "<group>"; };
-		09FCE7982491080800BE0BF4 /* StreamingModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = StreamingModel.h; path = ../StreamingModel.h; sourceTree = "<group>"; };
-		09FCE7992491080800BE0BF4 /* StreamingModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = StreamingModel.m; path = ../StreamingModel.m; sourceTree = "<group>"; };
+		0961A92524EBAA5900683DC8 /* StreamingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamingModel.h; sourceTree = "<group>"; };
+		0961A92624EBAA5900683DC8 /* KeyCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyCenter.h; sourceTree = "<group>"; };
+		0961A92724EBAA5900683DC8 /* KeyCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyCenter.m; sourceTree = "<group>"; };
+		0961A92824EBAA5900683DC8 /* StreamingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamingModel.m; sourceTree = "<group>"; };
+		0961A92B24EBAA6400683DC8 /* RtcEngineWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RtcEngineWrapper.h; sourceTree = "<group>"; };
+		0961A92C24EBAA6400683DC8 /* ToastTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToastTool.h; sourceTree = "<group>"; };
+		0961A92D24EBAA6400683DC8 /* RtcEngineWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RtcEngineWrapper.m; sourceTree = "<group>"; };
+		0961A92E24EBAA6400683DC8 /* ToastTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToastTool.m; sourceTree = "<group>"; };
+		0961A92F24EBAA6400683DC8 /* LiveStreamingWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiveStreamingWrapper.h; sourceTree = "<group>"; };
+		0961A93024EBAA6400683DC8 /* LiveStreamingWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiveStreamingWrapper.m; sourceTree = "<group>"; };
+		0961A93424EBAABB00683DC8 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		0961A93524EBAABB00683DC8 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		0961A93624EBAABB00683DC8 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		0961A93724EBAABB00683DC8 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		0961A95324EBB08A00683DC8 /* LiveStreamingWithFU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiveStreamingWithFU.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0961A95424EBB08A00683DC8 /* LiveStreamingWithFU-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "LiveStreamingWithFU-Info.plist"; path = "/Users/lsq/Github/Agora-Extensions/RtmpStreaming/ios/LiveStreaming-iOS-Objective-C/LiveStreamingWithFU-Info.plist"; sourceTree = "<absolute>"; };
+		0961A95724EBB55900683DC8 /* FaceUnityVideoFilter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FaceUnityVideoFilter.h; sourceTree = "<group>"; };
+		0961A95824EBB55900683DC8 /* FaceUnityVideoFilter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FaceUnityVideoFilter.m; sourceTree = "<group>"; };
+		0961A95A24EBB76200683DC8 /* authpack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = authpack.h; sourceTree = "<group>"; };
+		0961A95C24EBB94400683DC8 /* CoreML.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreML.framework; path = System/Library/Frameworks/CoreML.framework; sourceTree = SDKROOT; };
 		0F6D05E1AFF8D9958756D60F /* Pods-LiveStreaming.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiveStreaming.debug.xcconfig"; path = "Target Support Files/Pods-LiveStreaming/Pods-LiveStreaming.debug.xcconfig"; sourceTree = "<group>"; };
-		4015B7EF677E1FE2E5D647B4 /* Pods_LiveStreaming.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LiveStreaming.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3182E84E121EA064565E6EF0 /* Pods-LiveStreamingWithFU.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiveStreamingWithFU.release.xcconfig"; path = "Target Support Files/Pods-LiveStreamingWithFU/Pods-LiveStreamingWithFU.release.xcconfig"; sourceTree = "<group>"; };
+		47E79B08886F4974EFF74EB4 /* Pods_LiveStreaming.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LiveStreaming.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		66FBB4ED43ABC61EF94669B2 /* Pods-LiveStreaming.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiveStreaming.release.xcconfig"; path = "Target Support Files/Pods-LiveStreaming/Pods-LiveStreaming.release.xcconfig"; sourceTree = "<group>"; };
+		A77FD33C80E2B46AE287E639 /* Pods-LiveStreamingWithFU.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiveStreamingWithFU.debug.xcconfig"; path = "Target Support Files/Pods-LiveStreamingWithFU/Pods-LiveStreamingWithFU.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,7 +107,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BEA7A7F65A3918DF0D25304E /* Pods_LiveStreaming.framework in Frameworks */,
+				BEA7A7F65A3918DF0D25304E /* (null) in Frameworks */,
+				98551B7EBBCB7ECC995F62FF /* Pods_LiveStreaming.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0961A94724EBB08A00683DC8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0961A95D24EBB94400683DC8 /* CoreML.framework in Frameworks */,
+				796CDC9783195C9FACFA51E2 /* Pods_LiveStreamingWithFU.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +131,7 @@
 				07D24CF41D866704002C69BF /* Products */,
 				07D24D131D8667DC002C69BF /* Frameworks */,
 				7F241DA4AD1AD473E3935EC9 /* Pods */,
+				0961A95424EBB08A00683DC8 /* LiveStreamingWithFU-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -92,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				07D24CF31D866704002C69BF /* LiveStreaming.app */,
+				0961A95324EBB08A00683DC8 /* LiveStreamingWithFU.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -103,6 +151,7 @@
 				094C8C1824E5204F00BF9F73 /* Controller */,
 				094C8C1924E520E700BF9F73 /* Model */,
 				094C8C1A24E5211B00BF9F73 /* Utils */,
+				0961A95624EBB50B00683DC8 /* Beautify */,
 				07D24CF61D866704002C69BF /* Supporting Files */,
 			);
 			path = LiveStreaming;
@@ -124,7 +173,9 @@
 		07D24D131D8667DC002C69BF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4015B7EF677E1FE2E5D647B4 /* Pods_LiveStreaming.framework */,
+				0961A95C24EBB94400683DC8 /* CoreML.framework */,
+				04B419CD8E48662DE091AE41 /* Pods_LiveStreamingWithFU.framework */,
+				47E79B08886F4974EFF74EB4 /* Pods_LiveStreaming.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -134,10 +185,10 @@
 			children = (
 				094C8C1F24E531F100BF9F73 /* LiveViewController.h */,
 				094C8C2024E531F100BF9F73 /* LiveViewController.m */,
-				07D24D261D867644002C69BF /* MainViewController.h */,
-				07D24D271D867644002C69BF /* MainViewController.m */,
-				09C1B35424907F0F00BAC74E /* ProfileViewController.h */,
-				09C1B35324907F0E00BAC74E /* ProfileViewController.m */,
+				0961A93524EBAABB00683DC8 /* MainViewController.h */,
+				0961A93724EBAABB00683DC8 /* MainViewController.m */,
+				0961A93424EBAABB00683DC8 /* ProfileViewController.h */,
+				0961A93624EBAABB00683DC8 /* ProfileViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -145,10 +196,10 @@
 		094C8C1924E520E700BF9F73 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				07D24D221D867644002C69BF /* KeyCenter.h */,
-				07D24D231D867644002C69BF /* KeyCenter.m */,
-				09FCE7982491080800BE0BF4 /* StreamingModel.h */,
-				09FCE7992491080800BE0BF4 /* StreamingModel.m */,
+				0961A92624EBAA5900683DC8 /* KeyCenter.h */,
+				0961A92724EBAA5900683DC8 /* KeyCenter.m */,
+				0961A92524EBAA5900683DC8 /* StreamingModel.h */,
+				0961A92824EBAA5900683DC8 /* StreamingModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -156,14 +207,32 @@
 		094C8C1A24E5211B00BF9F73 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				097EEF6E24767ED4008DAB82 /* LiveStreamingWrapper.h */,
-				097EEF6F24767ED4008DAB82 /* LiveStreamingWrapper.m */,
-				097EEF7124767F08008DAB82 /* RtcEngineWrapper.h */,
-				097EEF7224767F08008DAB82 /* RtcEngineWrapper.m */,
-				09B8A7A124C08C4800943CCB /* ToastTool.h */,
-				09B8A7A224C08C4800943CCB /* ToastTool.m */,
+				0961A92F24EBAA6400683DC8 /* LiveStreamingWrapper.h */,
+				0961A93024EBAA6400683DC8 /* LiveStreamingWrapper.m */,
+				0961A92B24EBAA6400683DC8 /* RtcEngineWrapper.h */,
+				0961A92D24EBAA6400683DC8 /* RtcEngineWrapper.m */,
+				0961A92C24EBAA6400683DC8 /* ToastTool.h */,
+				0961A92E24EBAA6400683DC8 /* ToastTool.m */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		0961A95624EBB50B00683DC8 /* Beautify */ = {
+			isa = PBXGroup;
+			children = (
+				0961A95B24EBB82200683DC8 /* FaceUnity */,
+			);
+			path = Beautify;
+			sourceTree = "<group>";
+		};
+		0961A95B24EBB82200683DC8 /* FaceUnity */ = {
+			isa = PBXGroup;
+			children = (
+				0961A95A24EBB76200683DC8 /* authpack.h */,
+				0961A95724EBB55900683DC8 /* FaceUnityVideoFilter.h */,
+				0961A95824EBB55900683DC8 /* FaceUnityVideoFilter.m */,
+			);
+			path = FaceUnity;
 			sourceTree = "<group>";
 		};
 		7F241DA4AD1AD473E3935EC9 /* Pods */ = {
@@ -171,6 +240,8 @@
 			children = (
 				0F6D05E1AFF8D9958756D60F /* Pods-LiveStreaming.debug.xcconfig */,
 				66FBB4ED43ABC61EF94669B2 /* Pods-LiveStreaming.release.xcconfig */,
+				A77FD33C80E2B46AE287E639 /* Pods-LiveStreamingWithFU.debug.xcconfig */,
+				3182E84E121EA064565E6EF0 /* Pods-LiveStreamingWithFU.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -199,6 +270,28 @@
 			productReference = 07D24CF31D866704002C69BF /* LiveStreaming.app */;
 			productType = "com.apple.product-type.application";
 		};
+		0961A93A24EBB08A00683DC8 /* LiveStreamingWithFU */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0961A95024EBB08A00683DC8 /* Build configuration list for PBXNativeTarget "LiveStreamingWithFU" */;
+			buildPhases = (
+				0961A93B24EBB08A00683DC8 /* [CP] Check Pods Manifest.lock */,
+				0961A93C24EBB08A00683DC8 /* Sources */,
+				0961A94724EBB08A00683DC8 /* Frameworks */,
+				0961A94924EBB08A00683DC8 /* Resources */,
+				0961A94D24EBB08A00683DC8 /* Embed Frameworks */,
+				0961A94E24EBB08A00683DC8 /* ShellScript */,
+				0961A94F24EBB08A00683DC8 /* [CP] Embed Pods Frameworks */,
+				C59519049442F86437407037 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LiveStreamingWithFU;
+			productName = OpenLive;
+			productReference = 0961A95324EBB08A00683DC8 /* LiveStreamingWithFU.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -218,6 +311,10 @@
 							};
 						};
 					};
+					0961A93A24EBB08A00683DC8 = {
+						DevelopmentTeam = 7289G77ZF3;
+						ProvisioningStyle = Manual;
+					};
 				};
 			};
 			buildConfigurationList = 07D24CEE1D866704002C69BF /* Build configuration list for PBXProject "LiveStreaming" */;
@@ -234,6 +331,7 @@
 			projectRoot = "";
 			targets = (
 				07D24CF21D866704002C69BF /* LiveStreaming */,
+				0961A93A24EBB08A00683DC8 /* LiveStreamingWithFU */,
 			);
 		};
 /* End PBXProject section */
@@ -249,9 +347,82 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0961A94924EBB08A00683DC8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0961A94A24EBB08A00683DC8 /* LaunchScreen.storyboard in Resources */,
+				0961A94B24EBB08A00683DC8 /* Assets.xcassets in Resources */,
+				0961A94C24EBB08A00683DC8 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0961A93B24EBB08A00683DC8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LiveStreamingWithFU-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		0961A94E24EBB08A00683DC8 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nAPP_PATH=\"${TARGET_BUILD_DIR}/${WRAPPER_NAME}\"\n\nfind \"$APP_PATH\" -name '*.framework' -type d | while read -r FRAMEWORK\ndo\nFRAMEWORK_EXECUTABLE_NAME=$(defaults read \"$FRAMEWORK/Info.plist\" CFBundleExecutable)\nFRAMEWORK_EXECUTABLE_PATH=\"$FRAMEWORK/$FRAMEWORK_EXECUTABLE_NAME\"\necho \"Executable is $FRAMEWORK_EXECUTABLE_PATH\"\necho $(lipo -info \"$FRAMEWORK_EXECUTABLE_PATH\")\n\nFRAMEWORK_TMP_PATH=\"$FRAMEWORK_EXECUTABLE_PATH-tmp\"\n\ncase \"${TARGET_BUILD_DIR}\" in\n*\"iphonesimulator\")\n    echo \"No need to remove archs\"\n    ;;\n*)\n    if $(lipo \"$FRAMEWORK_EXECUTABLE_PATH\" -verify_arch \"i386\") ; then\n    lipo -output \"$FRAMEWORK_TMP_PATH\" -remove \"i386\" \"$FRAMEWORK_EXECUTABLE_PATH\"\n    echo \"i386 architecture removed\"\n    rm \"$FRAMEWORK_EXECUTABLE_PATH\"\n    mv \"$FRAMEWORK_TMP_PATH\" \"$FRAMEWORK_EXECUTABLE_PATH\"\n    fi\n    if $(lipo \"$FRAMEWORK_EXECUTABLE_PATH\" -verify_arch \"x86_64\") ; then\n    lipo -output \"$FRAMEWORK_TMP_PATH\" -remove \"x86_64\" \"$FRAMEWORK_EXECUTABLE_PATH\"\n    echo \"x86_64 architecture removed\"\n    rm \"$FRAMEWORK_EXECUTABLE_PATH\"\n    mv \"$FRAMEWORK_TMP_PATH\" \"$FRAMEWORK_EXECUTABLE_PATH\"\n    fi\n    ;;\nesac\n\necho \"Completed for executable $FRAMEWORK_EXECUTABLE_PATH\"\necho $(lipo -info \"$FRAMEWORK_EXECUTABLE_PATH\")\n\ndone\n";
+		};
+		0961A94F24EBB08A00683DC8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LiveStreamingWithFU/Pods-LiveStreamingWithFU-frameworks.sh",
+				"${PODS_ROOT}/AgoraRtcEngine_iOS/AgoraRtcKit.framework",
+				"${PODS_ROOT}/AgoraStreamingKit_iOS/AgoraStreamingKit.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD-framework/SVProgressHUD.framework",
+				"${PODS_ROOT}/Nama/FaceUnity-SDK-iOS-v7.1.0/libCNamaSDK.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraRtcKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraStreamingKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libCNamaSDK.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LiveStreamingWithFU/Pods-LiveStreamingWithFU-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		09F99C6E2498C83000F6D1EB /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -278,7 +449,7 @@
 				"${PODS_ROOT}/Target Support Files/Pods-LiveStreaming/Pods-LiveStreaming-frameworks.sh",
 				"${PODS_ROOT}/AgoraRtcEngine_iOS/AgoraRtcKit.framework",
 				"${PODS_ROOT}/AgoraStreamingKit_iOS/AgoraStreamingKit.framework",
-				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD-framework/SVProgressHUD.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -289,6 +460,44 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LiveStreaming/Pods-LiveStreaming-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C59519049442F86437407037 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LiveStreamingWithFU/Pods-LiveStreamingWithFU-resources.sh",
+				"${PODS_ROOT}/Nama/FaceUnity-SDK-iOS-v7.1.0/Resources/graphics/body_slim.bundle",
+				"${PODS_ROOT}/Nama/FaceUnity-SDK-iOS-v7.1.0/Resources/graphics/controller.bundle",
+				"${PODS_ROOT}/Nama/FaceUnity-SDK-iOS-v7.1.0/Resources/graphics/face_beautification.bundle",
+				"${PODS_ROOT}/Nama/FaceUnity-SDK-iOS-v7.1.0/Resources/graphics/face_makeup.bundle",
+				"${PODS_ROOT}/Nama/FaceUnity-SDK-iOS-v7.1.0/Resources/graphics/fuzzytoonfilter.bundle",
+				"${PODS_ROOT}/Nama/FaceUnity-SDK-iOS-v7.1.0/Resources/graphics/fxaa.bundle",
+				"${PODS_ROOT}/Nama/FaceUnity-SDK-iOS-v7.1.0/Resources/graphics/tongue.bundle",
+				"${PODS_ROOT}/Nama/FaceUnity-SDK-iOS-v7.1.0/Resources/model/ai_face_processor.bundle",
+				"${PODS_ROOT}/Nama/FaceUnity-SDK-iOS-v7.1.0/Resources/model/ai_face_processor_lite.bundle",
+				"${PODS_ROOT}/Nama/FaceUnity-SDK-iOS-v7.1.0/Resources/model/ai_gesture.bundle",
+				"${PODS_ROOT}/Nama/FaceUnity-SDK-iOS-v7.1.0/Resources/model/ai_human_processor.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/body_slim.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/controller.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/face_beautification.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/face_makeup.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/fuzzytoonfilter.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/fxaa.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/tongue.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ai_face_processor.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ai_face_processor_lite.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ai_gesture.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ai_human_processor.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LiveStreamingWithFU/Pods-LiveStreamingWithFU-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D7A6F2AA900B4A6E93E2DB74 /* [CP] Check Pods Manifest.lock */ = {
@@ -321,15 +530,33 @@
 			buildActionMask = 2147483647;
 			files = (
 				07D24CFB1D866704002C69BF /* AppDelegate.m in Sources */,
-				09B8A7A324C08C4800943CCB /* ToastTool.m in Sources */,
-				09FCE79A2491080800BE0BF4 /* StreamingModel.m in Sources */,
+				0961A93824EBAABB00683DC8 /* ProfileViewController.m in Sources */,
 				094C8C2124E531F100BF9F73 /* LiveViewController.m in Sources */,
-				09C1B35524907F0F00BAC74E /* ProfileViewController.m in Sources */,
+				0961A93924EBAABB00683DC8 /* MainViewController.m in Sources */,
+				0961A92924EBAA5900683DC8 /* KeyCenter.m in Sources */,
+				0961A93124EBAA6400683DC8 /* RtcEngineWrapper.m in Sources */,
+				0961A93324EBAA6400683DC8 /* LiveStreamingWrapper.m in Sources */,
 				07D24CF81D866704002C69BF /* main.m in Sources */,
-				07D24D301D867644002C69BF /* KeyCenter.m in Sources */,
-				07D24D321D867644002C69BF /* MainViewController.m in Sources */,
-				097EEF7024767ED4008DAB82 /* LiveStreamingWrapper.m in Sources */,
-				097EEF7324767F08008DAB82 /* RtcEngineWrapper.m in Sources */,
+				0961A93224EBAA6400683DC8 /* ToastTool.m in Sources */,
+				0961A92A24EBAA5900683DC8 /* StreamingModel.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0961A93C24EBB08A00683DC8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0961A93D24EBB08A00683DC8 /* AppDelegate.m in Sources */,
+				0961A93E24EBB08A00683DC8 /* ProfileViewController.m in Sources */,
+				0961A93F24EBB08A00683DC8 /* LiveViewController.m in Sources */,
+				0961A94024EBB08A00683DC8 /* MainViewController.m in Sources */,
+				0961A94124EBB08A00683DC8 /* KeyCenter.m in Sources */,
+				0961A94224EBB08A00683DC8 /* RtcEngineWrapper.m in Sources */,
+				0961A94324EBB08A00683DC8 /* LiveStreamingWrapper.m in Sources */,
+				0961A94424EBB08A00683DC8 /* main.m in Sources */,
+				0961A94524EBB08A00683DC8 /* ToastTool.m in Sources */,
+				0961A95924EBB55900683DC8 /* FaceUnityVideoFilter.m in Sources */,
+				0961A94624EBB08A00683DC8 /* StreamingModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -491,7 +718,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/../../../build/ios/arm64",
-					"$(PROJECT_DIR)/LiveStreaming/Faceunity/FaceUnity-SDK-iOS",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -528,6 +754,91 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/../../../build/ios/arm64",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = io.agora.LiveStreaming;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = AgoraIOTest2019;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		0961A95124EBB08A00683DC8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A77FD33C80E2B46AE287E639 /* Pods-LiveStreamingWithFU.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 7289G77ZF3;
+				ENABLE_BITCODE = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/LiveStreaming",
+					/Users/lsq/sdk_download/,
+					"$(PROJECT_DIR)/../../../build/ios/arm64",
+					"$(PROJECT_DIR)/LiveStreaming/FaceunityUtils",
+					"$(PROJECT_DIR)",
+				);
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					FaceUnityTarget,
+				);
+				INFOPLIST_FILE = "LiveStreamingWithFU-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/../../../build/ios/arm64",
+					"$(PROJECT_DIR)/LiveStreaming/Faceunity/FaceUnity-SDK-iOS",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = io.agora.LiveStreaming;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = AgoraIOTest2019;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		0961A95224EBB08A00683DC8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3182E84E121EA064565E6EF0 /* Pods-LiveStreamingWithFU.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 7289G77ZF3;
+				ENABLE_BITCODE = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/LiveStreaming",
+					/Users/lsq/sdk_download/,
+					"$(PROJECT_DIR)/../../../build/ios/arm64",
+					"$(PROJECT_DIR)/LiveStreaming/FaceunityUtils",
+					"$(PROJECT_DIR)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					FaceUnityTarget,
+				);
+				INFOPLIST_FILE = "LiveStreamingWithFU-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/../../../build/ios/arm64",
 					"$(PROJECT_DIR)/LiveStreaming/Faceunity/FaceUnity-SDK-iOS",
 				);
 				OTHER_LDFLAGS = (
@@ -558,6 +869,15 @@
 			buildConfigurations = (
 				07D24D0B1D866704002C69BF /* Debug */,
 				07D24D0C1D866704002C69BF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0961A95024EBB08A00683DC8 /* Build configuration list for PBXNativeTarget "LiveStreamingWithFU" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0961A95124EBB08A00683DC8 /* Debug */,
+				0961A95224EBB08A00683DC8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
