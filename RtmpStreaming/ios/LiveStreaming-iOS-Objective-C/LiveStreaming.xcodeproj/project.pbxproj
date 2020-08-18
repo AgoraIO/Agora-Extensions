@@ -12,14 +12,14 @@
 		07D24D011D866704002C69BF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07D24CFF1D866704002C69BF /* Main.storyboard */; };
 		07D24D031D866704002C69BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07D24D021D866704002C69BF /* Assets.xcassets */; };
 		07D24D061D866704002C69BF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07D24D041D866704002C69BF /* LaunchScreen.storyboard */; };
-		07D24D301D867644002C69BF /* KeyCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 07D24D231D867644002C69BF /* KeyCenter.m */; };
-		07D24D321D867644002C69BF /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07D24D271D867644002C69BF /* MainViewController.m */; };
 		094C8C2124E531F100BF9F73 /* LiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 094C8C2024E531F100BF9F73 /* LiveViewController.m */; };
-		097EEF7024767ED4008DAB82 /* LiveStreamingWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 097EEF6F24767ED4008DAB82 /* LiveStreamingWrapper.m */; };
-		097EEF7324767F08008DAB82 /* RtcEngineWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 097EEF7224767F08008DAB82 /* RtcEngineWrapper.m */; };
-		09B8A7A324C08C4800943CCB /* ToastTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 09B8A7A224C08C4800943CCB /* ToastTool.m */; };
-		09C1B35524907F0F00BAC74E /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09C1B35324907F0E00BAC74E /* ProfileViewController.m */; };
-		09FCE79A2491080800BE0BF4 /* StreamingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 09FCE7992491080800BE0BF4 /* StreamingModel.m */; };
+		0961A92924EBAA5900683DC8 /* KeyCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0961A92724EBAA5900683DC8 /* KeyCenter.m */; };
+		0961A92A24EBAA5900683DC8 /* StreamingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0961A92824EBAA5900683DC8 /* StreamingModel.m */; };
+		0961A93124EBAA6400683DC8 /* RtcEngineWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0961A92D24EBAA6400683DC8 /* RtcEngineWrapper.m */; };
+		0961A93224EBAA6400683DC8 /* ToastTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 0961A92E24EBAA6400683DC8 /* ToastTool.m */; };
+		0961A93324EBAA6400683DC8 /* LiveStreamingWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0961A93024EBAA6400683DC8 /* LiveStreamingWrapper.m */; };
+		0961A93824EBAABB00683DC8 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0961A93624EBAABB00683DC8 /* ProfileViewController.m */; };
+		0961A93924EBAABB00683DC8 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0961A93724EBAABB00683DC8 /* MainViewController.m */; };
 		BEA7A7F65A3918DF0D25304E /* Pods_LiveStreaming.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4015B7EF677E1FE2E5D647B4 /* Pods_LiveStreaming.framework */; };
 /* End PBXBuildFile section */
 
@@ -45,22 +45,22 @@
 		07D24D021D866704002C69BF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		07D24D051D866704002C69BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		07D24D071D866704002C69BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		07D24D221D867644002C69BF /* KeyCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeyCenter.h; path = ../KeyCenter.h; sourceTree = "<group>"; };
-		07D24D231D867644002C69BF /* KeyCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeyCenter.m; path = ../KeyCenter.m; sourceTree = "<group>"; };
-		07D24D261D867644002C69BF /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainViewController.h; path = ../MainViewController.h; sourceTree = "<group>"; };
-		07D24D271D867644002C69BF /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainViewController.m; path = ../MainViewController.m; sourceTree = "<group>"; };
 		094C8C1F24E531F100BF9F73 /* LiveViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LiveViewController.h; sourceTree = "<group>"; };
 		094C8C2024E531F100BF9F73 /* LiveViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LiveViewController.m; sourceTree = "<group>"; };
-		097EEF6E24767ED4008DAB82 /* LiveStreamingWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LiveStreamingWrapper.h; path = ../LiveStreamingWrapper.h; sourceTree = "<group>"; };
-		097EEF6F24767ED4008DAB82 /* LiveStreamingWrapper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = LiveStreamingWrapper.m; path = ../LiveStreamingWrapper.m; sourceTree = "<group>"; };
-		097EEF7124767F08008DAB82 /* RtcEngineWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RtcEngineWrapper.h; path = ../RtcEngineWrapper.h; sourceTree = "<group>"; };
-		097EEF7224767F08008DAB82 /* RtcEngineWrapper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = RtcEngineWrapper.m; path = ../RtcEngineWrapper.m; sourceTree = "<group>"; };
-		09B8A7A124C08C4800943CCB /* ToastTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ToastTool.h; path = ../ToastTool.h; sourceTree = "<group>"; };
-		09B8A7A224C08C4800943CCB /* ToastTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ToastTool.m; path = ../ToastTool.m; sourceTree = "<group>"; };
-		09C1B35324907F0E00BAC74E /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfileViewController.m; path = ../ProfileViewController.m; sourceTree = "<group>"; };
-		09C1B35424907F0F00BAC74E /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfileViewController.h; path = ../ProfileViewController.h; sourceTree = "<group>"; };
-		09FCE7982491080800BE0BF4 /* StreamingModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = StreamingModel.h; path = ../StreamingModel.h; sourceTree = "<group>"; };
-		09FCE7992491080800BE0BF4 /* StreamingModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = StreamingModel.m; path = ../StreamingModel.m; sourceTree = "<group>"; };
+		0961A92524EBAA5900683DC8 /* StreamingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamingModel.h; sourceTree = "<group>"; };
+		0961A92624EBAA5900683DC8 /* KeyCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyCenter.h; sourceTree = "<group>"; };
+		0961A92724EBAA5900683DC8 /* KeyCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyCenter.m; sourceTree = "<group>"; };
+		0961A92824EBAA5900683DC8 /* StreamingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamingModel.m; sourceTree = "<group>"; };
+		0961A92B24EBAA6400683DC8 /* RtcEngineWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RtcEngineWrapper.h; sourceTree = "<group>"; };
+		0961A92C24EBAA6400683DC8 /* ToastTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToastTool.h; sourceTree = "<group>"; };
+		0961A92D24EBAA6400683DC8 /* RtcEngineWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RtcEngineWrapper.m; sourceTree = "<group>"; };
+		0961A92E24EBAA6400683DC8 /* ToastTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToastTool.m; sourceTree = "<group>"; };
+		0961A92F24EBAA6400683DC8 /* LiveStreamingWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiveStreamingWrapper.h; sourceTree = "<group>"; };
+		0961A93024EBAA6400683DC8 /* LiveStreamingWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiveStreamingWrapper.m; sourceTree = "<group>"; };
+		0961A93424EBAABB00683DC8 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		0961A93524EBAABB00683DC8 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		0961A93624EBAABB00683DC8 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		0961A93724EBAABB00683DC8 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		0F6D05E1AFF8D9958756D60F /* Pods-LiveStreaming.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiveStreaming.debug.xcconfig"; path = "Target Support Files/Pods-LiveStreaming/Pods-LiveStreaming.debug.xcconfig"; sourceTree = "<group>"; };
 		4015B7EF677E1FE2E5D647B4 /* Pods_LiveStreaming.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LiveStreaming.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		66FBB4ED43ABC61EF94669B2 /* Pods-LiveStreaming.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiveStreaming.release.xcconfig"; path = "Target Support Files/Pods-LiveStreaming/Pods-LiveStreaming.release.xcconfig"; sourceTree = "<group>"; };
@@ -134,10 +134,10 @@
 			children = (
 				094C8C1F24E531F100BF9F73 /* LiveViewController.h */,
 				094C8C2024E531F100BF9F73 /* LiveViewController.m */,
-				07D24D261D867644002C69BF /* MainViewController.h */,
-				07D24D271D867644002C69BF /* MainViewController.m */,
-				09C1B35424907F0F00BAC74E /* ProfileViewController.h */,
-				09C1B35324907F0E00BAC74E /* ProfileViewController.m */,
+				0961A93524EBAABB00683DC8 /* MainViewController.h */,
+				0961A93724EBAABB00683DC8 /* MainViewController.m */,
+				0961A93424EBAABB00683DC8 /* ProfileViewController.h */,
+				0961A93624EBAABB00683DC8 /* ProfileViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -145,10 +145,10 @@
 		094C8C1924E520E700BF9F73 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				07D24D221D867644002C69BF /* KeyCenter.h */,
-				07D24D231D867644002C69BF /* KeyCenter.m */,
-				09FCE7982491080800BE0BF4 /* StreamingModel.h */,
-				09FCE7992491080800BE0BF4 /* StreamingModel.m */,
+				0961A92624EBAA5900683DC8 /* KeyCenter.h */,
+				0961A92724EBAA5900683DC8 /* KeyCenter.m */,
+				0961A92524EBAA5900683DC8 /* StreamingModel.h */,
+				0961A92824EBAA5900683DC8 /* StreamingModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -156,12 +156,12 @@
 		094C8C1A24E5211B00BF9F73 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				097EEF6E24767ED4008DAB82 /* LiveStreamingWrapper.h */,
-				097EEF6F24767ED4008DAB82 /* LiveStreamingWrapper.m */,
-				097EEF7124767F08008DAB82 /* RtcEngineWrapper.h */,
-				097EEF7224767F08008DAB82 /* RtcEngineWrapper.m */,
-				09B8A7A124C08C4800943CCB /* ToastTool.h */,
-				09B8A7A224C08C4800943CCB /* ToastTool.m */,
+				0961A92F24EBAA6400683DC8 /* LiveStreamingWrapper.h */,
+				0961A93024EBAA6400683DC8 /* LiveStreamingWrapper.m */,
+				0961A92B24EBAA6400683DC8 /* RtcEngineWrapper.h */,
+				0961A92D24EBAA6400683DC8 /* RtcEngineWrapper.m */,
+				0961A92C24EBAA6400683DC8 /* ToastTool.h */,
+				0961A92E24EBAA6400683DC8 /* ToastTool.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -321,15 +321,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				07D24CFB1D866704002C69BF /* AppDelegate.m in Sources */,
-				09B8A7A324C08C4800943CCB /* ToastTool.m in Sources */,
-				09FCE79A2491080800BE0BF4 /* StreamingModel.m in Sources */,
+				0961A93824EBAABB00683DC8 /* ProfileViewController.m in Sources */,
 				094C8C2124E531F100BF9F73 /* LiveViewController.m in Sources */,
-				09C1B35524907F0F00BAC74E /* ProfileViewController.m in Sources */,
+				0961A93924EBAABB00683DC8 /* MainViewController.m in Sources */,
+				0961A92924EBAA5900683DC8 /* KeyCenter.m in Sources */,
+				0961A93124EBAA6400683DC8 /* RtcEngineWrapper.m in Sources */,
+				0961A93324EBAA6400683DC8 /* LiveStreamingWrapper.m in Sources */,
 				07D24CF81D866704002C69BF /* main.m in Sources */,
-				07D24D301D867644002C69BF /* KeyCenter.m in Sources */,
-				07D24D321D867644002C69BF /* MainViewController.m in Sources */,
-				097EEF7024767ED4008DAB82 /* LiveStreamingWrapper.m in Sources */,
-				097EEF7324767F08008DAB82 /* RtcEngineWrapper.m in Sources */,
+				0961A93224EBAA6400683DC8 /* ToastTool.m in Sources */,
+				0961A92A24EBAA5900683DC8 /* StreamingModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
