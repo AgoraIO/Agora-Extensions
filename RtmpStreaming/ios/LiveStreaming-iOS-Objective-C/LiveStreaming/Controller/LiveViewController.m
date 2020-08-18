@@ -10,11 +10,15 @@
 #import "LiveStreamingWrapper.h"
 #import "RtcEngineWrapper.h"
 #import "ToastTool.h"
+#if FaceUnityTarget
+#import "FaceUnityVideoFilter.h"
+#endif
 
 @interface LiveViewController () <RtcEngineEventDelegate, LiveStreamingEventDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *containerView;
 @property (weak, nonatomic) IBOutlet UIButton *startStreamingBtn;
+@property (weak, nonatomic) IBOutlet UIButton *filterBtn;
 
 @property (nonatomic, strong) AgoraRtcVideoCanvas *remoteCanvas;
 @property (nonatomic, strong) LiveStreamingWrapper *liveStreamingWrapper;
@@ -22,6 +26,7 @@
 @property (nonatomic, weak)   UIView *remoteRenderView;
 @property (nonatomic, strong) UIView *localRenderView;
 @property (nonatomic, assign) BOOL isRtmpPublish;
+@property (nonatomic, strong) id<AgoraVideoFilter> videoFilter;
 
 @end
 
@@ -30,13 +35,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self addObserver];
     [self setupLiveStreaming];
     [self setupRtcEngine];
-    [self addObserver];
+    [self setupBeautify];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+}
+
+- (void)setupBeautify {
+#if FaceUnityTarget
+    self.filterBtn.hidden = NO;
+    self.videoFilter = [[FaceUnityVideoFilter alloc] init];
+#else
+    self.filterBtn.hidden = YES;
+#endif
 }
 
 - (void)setupLiveStreaming {
@@ -79,10 +94,16 @@
 - (IBAction)startStreamingBtnDidClicked:(UIButton *)sender {
     if (self.isRtmpPublish) {
         NSLog(@"start rtc.");
+        /**
+         Swith rtmp to rtc.
+         */
         [self.liveStreamingWrapper stopStreaming];
         [self.rteEngineWrapper joinChannelWithChannelId:self.channelName uid:0];
     } else {
         NSLog(@"start rtmp streaming.");
+        /**
+         Swith rtc to rtmp.
+         */
         [self.rteEngineWrapper leaveChannel];
         [self.liveStreamingWrapper startStreaming];
         [self onUserOffline];
@@ -115,6 +136,15 @@
     sender.selected = !sender.selected;
     [self.liveStreamingWrapper muteVideoStream:sender.selected];
     [self.rteEngineWrapper muteLocalVideoStream:sender.selected];
+}
+
+- (IBAction)filterBtnDidClicked:(UIButton *)sender {
+    sender.selected = !sender.selected;
+    if (sender.selected) {
+        [self.liveStreamingWrapper addVideoFilter:self.videoFilter];
+    } else {
+        [self.liveStreamingWrapper removeVideoFilter:self.videoFilter];
+    }
 }
 
 #pragma mark - LiveStreamingEventDelegate

@@ -37,8 +37,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (int)muteAudioStream:(BOOL)muted;
 - (int)muteVideoStream:(BOOL)muted;
 
-- (void)addVideoFilter;
-- (void)removeVideoFilter;
+- (void)addVideoFilter:(id<AgoraVideoFilter>)filter;
+- (void)removeVideoFilter:(id<AgoraVideoFilter>)filter;
 
 - (void)switchCamera;
 

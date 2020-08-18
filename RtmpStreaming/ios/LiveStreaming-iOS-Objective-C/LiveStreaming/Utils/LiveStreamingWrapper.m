@@ -14,7 +14,6 @@
 @property (nonatomic, strong) AgoraStreamingContext *context;
 @property (nonatomic, assign) CGSize videoSize;
 @property (nonatomic, strong) AgoraVideoPreviewRenderer *previewRenderer;
-@property (nonatomic, assign) BOOL isAddFilter;
 @property (nonatomic, assign) BOOL isStartStreaming;
 @property (nonatomic, assign) NSString *rtmpUrl;
 @property (nonatomic, strong) StreamingModel *streamingModel;
@@ -96,18 +95,12 @@
     return [self.streamingKit muteVideoStream:muted];
 }
 
-- (void)addVideoFilter {
-    if (!self.isAddFilter) {
-        [self.streamingKit addVideoFilter:self];
-        self.isAddFilter = YES;
-    }
+- (void)addVideoFilter:(id<AgoraVideoFilter>)filter {
+    [self.streamingKit addVideoFilter:filter];
 }
 
-- (void)removeVideoFilter {
-    if (self.isAddFilter) {
-        [self.streamingKit removeVideoFilter:self];
-        self.isAddFilter = NO;
-    }
+- (void)removeVideoFilter:(id<AgoraVideoFilter>)filter {
+    [self.streamingKit removeVideoFilter:filter];
 }
 
 - (void)switchCamera {
