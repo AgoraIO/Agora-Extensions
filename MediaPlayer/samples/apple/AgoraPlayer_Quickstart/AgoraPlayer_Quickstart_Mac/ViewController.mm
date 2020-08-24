@@ -252,8 +252,8 @@
     // Do any additional setup after loading the view.
 }
 - (void)initAgoraSdk{
-    
-    _rtcEnginekit = [AgoraRtcEngineKit sharedEngineWithAppId:@"aab8b8f5a8cd4469a63042fcfafe7063" delegate:self];
+#error input your Appid
+    _rtcEnginekit = [AgoraRtcEngineKit sharedEngineWithAppId:<#YOUR_APPID#> delegate:self];
     [_rtcEnginekit setChannelProfile:AgoraChannelProfileLiveBroadcasting];
     [_rtcEnginekit setClientRole:AgoraClientRoleBroadcaster];
     [_rtcEnginekit enableAudio];

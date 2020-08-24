@@ -50,7 +50,8 @@
 
 }
 - (void)initAgoraSdk{
-    _rtcEnginekit = [AgoraRtcEngineKit sharedEngineWithAppId:@"" delegate:self];
+#error input your Appid
+    _rtcEnginekit = [AgoraRtcEngineKit sharedEngineWithAppId:<#YOUR_APPID#>  delegate:self];
     [_rtcEnginekit setChannelProfile:AgoraChannelProfileLiveBroadcasting];
     [_rtcEnginekit setClientRole:AgoraClientRoleBroadcaster];
     [_rtcEnginekit enableAudio];
@@ -90,7 +91,7 @@
 }
 - (IBAction)attach:(UIButton *)sender {
     if (isAttach) {
-        [[AgoraRtcChannelPublishHelper shareInstance] attachPlayerToRtc:_mediaPlayerKit RtcEngine:_rtcEnginekit];
+        [[AgoraRtcChannelPublishHelper shareInstance] attachPlayerToRtc:_mediaPlayerKit RtcEngine:_rtcEnginekit enableVideoSource:true];
         [sender setTitle:@"detach" forState:UIControlStateNormal];
         [self.publishAudio setTitle:@"publishAudio" forState:UIControlStateNormal];
         [self.publishVideo setTitle:@"publishVideo" forState:UIControlStateNormal];
@@ -136,7 +137,7 @@
     if ([self.inputTextView.text isEqualToString:@""]) {
         return;
     }
-    NSString *filePath = [[[NSBundle mainBundle] pathForResource:@"resources" ofType:@"bundle"] stringByAppendingPathComponent:@"83.mp4"];
+    NSString *filePath = [[[NSBundle mainBundle] pathForResource:@"resources" ofType:@"bundle"] stringByAppendingPathComponent:@"84.mp4"];
     [_mediaPlayerKit open:filePath startPos:0];
     
 }

@@ -13,17 +13,56 @@
 #import "scoped_ptr.h"
 #import <mutex>
 using namespace AgoraRTC;
-static scoped_ptr<AudioCircularBuffer<char>> agoraAudioBuf(new AudioCircularBuffer<char>(2048,true));
-static scoped_ptr<AudioCircularBuffer<char>> agoraPlayoutBuf(new AudioCircularBuffer<char>(2048,true));
 static NSObject *threadLockPush = [[NSObject alloc] init];
 static NSObject *threadLockPlay = [[NSObject alloc] init];
 
 class AgoraAudioFrameObserver:public agora::media::IAudioFrameObserver
 {
+private:
+    int16_t * record_buf_tmp_ = nullptr;
+    char *    record_audio_mix_ = nullptr;
+    int16_t * record_send_buf_ = nullptr;
+    
+    int16_t * play_buf_tmp_ = nullptr;
+    char  *   play_audio_mix_ = nullptr;
+    int16_t * play_send_buf_ = nullptr;
+    scoped_ptr<AudioCircularBuffer<char>> record_audio_buf_;
+    scoped_ptr<AudioCircularBuffer<char>> play_audio_buf_;
 public:
     std::atomic<float>  publishSignalValue_{1.0f};
     std::atomic<float>  playOutSignalValue_{1.0f};
     std::atomic<bool>   isOnlyAudioPlay_{false};
+    AgoraAudioFrameObserver(){
+        record_audio_buf_.reset(new AudioCircularBuffer<char>(true,2048));
+        play_audio_buf_.reset(new AudioCircularBuffer<char>(true,2048));
+    }
+    ~AgoraAudioFrameObserver()
+    {
+        if (record_buf_tmp_) {
+            free(record_buf_tmp_);
+        }
+        if(record_audio_mix_){
+            free(record_audio_mix_);
+        }
+        if(record_send_buf_){
+            free(record_send_buf_);
+        }
+        
+        if (play_buf_tmp_) {
+            free(play_buf_tmp_);
+        }
+        if(play_audio_mix_){
+            free(play_audio_mix_);
+        }
+        if (play_send_buf_) {
+            free(play_send_buf_);
+        }
+    }
+    void resetAudioBuffer(){
+        
+        record_audio_buf_.reset(new AudioCircularBuffer<char>(2048,true));
+        play_audio_buf_.reset(new AudioCircularBuffer<char>(2048,true));
+    }
     void setPublishSignalVolume(int volume){
         @synchronized (threadLockPush) {
             publishSignalValue_ = volume/100.0f;
@@ -38,49 +77,50 @@ public:
          }
      }
     void pushData(char *data,int length){
-        @synchronized (threadLockPush) {
+        {
             if (!isOnlyAudioPlay_) {
-                agoraAudioBuf->Push(data, length);
+                record_audio_buf_->Push(data, length);
             }
         }
-        @synchronized (threadLockPlay) {
-            agoraPlayoutBuf->Push(data, length);
+        {
+            play_audio_buf_->Push(data, length);
         }
 
     }
     virtual bool onRecordAudioFrame(AudioFrame& audioFrame){
         @synchronized (threadLockPush) {
-                int bytes = audioFrame.samples * audioFrame.channels * audioFrame.bytesPerSample;
-                int16_t *tmpBuf = (int16_t *)malloc(sizeof(int16_t)*bytes);
-                memcpy(tmpBuf, audioFrame.buffer, bytes);
-                if (agoraAudioBuf->mAvailSamples < bytes) {
-                    free(tmpBuf);
-                    return true;
+            int bytes = audioFrame.samples * audioFrame.channels * audioFrame.bytesPerSample;
+            int ret = record_audio_buf_->mAvailSamples - bytes;
+            if ( ret < 0) {
+                return false;
+            }
+            //计算重采样钱的数据大小 重采样的采样率 * SDK回调时间 * 声道数 * 字节数
+            if (!record_buf_tmp_) {
+                record_buf_tmp_ = (int16_t *)malloc(bytes);
+            }
+            if(!record_audio_mix_){
+                record_audio_mix_ = (char *)malloc(bytes);
+            }
+            if(!record_send_buf_){
+                record_send_buf_ = (int16_t *)malloc(bytes);
+            }
+            record_audio_buf_->Pop(record_audio_mix_, bytes);
+            int16_t* p16 = (int16_t*) record_audio_mix_;
+            memcpy(record_buf_tmp_, audioFrame.buffer, bytes);
+            for (int i = 0; i < bytes / 2; ++i) {
+                record_buf_tmp_[i] += (p16[i] * publishSignalValue_);
+                //audio overflow
+                if (record_buf_tmp_[i] > 32767) {
+                    record_send_buf_[i] = 32767;
                 }
-                //计算重采样钱的数据大小 重采样的采样率 * SDK回调时间 * 声道数 * 字节数
-                int mv_size = bytes;
-                char *data = (char *)malloc(sizeof(char)*mv_size);
-                agoraAudioBuf->Pop(data, mv_size);
-                int16_t* p16 = (int16_t*) data;
-                int16_t *audioBuf = (int16_t *)malloc(bytes);
-                memcpy(audioBuf, tmpBuf, bytes);
-                for (int i = 0; i < bytes / 2; ++i) {
-                    tmpBuf[i] += (p16[i] * publishSignalValue_);
-                    //audio overflow
-                    if (tmpBuf[i] > 32767) {
-                        audioBuf[i] = 32767;
-                    }
-                    else if (tmpBuf[i] < -32768) {
-                        audioBuf[i] = -32768;
-                    }
-                    else {
-                        audioBuf[i] = tmpBuf[i];
-                    }
+                else if (record_buf_tmp_[i] < -32768) {
+                    record_send_buf_[i] = -32768;
                 }
-                memcpy(audioFrame.buffer, audioBuf,bytes);
-                free(audioBuf);
-                free(tmpBuf);
-                free(p16);
+                else {
+                    record_send_buf_[i] = record_buf_tmp_[i];
+                }
+            }
+            memcpy(audioFrame.buffer, record_send_buf_,bytes);
         }
         return true;
     }
@@ -93,37 +133,39 @@ public:
      */
     virtual bool onPlaybackAudioFrame(AudioFrame& audioFrame){
     @synchronized (threadLockPlay) {
+        
         int bytes = audioFrame.samples * audioFrame.channels * audioFrame.bytesPerSample;
-        int16_t *tmpBuf = (int16_t *)malloc(bytes);
-        memcpy(tmpBuf, audioFrame.buffer, bytes);
-        if (agoraPlayoutBuf->mAvailSamples < bytes) {
-            free(tmpBuf);
-            return true;
+        int ret = play_audio_buf_->mAvailSamples - bytes;
+        if (ret < 0) {
+            return false;
         }
         //计算重采样钱的数据大小 重采样的采样率 * SDK回调时间 * 声道数 * 字节数
-        int mv_size = bytes;
-        char *data = (char *)malloc(mv_size);
-        agoraPlayoutBuf->Pop(data, mv_size);
-        int16_t* p16 = (int16_t*) data;
-        int16_t *audioBuf = (int16_t *)malloc(bytes);
-        memcpy(audioBuf, tmpBuf, bytes);
+        if(!play_buf_tmp_){
+            play_buf_tmp_ = (int16_t *)malloc(bytes);
+        }
+        if(!play_audio_mix_){
+            play_audio_mix_ = (char *)malloc(bytes);
+        }
+        if(!play_send_buf_){
+            play_send_buf_ = (int16_t *)malloc(bytes);
+        }
+        play_audio_buf_->Pop(play_audio_mix_, bytes);
+        int16_t* p16 = (int16_t*) play_audio_mix_;
+        memcpy(play_buf_tmp_, audioFrame.buffer, bytes);
         for (int i = 0; i < bytes / 2; ++i) {
-            tmpBuf[i] += (p16[i] * playOutSignalValue_);
+            play_buf_tmp_[i] += (p16[i] * playOutSignalValue_);
             //audio overflow
-            if (tmpBuf[i] > 32767) {
-                audioBuf[i] = 32767;
+            if (play_buf_tmp_[i] > 32767) {
+                play_send_buf_[i] = 32767;
             }
-            else if (tmpBuf[i] < -32768) {
-                audioBuf[i] = -32768;
+            else if (play_buf_tmp_[i] < -32768) {
+                play_send_buf_[i] = -32768;
             }
             else {
-                audioBuf[i] = tmpBuf[i];
+                play_send_buf_[i] = play_buf_tmp_[i];
             }
         }
-        memcpy(audioFrame.buffer, audioBuf,bytes);
-        free(audioBuf);
-        free(tmpBuf);
-        free(p16);
+        memcpy(audioFrame.buffer, play_buf_tmp_,bytes);
     }
         return true;
     }
@@ -248,8 +290,7 @@ static AgoraRtcChannelPublishHelper *instance = NULL;
 }
 - (void)resetAudioBuf{
     @synchronized (self) {
-        agoraAudioBuf.reset(new AudioCircularBuffer<char>(2048,true));
-        agoraPlayoutBuf.reset(new AudioCircularBuffer<char>(2048,true));
+        audioFrameObserver->resetAudioBuffer();
     }
 }
 - (void)AgoraMediaPlayer:(AgoraMediaPlayer *_Nonnull)playerKit

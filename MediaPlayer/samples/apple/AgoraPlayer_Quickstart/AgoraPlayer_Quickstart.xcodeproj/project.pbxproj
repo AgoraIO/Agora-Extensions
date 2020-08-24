@@ -61,6 +61,8 @@
 		8BAB522323D485D2003FB923 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B815CEA2395031F007625AA /* Accelerate.framework */; };
 		8BEE697923A38712008AB3EE /* UITextViewWorkaround.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BEE697823A38712008AB3EE /* UITextViewWorkaround.m */; };
 		8BEE697A23A38BB2008AB3EE /* resources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8B81603B23953CD3007625AA /* resources.bundle */; };
+		8BFAD62F24F3BDE900F6A633 /* AgoraFFmpeg.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BFAD62E24F3BDE900F6A633 /* AgoraFFmpeg.framework */; };
+		8BFAD63024F3BE0200F6A633 /* AgoraFFmpeg.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8BFAD62E24F3BDE900F6A633 /* AgoraFFmpeg.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -81,6 +83,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				8BFAD63024F3BE0200F6A633 /* AgoraFFmpeg.framework in Embed Frameworks */,
 				8B1D6DF424D1789A0061E782 /* AgoraMediaPlayer.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -154,6 +157,7 @@
 		8BAB5C9323D5C540003FB923 /* CoreML.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreML.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS13.2.sdk/System/Library/Frameworks/CoreML.framework; sourceTree = DEVELOPER_DIR; };
 		8BEE697723A38712008AB3EE /* UITextViewWorkaround.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITextViewWorkaround.h; sourceTree = "<group>"; };
 		8BEE697823A38712008AB3EE /* UITextViewWorkaround.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UITextViewWorkaround.m; sourceTree = "<group>"; };
+		8BFAD62E24F3BDE900F6A633 /* AgoraFFmpeg.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AgoraFFmpeg.framework; path = ../../../../helper/apple/RtcChannelPublishPlugin/ios/AgoraFFmpeg.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +165,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BFAD62F24F3BDE900F6A633 /* AgoraFFmpeg.framework in Frameworks */,
 				8B349DE2240D35F90043E21B /* CoreML.framework in Frameworks */,
 				8B81641623969F0D007625AA /* libiconv.tbd in Frameworks */,
 				8B81641523969E05007625AA /* libiconv.2.tbd in Frameworks */,
@@ -217,6 +222,7 @@
 				8B2EE99F2394B5A9009FD6DD /* AppDelegate.m */,
 				8B2EE9A12394B5A9009FD6DD /* ViewController.h */,
 				8B2EE9A22394B5AA009FD6DD /* ViewController.mm */,
+				8BFAD62E24F3BDE900F6A633 /* AgoraFFmpeg.framework */,
 				8B34A1A5240D501E0043E21B /* AgoraMediaPlayer.framework */,
 				8B34A1A6240D501E0043E21B /* AgoraRtcEngineKit.framework */,
 				8B2EE9A42394B5AA009FD6DD /* Main.storyboard */,
@@ -490,6 +496,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development: Junjie Liu (ZU7LZHDW27)";
 				CODE_SIGN_STYLE = Manual;
 				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 7289G77ZF3;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../../../helper/apple/RtcChannelPublishPlugin/ios\"";
@@ -508,7 +515,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = AgoraIOTest2019;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "arm64 arm64e armv7 armv7s";
+				VALID_ARCHS = "arm64 armv7 x86_64";
 			};
 			name = Debug;
 		};
@@ -537,7 +544,7 @@
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
-				VALID_ARCHS = "arm64 arm64e armv7 armv7s";
+				VALID_ARCHS = "arm64 armv7 x86_64";
 			};
 			name = Release;
 		};
