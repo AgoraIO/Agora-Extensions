@@ -9,7 +9,7 @@
 #import "ViewController.h"
 #import <AgoraMediaPlayer/AgoraMediaPlayerKit.h>
 #import "AgoraRtcChannelPublishHelper.h"
-#include <AgoraRtcEngineKit/AgoraRtcEngineKit.h>
+#include <AgoraRtcKit/AgoraRtcEngineKit.h>
 
 @interface ViewController ()<AgoraMediaPlayerDelegate,AgoraRtcChannelPublishHelperDelegate,AgoraRtcEngineDelegate>
 {
@@ -137,7 +137,12 @@
     if ([self.inputTextView.text isEqualToString:@""]) {
         return;
     }
-    NSString *filePath = [[[NSBundle mainBundle] pathForResource:@"resources" ofType:@"bundle"] stringByAppendingPathComponent:@"84.mp4"];
+    
+//    NSString *filePath = [[[NSBundle mainBundle] pathForResource:@"resources" ofType:@"bundle"] stringByAppendingPathComponent:@"84.mp4"];
+    
+    // Arlin: add url from net.
+    NSString *filePath = self.inputTextView.text ?: @"";
+
     [_mediaPlayerKit open:filePath startPos:0];
     
 }
