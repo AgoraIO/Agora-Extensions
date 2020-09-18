@@ -16,7 +16,6 @@ import io.agora.capture.video.camera.VideoModule;
 
 public abstract class BaseWindowConsumer implements IVideoConsumer {
     static final int CHANNEL_ID = ChannelManager.ChannelID.CAMERA;
-    public static boolean DEBUG = false;
 
     VideoModule videoModule;
     VideoChannel videoChannel;
@@ -92,9 +91,16 @@ public abstract class BaseWindowConsumer implements IVideoConsumer {
             }
         }
 
+        boolean surfaceAvailable = true;
         if (drawingEglSurface != null && !eglCore.isCurrent(drawingEglSurface)) {
-            eglCore.makeCurrent(drawingEglSurface);
+            try {
+                eglCore.makeCurrent(drawingEglSurface);
+            } catch (Exception e) {
+                surfaceAvailable = false;
+            }
         }
+
+        if (!surfaceAvailable) return;
 
         int surfaceWidth = onMeasuredWidth();
         int surfaceHeight = onMeasuredHeight();
