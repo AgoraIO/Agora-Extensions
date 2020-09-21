@@ -40,6 +40,7 @@ public class VideoCaptureCamera
     // Lock to mutually exclude execution of OnPreviewFrame() and {start/stop}Capture().
     private ReentrantLock mPreviewBufferLock = new ReentrantLock();
     private final Object mCameraStateLock = new Object();
+    private CaptureErrorCallback mErrorCallback = new CaptureErrorCallback();
     private volatile CameraState mCameraState = CameraState.STOPPED;
 
     private Camera.CameraInfo getCameraInfo(int id) {
@@ -136,6 +137,7 @@ public class VideoCaptureCamera
             mCamera = Camera.open(mCameraId);
         } catch (RuntimeException ex) {
             Log.e(TAG, "allocate: Camera.open: " + ex);
+            mErrorCallback.onError(ERROR_UNKNOWN, null);
             return false;
         }
 
@@ -212,7 +214,7 @@ public class VideoCaptureCamera
             return false;
         }
 
-        mCamera.setErrorCallback(new CaptureErrorCallback());
+        mCamera.setErrorCallback(mErrorCallback);
 
         mExpectedFrameSize = pCaptureFormat.getWidth() * pCaptureFormat.getHeight()
                 * ImageFormat.getBitsPerPixel(pCaptureFormat.getPixelFormat()) / 8;

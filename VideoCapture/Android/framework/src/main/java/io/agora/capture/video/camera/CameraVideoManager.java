@@ -72,6 +72,7 @@ public class CameraVideoManager {
         // the video channel starts
         videoModule.setPreprocessor(CHANNEL_ID, preprocessor);
         videoModule.startChannel(CHANNEL_ID);
+        videoModule.enableOffscreenMode(CHANNEL_ID, true);
         mCameraChannel = (CameraVideoChannel)
                 videoModule.getVideoChannel(CHANNEL_ID);
         mCameraChannel.setFacing(facing);
