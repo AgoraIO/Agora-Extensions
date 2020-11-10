@@ -21,6 +21,7 @@ import android.media.ImageReader;
 import android.opengl.GLES11Ext;
 import android.opengl.GLES20;
 import android.os.Build;
+import android.text.TextUtils;
 import android.util.Log;
 import android.util.Range;
 import android.util.Size;
@@ -357,16 +358,20 @@ public class VideoCaptureCamera2 extends VideoCapture {
 
         try {
             for (String cameraId : mCameraManager.getCameraIdList()) {
+                if (TextUtils.isEmpty(cameraId)) continue;
+
                 CameraCharacteristics characteristics
                         = getCameraCharacteristics(cameraId);
 
                 Integer face = characteristics.get(CameraCharacteristics.LENS_FACING);
-                if (curCameraFacing == Constant.CAMERA_FACING_FRONT && face == characteristics.LENS_FACING_FRONT) {
+                if (curCameraFacing == Constant.CAMERA_FACING_FRONT && face
+                        == CameraCharacteristics.LENS_FACING_FRONT) {
                     mCamera2Id = cameraId;
                     break;
                 }
 
-                if (curCameraFacing == Constant.CAMERA_FACING_BACK && face == characteristics.LENS_FACING_BACK) {
+                if (curCameraFacing == Constant.CAMERA_FACING_BACK && face
+                        == CameraCharacteristics.LENS_FACING_BACK) {
                     mCamera2Id = cameraId;
                     break;
                 }
