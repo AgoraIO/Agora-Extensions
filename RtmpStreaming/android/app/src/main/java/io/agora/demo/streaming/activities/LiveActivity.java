@@ -144,6 +144,7 @@ public class LiveActivity extends BaseActivity {
         } else if (mCurrentStreamingMode == STREAMING_MODE.SERVER_STREAMING) {
             mPresenter.stopServerStreamingAndLeaveAgoraChannel();
         }
+	
         mCurrentStreamingMode = STREAMING_MODE.NONE;
 
         // reset to initial state
