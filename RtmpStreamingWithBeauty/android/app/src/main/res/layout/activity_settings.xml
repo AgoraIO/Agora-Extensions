@@ -2,7 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,8 +19,10 @@
                 android:layout_width="@dimen/back_arrow_size"
                 android:layout_height="@dimen/back_arrow_size"
                 android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
                 android:layout_alignParentBottom="true"
                 android:layout_marginStart="@dimen/back_arrow_left"
+                android:layout_marginLeft="@dimen/back_arrow_left"
                 android:layout_marginBottom="@dimen/setting_title_content_margin"
                 android:background="@drawable/btn_back_arrow"
                 android:onClick="onBackArrowPressed" />
@@ -50,24 +52,26 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_marginStart="@dimen/setting_content_margin"
-            android:layout_marginEnd="@dimen/setting_content_margin">
+            android:layout_marginEnd="@dimen/setting_content_margin"
+            android:orientation="horizontal">
+
             <EditText
                 android:id="@+id/rtmp_url_edittext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textSize="14sp"
-                tools:text="rtmp://ks-push.broadcastapp.agoraio.cn/live/yutest"/>
+                tools:text="rtmp://ks-push.broadcastapp.agoraio.cn/live/yutest" />
+
             <ImageView
                 android:id="@+id/qrcode_scan_imageview"
-                android:layout_marginStart="10dp"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
-                android:layout_weight="0"
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/qrcode_scan"/>
+                android:layout_marginStart="10dp"
+                android:layout_weight="0"
+                android:src="@drawable/qrcode_scan" />
         </LinearLayout>
 
         <View
@@ -75,6 +79,166 @@
             android:layout_height="@dimen/setting_divider_height"
             android:layout_marginTop="@dimen/setting_content_margin_vertical"
             android:background="@color/gray_divider" />
+
+        <TextView
+            android:id="@+id/setting_resolution_ratio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/setting_content_margin"
+            android:layout_marginTop="@dimen/setting_content_margin_vertical"
+            android:layout_marginEnd="@dimen/setting_content_margin"
+            android:text="@string/setting_resolution_ratio_title"
+            android:textColor="@color/gray_deep_dark"
+            android:textSize="@dimen/text_size_normal" />
+
+        <RadioGroup
+            android:id="@+id/setting_resolution_ratio_value"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginStart="@dimen/setting_content_margin"
+            android:layout_marginLeft="@dimen/setting_content_margin"
+            android:layout_marginEnd="@dimen/setting_content_margin"
+            android:layout_marginRight="@dimen/setting_content_margin"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/setting_resolution_ratio_value_1_1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/setting_video_item_background"
+                android:button="@null"
+                android:gravity="center"
+                android:text="1:1"
+                android:textColor="@color/setting_video_item_text_color"
+                android:textSize="14sp" />
+
+            <RadioButton
+                android:id="@+id/setting_resolution_ratio_value_16_9"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/setting_video_item_background"
+                android:button="@null"
+                android:gravity="center"
+                android:text="16:9"
+                android:textColor="@color/setting_video_item_text_color"
+                android:textSize="14sp" />
+
+            <RadioButton
+                android:id="@+id/setting_resolution_ratio_value_4_3"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/setting_video_item_background"
+                android:button="@null"
+                android:gravity="center"
+                android:text="4:3"
+                android:textColor="@color/setting_video_item_text_color"
+                android:textSize="14sp" />
+
+            <RadioButton
+                android:id="@+id/setting_resolution_ratio_value_custom"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/setting_video_item_background"
+                android:button="@null"
+                android:gravity="center"
+                android:text="Custom"
+                android:textColor="@color/setting_video_item_text_color"
+                android:textSize="14sp"
+                android:visibility="gone" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/setting_resolution_definition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/setting_content_margin"
+            android:layout_marginTop="@dimen/setting_content_margin_vertical"
+            android:layout_marginEnd="@dimen/setting_content_margin"
+            android:text="@string/setting_resolution_definition_title"
+            android:textColor="@color/gray_deep_dark"
+            android:textSize="@dimen/text_size_normal" />
+
+        <RadioGroup
+            android:id="@+id/setting_resolution_definition_value"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginLeft="@dimen/setting_content_margin"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="@dimen/setting_content_margin"
+            android:layout_marginRight="@dimen/setting_content_margin"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/setting_resolution_definition_value_low"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/setting_video_item_background"
+                android:button="@null"
+                android:gravity="center"
+                android:text="Low"
+                android:textColor="@color/setting_video_item_text_color"
+                android:textSize="14sp" />
+
+            <RadioButton
+                android:id="@+id/setting_resolution_definition_value_middle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/setting_video_item_background"
+                android:button="@null"
+                android:gravity="center"
+                android:text="Middle"
+                android:textColor="@color/setting_video_item_text_color"
+                android:textSize="14sp" />
+
+            <RadioButton
+                android:id="@+id/setting_resolution_definition_value_high"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/setting_video_item_background"
+                android:button="@null"
+                android:gravity="center"
+                android:text="High"
+                android:textColor="@color/setting_video_item_text_color"
+                android:textSize="14sp" />
+
+            <RadioButton
+                android:id="@+id/setting_resolution_definition_value_custom"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/setting_video_item_background"
+                android:button="@null"
+                android:gravity="center"
+                android:text="Custom"
+                android:textColor="@color/setting_video_item_text_color"
+                android:textSize="14sp"
+                android:visibility="gone" />
+        </RadioGroup>
 
         <TextView
             android:id="@+id/setting_resolution_title"
@@ -90,6 +254,45 @@
             android:textColor="@color/gray_deep_dark"
             android:textSize="@dimen/text_size_normal" />
 
+        <LinearLayout
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/setting_content_margin"
+            android:layout_marginEnd="@dimen/setting_content_margin"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/setting_resolution_value_width"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_weight="1"
+                android:enabled="false"
+                android:gravity="center"
+                android:inputType="numberDecimal"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="×"
+                android:textSize="30sp" />
+
+            <EditText
+                android:id="@+id/setting_resolution_value_height"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:enabled="false"
+                android:inputType="numberDecimal"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/resolution_list"
             android:layout_width="match_parent"
@@ -97,7 +300,8 @@
             android:layout_marginStart="@dimen/setting_content_margin"
             android:layout_marginLeft="@dimen/setting_content_margin"
             android:layout_marginEnd="@dimen/setting_content_margin"
-            android:layout_marginRight="@dimen/setting_content_margin" />
+            android:layout_marginRight="@dimen/setting_content_margin"
+            android:visibility="gone" />
 
         <RelativeLayout
             android:id="@+id/setting_framerate_view"
@@ -188,6 +392,63 @@
             android:layout_height="@dimen/setting_divider_height"
             android:layout_marginTop="@dimen/setting_content_margin_vertical"
             android:background="@color/gray_divider" />
+
+        <RelativeLayout
+            android:id="@+id/setting_screen_orientation_view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/setting_item_height_normal"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="onClick">
+
+            <TextView
+                android:id="@+id/setting_screen_orientation_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/setting_content_margin"
+                android:text="@string/setting_screen_orientation_title"
+                android:textColor="@color/gray_deep_dark"
+                android:textSize="@dimen/text_size_normal" />
+
+            <TextView
+                android:id="@+id/setting_screen_orientation_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/setting_content_margin" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/setting_screen_ratio_view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/setting_item_height_normal"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="onClick"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/setting_screen_ratio_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/setting_content_margin"
+                android:text="@string/setting_screen_ratio_title"
+                android:textColor="@color/gray_deep_dark"
+                android:textSize="@dimen/text_size_normal" />
+
+            <TextView
+                android:id="@+id/setting_screen_ratio_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/setting_content_margin" />
+        </RelativeLayout>
 
         <View
             android:layout_width="match_parent"
@@ -297,12 +558,12 @@
             android:textSize="@dimen/text_size_normal" />
 
         <EditText
+            android:id="@+id/log_path_edittext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/log_path_edittext"
             android:layout_marginStart="@dimen/setting_content_margin"
             android:layout_marginEnd="@dimen/setting_content_margin"
-            android:textSize="14sp"/>
+            android:textSize="14sp" />
 
         <RelativeLayout
             android:id="@+id/setting_log_filter_view"
@@ -357,8 +618,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
-                android:src="@drawable/ic_arrow_right"
-                android:layout_marginEnd="@dimen/setting_content_margin" />
+                android:layout_marginEnd="@dimen/setting_content_margin"
+                android:src="@drawable/ic_arrow_right" />
         </RelativeLayout>
 
         <View
@@ -366,6 +627,61 @@
             android:layout_height="@dimen/setting_divider_height"
             android:layout_marginTop="@dimen/setting_content_margin_vertical"
             android:background="@color/gray_divider" />
+
+        <RelativeLayout
+            android:id="@+id/setting_stream_type_view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/setting_item_height_normal"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="onClick">
+
+            <TextView
+                android:id="@+id/setting_stream_type_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/setting_content_margin"
+                android:text="@string/setting_stream_type_title"
+                android:textColor="@color/gray_deep_dark"
+                android:textSize="@dimen/text_size_normal" />
+
+            <TextView
+                android:id="@+id/setting_stream_type_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/setting_content_margin" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/setting_item_height_normal"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/setting_stats_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/setting_content_margin"
+                android:text="@string/setting_stats_title"
+                android:textColor="@color/gray_deep_dark"
+                android:textSize="@dimen/text_size_normal" />
+
+            <TextView
+                android:id="@+id/setting_stats_checkbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/setting_content_margin"
+                android:background="@drawable/setting_switch"
+                android:onClick="onStatsChecked" />
+        </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/setting_mirror_local_view"
@@ -422,6 +738,33 @@
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/setting_content_margin" />
         </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/setting_divider_height"
+            android:layout_marginTop="@dimen/setting_content_margin_vertical"
+            android:background="@color/gray_divider" />
+
+        <TextView
+            android:id="@+id/setting_video_local_store_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/setting_content_margin"
+            android:layout_marginTop="@dimen/setting_content_margin_vertical"
+            android:layout_marginEnd="@dimen/setting_content_margin"
+            android:text="@string/setting_video_local_store_title"
+            android:textColor="@color/gray_deep_dark"
+            android:textSize="@dimen/text_size_normal" />
+
+        <EditText
+            android:id="@+id/video_local_store_path_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/setting_content_margin"
+            android:layout_marginEnd="@dimen/setting_content_margin"
+            android:textSize="14sp" />
 
     </LinearLayout>
 </ScrollView>

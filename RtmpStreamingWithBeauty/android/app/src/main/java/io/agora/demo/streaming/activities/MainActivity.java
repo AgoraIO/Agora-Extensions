@@ -5,11 +5,13 @@ import android.animation.Animator;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
@@ -23,8 +25,9 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import io.agora.demo.streaming.LiveStreamingPresenter;
+import io.agora.demo.streaming.presenter.LiveStreamingPresenter;
 import io.agora.demo.streaming.R;
+import io.agora.demo.streaming.utils.PrefManager;
 
 public class MainActivity extends BaseActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
@@ -185,7 +188,9 @@ public class MainActivity extends BaseActivity {
     }
 
     public void onStartBroadcastClicked(View view) {
+        Log.d(TAG, "onStartBroadcastClicked befor");
         checkPermission();
+        Log.d(TAG, "onStartBroadcastClicked after");
     }
 
     private void checkPermission() {
@@ -232,7 +237,9 @@ public class MainActivity extends BaseActivity {
 
     private void resetLayoutAndForward() {
         closeImeDialogIfNeeded();
+        Log.d(TAG, "gotoLiveActivity befor");
         gotoLiveActivity();
+        Log.d(TAG, "gotoLiveActivity after");
     }
 
     private void closeImeDialogIfNeeded() {
@@ -243,7 +250,12 @@ public class MainActivity extends BaseActivity {
     }
 
     private void gotoLiveActivity() {
-        Intent intent = new Intent(getApplicationContext(), LiveActivity.class);
+        int screenOrientation =
+            PrefManager.SCREEN_ORIENTATIONS[PrefManager.getScreenOrientationIndex(this)];
+        Class<?> cls = (screenOrientation == Configuration.ORIENTATION_PORTRAIT) ? LiveActivity.class
+            : (screenOrientation == Configuration.ORIENTATION_LANDSCAPE) ? LandscapeLiveActivity.class
+            : DynamicLiveActivity.class;
+        Intent intent = new Intent(getApplicationContext(), cls);
         intent.putExtra(LiveActivity.KEY_ROOM_NAME, mTopicEdit.getText().toString());
         startActivity(intent);
     }

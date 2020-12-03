@@ -12,10 +12,13 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -43,9 +46,21 @@ public class SettingsActivity extends BaseActivity {
     private TextView mAudioTypeText;
     private TextView mAudioBitrateText;
     private EditText mLogPathEditText;
+    private EditText mVideoLocalStorePathEditText;
     private TextView mLogFilterText;
+    private TextView mStreamTypeText;
+    private TextView mVideoStatCheck;
     private TextView mMirrorLocalText;
     private TextView mMirrorRemoteText;
+    private TextView mScreenRationText;
+
+    private RadioGroup mGroupVideoRatio;
+    private RadioGroup mGroupVideoDefinition;
+    private RadioButton mGroupVideoRatio11, mGroupVideoRatio169, mGroupVideoRatio43, mGroupVideoRatioCustom;
+    private RadioButton mGroupVideoDefinitionLow, mGroupVideoDefinitionMiddle, mGroupVideoDefinitionHeight, mGroupVideoDefinitionCustom;
+    private TextView mVideoResolutionWidth;
+    private TextView mVideoResolutionHeight;
+
 
     private int mItemPadding;
     private ResolutionAdapter mResolutionAdapter;
@@ -74,7 +89,7 @@ public class SettingsActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-        mPref = PrefManager.getPreferences();
+        mPref = PrefManager.getPreferences(getApplicationContext());
         initUI();
     }
 
@@ -82,7 +97,7 @@ public class SettingsActivity extends BaseActivity {
         mItemPadding = getResources().getDimensionPixelSize(R.dimen.setting_resolution_item_padding);
 
         mUrlEditText = findViewById(R.id.rtmp_url_edittext);
-        mUrlEditText.setText(PrefManager.getRtmpUrl());
+        mUrlEditText.setText(PrefManager.getRtmpUrl(this));
         ImageView codeScanBtn = findViewById(R.id.qrcode_scan_imageview);
         codeScanBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,47 +111,140 @@ public class SettingsActivity extends BaseActivity {
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, DEFAULT_SPAN);
         resolutionList.setLayoutManager(layoutManager);
 
-        mResolutionAdapter = new ResolutionAdapter(this, PrefManager.getVideoDimensionsIndex());
+        mResolutionAdapter = new ResolutionAdapter(this, PrefManager.getVideoDimensionsIndex(this));
         resolutionList.setAdapter(mResolutionAdapter);
         resolutionList.addItemDecoration(mItemDecoration);
 
         mFrameRateText = findViewById(R.id.setting_framerate_value);
         mFrameRateText.setText(String.valueOf(
-            PrefManager.VIDEO_FRAMERATES[PrefManager.getVideoFramerateIndex()].getValue()));
+                PrefManager.VIDEO_FRAMERATES[PrefManager.getVideoFramerateIndex(this)].getValue()));
 
         mVideoBitrateText = findViewById(R.id.setting_video_bitrate_value);
         mVideoBitrateText.setText(String.valueOf(
-            PrefManager.VIDEO_BITRATES[PrefManager.getVideoBitrateIndex()]));
+                PrefManager.VIDEO_BITRATES[PrefManager.getVideoBitrateIndex(this)]));
 
         mVideoOrientationModeText = findViewById(R.id.setting_video_orientation_mode_value);
         mVideoOrientationModeText.setText(
-            PrefManager.VIDEO_ORIENTATION_MODE_STRINGS[PrefManager.getVideoOrientationModeIndex()]);
+                PrefManager.VIDEO_ORIENTATION_MODE_STRINGS[PrefManager.getVideoOrientationModeIndex(this)]);
+
+        mScreenOrientationText = findViewById(R.id.setting_screen_orientation_value);
+        mScreenOrientationText.setText(
+                PrefManager.SCREEN_ORIENTATION_STRINGS[PrefManager.getScreenOrientationIndex(this)]);
 
         mAudioSampleRateText = findViewById(R.id.setting_audio_sample_rate_value);
         mAudioSampleRateText.setText(
-            PrefManager.AUDIO_SAMPLE_RATE_STRINGS[PrefManager.getAudioSampleRateIndex()]);
+                PrefManager.AUDIO_SAMPLE_RATE_STRINGS[PrefManager.getAudioSampleRateIndex(this)]);
 
         mAudioTypeText = findViewById(R.id.setting_audio_type_value);
-        mAudioTypeText.setText(PrefManager.AUDIO_TYPE_STRINGS[PrefManager.getAudioTypeIndex()]);
+        mAudioTypeText.setText(PrefManager.AUDIO_TYPE_STRINGS[PrefManager.getAudioTypeIndex(this)]);
 
         mAudioBitrateText = findViewById(R.id.setting_audio_bitrate_value);
         mAudioBitrateText.setText(String.valueOf(
-            PrefManager.AUDIO_BITRATES[PrefManager.getAudioBitrateIndex()]));
+                PrefManager.AUDIO_BITRATES[PrefManager.getAudioBitrateIndex(this)]));
 
         mLogPathEditText = findViewById(R.id.log_path_edittext);
-        mLogPathEditText.setText(PrefManager.getLogPath());
+        mLogPathEditText.setText(PrefManager.getLogPath(this));
+
+        mVideoLocalStorePathEditText = findViewById(R.id.video_local_store_path_edittext);
+        mVideoLocalStorePathEditText.setText(PrefManager.getVideoPath(this));
 
         mLogFilterText = findViewById(R.id.setting_log_filter_value);
         mLogFilterText.setText(PrefManager.LOG_FILTER_STRINGS[
-            PrefManager.getLogFilterIndex()]);
+                PrefManager.getLogFilterIndex(this)]);
+
+        mStreamTypeText = findViewById(R.id.setting_stream_type_value);
+        mStreamTypeText.setText(PrefManager.STREAM_TYPES_STRINGS[
+                PrefManager.getStreamTypeIndex(this)]);
+
+        mVideoStatCheck = findViewById(R.id.setting_stats_checkbox);
+        mVideoStatCheck.setActivated(PrefManager.isStatsEnabled(this));
 
         mMirrorLocalText = findViewById(R.id.setting_mirror_local_value);
         mMirrorLocalText.setText(PrefManager.VIDEO_MIRROR_MODE_STRINGS[
-            PrefManager.VIDEO_MIRROR_MODES[PrefManager.getMirrorModeIndexLocal()]]);
+                PrefManager.VIDEO_MIRROR_MODES[PrefManager.getMirrorLocalIndex(this)]]);
 
         mMirrorRemoteText = findViewById(R.id.setting_mirror_remote_value);
         mMirrorRemoteText.setText(PrefManager.VIDEO_MIRROR_MODE_STRINGS[
-            PrefManager.VIDEO_MIRROR_MODES[PrefManager.getMirrorModeIndexRemote()]]);
+                PrefManager.VIDEO_MIRROR_MODES[PrefManager.getMirrorRemoteIndex(this)]]);
+
+        mScreenRationText = findViewById(R.id.setting_screen_ratio_value);
+        mScreenRationText.setText(PrefManager.SCREEN_RATION_MODE_STRINGS[
+                PrefManager.getScreenRationIndex(this)]);
+
+        mGroupVideoRatio = findViewById(R.id.setting_resolution_ratio_value);
+        mGroupVideoRatio11 = findViewById(R.id.setting_resolution_ratio_value_1_1);
+        mGroupVideoRatio169 = findViewById(R.id.setting_resolution_ratio_value_16_9);
+        mGroupVideoRatio43 = findViewById(R.id.setting_resolution_ratio_value_4_3);
+        int indexRadio = PrefManager.getVideoRatioIndex(this);
+        switch (indexRadio){
+            case 0:
+                mGroupVideoRatio11.setChecked(true);
+                break;
+            case 1:
+                mGroupVideoRatio169.setChecked(true);
+                break;
+            case 2:
+                mGroupVideoRatio43.setChecked(true);
+                break;
+            default:
+                mGroupVideoRatio43.setChecked(true);
+        }
+
+        mGroupVideoDefinition = findViewById(R.id.setting_resolution_definition_value);
+        mGroupVideoDefinitionLow = findViewById(R.id.setting_resolution_definition_value_low);
+        mGroupVideoDefinitionMiddle = findViewById(R.id.setting_resolution_definition_value_middle);
+        mGroupVideoDefinitionHeight = findViewById(R.id.setting_resolution_definition_value_high );
+        int indexDefinition = PrefManager.getVideoDefinitionIndex(this);
+        switch (indexDefinition){
+            case 0:
+                mGroupVideoDefinitionLow.setChecked(true);
+                break;
+            case 1:
+                mGroupVideoDefinitionMiddle.setChecked(true);
+                break;
+            case 2:
+                mGroupVideoDefinitionHeight.setChecked(true);
+                break;
+            default:
+                mGroupVideoDefinitionHeight.setChecked(true);
+        }
+
+        mVideoResolutionWidth = findViewById(R.id.setting_resolution_value_width);
+        mVideoResolutionHeight = findViewById(R.id.setting_resolution_value_height);
+
+        showResolutionText();
+
+        mGroupVideoRatio.setOnCheckedChangeListener((radioGroup, i) -> {
+            if (i == mGroupVideoRatio11.getId()) {
+                PrefManager.setVideoRatioIndex(this, 0);
+            } else if (i == mGroupVideoRatio169.getId()) {
+                PrefManager.setVideoRatioIndex(this, 1);
+            } else if (i == mGroupVideoRatio43.getId()) {
+                PrefManager.setVideoRatioIndex(this, 2);
+            } else {
+                PrefManager.setVideoRatioIndex(this, 2);
+            }
+            showResolutionText();
+        });
+
+        mGroupVideoDefinition.setOnCheckedChangeListener((radioGroup, i) ->{
+                if (i == mGroupVideoDefinitionLow.getId()) {
+                    PrefManager.setVideoDefinitionIndex(this, 0);
+                } else if (i == mGroupVideoDefinitionMiddle.getId()) {
+                    PrefManager.setVideoDefinitionIndex(this, 1);
+                } else if (i == mGroupVideoDefinitionHeight.getId()) {
+                    PrefManager.setVideoDefinitionIndex(this, 2);
+                } else {
+                    // 自定义
+                    PrefManager.setVideoRatioIndex(this, 2);
+                }
+                showResolutionText();
+        });
+    }
+
+    private void showResolutionText() {
+        mVideoResolutionWidth.setText(String.valueOf(PrefManager.getResolutionWidth(this)));
+        mVideoResolutionHeight.setText(String.valueOf( PrefManager.getResolutionHeight(this)));
     }
 
     private void gotoQRCodeActivity() {
@@ -145,7 +253,7 @@ public class SettingsActivity extends BaseActivity {
     }
 
     private void onShareLogClicked(View view) {
-        String logPath = PrefManager.getLogPath();
+        String logPath = PrefManager.getLogPath(this);
         File file = new File(logPath);
         if (file.exists()) {
             Intent share = new Intent(Intent.ACTION_SEND);
@@ -189,6 +297,9 @@ public class SettingsActivity extends BaseActivity {
         saveRtmpUrl();
         saveResolution();
         saveLogPath();
+        saveShowStats();
+        saveStreamType();
+        saveLogFilter();
         finish();
     }
 
@@ -209,6 +320,27 @@ public class SettingsActivity extends BaseActivity {
         if (logPathEditable != null) {
             mPref.edit().putString(PrefManager.PREF_LOG_PATH, logPathEditable.toString()).apply();
         }
+    }
+
+    private void saveStreamType(){
+        int streamType = PrefManager.getStreamTypeIndex(this);
+        mPref.edit().putInt(PrefManager.PREF_STREAM_TYPE_INDEX, streamType).apply();
+    }
+
+    private void saveShowStats() {
+        mPref.edit().putBoolean(PrefManager.PREF_ENABLE_STATS,
+                mVideoStatCheck.isActivated()).apply();
+    }
+
+    private void saveLogFilter(){
+        CharSequence logFilter = mLogFilterText.getText();
+        int logFilterIndex = 0;
+        for(logFilterIndex = 0; logFilterIndex < PrefManager.LOG_FILTER_STRINGS.length; logFilterIndex++){
+            if(PrefManager.LOG_FILTER_STRINGS[logFilterIndex].equals(logFilter.toString())){
+                break;
+            }
+        }
+        mPref.edit().putInt(PrefManager.PREF_LOG_FILTER_INDEX, logFilterIndex).apply();
     }
 
     public void onStatsChecked(View view) {
@@ -233,15 +365,19 @@ public class SettingsActivity extends BaseActivity {
                 break;
             case R.id.setting_video_orientation_mode_view:
                 showChoiceDialog(PrefManager.VIDEO_ORIENTATION_MODE_STRINGS,
-                    PrefManager.PREF_VIDEO_ORIENTATION_MODE_INDEX, mVideoOrientationModeText);
+                        PrefManager.PREF_VIDEO_ORIENTATION_MODE_INDEX, mVideoOrientationModeText);
+                break;
+            case R.id.setting_screen_orientation_view:
+                showChoiceDialog(PrefManager.SCREEN_ORIENTATION_STRINGS,
+                        PrefManager.PREF_SCREEN_ORIENTATION_INDEX, mScreenOrientationText);
                 break;
             case R.id.setting_audio_sample_rate_view:
                 showChoiceDialog(PrefManager.AUDIO_SAMPLE_RATE_STRINGS,
-                    PrefManager.PREF_AUDIO_SAMPLE_RATE_INDEX, mAudioSampleRateText);
+                        PrefManager.PREF_AUDIO_SAMPLE_RATE_INDEX, mAudioSampleRateText);
                 break;
             case R.id.setting_audio_type_view:
                 showChoiceDialog(PrefManager.AUDIO_TYPE_STRINGS,
-                    PrefManager.PREF_AUDIO_TYPE_INDEX, mAudioTypeText);
+                        PrefManager.PREF_AUDIO_TYPE_INDEX, mAudioTypeText);
                 break;
             case R.id.setting_audio_bitrate_view:
                 final String[] audioBitrateList = new String[PrefManager.AUDIO_BITRATES.length];
@@ -252,18 +388,26 @@ public class SettingsActivity extends BaseActivity {
                 break;
             case R.id.setting_log_filter_view:
                 showChoiceDialog(PrefManager.LOG_FILTER_STRINGS,
-                    PrefManager.PREF_LOG_FILTER_INDEX, mLogFilterText);
+                        PrefManager.PREF_LOG_FILTER_INDEX, mLogFilterText);
                 break;
             case R.id.setting_log_share_view:
                 onShareLogClicked(view);
                 break;
+            case R.id.setting_stream_type_view:
+                showChoiceDialog(PrefManager.STREAM_TYPES_STRINGS,
+                        PrefManager.PREF_STREAM_TYPE_INDEX, mStreamTypeText);
+                break;
             case R.id.setting_mirror_local_view:
                 showChoiceDialog(PrefManager.VIDEO_MIRROR_MODE_STRINGS,
-                    PrefManager.PREF_MIRROR_LOCAL, mMirrorLocalText);
+                        PrefManager.PREF_MIRROR_LOCAL, mMirrorLocalText);
                 break;
             case R.id.setting_mirror_remote_view:
                 showChoiceDialog(PrefManager.VIDEO_MIRROR_MODE_STRINGS,
-                    PrefManager.PREF_MIRROR_REMOTE, mMirrorRemoteText);
+                        PrefManager.PREF_MIRROR_REMOTE, mMirrorRemoteText);
+                break;
+            case R.id.setting_screen_ratio_view:
+                showChoiceDialog(PrefManager.SCREEN_RATION_MODE_STRINGS,
+                        PrefManager.PREF_SCREEN_RATION, mScreenRationText);
                 break;
         }
     }

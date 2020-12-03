@@ -12,6 +12,8 @@
     <string name="setting_title">Settings</string>
     <string name="setting_rtmp_title">RTMP publish URL</string>
     <string name="setting_resolution_title">Video Resolution</string>
+    <string name="setting_resolution_ratio_title">Video Resolution Ratio</string>
+    <string name="setting_resolution_definition_title">Video Resolution Definition</string>
     <string name="setting_framerate_title">Video Frame Rate</string>
     <string name="setting_video_bitrate_title">Video Bitrate (Kbps)</string>
     <string name="setting_video_orientation_mode_title">Video Orientation Mode</string>
@@ -42,6 +44,8 @@
     <string name="start_rtmp_streaming">Start RTMP streaming</string>
     <string name="switch_to_rtmp_streaming">Switch to RTMP streaming</string>
     <string name="switch_to_agora_channel">Switch to Agora channel</string>
+    <string name="switch_to_screen_capture">Switch to Screen Capture</string>
+    <string name="switch_resolution">Switch Res</string>
 
     <!-- Role Choose Activity -->
     <string name="select_role_title">Please choose your role</string>
@@ -56,4 +60,14 @@
     <!-- face beauty -->
     <string name="fu_base_is_tracking_text">No Face Tracking</string>
     <string name="fu_face_tracking_time_tips">Face tracking may take a while</string>
+    <string name="setting_screen_ratio_title">Screen ration</string>
+    <string name="setting_video_local_store_title">Video local store</string>
+
+    <!-- operation menu title -->
+    <string name="switch_screen_share_title">Switch screen share title</string>
+    <string name="switch_screen_ration_title">Switch screen ration title</string>
+    <string name="snapshot_video_frame_title">Snapshot</string>
+    <string name="operation_collection_title">Operation collection title</string>
+    <string name="stop_screen_share_title">Stop screen share title</string>
+
 </resources>

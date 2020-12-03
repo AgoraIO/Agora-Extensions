@@ -8,6 +8,7 @@ import java.io.File;
 
 public class FileUtil {
     private static final String LOG_FOLDER_NAME = "log";
+    private static final String MEDIA_FOLDER_NAME = "media";
 
     /**
      * Get the log file path
@@ -17,12 +18,29 @@ public class FileUtil {
      */
     public static String getLogFilePath(Context context, String fileName) {
         File folder;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+        if (Build.VERSION.SDK_INT >= 29) {
             folder = new File(context.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS),
                 LOG_FOLDER_NAME);
         } else {
             folder = new File(Environment.getExternalStorageDirectory().getAbsolutePath() +
                 File.separator + context.getPackageName() + File.separator + LOG_FOLDER_NAME);
+        }
+
+        if (!folder.exists() && !folder.mkdir()) {
+            return "";
+        } else {
+            return new File(folder, fileName).getAbsolutePath();
+        }
+    }
+
+    public static String geMediaFilePath(Context context, String fileName) {
+        File folder;
+        if (Build.VERSION.SDK_INT >= 29) {
+            folder = new File(context.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS),
+                    MEDIA_FOLDER_NAME);
+        } else {
+            folder = new File(Environment.getExternalStorageDirectory().getAbsolutePath() +
+                    File.separator + context.getPackageName() + File.separator + MEDIA_FOLDER_NAME);
         }
 
         if (!folder.exists() && !folder.mkdir()) {
