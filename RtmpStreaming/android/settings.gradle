@@ -1,1 +1,13 @@
 include ':app'
+include ':appwithfu'
+include ':fulivedemo'
+include ":faceunity"
+
+// To compile streaming sdk, set 'buildWithAgoraProjAndroidStreaming = true'
+// The other variable is in Build.gradle
+def buildWithAgoraProjAndroidStreaming = true
+
+if (buildWithAgoraProjAndroidStreaming) {
+    include ':proj.android.streaming'
+    project(':proj.android.streaming').projectDir = new File(settingsDir, '../../../proj.android.streaming')
+}

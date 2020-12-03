@@ -1,5 +1,2 @@
-libs/AgoraStreamingKit.jar
-src/main/jniLibs/arm64-v8a/libAgoraStreamingKit.so
-src/main/jniLibs/armeabi-v7a/libAgoraStreamingKit.so
-src/main/jniLibs/x86/libAgoraStreamingKit.so
-src/main/jniLibs/x86_64/libAgoraStreamingKit.so
+/build
+src/main/effects
