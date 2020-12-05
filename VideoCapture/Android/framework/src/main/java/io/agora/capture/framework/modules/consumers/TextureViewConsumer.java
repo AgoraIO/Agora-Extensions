@@ -71,6 +71,7 @@ public class TextureViewConsumer extends BaseWindowConsumer implements TextureVi
     @Override
     public void onSurfaceTextureSizeChanged(SurfaceTexture surface, int width, int height) {
         GLES20.glViewport(0, 0, width, height);
+        resetViewport();
         setSize(width, height);
         needResetSurface = true;
     }
