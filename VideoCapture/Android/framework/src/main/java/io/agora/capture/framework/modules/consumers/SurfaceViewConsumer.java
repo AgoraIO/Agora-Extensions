@@ -75,6 +75,7 @@ public class SurfaceViewConsumer extends BaseWindowConsumer implements SurfaceHo
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
         Log.i(TAG, "surfaceChanged:" + width + "x" + height);
         GLES20.glViewport(0, 0, width, height);
+        resetViewport();
         mWidth = width;
         mHeight = height;
         needResetSurface = true;

@@ -28,7 +28,7 @@ public abstract class BaseWindowConsumer implements IVideoConsumer {
     volatile boolean surfaceDestroyed;
     private float[] mMVPMatrix = new float[16];
     private float[] mMirrorMatrix = new float[16];
-    private boolean mMVPInit;
+    private volatile boolean mViewportInit;
 
     BaseWindowConsumer(VideoModule videoModule) {
         this.videoModule = videoModule;
@@ -106,13 +106,13 @@ public abstract class BaseWindowConsumer implements IVideoConsumer {
         int surfaceHeight = onMeasuredHeight();
         GLES20.glViewport(0, 0, surfaceWidth, surfaceHeight);
 
-        if (!mMVPInit) {
+        if (!mViewportInit) {
             mMVPMatrix = GlUtil.changeMVPMatrix(
                     GlUtil.IDENTITY_MATRIX,
                     surfaceWidth, surfaceHeight,
                     frame.format.getWidth(),
                     frame.format.getHeight());
-            mMVPInit = true;
+            mViewportInit = true;
         }
 
         float[] mvp = mMVPMatrix;
@@ -137,6 +137,10 @@ public abstract class BaseWindowConsumer implements IVideoConsumer {
 
     public void setMirrorMode(int mode) {
         mirrorMode = mode;
+    }
+
+    protected void resetViewport() {
+        mViewportInit = false;
     }
 
     @Override
