@@ -182,6 +182,11 @@ public class PlayerFragment extends Fragment implements SurfaceHolder.Callback, 
                     }
                 });
             }
+
+            @Override
+            public void onPlayBufferUpdated(long l) {
+
+            }
         });
 
         agoraMediaPlayerKit1.registerVideoFrameObserver(new VideoFrameObserver() {
@@ -250,6 +255,11 @@ public class PlayerFragment extends Fragment implements SurfaceHolder.Callback, 
                             setInfo2Text("metaData:" + new String(data));
                         }
                     });
+                }
+
+                @Override
+                public void onPlayBufferUpdated(long l) {
+
                 }
             });
 
