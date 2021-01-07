@@ -7,8 +7,8 @@
 //
 
 #import "AgoraRtcChannelPublishHelper.h"
-#import <AgoraRtcEngineKit/IAgoraRtcEngine.h>
-#import <AgoraRtcEngineKit/IAgoraMediaEngine.h>
+#import <AgoraRtcKit/IAgoraRtcEngine.h>
+#import <AgoraRtcKit/IAgoraMediaEngine.h>
 #import "AudioCircularBuffer.h"
 #import "scoped_ptr.h"
 #import <mutex>
@@ -359,6 +359,15 @@ static AgoraRtcChannelPublishHelper *instance = NULL;
 
 - (void)shouldStop {
     
+}
+
+- (AgoraVideoCaptureType)captureType {
+    return AgoraVideoCaptureTypeCamera;
+}
+
+
+- (AgoraVideoContentHint)contentHint {
+    return AgoraVideoContentHintNone;
 }
 
 /// Description of state of Mediaplayer's state
