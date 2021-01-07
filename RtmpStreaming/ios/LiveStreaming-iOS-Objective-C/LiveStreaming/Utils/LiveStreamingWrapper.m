@@ -7,6 +7,7 @@
 //
 
 #import "LiveStreamingWrapper.h"
+#import "KeyCenter.h"
 
 @interface LiveStreamingWrapper () <AgoraStreamingDelegate, AgoraVideoFilter>
 @property (nonatomic, strong) AgoraStreamingKit *streamingKit;
@@ -14,6 +15,7 @@
 @property (nonatomic, strong) AgoraStreamingContext *context;
 @property (nonatomic, assign) CGSize videoSize;
 @property (nonatomic, strong) AgoraVideoPreviewRenderer *previewRenderer;
+@property (nonatomic, strong) AgoraCameraCapturer *cameraCapturer;
 @property (nonatomic, assign) BOOL isStartStreaming;
 @property (nonatomic, assign) NSString *rtmpUrl;
 @property (nonatomic, strong) StreamingModel *streamingModel;
@@ -28,14 +30,16 @@
         self.videoSize = CGSizeMake(640, 480);
         self.context = self.streamingModel.streamingContext;
         self.context.delegate = self;
+			  self.context.appId = [KeyCenter AppId];
         self.rtmpUrl = self.streamingModel.rtmpUrl;
-        self.streamingKit = [AgoraStreamingKit sharedStreamingKitWithContext:self.context];
+				self.streamingKit = [AgoraStreamingKit sharedStreamingKitWithContext:self.context];
         [self.streamingKit enableAudioRecording:YES];
         [self.streamingKit enableVideoCapturing:YES];
         [self.streamingKit setLogFilter:self.streamingModel.logFilterType];
         self.previewRenderer = [self.streamingKit getVideoPreviewRenderer];
         [self.previewRenderer setMirrorMode:MirrorModeAuto];
-        [self.previewRenderer setRenderMode:RenderModeHidden];
+        [self.previewRenderer setRenderMode:RenderModeFit];
+				self.cameraCapturer = [self.streamingKit getCameraCapturer];
     }
     return self;
 }
@@ -95,6 +99,50 @@
     return [self.streamingKit muteVideoStream:muted];
 }
 
+- (void)setCameraFocusPositionInPreview:(CGPoint)position {
+		if ([self.cameraCapturer isCameraFocusPositionInPreviewSupported]) {
+				[self.cameraCapturer setCameraFocusPositionInPreview:position];
+		} else {
+				NSLog(@"camera focus unsupport.");
+		}
+}
+
+- (BOOL)setCameraAutoFocusFaceModeEnabled:(BOOL)enable {
+		if ([self.cameraCapturer isCameraAutoFocusFaceModeSupported]) {
+				return [self.cameraCapturer setCameraAutoFocusFaceModeEnabled:enable];
+		} else {
+				NSLog(@"camera auto focus face mode unsupport.");
+				return NO;
+		}
+}
+
+- (float)getMaxZoom {
+	return [self.cameraCapturer getMaxZoom];
+}
+
+- (BOOL)setCameraZoomFactor:(CGFloat)zoomFactor {
+		if ([self.cameraCapturer isCameraZoomSupported]) {
+				return [self.cameraCapturer setCameraZoomFactor:zoomFactor];
+		} else {
+				NSLog(@"camera zoom unsupport.");
+				return NO;
+		}
+}
+
+- (void)snapshot {
+	[self.streamingKit snapshot:^(ASKImage * _Nonnull image) {
+		UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+	}];
+}
+
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo {
+	NSLog(@"snapshotCompletion");
+}
+
+- (void)switchResolution:(CGSize)resolution {
+	[self.streamingKit switchResolution:resolution];
+}
+
 - (void)addVideoFilter:(id<AgoraVideoFilter>)filter {
     [self.streamingKit addVideoFilter:filter];
 }
@@ -150,7 +198,7 @@
 }
 
 - (void)onInitializedKitError:(AgoraInitializeError)error {
-    
+
 }
 
 #pragma mark - AgoraVideoFilter

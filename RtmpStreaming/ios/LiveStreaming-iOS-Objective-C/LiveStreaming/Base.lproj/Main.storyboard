@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="fw8-pa-jb1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="fw8-pa-jb1">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -31,7 +32,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Live Streaming!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vbk-uM-tPe">
-                                <rect key="frame" x="100.5" y="154" width="213.5" height="21"/>
+                                <rect key="frame" x="101" y="154" width="212.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -55,7 +56,7 @@
                                     <constraint firstAttribute="width" constant="1" id="kOm-z7-1aT"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xZv-Qc-g1R">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xZv-Qc-g1R">
                                 <rect key="frame" x="76" y="314" width="262" height="46"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="46" id="4YW-j7-i1b"/>
@@ -91,7 +92,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bYi-R4-xn9" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1095.2" y="326.98650674662673"/>
+            <point key="canvasLocation" x="1513" y="327"/>
         </scene>
         <!--Profile-->
         <scene sceneID="AIQ-vQ-bqU">
@@ -100,7 +101,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="G6X-9q-bRq">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <sections>
                             <tableViewSection headerTitle="RTMP 推流地址" id="k08-it-Ml4">
                                 <cells>
@@ -216,10 +217,10 @@
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <state key="normal" title="44100">
-                                                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <color key="titleColor" systemColor="darkTextColor"/>
                                                     </state>
                                                     <state key="selected">
-                                                        <color key="titleColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="titleColor" systemColor="systemPinkColor"/>
                                                     </state>
                                                     <connections>
                                                         <action selector="sampleRateBtnDidClicked:" destination="Cwo-gd-L2m" eventType="touchUpInside" id="pfx-CJ-vxI"/>
@@ -232,10 +233,10 @@
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <state key="normal" title="22050">
-                                                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <color key="titleColor" systemColor="darkTextColor"/>
                                                     </state>
                                                     <state key="selected">
-                                                        <color key="titleColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="titleColor" systemColor="systemPinkColor"/>
                                                     </state>
                                                     <connections>
                                                         <action selector="sampleRateBtnDidClicked:" destination="Cwo-gd-L2m" eventType="touchUpInside" id="56f-pw-ys8"/>
@@ -248,10 +249,10 @@
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <state key="normal" title="11025">
-                                                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <color key="titleColor" systemColor="darkTextColor"/>
                                                     </state>
                                                     <state key="selected">
-                                                        <color key="titleColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="titleColor" systemColor="systemPinkColor"/>
                                                     </state>
                                                     <connections>
                                                         <action selector="sampleRateBtnDidClicked:" destination="Cwo-gd-L2m" eventType="touchUpInside" id="Z9Z-re-zaJ"/>
@@ -286,10 +287,10 @@
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <state key="normal" title="Meno">
-                                                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <color key="titleColor" systemColor="darkTextColor"/>
                                                     </state>
                                                     <state key="selected">
-                                                        <color key="titleColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="titleColor" systemColor="systemPinkColor"/>
                                                     </state>
                                                     <connections>
                                                         <action selector="soundTypeBtnDidClicked:" destination="Cwo-gd-L2m" eventType="touchUpInside" id="5P8-Qx-Sc3"/>
@@ -302,10 +303,10 @@
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <state key="normal" title="Stereo">
-                                                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <color key="titleColor" systemColor="darkTextColor"/>
                                                     </state>
                                                     <state key="selected">
-                                                        <color key="titleColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="titleColor" systemColor="systemPinkColor"/>
                                                     </state>
                                                     <connections>
                                                         <action selector="soundTypeBtnDidClicked:" destination="Cwo-gd-L2m" eventType="touchUpInside" id="WCb-LF-Z0r"/>
@@ -338,10 +339,10 @@
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <state key="normal" title="Portrait">
-                                                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <color key="titleColor" systemColor="darkTextColor"/>
                                                     </state>
                                                     <state key="selected">
-                                                        <color key="titleColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="titleColor" systemColor="systemPinkColor"/>
                                                     </state>
                                                     <connections>
                                                         <action selector="orientationModeBtnClicked:" destination="Cwo-gd-L2m" eventType="touchUpInside" id="111-Wm-yAZ"/>
@@ -354,10 +355,10 @@
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <state key="normal" title="Landscape">
-                                                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <color key="titleColor" systemColor="darkTextColor"/>
                                                     </state>
                                                     <state key="selected">
-                                                        <color key="titleColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="titleColor" systemColor="systemPinkColor"/>
                                                     </state>
                                                     <connections>
                                                         <action selector="orientationModeBtnClicked:" destination="Cwo-gd-L2m" eventType="touchUpInside" id="g9k-4G-Xdw"/>
@@ -412,10 +413,10 @@
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <state key="normal" title="Off">
-                                                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <color key="titleColor" systemColor="darkTextColor"/>
                                                     </state>
                                                     <state key="selected">
-                                                        <color key="titleColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="titleColor" systemColor="systemPinkColor"/>
                                                     </state>
                                                     <connections>
                                                         <action selector="logLevelDidClicked:" destination="Cwo-gd-L2m" eventType="touchUpInside" id="SWD-rX-Nom"/>
@@ -428,10 +429,10 @@
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <state key="normal" title="Debug">
-                                                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <color key="titleColor" systemColor="darkTextColor"/>
                                                     </state>
                                                     <state key="selected">
-                                                        <color key="titleColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="titleColor" systemColor="systemPinkColor"/>
                                                     </state>
                                                     <connections>
                                                         <action selector="logLevelDidClicked:" destination="Cwo-gd-L2m" eventType="touchUpInside" id="6uf-1a-A5H"/>
@@ -444,10 +445,10 @@
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <state key="normal" title="Info">
-                                                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <color key="titleColor" systemColor="darkTextColor"/>
                                                     </state>
                                                     <state key="selected">
-                                                        <color key="titleColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="titleColor" systemColor="systemPinkColor"/>
                                                     </state>
                                                     <connections>
                                                         <action selector="logLevelDidClicked:" destination="Cwo-gd-L2m" eventType="touchUpInside" id="9GH-d9-Wuq"/>
@@ -460,10 +461,10 @@
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <state key="normal" title="Warn">
-                                                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <color key="titleColor" systemColor="darkTextColor"/>
                                                     </state>
                                                     <state key="selected">
-                                                        <color key="titleColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="titleColor" systemColor="systemPinkColor"/>
                                                     </state>
                                                     <connections>
                                                         <action selector="logLevelDidClicked:" destination="Cwo-gd-L2m" eventType="touchUpInside" id="FIy-Kx-K3w"/>
@@ -476,10 +477,10 @@
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <state key="normal" title="Error">
-                                                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <color key="titleColor" systemColor="darkTextColor"/>
                                                     </state>
                                                     <state key="selected">
-                                                        <color key="titleColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="titleColor" systemColor="systemPinkColor"/>
                                                     </state>
                                                     <connections>
                                                         <action selector="logLevelDidClicked:" destination="Cwo-gd-L2m" eventType="touchUpInside" id="rEJ-RG-XYg"/>
@@ -613,7 +614,7 @@
                                             <action selector="muteVideoBtnDidClicked:" destination="pE8-Xi-s9j" eventType="touchUpInside" id="sHP-zI-8Of"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f3j-po-wLH">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f3j-po-wLH">
                                         <rect key="frame" x="80" y="759" width="254" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="48" id="JVE-Cu-Zcf"/>
@@ -635,30 +636,72 @@
                                             <action selector="filterBtnDidClicked:" destination="pE8-Xi-s9j" eventType="touchUpInside" id="WZU-8r-K4h"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jRu-7m-UbL">
+                                        <rect key="frame" x="8" y="52" width="80" height="54"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="80" id="Syf-Xa-93P"/>
+                                            <constraint firstAttribute="height" constant="54" id="htt-XG-opy"/>
+                                        </constraints>
+                                        <state key="normal" title="SnapShot"/>
+                                        <state key="selected" image="icon-camera off"/>
+                                        <connections>
+                                            <action selector="snapShotBtnDidClicked:" destination="pE8-Xi-s9j" eventType="touchUpInside" id="J3p-Gk-U5h"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="75H-m3-lZI">
+                                        <rect key="frame" x="21" y="114" width="54" height="54"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="54" id="5o7-hF-cpV"/>
+                                            <constraint firstAttribute="height" constant="54" id="j6x-gB-Wz6"/>
+                                        </constraints>
+                                        <state key="normal" title="1:1"/>
+                                        <state key="selected" image="icon-camera off"/>
+                                        <connections>
+                                            <action selector="switchResolutionDidClicked:" destination="pE8-Xi-s9j" eventType="touchUpInside" id="e88-QE-vZ8"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4PH-wW-gKA">
+                                        <rect key="frame" x="21" y="176" width="54" height="54"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="54" id="IPO-i9-H6d"/>
+                                            <constraint firstAttribute="height" constant="54" id="ybt-ma-WWV"/>
+                                        </constraints>
+                                        <state key="normal" title="16:9"/>
+                                        <state key="selected" image="icon-camera off"/>
+                                        <connections>
+                                            <action selector="switchResolutionDidClicked:" destination="pE8-Xi-s9j" eventType="touchUpInside" id="hoG-Ok-6MA"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="systemGray5Color"/>
                                 <constraints>
                                     <constraint firstItem="Ej5-0w-0ky" firstAttribute="leading" secondItem="Sp1-P4-5Cb" secondAttribute="trailing" constant="10" id="2VX-H6-9Yv"/>
                                     <constraint firstAttribute="trailing" secondItem="76H-FJ-NR4" secondAttribute="trailing" constant="24" id="7Xu-TG-Faz"/>
                                     <constraint firstAttribute="bottom" secondItem="Sp1-P4-5Cb" secondAttribute="bottom" constant="26" id="CbB-yF-yW8"/>
                                     <constraint firstAttribute="trailing" secondItem="oeO-Lw-dRE" secondAttribute="trailing" constant="28" id="EVk-Ic-sqz"/>
                                     <constraint firstAttribute="bottom" secondItem="Ej5-0w-0ky" secondAttribute="bottom" constant="26" id="IlZ-3c-DRs"/>
+                                    <constraint firstItem="jRu-7m-UbL" firstAttribute="leading" secondItem="z18-rS-5O4" secondAttribute="leading" constant="8" id="K3o-1P-YG1"/>
                                     <constraint firstItem="oeO-Lw-dRE" firstAttribute="centerY" secondItem="VRo-sA-GCb" secondAttribute="centerY" id="LGq-QE-liu"/>
+                                    <constraint firstItem="4PH-wW-gKA" firstAttribute="leading" secondItem="z18-rS-5O4" secondAttribute="leading" constant="21" id="Muo-di-T5v"/>
                                     <constraint firstItem="Ej5-0w-0ky" firstAttribute="leading" secondItem="Sp1-P4-5Cb" secondAttribute="trailing" constant="10" id="NTm-4z-IFe"/>
                                     <constraint firstAttribute="top" secondItem="76H-FJ-NR4" secondAttribute="bottom" constant="-73" id="Q5u-WR-voQ"/>
+                                    <constraint firstItem="75H-m3-lZI" firstAttribute="leading" secondItem="z18-rS-5O4" secondAttribute="leading" constant="21" id="Rd4-03-o7t"/>
                                     <constraint firstItem="Sp1-P4-5Cb" firstAttribute="leading" secondItem="z18-rS-5O4" secondAttribute="leading" constant="25" id="Smb-UO-pLO"/>
                                     <constraint firstItem="VRo-sA-GCb" firstAttribute="leading" secondItem="Ej5-0w-0ky" secondAttribute="trailing" constant="10" id="Vtv-9O-ceR"/>
                                     <constraint firstAttribute="trailing" secondItem="f3j-po-wLH" secondAttribute="trailing" constant="80" id="XNL-vm-HyR"/>
+                                    <constraint firstItem="jRu-7m-UbL" firstAttribute="top" secondItem="z18-rS-5O4" secondAttribute="top" constant="52" id="ahX-kq-sKG"/>
                                     <constraint firstItem="f3j-po-wLH" firstAttribute="leading" secondItem="z18-rS-5O4" secondAttribute="leading" constant="80" id="bvY-Rc-Nlu"/>
                                     <constraint firstItem="Ej5-0w-0ky" firstAttribute="top" secondItem="f3j-po-wLH" secondAttribute="bottom" constant="8" id="d9g-cO-5p3"/>
+                                    <constraint firstItem="75H-m3-lZI" firstAttribute="top" secondItem="jRu-7m-UbL" secondAttribute="bottom" constant="8" symbolic="YES" id="eYg-c6-rAY"/>
                                     <constraint firstItem="VRo-sA-GCb" firstAttribute="leading" secondItem="Ej5-0w-0ky" secondAttribute="trailing" constant="10" id="k36-I9-N5F"/>
                                     <constraint firstItem="76H-FJ-NR4" firstAttribute="top" secondItem="z18-rS-5O4" secondAttribute="top" constant="23" id="tNe-Kk-6hz"/>
                                     <constraint firstItem="VRo-sA-GCb" firstAttribute="centerY" secondItem="Ej5-0w-0ky" secondAttribute="centerY" id="tOZ-Cm-KyN"/>
+                                    <constraint firstItem="4PH-wW-gKA" firstAttribute="top" secondItem="75H-m3-lZI" secondAttribute="bottom" constant="8" symbolic="YES" id="uAQ-ID-V8g"/>
                                     <constraint firstAttribute="bottom" secondItem="VRo-sA-GCb" secondAttribute="bottom" constant="26.5" id="wcc-XL-5ho"/>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="z18-rS-5O4" firstAttribute="top" secondItem="YuA-ce-fU3" secondAttribute="top" id="ZgO-iV-Wex"/>
                             <constraint firstAttribute="bottom" secondItem="z18-rS-5O4" secondAttribute="bottom" id="fhs-Ah-6Q9"/>
@@ -675,7 +718,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TLd-QT-7px" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2925" y="737"/>
+            <point key="canvasLocation" x="2924.6376811594205" y="736.60714285714278"/>
         </scene>
     </scenes>
     <resources>
@@ -687,5 +730,50 @@
         <image name="icon-camera off" width="38" height="38"/>
         <image name="microphone" width="32" height="32"/>
         <image name="microphone-mute" width="32" height="32"/>
+        <systemColor name="darkTextColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="darkTextColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="darkTextColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="darkTextColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="darkTextColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="darkTextColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="darkTextColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="darkTextColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="darkTextColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="darkTextColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="darkTextColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="darkTextColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>

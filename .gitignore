@@ -1,5 +1,6 @@
 RtmpStreaming/ios/LiveStreaming-iOS-Objective-C/LiveStreaming/Model/KeyCenter.m
 RtmpStreaming/ios/LiveStreaming-iOS-Objective-C/LiveStreaming/Beautify/FaceUnity/authpack.h
+*.DS_Store
 *.framework
 *.mp4
 *.dll
@@ -19,6 +20,8 @@ RtmpStreaming/ios/LiveStreaming-iOS-Objective-C/LiveStreaming/Beautify/FaceUnity
 *.idx
 *.ilk
 *.exe
+**/xcshareddata
+**/xcuserdata
 moc_mainwindow.cpp
 moc_predefs.h
 AgoraMediaBase.h
@@ -35,3 +38,4 @@ MediaPlayer/samples/win/AgoraPlayer_Quickstart/AgoraSdk/include/IAgoraService.h
 *.xcuserstate
 .vscode
 .idea
+

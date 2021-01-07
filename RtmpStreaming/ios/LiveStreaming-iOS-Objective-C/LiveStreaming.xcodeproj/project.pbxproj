@@ -12,6 +12,7 @@
 		07D24D011D866704002C69BF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07D24CFF1D866704002C69BF /* Main.storyboard */; };
 		07D24D031D866704002C69BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07D24D021D866704002C69BF /* Assets.xcassets */; };
 		07D24D061D866704002C69BF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07D24D041D866704002C69BF /* LaunchScreen.storyboard */; };
+		0906D84A2571244000D80DE5 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0906D8492571244000D80DE5 /* Accelerate.framework */; };
 		094C8C2124E531F100BF9F73 /* LiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 094C8C2024E531F100BF9F73 /* LiveViewController.m */; };
 		0961A92924EBAA5900683DC8 /* KeyCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0961A92724EBAA5900683DC8 /* KeyCenter.m */; };
 		0961A92A24EBAA5900683DC8 /* StreamingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0961A92824EBAA5900683DC8 /* StreamingModel.m */; };
@@ -35,10 +36,39 @@
 		0961A94C24EBB08A00683DC8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07D24CFF1D866704002C69BF /* Main.storyboard */; };
 		0961A95924EBB55900683DC8 /* FaceUnityVideoFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0961A95824EBB55900683DC8 /* FaceUnityVideoFilter.m */; };
 		0961A95D24EBB94400683DC8 /* CoreML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0961A95C24EBB94400683DC8 /* CoreML.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		0963D3F5256B9C2D006273B8 /* ReplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09DC9EA32567BF45004C9D4A /* ReplayKit.framework */; };
+		0963D3F9256B9C2D006273B8 /* SampleHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 0963D3F8256B9C2D006273B8 /* SampleHandler.m */; };
+		0963D40C256B9C2D006273B8 /* ScreenShare.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 0963D3F4256B9C2D006273B8 /* ScreenShare.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		09748A0825761D7900DCABB3 /* doudizhu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 09748A0725761D7900DCABB3 /* doudizhu.mp3 */; };
+		09748A0925761D7900DCABB3 /* doudizhu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 09748A0725761D7900DCABB3 /* doudizhu.mp3 */; };
+		09748A0A25761D7900DCABB3 /* doudizhu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 09748A0725761D7900DCABB3 /* doudizhu.mp3 */; };
+		09DCA6552577DA7200E512A5 /* AgoraAudioTube.mm in Sources */ = {isa = PBXBuildFile; fileRef = 09DCA6522577DA7200E512A5 /* AgoraAudioTube.mm */; };
+		09DCA99F2578C2B600E512A5 /* libios_resampler.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 09DCA99E2578C2B600E512A5 /* libios_resampler.a */; };
+		09DDFDC1256CA7D30091C6A3 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09DDFDC0256CA7D30091C6A3 /* CoreImage.framework */; };
+		09DDFDC8256CEA7E0091C6A3 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09DDFDC0256CA7D30091C6A3 /* CoreImage.framework */; };
+		09DDFDC9256CEA850091C6A3 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09DDFDC0256CA7D30091C6A3 /* CoreImage.framework */; };
+		09DDFFAF256E437D0091C6A3 /* ScreenShare.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 0963D3F4256B9C2D006273B8 /* ScreenShare.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		1514DD6338CEDEDD5F73290E /* Pods_ScreenShare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C1DFC6EE56830A32EB9F80 /* Pods_ScreenShare.framework */; };
 		796CDC9783195C9FACFA51E2 /* Pods_LiveStreamingWithFU.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04B419CD8E48662DE091AE41 /* Pods_LiveStreamingWithFU.framework */; };
 		98551B7EBBCB7ECC995F62FF /* Pods_LiveStreaming.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47E79B08886F4974EFF74EB4 /* Pods_LiveStreaming.framework */; };
-		BEA7A7F65A3918DF0D25304E /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		0963D40A256B9C2D006273B8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07D24CEB1D866704002C69BF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0963D3F3256B9C2D006273B8;
+			remoteInfo = ScreenShare;
+		};
+		09DDFFB0256E437E0091C6A3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07D24CEB1D866704002C69BF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0963D3F3256B9C2D006273B8;
+			remoteInfo = ScreenShare;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		091842352446B9010069F890 /* Embed Frameworks */ = {
@@ -61,6 +91,38 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		09DA423C25824EEE003CB2CC /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		09DC9EB02567BF45004C9D4A /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				0963D40C256B9C2D006273B8 /* ScreenShare.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		09DDFFB2256E437E0091C6A3 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				09DDFFAF256E437D0091C6A3 /* ScreenShare.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -73,6 +135,7 @@
 		07D24D021D866704002C69BF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		07D24D051D866704002C69BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		07D24D071D866704002C69BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0906D8492571244000D80DE5 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		094C8C1F24E531F100BF9F73 /* LiveViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LiveViewController.h; sourceTree = "<group>"; };
 		094C8C2024E531F100BF9F73 /* LiveViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LiveViewController.m; sourceTree = "<group>"; };
 		0961A92524EBAA5900683DC8 /* StreamingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamingModel.h; sourceTree = "<group>"; };
@@ -95,11 +158,28 @@
 		0961A95824EBB55900683DC8 /* FaceUnityVideoFilter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FaceUnityVideoFilter.m; sourceTree = "<group>"; };
 		0961A95A24EBB76200683DC8 /* authpack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = authpack.h; sourceTree = "<group>"; };
 		0961A95C24EBB94400683DC8 /* CoreML.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreML.framework; path = System/Library/Frameworks/CoreML.framework; sourceTree = SDKROOT; };
+		0963D3F4256B9C2D006273B8 /* ScreenShare.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ScreenShare.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		0963D3F7256B9C2D006273B8 /* SampleHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SampleHandler.h; sourceTree = "<group>"; };
+		0963D3F8256B9C2D006273B8 /* SampleHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SampleHandler.m; sourceTree = "<group>"; };
+		0963D3FA256B9C2D006273B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		09748A0725761D7900DCABB3 /* doudizhu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = doudizhu.mp3; sourceTree = "<group>"; };
+		09DBA807258A41E600CF3B8C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		09DBA808258A41E600CF3B8C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		09DC9EA32567BF45004C9D4A /* ReplayKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReplayKit.framework; path = System/Library/Frameworks/ReplayKit.framework; sourceTree = SDKROOT; };
+		09DC9EC32567C076004C9D4A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		09DCA6512577DA7200E512A5 /* AgoraAudioTube.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AgoraAudioTube.h; sourceTree = "<group>"; };
+		09DCA6522577DA7200E512A5 /* AgoraAudioTube.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AgoraAudioTube.mm; sourceTree = "<group>"; };
+		09DCA99D2578C2B600E512A5 /* external_resampler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = external_resampler.h; sourceTree = "<group>"; };
+		09DCA99E2578C2B600E512A5 /* libios_resampler.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libios_resampler.a; sourceTree = "<group>"; };
+		09DDFDC0256CA7D30091C6A3 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		0F6D05E1AFF8D9958756D60F /* Pods-LiveStreaming.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiveStreaming.debug.xcconfig"; path = "Target Support Files/Pods-LiveStreaming/Pods-LiveStreaming.debug.xcconfig"; sourceTree = "<group>"; };
+		18C1DFC6EE56830A32EB9F80 /* Pods_ScreenShare.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ScreenShare.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3182E84E121EA064565E6EF0 /* Pods-LiveStreamingWithFU.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiveStreamingWithFU.release.xcconfig"; path = "Target Support Files/Pods-LiveStreamingWithFU/Pods-LiveStreamingWithFU.release.xcconfig"; sourceTree = "<group>"; };
 		47E79B08886F4974EFF74EB4 /* Pods_LiveStreaming.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LiveStreaming.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		66FBB4ED43ABC61EF94669B2 /* Pods-LiveStreaming.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiveStreaming.release.xcconfig"; path = "Target Support Files/Pods-LiveStreaming/Pods-LiveStreaming.release.xcconfig"; sourceTree = "<group>"; };
+		73B9CAB7D077EBCB54BB79CB /* Pods-ScreenShare.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScreenShare.release.xcconfig"; path = "Target Support Files/Pods-ScreenShare/Pods-ScreenShare.release.xcconfig"; sourceTree = "<group>"; };
 		A77FD33C80E2B46AE287E639 /* Pods-LiveStreamingWithFU.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiveStreamingWithFU.debug.xcconfig"; path = "Target Support Files/Pods-LiveStreamingWithFU/Pods-LiveStreamingWithFU.debug.xcconfig"; sourceTree = "<group>"; };
+		C1870BB07127B518EE1C56BB /* Pods-ScreenShare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScreenShare.debug.xcconfig"; path = "Target Support Files/Pods-ScreenShare/Pods-ScreenShare.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,7 +187,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BEA7A7F65A3918DF0D25304E /* (null) in Frameworks */,
+				09DDFDC1256CA7D30091C6A3 /* CoreImage.framework in Frameworks */,
 				98551B7EBBCB7ECC995F62FF /* Pods_LiveStreaming.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -116,8 +196,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09DDFDC8256CEA7E0091C6A3 /* CoreImage.framework in Frameworks */,
 				0961A95D24EBB94400683DC8 /* CoreML.framework in Frameworks */,
 				796CDC9783195C9FACFA51E2 /* Pods_LiveStreamingWithFU.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0963D3F1256B9C2D006273B8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0906D84A2571244000D80DE5 /* Accelerate.framework in Frameworks */,
+				09DDFDC9256CEA850091C6A3 /* CoreImage.framework in Frameworks */,
+				0963D3F5256B9C2D006273B8 /* ReplayKit.framework in Frameworks */,
+				09DCA99F2578C2B600E512A5 /* libios_resampler.a in Frameworks */,
+				1514DD6338CEDEDD5F73290E /* Pods_ScreenShare.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,6 +221,7 @@
 			isa = PBXGroup;
 			children = (
 				07D24CF51D866704002C69BF /* LiveStreaming */,
+				0963D3F6256B9C2D006273B8 /* ScreenShare */,
 				07D24CF41D866704002C69BF /* Products */,
 				07D24D131D8667DC002C69BF /* Frameworks */,
 				7F241DA4AD1AD473E3935EC9 /* Pods */,
@@ -140,6 +234,7 @@
 			children = (
 				07D24CF31D866704002C69BF /* LiveStreaming.app */,
 				0961A95324EBB08A00683DC8 /* LiveStreamingWithFU.app */,
+				0963D3F4256B9C2D006273B8 /* ScreenShare.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -160,6 +255,7 @@
 		07D24CF61D866704002C69BF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				09748A0725761D7900DCABB3 /* doudizhu.mp3 */,
 				07D24CF91D866704002C69BF /* AppDelegate.h */,
 				07D24CFA1D866704002C69BF /* AppDelegate.m */,
 				07D24D021D866704002C69BF /* Assets.xcassets */,
@@ -173,11 +269,27 @@
 		07D24D131D8667DC002C69BF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0906D8492571244000D80DE5 /* Accelerate.framework */,
+				09DDFDC0256CA7D30091C6A3 /* CoreImage.framework */,
 				0961A95C24EBB94400683DC8 /* CoreML.framework */,
 				04B419CD8E48662DE091AE41 /* Pods_LiveStreamingWithFU.framework */,
 				47E79B08886F4974EFF74EB4 /* Pods_LiveStreaming.framework */,
+				09DC9EA32567BF45004C9D4A /* ReplayKit.framework */,
+				09DC9EC32567C076004C9D4A /* UIKit.framework */,
+				18C1DFC6EE56830A32EB9F80 /* Pods_ScreenShare.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		0906D83F257122E000D80DE5 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				09DCA6512577DA7200E512A5 /* AgoraAudioTube.h */,
+				09DCA6522577DA7200E512A5 /* AgoraAudioTube.mm */,
+				09DCA99D2578C2B600E512A5 /* external_resampler.h */,
+				09DCA99E2578C2B600E512A5 /* libios_resampler.a */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		094C8C1824E5204F00BF9F73 /* Controller */ = {
@@ -235,6 +347,17 @@
 			path = FaceUnity;
 			sourceTree = "<group>";
 		};
+		0963D3F6256B9C2D006273B8 /* ScreenShare */ = {
+			isa = PBXGroup;
+			children = (
+				0963D3F7256B9C2D006273B8 /* SampleHandler.h */,
+				0963D3F8256B9C2D006273B8 /* SampleHandler.m */,
+				0906D83F257122E000D80DE5 /* Utils */,
+				0963D3FA256B9C2D006273B8 /* Info.plist */,
+			);
+			path = ScreenShare;
+			sourceTree = "<group>";
+		};
 		7F241DA4AD1AD473E3935EC9 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -242,6 +365,8 @@
 				66FBB4ED43ABC61EF94669B2 /* Pods-LiveStreaming.release.xcconfig */,
 				A77FD33C80E2B46AE287E639 /* Pods-LiveStreamingWithFU.debug.xcconfig */,
 				3182E84E121EA064565E6EF0 /* Pods-LiveStreamingWithFU.release.xcconfig */,
+				C1870BB07127B518EE1C56BB /* Pods-ScreenShare.debug.xcconfig */,
+				73B9CAB7D077EBCB54BB79CB /* Pods-ScreenShare.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -260,10 +385,12 @@
 				091842352446B9010069F890 /* Embed Frameworks */,
 				09F99C6E2498C83000F6D1EB /* ShellScript */,
 				1666ACC2CF872839A2DDED4F /* [CP] Embed Pods Frameworks */,
+				09DC9EB02567BF45004C9D4A /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				0963D40B256B9C2D006273B8 /* PBXTargetDependency */,
 			);
 			name = LiveStreaming;
 			productName = OpenLive;
@@ -282,15 +409,36 @@
 				0961A94E24EBB08A00683DC8 /* ShellScript */,
 				0961A94F24EBB08A00683DC8 /* [CP] Embed Pods Frameworks */,
 				C59519049442F86437407037 /* [CP] Copy Pods Resources */,
+				09DDFFB2256E437E0091C6A3 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				09DDFFB1256E437E0091C6A3 /* PBXTargetDependency */,
 			);
 			name = LiveStreamingWithFU;
 			productName = OpenLive;
 			productReference = 0961A95324EBB08A00683DC8 /* LiveStreamingWithFU.app */;
 			productType = "com.apple.product-type.application";
+		};
+		0963D3F3256B9C2D006273B8 /* ScreenShare */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0963D410256B9C2D006273B8 /* Build configuration list for PBXNativeTarget "ScreenShare" */;
+			buildPhases = (
+				A452F16FDD3C90D1961A23D3 /* [CP] Check Pods Manifest.lock */,
+				0963D3F0256B9C2D006273B8 /* Sources */,
+				0963D3F1256B9C2D006273B8 /* Frameworks */,
+				0963D3F2256B9C2D006273B8 /* Resources */,
+				09DA423C25824EEE003CB2CC /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ScreenShare;
+			productName = ScreenShare;
+			productReference = 0963D3F4256B9C2D006273B8 /* ScreenShare.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -303,7 +451,6 @@
 				TargetAttributes = {
 					07D24CF21D866704002C69BF = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 7289G77ZF3;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -312,7 +459,12 @@
 						};
 					};
 					0961A93A24EBB08A00683DC8 = {
-						DevelopmentTeam = 7289G77ZF3;
+						DevelopmentTeam = JDPG69R49Z;
+						ProvisioningStyle = Manual;
+					};
+					0963D3F3256B9C2D006273B8 = {
+						CreatedOnToolsVersion = 11.6;
+						DevelopmentTeam = JDPG69R49Z;
 						ProvisioningStyle = Manual;
 					};
 				};
@@ -324,6 +476,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 07D24CEA1D866704002C69BF;
 			productRefGroup = 07D24CF41D866704002C69BF /* Products */;
@@ -332,6 +485,7 @@
 			targets = (
 				07D24CF21D866704002C69BF /* LiveStreaming */,
 				0961A93A24EBB08A00683DC8 /* LiveStreamingWithFU */,
+				0963D3F3256B9C2D006273B8 /* ScreenShare */,
 			);
 		};
 /* End PBXProject section */
@@ -342,6 +496,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				07D24D061D866704002C69BF /* LaunchScreen.storyboard in Resources */,
+				09748A0825761D7900DCABB3 /* doudizhu.mp3 in Resources */,
 				07D24D031D866704002C69BF /* Assets.xcassets in Resources */,
 				07D24D011D866704002C69BF /* Main.storyboard in Resources */,
 			);
@@ -352,8 +507,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				0961A94A24EBB08A00683DC8 /* LaunchScreen.storyboard in Resources */,
+				09748A0925761D7900DCABB3 /* doudizhu.mp3 in Resources */,
 				0961A94B24EBB08A00683DC8 /* Assets.xcassets in Resources */,
 				0961A94C24EBB08A00683DC8 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0963D3F2256B9C2D006273B8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				09748A0A25761D7900DCABB3 /* doudizhu.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,13 +571,19 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-LiveStreamingWithFU/Pods-LiveStreamingWithFU-frameworks.sh",
 				"${PODS_ROOT}/AgoraRtcEngine_iOS/AgoraRtcKit.framework",
+				"${PODS_ROOT}/AgoraRtcEngine_iOS/Agorafdkaac.framework",
+				"${PODS_ROOT}/AgoraRtcEngine_iOS/Agoraffmpeg.framework",
+				"${PODS_ROOT}/AgoraRtcEngine_iOS/AgoraSoundTouch.framework",
 				"${PODS_ROOT}/AgoraStreamingKit_iOS/AgoraStreamingKit.framework",
-				"${BUILT_PRODUCTS_DIR}/SVProgressHUD-framework/SVProgressHUD.framework",
-				"${PODS_ROOT}/Nama/FaceUnity-SDK-iOS-v7.1.0/libCNamaSDK.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${PODS_ROOT}/Nama/FaceUnity-SDK-iOS-v7.1.2/libCNamaSDK.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraRtcKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Agorafdkaac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Agoraffmpeg.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraSoundTouch.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraStreamingKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libCNamaSDK.framework",
@@ -448,18 +618,46 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-LiveStreaming/Pods-LiveStreaming-frameworks.sh",
 				"${PODS_ROOT}/AgoraRtcEngine_iOS/AgoraRtcKit.framework",
+				"${PODS_ROOT}/AgoraRtcEngine_iOS/Agorafdkaac.framework",
+				"${PODS_ROOT}/AgoraRtcEngine_iOS/Agoraffmpeg.framework",
+				"${PODS_ROOT}/AgoraRtcEngine_iOS/AgoraSoundTouch.framework",
 				"${PODS_ROOT}/AgoraStreamingKit_iOS/AgoraStreamingKit.framework",
-				"${BUILT_PRODUCTS_DIR}/SVProgressHUD-framework/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraRtcKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Agorafdkaac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Agoraffmpeg.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraSoundTouch.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraStreamingKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LiveStreaming/Pods-LiveStreaming-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A452F16FDD3C90D1961A23D3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ScreenShare-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C59519049442F86437407037 /* [CP] Copy Pods Resources */ = {
@@ -469,17 +667,19 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-LiveStreamingWithFU/Pods-LiveStreamingWithFU-resources.sh",
-				"${PODS_ROOT}/Nama/FaceUnity-SDK-iOS-v7.1.0/Resources/graphics/body_slim.bundle",
-				"${PODS_ROOT}/Nama/FaceUnity-SDK-iOS-v7.1.0/Resources/graphics/controller.bundle",
-				"${PODS_ROOT}/Nama/FaceUnity-SDK-iOS-v7.1.0/Resources/graphics/face_beautification.bundle",
-				"${PODS_ROOT}/Nama/FaceUnity-SDK-iOS-v7.1.0/Resources/graphics/face_makeup.bundle",
-				"${PODS_ROOT}/Nama/FaceUnity-SDK-iOS-v7.1.0/Resources/graphics/fuzzytoonfilter.bundle",
-				"${PODS_ROOT}/Nama/FaceUnity-SDK-iOS-v7.1.0/Resources/graphics/fxaa.bundle",
-				"${PODS_ROOT}/Nama/FaceUnity-SDK-iOS-v7.1.0/Resources/graphics/tongue.bundle",
-				"${PODS_ROOT}/Nama/FaceUnity-SDK-iOS-v7.1.0/Resources/model/ai_face_processor.bundle",
-				"${PODS_ROOT}/Nama/FaceUnity-SDK-iOS-v7.1.0/Resources/model/ai_face_processor_lite.bundle",
-				"${PODS_ROOT}/Nama/FaceUnity-SDK-iOS-v7.1.0/Resources/model/ai_gesture.bundle",
-				"${PODS_ROOT}/Nama/FaceUnity-SDK-iOS-v7.1.0/Resources/model/ai_human_processor.bundle",
+				"${PODS_ROOT}/Nama/FaceUnity-SDK-iOS-v7.1.2/Resources/graphics/body_slim.bundle",
+				"${PODS_ROOT}/Nama/FaceUnity-SDK-iOS-v7.1.2/Resources/graphics/controller.bundle",
+				"${PODS_ROOT}/Nama/FaceUnity-SDK-iOS-v7.1.2/Resources/graphics/face_beautification.bundle",
+				"${PODS_ROOT}/Nama/FaceUnity-SDK-iOS-v7.1.2/Resources/graphics/face_makeup.bundle",
+				"${PODS_ROOT}/Nama/FaceUnity-SDK-iOS-v7.1.2/Resources/graphics/fuzzytoonfilter.bundle",
+				"${PODS_ROOT}/Nama/FaceUnity-SDK-iOS-v7.1.2/Resources/graphics/fxaa.bundle",
+				"${PODS_ROOT}/Nama/FaceUnity-SDK-iOS-v7.1.2/Resources/graphics/tongue.bundle",
+				"${PODS_ROOT}/Nama/FaceUnity-SDK-iOS-v7.1.2/Resources/model/ai_bgseg_green.bundle",
+				"${PODS_ROOT}/Nama/FaceUnity-SDK-iOS-v7.1.2/Resources/model/ai_face_processor.bundle",
+				"${PODS_ROOT}/Nama/FaceUnity-SDK-iOS-v7.1.2/Resources/model/ai_face_processor_lite.bundle",
+				"${PODS_ROOT}/Nama/FaceUnity-SDK-iOS-v7.1.2/Resources/model/ai_gesture.bundle",
+				"${PODS_ROOT}/Nama/FaceUnity-SDK-iOS-v7.1.2/Resources/model/ai_human_processor.bundle",
+				"${PODS_ROOT}/Nama/FaceUnity-SDK-iOS-v7.1.2/Resources/model/ai_human_processor_pc.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
@@ -490,10 +690,12 @@
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/fuzzytoonfilter.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/fxaa.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/tongue.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ai_bgseg_green.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ai_face_processor.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ai_face_processor_lite.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ai_gesture.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ai_human_processor.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ai_human_processor_pc.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -560,13 +762,36 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0963D3F0256B9C2D006273B8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				09DCA6552577DA7200E512A5 /* AgoraAudioTube.mm in Sources */,
+				0963D3F9256B9C2D006273B8 /* SampleHandler.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0963D40B256B9C2D006273B8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0963D3F3256B9C2D006273B8 /* ScreenShare */;
+			targetProxy = 0963D40A256B9C2D006273B8 /* PBXContainerItemProxy */;
+		};
+		09DDFFB1256E437E0091C6A3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0963D3F3256B9C2D006273B8 /* ScreenShare */;
+			targetProxy = 09DDFFB0256E437E0091C6A3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		07D24CFF1D866704002C69BF /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				07D24D001D866704002C69BF /* Base */,
+				09DBA807258A41E600CF3B8C /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -575,6 +800,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				07D24D051D866704002C69BF /* Base */,
+				09DBA808258A41E600CF3B8C /* zh-Hans */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -697,35 +923,32 @@
 			baseConfigurationReference = 0F6D05E1AFF8D9958756D60F /* Pods-LiveStreaming.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 7289G77ZF3;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/LiveStreaming",
 					/Users/lsq/sdk_download/,
-					"$(PROJECT_DIR)/../../../build/ios/arm64",
 					"$(PROJECT_DIR)/LiveStreaming/FaceunityUtils",
 					"$(PROJECT_DIR)",
 				);
 				GCC_OPTIMIZATION_LEVEL = s;
 				INFOPLIST_FILE = LiveStreaming/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/../../../build/ios/arm64",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.agora.LiveStreaming;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = AgoraIOTest2019;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -735,33 +958,30 @@
 			baseConfigurationReference = 66FBB4ED43ABC61EF94669B2 /* Pods-LiveStreaming.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 7289G77ZF3;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/LiveStreaming",
 					/Users/lsq/sdk_download/,
-					"$(PROJECT_DIR)/../../../build/ios/arm64",
 					"$(PROJECT_DIR)/LiveStreaming/FaceunityUtils",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = LiveStreaming/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/../../../build/ios/arm64",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.agora.LiveStreaming;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = AgoraIOTest2019;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -771,17 +991,17 @@
 			baseConfigurationReference = A77FD33C80E2B46AE287E639 /* Pods-LiveStreamingWithFU.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 7289G77ZF3;
-				ENABLE_BITCODE = YES;
+				DEVELOPMENT_TEAM = JDPG69R49Z;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/LiveStreaming",
 					/Users/lsq/sdk_download/,
-					"$(PROJECT_DIR)/../../../build/ios/arm64",
 					"$(PROJECT_DIR)/LiveStreaming/FaceunityUtils",
 					"$(PROJECT_DIR)",
 				);
@@ -792,20 +1012,20 @@
 					FaceUnityTarget,
 				);
 				INFOPLIST_FILE = "LiveStreamingWithFU-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/../../../build/ios/arm64",
 					"$(PROJECT_DIR)/LiveStreaming/Faceunity/FaceUnity-SDK-iOS",
 				);
+				MARKETING_VERSION = 1.1.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.agora.LiveStreaming;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = AgoraIOTest2019;
+				PROVISIONING_PROFILE_SPECIFIER = AgoraLab2020;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -815,16 +1035,16 @@
 			baseConfigurationReference = 3182E84E121EA064565E6EF0 /* Pods-LiveStreamingWithFU.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 7289G77ZF3;
-				ENABLE_BITCODE = YES;
+				DEVELOPMENT_TEAM = JDPG69R49Z;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/LiveStreaming",
 					/Users/lsq/sdk_download/,
-					"$(PROJECT_DIR)/../../../build/ios/arm64",
 					"$(PROJECT_DIR)/LiveStreaming/FaceunityUtils",
 					"$(PROJECT_DIR)",
 				);
@@ -834,20 +1054,84 @@
 					FaceUnityTarget,
 				);
 				INFOPLIST_FILE = "LiveStreamingWithFU-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/../../../build/ios/arm64",
 					"$(PROJECT_DIR)/LiveStreaming/Faceunity/FaceUnity-SDK-iOS",
 				);
+				MARKETING_VERSION = 1.1.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.agora.LiveStreaming;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = AgoraIOTest2019;
+				PROVISIONING_PROFILE_SPECIFIER = AgoraLab2020;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		0963D411256B9C2D006273B8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C1870BB07127B518EE1C56BB /* Pods-ScreenShare.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = JDPG69R49Z;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = ScreenShare/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ScreenShare/Utils",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = io.agora.LiveStreaming.ScreenShare;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = AgoraLab2020;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		0963D412256B9C2D006273B8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 73B9CAB7D077EBCB54BB79CB /* Pods-ScreenShare.release.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = ScreenShare/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ScreenShare/Utils",
+				);
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = io.agora.LiveStreaming.ScreenShare;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -878,6 +1162,15 @@
 			buildConfigurations = (
 				0961A95124EBB08A00683DC8 /* Debug */,
 				0961A95224EBB08A00683DC8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0963D410256B9C2D006273B8 /* Build configuration list for PBXNativeTarget "ScreenShare" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0963D411256B9C2D006273B8 /* Debug */,
+				0963D412256B9C2D006273B8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -44,23 +44,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
-    
+
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.streamingContext = self.streamingModel.streamingContext;
 
-    self.itemsArray = @[@[@""], // rtmp 推流地址
-                        @[@""], // 分辨率
-                        @[@""], // 帧率
-                        @[@""], // 码率
-                        @[@""], // 音频采样率
-                        @[@""], // 音频声道
-                        @[@""], // 推送类型
-                        @[@""], // 日志
-                        @[@""], // 日志过滤级别
+    self.itemsArray = @[@[@""], // Push the stream address
+                        @[@""], // resolution
+                        @[@""], // fps
+                        @[@""], // bitrate
+                        @[@""], // audio sampling rate
+                        @[@""], // channels
+                        @[@""], // push type
+                        @[@""], // log
+                        @[@""], // Log filtering level
     ];
     UIView *tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 80)];
     self.tableView.tableHeaderView = tableHeaderView;
@@ -71,7 +71,7 @@
     backBtn.titleLabel.font = [UIFont boldSystemFontOfSize:18];
     [tableHeaderView addSubview:backBtn];
     [backBtn addTarget:self action:@selector(backBtnDidClicked:) forControlEvents:UIControlEventTouchUpInside];
-        
+
     self.rtmpTextFiled.text = self.streamingModel.rtmpUrl;
     self.heightTextFiled.text = [self stringFormat:self.streamingContext.videoStreamConfiguration.height];
     self.widthTextFiled.text = [self stringFormat:self.streamingContext.videoStreamConfiguration.width];
@@ -158,14 +158,14 @@
     self.streamingContext.videoStreamConfiguration.height = self.heightTextFiled.text.integerValue;
     self.streamingModel.streamingContext = self.streamingContext;
     self.streamingModel.rtmpUrl = self.rtmpTextFiled.text;
-    
+
     NSString *modelPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString *contextPath = [modelPath stringByAppendingPathComponent:@"streamingContext.archive"];
     [NSKeyedArchiver archiveRootObject:self.streamingModel.streamingContext toFile:contextPath];
-    
+
     NSString *rtmpPath = [modelPath stringByAppendingPathComponent:@"rtmpPath.archive"];
     [NSKeyedArchiver archiveRootObject:self.streamingModel.rtmpUrl toFile:rtmpPath];
-    
+
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -323,7 +323,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 8) { // 
+    if (indexPath.section == 8) { //
         return 120;
     } else {
         return 50;
@@ -337,9 +337,9 @@
 /*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
+
     // Configure the cell...
-    
+
     return cell;
 }
 */
@@ -360,7 +360,7 @@
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+    }
 }
 */
 
