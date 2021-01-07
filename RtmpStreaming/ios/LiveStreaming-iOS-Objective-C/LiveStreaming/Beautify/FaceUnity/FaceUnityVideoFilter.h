@@ -13,19 +13,19 @@
 NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSUInteger, FUNamaHandleType) {
-    FUNamaHandleTypeBeauty = 0,   /* items[0] ------ 放置 美颜道具句柄 */
-    FUNamaHandleTypeItem = 1,     /* items[1] ------ 放置 普通道具句柄（包含很多，如：贴纸，aoimoji...若不单一存在，可放句柄集其他位置） */
-    FUNamaHandleTypeFxaa = 2,     /* items[2] ------ fxaa抗锯齿道具句柄 */
-    FUNamaHandleTypeGesture = 3,    /* items[3] ------ 手势识别道具句柄 */
-    FUNamaHandleTypeChangeface = 4, /* items[4] ------ 海报换脸道具句柄 */
-    FUNamaHandleTypeComic = 5,      /* items[5] ------ 动漫道具句柄 */
-    FUNamaHandleTypeMakeup = 6,     /* items[6] ------ 美妆道具句柄 */
-    FUNamaHandleTypePhotolive = 7,  /* items[7] ------ 异图道具句柄 */
-    FUNamaHandleTypeAvtarHead = 8,  /* items[8] ------ Avtar头*/
-    FUNamaHandleTypeAvtarHiar = 9,  /* items[9] ------ Avtar头发 */
-    FUNamaHandleTypeAvtarbg = 10,  /* items[10] ------ Avtar背景 */
-    FUNamaHandleTypeBodySlim = 11,  /* items[11] ------ 美体道具 */
-    FUNamaHandleTypeBodyAvtar = 12,  /* 全身avtar */
+    FUNamaHandleTypeBeauty = 0,   /* items[0] ------ Place beauty prop handle */
+    FUNamaHandleTypeItem = 1,     /* items[1] ------ Place common prop handles (contain many, such as: stickers, Aoimoji... If there is not a single existence, you can put the handle set elsewhere.) */
+    FUNamaHandleTypeFxaa = 2,     /* items[2] ------ Fxaa anti-aliasing prop handle */
+    FUNamaHandleTypeGesture = 3,    /* items[3] ------ Gesture recognition prop handle */
+    FUNamaHandleTypeChangeface = 4, /* items[4] ------ Handle for face-changing prop for posters */
+    FUNamaHandleTypeComic = 5,      /* items[5] ------ Animation prop handle */
+    FUNamaHandleTypeMakeup = 6,     /* items[6] ------ Beauty makeup prop handle */
+    FUNamaHandleTypePhotolive = 7,  /* items[7] ------ A handle to a heterograph prop */
+    FUNamaHandleTypeAvtarHead = 8,  /* items[8] ------ Avtar head*/
+    FUNamaHandleTypeAvtarHiar = 9,  /* items[9] ------ Avtar hair */
+    FUNamaHandleTypeAvtarbg = 10,  /* items[10] ------ Avtar background */
+    FUNamaHandleTypeBodySlim = 11,  /* items[11] ------ Beautiful body props */
+    FUNamaHandleTypeBodyAvtar = 12,  /* The whole body avtar */
     FUNamaHandleTotal = 13,
 };
 

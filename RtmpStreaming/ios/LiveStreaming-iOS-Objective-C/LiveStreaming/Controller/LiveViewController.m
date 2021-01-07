@@ -27,6 +27,7 @@
 @property (nonatomic, strong) UIView *localRenderView;
 @property (nonatomic, assign) BOOL isRtmpPublish;
 @property (nonatomic, strong) id<AgoraVideoFilter> videoFilter;
+@property (nonatomic, assign) CGFloat lastScale;
 
 @end
 
@@ -39,6 +40,9 @@
     [self setupLiveStreaming];
     [self setupRtcEngine];
     [self setupBeautify];
+		UIPinchGestureRecognizer *pinch = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinchView:)];
+		[self.localRenderView addGestureRecognizer:pinch];
+		self.lastScale = 1.0;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -91,7 +95,26 @@
     self.rteEngineWrapper = [[RtcEngineWrapper alloc] initWithEventDelegate:self sampleRate:sampleRate channelsPerFrame:channels];
 }
 
-#pragma mark - IB Actions
+#pragma mark - Actions
+-(void)pinchView:(UIPinchGestureRecognizer *)sender{
+		NSLog(@"scale : %f", sender.scale);
+		if (sender.state == UIGestureRecognizerStateBegan) {
+				sender.scale = self.lastScale;
+		}
+		[self.liveStreamingWrapper setCameraZoomFactor:sender.scale];
+		if (sender.state == UIGestureRecognizerStateEnded) {
+				self.lastScale = sender.scale;
+		}
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+	UITouch *touch = [[event allTouches] anyObject];
+	CGPoint point = [touch locationInView:[touch view]];
+	CGPoint focusPoint = CGPointMake(point.x/self.localRenderView.frame.size.width,
+																	 point.y/self.localRenderView.frame.size.height);
+	[self.liveStreamingWrapper setCameraFocusPositionInPreview:focusPoint];
+}
+
 - (IBAction)startStreamingBtnDidClicked:(UIButton *)sender {
     if (self.isRtmpPublish) {
         NSLog(@"start rtc.");
@@ -146,6 +169,23 @@
     } else {
         [self.liveStreamingWrapper removeVideoFilter:self.videoFilter];
     }
+}
+
+- (IBAction)snapShotBtnDidClicked:(UIButton *)sender {
+	[self.liveStreamingWrapper snapshot];
+}
+
+- (IBAction)switchResolutionDidClicked:(UIButton *)sender {
+	switch (sender.tag) {
+		case 1:
+			[self.liveStreamingWrapper switchResolution:CGSizeMake(360, 360)];
+			break;
+		case 2:
+			[self.liveStreamingWrapper switchResolution:CGSizeMake(720, 1280)];
+			break;
+		default:
+			break;
+	}
 }
 
 #pragma mark - LiveStreamingEventDelegate
@@ -219,7 +259,7 @@
     self.remoteCanvas.renderMode = AgoraVideoRenderModeHidden;
     [self.rteEngineWrapper setupRemoteVideo:self.remoteCanvas];
     self.remoteRenderView = renderView;
-    
+
     [UIView animateWithDuration:0.3 animations:^{
         CGRect newFrame = CGRectMake(self.view.frame.size.width * 0.7 - 10, 20, self.view.frame.size.width * 0.3, self.view.frame.size.width * 0.3 * 16.0 / 9.0);
         self.localRenderView.frame = newFrame;
@@ -234,7 +274,7 @@
     [self.remoteCanvas.view removeFromSuperview];
     self.remoteCanvas.view = nil;
     [self.remoteRenderView removeFromSuperview];
-    
+
     [UIView animateWithDuration:0.3 animations:^{
         CGRect newFrame = self.view.frame;
         self.localRenderView.frame = newFrame;

@@ -1,0 +1,120 @@
+
+/* Class = "UITextField"; placeholder = "请输入 rtmp 推流地址"; ObjectID = "1vE-PX-cGd"; */
+"1vE-PX-cGd.placeholder" = "请输入 rtmp 推流地址";
+
+/* Class = "UITextField"; text = "rtmp://tx-pu.broadcastapp.agoraio.cn/live/ios"; ObjectID = "1vE-PX-cGd"; */
+"1vE-PX-cGd.text" = "rtmp://tx-pu.broadcastapp.agoraio.cn/live/ios";
+
+/* Class = "UIButton"; normalTitle = "16:9"; ObjectID = "4PH-wW-gKA"; */
+"4PH-wW-gKA.normalTitle" = "16:9";
+
+/* Class = "UITextField"; placeholder = "高"; ObjectID = "4mi-h3-FPj"; */
+"4mi-h3-FPj.placeholder" = "高";
+
+/* Class = "UITextField"; placeholder = "请输入视频帧率"; ObjectID = "6mb-h3-NbP"; */
+"6mb-h3-NbP.placeholder" = "请输入视频帧率";
+
+/* Class = "UITextField"; text = "15"; ObjectID = "6mb-h3-NbP"; */
+"6mb-h3-NbP.text" = "15";
+
+/* Class = "UIButton"; normalTitle = "1:1"; ObjectID = "75H-m3-lZI"; */
+"75H-m3-lZI.normalTitle" = "1:1";
+
+/* Class = "UITableViewSection"; headerTitle = "日志过滤级别"; ObjectID = "7ot-tg-NwB"; */
+"7ot-tg-NwB.headerTitle" = "日志过滤级别";
+
+/* Class = "UIButton"; normalTitle = "Info"; ObjectID = "CFe-3o-id1"; */
+"CFe-3o-id1.normalTitle" = "Info";
+
+/* Class = "UIButton"; normalTitle = "11025"; ObjectID = "FY2-fa-bDz"; */
+"FY2-fa-bDz.normalTitle" = "11025";
+
+/* Class = "UIButton"; normalTitle = "Off"; ObjectID = "GU6-dP-4k2"; */
+"GU6-dP-4k2.normalTitle" = "Off";
+
+/* Class = "UIButton"; normalTitle = "Debug"; ObjectID = "Hf1-Au-xCM"; */
+"Hf1-Au-xCM.normalTitle" = "Debug";
+
+/* Class = "UITableViewSection"; headerTitle = "视频帧率"; ObjectID = "MZi-Xd-bV1"; */
+"MZi-Xd-bV1.headerTitle" = "视频帧率";
+
+/* Class = "UIButton"; normalTitle = "Stereo"; ObjectID = "PS2-eL-APn"; */
+"PS2-eL-APn.normalTitle" = "Stereo";
+
+/* Class = "UITableViewSection"; headerTitle = "音频声道"; ObjectID = "PrG-Is-C1f"; */
+"PrG-Is-C1f.headerTitle" = "音频声道";
+
+/* Class = "UITableViewSection"; headerTitle = "日志路径"; ObjectID = "Vjg-jA-dMs"; */
+"Vjg-jA-dMs.headerTitle" = "日志路径";
+
+/* Class = "UITextField"; placeholder = "请输入视频码率"; ObjectID = "WRq-BR-Jny"; */
+"WRq-BR-Jny.placeholder" = "请输入视频码率";
+
+/* Class = "UITextField"; text = "600"; ObjectID = "WRq-BR-Jny"; */
+"WRq-BR-Jny.text" = "600";
+
+/* Class = "UITableViewSection"; headerTitle = "视频分辨率"; ObjectID = "XT2-co-jVR"; */
+"XT2-co-jVR.headerTitle" = "视频分辨率";
+
+/* Class = "UITableViewSection"; headerTitle = "横竖屏模式"; ObjectID = "a4x-qj-kEt"; */
+"a4x-qj-kEt.headerTitle" = "横竖屏模式";
+
+/* Class = "UIButton"; normalTitle = "44100"; ObjectID = "bOI-6G-tYG"; */
+"bOI-6G-tYG.normalTitle" = "44100";
+
+/* Class = "UINavigationItem"; title = "Profile"; ObjectID = "cAA-5B-vPW"; */
+"cAA-5B-vPW.title" = "Profile";
+
+/* Class = "UIButton"; normalTitle = "Warn"; ObjectID = "d8k-62-Aiz"; */
+"d8k-62-Aiz.normalTitle" = "Warn";
+
+/* Class = "UIButton"; normalTitle = "Portrait"; ObjectID = "e8c-Lk-3tp"; */
+"e8c-Lk-3tp.normalTitle" = "Portrait";
+
+/* Class = "UITextField"; placeholder = "请输入日志路径"; ObjectID = "eZH-d6-c2U"; */
+"eZH-d6-c2U.placeholder" = "请输入日志路径";
+
+/* Class = "UITextField"; text = "默认路径为 AgoraSDK 路径"; ObjectID = "eZH-d6-c2U"; */
+"eZH-d6-c2U.text" = "默认路径为 AgoraSDK 路径";
+
+/* Class = "UIButton"; normalTitle = "Start Rtmp"; ObjectID = "f3j-po-wLH"; */
+"f3j-po-wLH.normalTitle" = "Start Rtmp";
+
+/* Class = "UIButton"; normalTitle = "Error"; ObjectID = "hWT-Bu-dpD"; */
+"hWT-Bu-dpD.normalTitle" = "Error";
+
+/* Class = "UIButton"; normalTitle = "Meno"; ObjectID = "i1b-ZH-uy6"; */
+"i1b-ZH-uy6.normalTitle" = "Meno";
+
+/* Class = "UIButton"; normalTitle = "SnapShot"; ObjectID = "jRu-7m-UbL"; */
+"jRu-7m-UbL.normalTitle" = "SnapShot";
+
+/* Class = "UITableViewSection"; headerTitle = "RTMP 推流地址"; ObjectID = "k08-it-Ml4"; */
+"k08-it-Ml4.headerTitle" = "RTMP 推流地址";
+
+/* Class = "UITableViewSection"; headerTitle = "视频码率"; ObjectID = "klD-eC-HBf"; */
+"klD-eC-HBf.headerTitle" = "视频码率";
+
+/* Class = "UIButton"; normalTitle = "22050"; ObjectID = "lA1-iD-zci"; */
+"lA1-iD-zci.normalTitle" = "22050";
+
+/* Class = "UIButton"; normalTitle = "Landscape"; ObjectID = "qTT-Yi-lTA"; */
+"qTT-Yi-lTA.normalTitle" = "Landscape";
+
+/* Class = "UILabel"; text = "*"; ObjectID = "tM6-oi-MOx"; */
+"tM6-oi-MOx.text" = "*";
+
+/* Class = "UITextField"; placeholder = "宽"; ObjectID = "vVC-Ce-Oi4"; */
+"vVC-Ce-Oi4.placeholder" = "宽";
+
+/* Class = "UILabel"; text = "Welcome to Live Streaming!"; ObjectID = "vbk-uM-tPe"; */
+"vbk-uM-tPe.text" = "Welcome to Live Streaming!";
+
+/* Class = "UITableViewSection"; headerTitle = "音频采样率"; ObjectID = "x94-FF-kA0"; */
+"x94-FF-kA0.headerTitle" = "音频采样率";
+
+/* Class = "UIButton"; normalTitle = "Start Live"; ObjectID = "xZv-Qc-g1R"; */
+"xZv-Qc-g1R.normalTitle" = "Start Live";
+
+/* Class = "UITextField"; placeholder = "Input name of Live"; ObjectID = "ybN-22-bfN"; */
+"ybN-22-bfN.placeholder" = "Input name of Live";

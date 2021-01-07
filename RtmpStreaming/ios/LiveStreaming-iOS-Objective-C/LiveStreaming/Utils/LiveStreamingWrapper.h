@@ -36,7 +36,12 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)enableAudioRecording:(BOOL)enabled;
 - (int)muteAudioStream:(BOOL)muted;
 - (int)muteVideoStream:(BOOL)muted;
-
+- (void)snapshot;
+- (void)switchResolution:(CGSize)resolution;
+- (void)setCameraFocusPositionInPreview:(CGPoint)position;
+- (BOOL)setCameraAutoFocusFaceModeEnabled:(BOOL)enable;
+- (float)getMaxZoom;
+- (BOOL)setCameraZoomFactor:(CGFloat)zoomFactor;
 - (void)addVideoFilter:(id<AgoraVideoFilter>)filter;
 - (void)removeVideoFilter:(id<AgoraVideoFilter>)filter;
 
