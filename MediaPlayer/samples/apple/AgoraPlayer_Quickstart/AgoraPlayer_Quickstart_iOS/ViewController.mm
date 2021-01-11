@@ -163,7 +163,7 @@
     
 }
 - (IBAction)getPostion:(id)sender {
-    NSLog(@"%ld",[_mediaPlayerKit getPosition]);
+    NSLog(@"%ld",[_mediaPlayerKit getPlayPosition]);
 }
 - (IBAction)getduration:(UIButton *)sender {
     __weak typeof(self) weakSelf = self;
