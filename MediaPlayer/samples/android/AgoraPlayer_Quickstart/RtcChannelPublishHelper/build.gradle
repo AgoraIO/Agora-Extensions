@@ -48,14 +48,15 @@ android {
 }
 
 dependencies {
-    provided files('../app/lib/AgoraMediaPlayer.jar')
-    // implementation 'io.agora:agoraplayer:1.2.1'
+    //provided files('../app/lib/AgoraMediaPlayer.jar')
+    //provided files('../app/lib/agora-rtc-sdk.jar')
+    implementation 'io.agora:agoraplayer:1.2.2'
     //api fileTree(include: ['*.jar'], dir: 'libs')
     //api project(':proj.android')
     //dependencies { compile fileTree(dir:'../../../../build/android/arm/android/lib/agora-rtc-sdk',include:['*.jar'])}
     //provided files('../../../../build/android/arm/android/lib/agora-rtc-sdk/agora-rtc-sdk.jar')
     compile 'com.android.support:support-v4:23.2.0'
-    implementation 'io.agora.rtc:full-sdk:3.0.0'
+    implementation 'io.agora.rtc:full-sdk:3.2.0'
     //dependencies { compile fileTree(dir:'../../build/android/arm/android/lib/agora-rtc-sdk',include:['*.jar'])}
     //implementation 'net.butterflytv.utils:rtmp-client:0.2.6'
     //implementation 'net.butterflytv.utils:rtmp-client:3.1.0'
