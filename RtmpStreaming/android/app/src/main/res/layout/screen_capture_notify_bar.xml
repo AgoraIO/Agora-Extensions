@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    android:background="@color/colorWhite"
+    android:gravity="center_vertical|start"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_vertical|start"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/ic_logo" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginEnd="15dp"
+        android:text="@string/status_text_default"
+        android:textAlignment="gravity"
+        android:textColor="@color/start_broadcast_text_color"
+        android:textSize="@dimen/text_size_medium" />
+
+    <FrameLayout
+        android:id="@+id/screen_capture_start"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:layout_margin="5dp"
+        android:background="@drawable/service_btn_bg"
+        android:minWidth="50dp"
+        android:padding="5dp">
+
+        <TextView
+            android:id="@+id/screen_capture_start_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/btn_screen_capture_start_rtmp"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:textColor="@color/start_broadcast_text_color"
+            android:textSize="@dimen/text_size_small" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/screen_capture_snapshot"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:layout_margin="5dp"
+        android:background="@drawable/service_btn_bg"
+        android:minWidth="50dp"
+        android:padding="5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/btn_screen_capture_snapshot"
+            android:textAlignment="center"
+            android:textColor="@color/start_broadcast_text_color"
+            android:textSize="@dimen/text_size_medium" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/screen_capture_stop"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:layout_margin="5dp"
+        android:background="@drawable/service_btn_bg"
+        android:minWidth="50dp"
+        android:padding="5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/btn_screen_capture_stop"
+            android:textAlignment="center"
+            android:textColor="@color/start_broadcast_text_color"
+            android:textSize="@dimen/text_size_medium" />
+    </FrameLayout>
+</LinearLayout>
+
+

@@ -4,11 +4,6 @@
     android:layout_width="wrap_content">
 
     <item
-        android:id="@+id/screen_share"
-        android:title="@string/switch_screen_share_title" >
-    </item>
-
-    <item
         android:id="@+id/screen_ration"
         android:title="@string/switch_screen_ration_title">
     </item>

@@ -21,15 +21,6 @@ allprojects {
     }
 }
 
-ext {
-    // To compile streaming sdk, set 'buildWithAgoraProjAndroidStreaming = true'
-    // The other variable is in setting.gradle
-    buildWithAgoraProjAndroidStreaming = true
-
-    // To compile with face beauty, set 'buildWithFaceBeauty = true'
-    buildWithFaceBeauty = true;
-}
-
 task clean(type: Delete) {
     delete rootProject.buildDir
 }

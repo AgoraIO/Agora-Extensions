@@ -61,8 +61,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="14sp"
-                tools:text="rtmp://ks-push.broadcastapp.agoraio.cn/live/yutest" />
+                android:textSize="14sp" />
 
             <ImageView
                 android:id="@+id/qrcode_scan_imageview"
@@ -634,6 +633,7 @@
             android:layout_height="@dimen/setting_item_height_normal"
             android:clickable="true"
             android:focusable="true"
+            android:visibility="gone"
             android:onClick="onClick">
 
             <TextView

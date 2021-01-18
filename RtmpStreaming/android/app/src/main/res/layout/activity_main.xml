@@ -68,7 +68,49 @@
             android:textAllCaps="false"
             android:onClick="onStartBroadcastClicked"
             android:background="@drawable/start_broadcast_bg"/>
+
+        <RadioGroup
+            android:id="@+id/capture_mode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/start_broadcast_button"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/start_broadcast_padding"
+            android:paddingLeft="@dimen/start_broadcast_padding"
+            android:paddingEnd="@dimen/start_broadcast_padding"
+            android:paddingRight="@dimen/start_broadcast_padding">
+
+            <RadioButton
+                android:id="@+id/capture_mode_camera"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:enabled="true"
+                android:text="@string/main_capture_mode_camera"
+                android:checked="true"
+                android:theme="@style/main_radio_button"
+                android:textColor="@color/colorWhite"/>
+
+            <RadioButton
+                android:id="@+id/capture_mode_screen"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="@string/main_capture_mode_screen"
+                android:theme="@style/main_radio_button"
+                android:textColor="@color/colorWhite"/>
+        </RadioGroup>
     </RelativeLayout>
+    <TextView
+        android:id="@+id/sdk_version_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/version_margin_bottom"
+        android:textSize="@dimen/text_size_small"
+        android:textColor="@android:color/white" />
 
     <TextView
         android:layout_width="wrap_content"

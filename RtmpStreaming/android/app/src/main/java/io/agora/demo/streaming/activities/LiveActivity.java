@@ -1,66 +1,46 @@
 package io.agora.demo.streaming.activities;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.hardware.Camera;
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.core.graphics.drawable.RoundedBitmapDrawable;
 import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory;
-import androidx.recyclerview.widget.RecyclerView;
-
-import com.faceunity.FURenderer;
-import com.faceunity.fulivedemo.ui.adapter.EffectRecyclerAdapter;
-import com.faceunity.fulivedemo.utils.CameraUtils;
-import com.faceunity.fulivedemo.utils.ToastUtil;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.concurrent.Callable;
 
 import io.agora.base.SnapshotFrame;
-import io.agora.base.TextureBufferHelper;
-import io.agora.base.VideoFrame;
-import io.agora.demo.streaming.presenter.LiveStreamingPresenter;
-import io.agora.demo.streaming.ui.OperationMenu;
 import io.agora.demo.streaming.R;
 import io.agora.demo.streaming.StreamingMode;
+import io.agora.demo.streaming.beauty.BeautyVideoFilter;
+import io.agora.demo.streaming.presenter.LiveStreamingPresenter;
+import io.agora.demo.streaming.ui.OperationMenu;
 import io.agora.demo.streaming.ui.VideoGridContainer;
 import io.agora.demo.streaming.utils.MediaStoreUtil;
 import io.agora.demo.streaming.utils.PrefManager;
 import io.agora.rtc.IRtcEngineEventHandler;
 import io.agora.rtc.RtcEngine;
 import io.agora.rtc.video.VideoCanvas;
-import io.agora.rtcwithfu.view.EffectPanel;
 import io.agora.streaming.SnapshotCallback;
 import io.agora.streaming.StreamingEventHandler;
-import io.agora.streaming.StreamingKit;
 import io.agora.streaming.VideoDeviceError;
 import io.agora.streaming.VideoDeviceEventHandler;
-import io.agora.streaming.VideoFilter;
 
 public class LiveActivity extends BaseActivity {
     private static final String TAG = LiveActivity.class.getSimpleName();
@@ -72,7 +52,7 @@ public class LiveActivity extends BaseActivity {
     private IRtcEngineEventHandler mRtcEngineEventHandler = new MyRtcEngineEventHandler();
     private StreamingEventHandler mStreamingEventHandler = new MyStreamingEventHandler();
     private VideoDeviceEventHandler mVideoDeviceEventHandler = new MyVideoDeviceEventHandler();
-    private MyFuVideoFilter mFUVideoFilter;
+    private BeautyVideoFilter mBeautyVideoFilter;
 
     private boolean mLocalAudioMuted = false;
     private boolean mLocalVideoMuted = false;
@@ -169,9 +149,15 @@ public class LiveActivity extends BaseActivity {
         mPresenter.setStreamingEventHandler(mStreamingEventHandler);
         mPresenter.registerVideoDeviceEventHandler(mVideoDeviceEventHandler);
 
-        // video filter
-        mFUVideoFilter = new MyFuVideoFilter();
-        mFUVideoFilter.init(this);
+        // beauty video filter
+        mBeautyVideoFilter = new BeautyVideoFilter();
+        mBeautyVideoFilter.init(this);
+        View beautyActionView = mBeautyVideoFilter.getActionView();
+        if(beautyActionView != null){
+            mBeautyLayout.addView(beautyActionView);
+        }
+        mLocalView.getHolder().addCallback(mBeautyVideoFilter);
+
 
         // set local video view
         mPresenter.setPreview(mLocalView);
@@ -196,8 +182,11 @@ public class LiveActivity extends BaseActivity {
         mPresenter.unregisterVideoDeviceEventHandler(mVideoDeviceEventHandler);
         mPresenter.setRtcEngineEventHandler(null);
         mPresenter.setStreamingEventHandler(null);
-        mPresenter.destroyEngineAndKit();
-        mFUVideoFilter.deinit();
+        LiveStreamingPresenter.destroyEngineAndKit();
+
+        mLocalView.getHolder().removeCallback(mBeautyVideoFilter);
+        mBeautyLayout.removeAllViews();
+        mBeautyVideoFilter.deinit();
     }
 
     /**
@@ -227,9 +216,9 @@ public class LiveActivity extends BaseActivity {
         mLocalView.setOnTouchListener(null);
     }
 
-    private void streamingTypeSelect(){
+    private void streamingTypeSelect() {
         int streamingType = PrefManager.getStreamTypeIndex(this);
-        switch(streamingType){
+        switch (streamingType) {
             case PrefManager.StreamType
                     .TYPE_AUDIO_AND_VIDEO:
                 mPresenter.muteLocalAudioStream(false);
@@ -287,7 +276,6 @@ public class LiveActivity extends BaseActivity {
             mPresenter.muteLocalAudioStream(false);
             mLocalAudioMuted = false;
         }
-        mPresenter.stopScreenCapture();
         deinitCameraOperation();
         onBeautyClose();
         deinitLiveStreaming();
@@ -393,10 +381,10 @@ public class LiveActivity extends BaseActivity {
                 String filename = "RSK_" + System.currentTimeMillis() + ".jpg";
                 new Thread(() -> {
                     boolean ret = MediaStoreUtil.saveBmp2Gallery(LiveActivity.this, bmp, filename);
-                    if(ret){
-                        showToast("图片保存成功");
-                    }else{
-                        showToast("图片保存失败");
+                    if (ret) {
+                        showToast(getString(R.string.save_pic_success));
+                    } else {
+                        showToast(getString(R.string.save_pic_failed));
                     }
                     bmp.recycle();
                 }).start();
@@ -406,7 +394,7 @@ public class LiveActivity extends BaseActivity {
         });
 
         if (ret != 0) {
-            ToastUtil.showToast(this, "snapshot error " + ret);
+            showToast( "snapshot error " + ret);
         }
     }
 
@@ -433,21 +421,24 @@ public class LiveActivity extends BaseActivity {
             int currentCameraType = isCameraFacingFront ? Camera.CameraInfo.CAMERA_FACING_FRONT
                     : Camera.CameraInfo.CAMERA_FACING_BACK;
             int inputImageOrientation = isCameraFacingFront ? 270 : 90;
-            mFUVideoFilter.onCameraChange(currentCameraType, inputImageOrientation);
+            mBeautyVideoFilter.onCameraChange(currentCameraType, inputImageOrientation);
             screenTouch.clearDraw();                //改变摄像头前置和后置，则清除聚焦框
         }
     }
 
     public void onBeautyClicked(View view) {
+        if(!BeautyVideoFilter.enableBeauty){
+            return;
+        }
         view.setActivated(!view.isActivated());
         if (view.isActivated()) {
             mBeautyLayout.setVisibility(View.VISIBLE);
-            mPresenter.addVideoFilter(mFUVideoFilter);
+            mPresenter.addVideoFilter(mBeautyVideoFilter);
             showToast(getString(R.string.fu_face_tracking_time_tips));
             beautyView = view;
         } else {
             mBeautyLayout.setVisibility(View.GONE);
-            mPresenter.removeVideoFilter(mFUVideoFilter);
+            mPresenter.removeVideoFilter(mBeautyVideoFilter);
             beautyView = null;
         }
         screenTouch.clearDraw();
@@ -455,17 +446,20 @@ public class LiveActivity extends BaseActivity {
     }
 
     private void onBeautyClose() {
+        if(!BeautyVideoFilter.enableBeauty){
+            return;
+        }
         if (beautyView != null) {
             beautyView.setActivated(false);
             mBeautyLayout.setVisibility(View.GONE);
-            mPresenter.removeVideoFilter(mFUVideoFilter);
+            mPresenter.removeVideoFilter(mBeautyVideoFilter);
             beautyView = null;
         }
         Log.d(TAG, "BeautyClose");
     }
 
     public void onMuteAudioClicked(View view) {
-        if(muteAudioForever){
+        if (muteAudioForever) {
             return;
         }
         view.setActivated(!view.isActivated());
@@ -476,7 +470,7 @@ public class LiveActivity extends BaseActivity {
     }
 
     public void onMuteVideoClicked(View view) {
-        if(muteVideoForever){
+        if (muteVideoForever) {
             return;
         }
         view.setActivated(!view.isActivated());
@@ -520,7 +514,7 @@ public class LiveActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        //mFUVideoFilter.onActivityResume();
+//        mBeautyVideoFilter.onActivityResume();
 
         // restart video capturing if failure occurred in background
         if (mVideoCapturerEnabled && mPendingVideoCapturerFailure) {
@@ -534,19 +528,10 @@ public class LiveActivity extends BaseActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        //mFUVideoFilter.onActivityPause();
+//        mBeautyVideoFilter.onActivityPause();
         Log.d(TAG, "onPause");
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == OperationMenu.PROJECTION_REQ_CODE && resultCode == RESULT_OK) {
-            Log.i(TAG, "start screen capture!");
-            operationMenu.startScreenCapture(data);
-        }
-    }
 
     private class MyStreamingEventHandler extends StreamingEventHandler {
 
@@ -617,214 +602,6 @@ public class LiveActivity extends BaseActivity {
         }
     }
 
-    private class MyFuVideoFilter extends VideoFilter implements SurfaceHolder.Callback, SensorEventListener {
-
-        private EffectPanel mEffectPanel;
-        private RecyclerView mTypeListView;
-        private LinearLayout mEffectLayout;
-        private TextView mDescriptionText;
-        private TextView mTrackingText;
-        private Runnable mEffectDescriptionHideRunnable;
-
-        private SensorManager mSensorManager;
-        private Sensor mSensor;
-
-        private FURenderer mFURenderer;
-        private final Object mRenderLock = new Object();
-        private boolean mFUResourceCreated;
-        private TextureBufferHelper mTextureBufferHelper;
-        private int lastInputTextureId = 0;
-
-        public void init(Context context) {
-            mDescriptionText = findViewById(R.id.effect_desc_text);
-            mTrackingText = findViewById(R.id.iv_face_detect);
-            mTypeListView = findViewById(R.id.effect_type_list);
-            mEffectLayout = findViewById(R.id.effect_panel_container);
-
-            mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-            mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-
-            FURenderer.initFURenderer(context);
-            mFURenderer = new FURenderer
-                    .Builder(context)
-                    .inputImageOrientation(CameraUtils.getFrontCameraOrientation())
-                    .setOnFUDebugListener(new FURenderer.OnFUDebugListener() {
-                        @Override
-                        public void onFpsChange(double fps, double renderTime) {
-                            Log.d(TAG, "FURenderer.onFpsChange, fps: " + fps + ", renderTime: " + renderTime);
-                        }
-                    })
-                    .setOnTrackingStatusChangedListener(new FURenderer.OnTrackingStatusChangedListener() {
-                        @Override
-                        public void onTrackingStatusChanged(final int status) {
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    Log.d(TAG, "FURenderer.onTrackingStatusChanged, status: " + status);
-                                    mTrackingText.setVisibility(status > 0 ? View.GONE : View.VISIBLE);
-                                }
-                            });
-                        }
-                    })
-                    .inputTextureType(FURenderer.FU_ADM_FLAG_EXTERNAL_OES_TEXTURE)
-                    .build();
-            mLocalView.getHolder().addCallback(this);
-
-            mEffectDescriptionHideRunnable = () -> {
-                mDescriptionText.setVisibility(View.INVISIBLE);
-                mDescriptionText.setText("");
-            };
-
-            mEffectPanel = new EffectPanel(mTypeListView, mEffectLayout, mFURenderer,
-                    new EffectRecyclerAdapter.OnDescriptionChangeListener() {
-
-                        @Override
-                        public void onDescriptionChangeListener(int description) {
-                            if (description == 0) return;
-                            mDescriptionText.removeCallbacks(mEffectDescriptionHideRunnable);
-                            mDescriptionText.setText(description);
-                            mDescriptionText.setVisibility(View.VISIBLE);
-                            mDescriptionText.postDelayed(mEffectDescriptionHideRunnable, 1500);
-                        }
-                    });
-        }
-
-        public void deinit() {
-            mLocalView.getHolder().removeCallback(this);
-            synchronized (mRenderLock) {
-                if (mFUResourceCreated) {
-                    mFURenderer.onSurfaceDestroyed();
-                    mFUResourceCreated = false;
-                }
-                if (mTextureBufferHelper != null) {
-                    mTextureBufferHelper.dispose();
-                    mTextureBufferHelper = null;
-                }
-            }
-        }
-
-        // VideoFilter callback
-        @Override
-        public synchronized VideoFrame process(final VideoFrame videoFrame) {
-            if (!(videoFrame.getBuffer() instanceof VideoFrame.TextureBuffer)) {
-                Log.e(TAG, "Receives a non-texture buffer, which should not happen!");
-                return null;
-            }
-            final VideoFrame.TextureBuffer texBuffer = (VideoFrame.TextureBuffer) videoFrame.getBuffer();
-
-            synchronized (mRenderLock) {
-                if (!mFUResourceCreated) {
-                    return null;
-                }
-
-                if (mTextureBufferHelper == null) {
-                    mTextureBufferHelper = TextureBufferHelper.create("FuRenderThread",
-                            texBuffer.getEglBaseContext());
-                    if (mTextureBufferHelper == null) {
-                        Log.e(TAG, "Failed to create texture buffer helper!");
-                        return null;
-                    }
-                }
-
-                return mTextureBufferHelper.invoke(new Callable<VideoFrame>() {
-                    @Override
-                    public VideoFrame call() throws Exception {
-                        // Drop incoming frame if output texture buffer is still in use.
-                        if (mTextureBufferHelper.isTextureInUse()) {
-                            return null;
-                        }
-
-                        // Process frame with FaceUnity SDK.
-                        int fuTex = mFURenderer.onDrawFrame(texBuffer.getTextureId(),
-                                texBuffer.getWidth(), texBuffer.getHeight());
-
-                        // Drop the frame if the incoming texture id changes, which occurs for the
-                        // first frame on start or after camera switching.
-                        // This avoids rendering a black frame (the first output frame on start)
-                        // or a staled frame (the first output frame after camera switching),
-                        // since the FURender output delays by one frame.
-                        if (lastInputTextureId != texBuffer.getTextureId()) {
-                            lastInputTextureId = texBuffer.getTextureId();
-                            Log.i(TAG, "Dropping frame since the source of input is changing");
-                            return null;
-                        }
-
-                        // Return processed frame to Agora SDK.
-                        VideoFrame.TextureBuffer processedBuffer = mTextureBufferHelper.wrapTextureBuffer(
-                                texBuffer.getWidth(), texBuffer.getHeight(), VideoFrame.TextureBuffer.Type.RGB,
-                                fuTex, texBuffer.getTransformMatrix());
-                        return new VideoFrame(processedBuffer, videoFrame.getRotation(),
-                                videoFrame.getTimestampNs());
-                    }
-                });
-            }
-        }
-
-        // SurfaceHolder.Callback
-        @Override
-        public void surfaceCreated(SurfaceHolder holder) {
-            Log.i(TAG, "surfaceCreated: " + holder);
-            synchronized (mRenderLock) {
-                if (!mFUResourceCreated) {
-                    mFURenderer.onSurfaceCreated();
-                    mFUResourceCreated = true;
-                }
-            }
-        }
-
-        @Override
-        public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-            Log.i(TAG, "surfaceChanged: " + holder + " format: " + format + " width: " + width +
-                    " height:" + height);
-        }
-
-        @Override
-        public void surfaceDestroyed(SurfaceHolder holder) {
-            Log.i(TAG, "surfaceDestroyed: " + holder);
-            synchronized (mRenderLock) {
-                if (mFUResourceCreated) {
-                    mFURenderer.onSurfaceDestroyed();
-                    mFUResourceCreated = false;
-                }
-            }
-        }
-
-        // SensorEventListener
-        @Override
-        public void onSensorChanged(SensorEvent event) {
-            if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
-                float x = event.values[0];
-                float y = event.values[1];
-                float z = event.values[2];
-                if (Math.abs(x) > 3 || Math.abs(y) > 3) {
-                    if (Math.abs(x) > Math.abs(y)) {
-                        mFURenderer.setTrackOrientation(x > 0 ? 0 : 180);
-                    } else {
-                        mFURenderer.setTrackOrientation(y > 0 ? 90 : 270);
-                    }
-                }
-            }
-        }
-
-        @Override
-        public void onAccuracyChanged(Sensor sensor, int accuracy) {
-            // do nothing
-        }
-
-        public void onCameraChange(int currentCameraType, int inputImageOrientation) {
-            mFURenderer.onCameraChange(currentCameraType, inputImageOrientation);
-
-        }
-
-        public void onActivityResume() {
-            mSensorManager.registerListener(this, mSensor, SensorManager.SENSOR_DELAY_NORMAL);
-        }
-
-        public void onActivityPause() {
-            mSensorManager.unregisterListener(this);
-        }
-    }
-
     public LiveStreamingPresenter getLiveStreamingInstance() {
         return mPresenter;
     }
@@ -833,7 +610,4 @@ public class LiveActivity extends BaseActivity {
         return mCurrentStreamingMode;
     }
 
-    public String getRoomName() {
-        return mRoomName;
-    }
 }

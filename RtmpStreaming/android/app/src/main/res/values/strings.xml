@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
-    <string name="app_name" translatable="false">Live Streaming</string>
+<!--    <string name="app_name" translatable="false">Live Streaming</string>-->
 
     <!-- Main Activity -->
     <string name="start_broadcast_title">Start Preview</string>
     <string name="topic_edit_hint">Pick a topic to chat</string>
     <string name="powered_by_agora" translatable="false">Powered by agora.io</string>
     <string name="need_necessary_permissions">Necessary permissions acquired</string>
+    <string name="main_capture_mode_camera">Camera Capture</string>
+    <string name="main_capture_mode_screen">Screen Capture</string>
+    <string name="main_capturing_screen_warning">The screen capture service is running, please operate from the notification bar!</string>
 
     <!-- Setting Activity -->
     <string name="setting_title">Settings</string>
@@ -64,10 +67,20 @@
     <string name="setting_video_local_store_title">Video local store</string>
 
     <!-- operation menu title -->
-    <string name="switch_screen_share_title">Switch screen share title</string>
-    <string name="switch_screen_ration_title">Switch screen ration title</string>
+    <string name="switch_screen_share_title">Switch screen share</string>
+    <string name="switch_screen_ration_title">Switch Screen Ration</string>
     <string name="snapshot_video_frame_title">Snapshot</string>
-    <string name="operation_collection_title">Operation collection title</string>
-    <string name="stop_screen_share_title">Stop screen share title</string>
+    <string name="operation_collection_title">Operation</string>
+    <string name="stop_screen_share_title">Stop screen share</string>
 
+    <!--  service  -->
+    <string name="btn_screen_capture_start_rtmp">Push\nRTMP</string>
+    <string name="btn_screen_capture_start_rtc">Push\nAgora\nChannel</string>
+    <string name="btn_screen_capture_snapshot">Snapshot</string>
+    <string name="btn_screen_capture_stop">Stop</string>
+    <string name="status_text_default">Screen\nCapture</string>
+
+    <!--  snapshot  -->
+    <string name="save_pic_success">Save the picture successfully</string>
+    <string name="save_pic_failed">Failed to save picture</string>
 </resources>

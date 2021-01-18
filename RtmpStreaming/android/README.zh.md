@@ -1,18 +1,16 @@
-# OpenLive for Android
+# RtmpStreaming for Android
 
 *[English](README.md) | 中文*
 
-这个开源示例项目演示了如何快速集成 Agora 视频 SDK，实现多人视频连麦直播。
+这个开源示例项目演示了如何快速集成 Agora 推流 Kit 和 Agora 视频 SDK，实现单主播直推 CDN，以及切换到声网频道进行连麦直播和旁路推流。
 
 在这个示例项目中包含了以下功能：
 
-- 加入通话和离开通话；
-- 主播和观众模式切换；
+- 摄像头视频流直推 CDN
+- 加入和离开声网频道；
 - 静音和解除静音；
 - 切换前置摄像头和后置摄像头；
 - 选择分辨率、码率和帧率；
-
-你也可以在这里查看入门版的示例项目：[Agora-Android-Tutorial-1to1](https://github.com/AgoraIO/Basic-Video-Call/tree/master/One-to-One-Video/Agora-Android-Tutorial-1to1)
 
 ## 环境准备
 
@@ -44,14 +42,14 @@
 ### 集成 Agora 视频 SDK
 
 集成方式有以下两种：
-  - 通过JCenter集成：
+  - 通过JCenter集成（推荐方式，Demo 也是采用这种方式）：
     - 在项目对应的模块的 `app/build.gradle` 文件的依赖属性中加入通过 JCenter 自动集成 Agora 视频 SDK 的地址：
       ```
-      implementation 'io.agora.rtc:full-sdk:3.0.0'
+      implementation 'io.agora.rtc:full-sdk:3.2.1'
       ```
   - 手动集成：
     - 在 [Agora.io SDK](https://www.agora.io/cn/download/) 下载 **视频通话 + 直播 SDK**并解压，按以下对应关系将 **libs** 目录的内容复制到项目内。
-      
+
       SDK目录|项目目录
       ---|---
       .jar file|**/apps/libs** folder
@@ -60,6 +58,23 @@
       **armeabi-v7a** folder|**/app/src/main/jniLibs** folder
     - 若需要需要使用C++头文件，可以在解压SDK后将其中的 **libs**/**include** 文件夹下的 ***.h** 复制到本项目的 **app**/**src**/**main**/**cpp**/**agora** 下。
 
+### 集成 Agora 推流 Kit
+
+集成方式有以下两种：
+  - 通过JCenter集成（推荐方式，本开源项目也是采用这种方式）：
+    - 在项目对应的模块的 `app/build.gradle` 文件的依赖属性中加入通过 JCenter 自动集成 Agora 推流 Kit 的地址：
+      ```
+      implementation 'io.agora:streamingkit:1.1.0.0'
+      ```
+  - 手动集成：
+    - 在 [Agora.io SDK](https://www.agora.io/cn/download/) 下载 **Agora 推流 Kit**并解压，按以下对应关系将 **libs** 目录的内容复制到项目内。
+
+      SDK目录|项目目录
+      ---|---
+      .jar file|**/apps/libs** folder
+      **arm64-v8a** folder|**/app/src/main/jniLibs** folder
+      **x86** folder|**/app/src/main/jniLibs** folder
+      **armeabi-v7a** folder|**/app/src/main/jniLibs** folder
 
 ### 启动应用程序
 

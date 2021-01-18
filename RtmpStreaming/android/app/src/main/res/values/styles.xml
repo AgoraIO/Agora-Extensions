@@ -51,4 +51,9 @@
         <item name="android:layout_alignParentEnd">true</item>
         <item name="android:background">@drawable/ic_arrow_right</item>
     </style>
+
+    <style name="main_radio_button" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">@color/colorWhite</item>
+        <item name="colorControlActivated">@color/defaultColor</item>
+    </style>
 </resources>

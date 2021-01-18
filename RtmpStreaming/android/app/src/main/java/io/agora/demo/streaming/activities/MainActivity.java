@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Rect;
+import android.media.projection.MediaProjectionManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -17,16 +19,20 @@ import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import io.agora.demo.streaming.presenter.LiveStreamingPresenter;
 import io.agora.demo.streaming.R;
+import io.agora.demo.streaming.presenter.LiveStreamingPresenter;
+import io.agora.demo.streaming.services.ScreenCaptureService;
+import io.agora.demo.streaming.ui.OperationMenu;
 import io.agora.demo.streaming.utils.PrefManager;
 
 public class MainActivity extends BaseActivity {
@@ -34,9 +40,12 @@ public class MainActivity extends BaseActivity {
     private static final int MIN_INPUT_METHOD_HEIGHT = 200;
     private static final int ANIM_DURATION = 200;
 
+    private MediaProjectionManager mpm;
+    private Intent mediaProjectionIntent;
+    public static int PROJECTION_REQ_CODE = 1;
+
     // Permission request code of any integer value
     private static final int PERMISSION_REQ_CODE = 1 << 4;
-
     private String[] PERMISSIONS = {
             Manifest.permission.RECORD_AUDIO,
             Manifest.permission.CAMERA,
@@ -50,6 +59,8 @@ public class MainActivity extends BaseActivity {
     private EditText mTopicEdit;
     private TextView mStartBtn;
     private ImageView mLogo;
+
+    private Intent mForegroundService;
 
     private Animator.AnimatorListener mLogoAnimListener = new Animator.AnimatorListener() {
         @Override
@@ -128,10 +139,60 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == OperationMenu.PROJECTION_REQ_CODE && resultCode == RESULT_OK) {
+            Log.i(TAG, "start screen capture!");
+
+            if (!ScreenCaptureService.serviceIsLive) {
+                mForegroundService = new Intent(this, ScreenCaptureService.class);
+                mForegroundService.putExtra("screen_intent", data);
+                mForegroundService.putExtra("key_room_name", mTopicEdit.getText().toString());
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    startForegroundService(mForegroundService);
+                } else {
+                    startService(mForegroundService);
+                }
+                moveTaskToBack(true);
+            } else {
+                Toast.makeText(this, getString(R.string.main_capturing_screen_warning), Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initUI();
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        if(ScreenCaptureService.serviceIsLive){
+            moveTaskToBack(true);
+            Toast toast = Toast.makeText(this, "", Toast.LENGTH_LONG);
+            toast.setText(getString(R.string.main_capturing_screen_warning));
+            toast.show();
+            return;
+        }
+        if(!intent.hasExtra("from")){
+            return;
+        }
+        String from = intent.getStringExtra("from");
+
+        if(!intent.hasExtra("why")){
+            return;
+        }
+        String why = intent.getStringExtra("why");
+        if(from.equals("ScreenCaptureService") && why.equals("StopSelf")){
+            mpm = null;
+            mediaProjectionIntent = null;
+        }
     }
 
     private void initUI() {
@@ -143,6 +204,15 @@ public class MainActivity extends BaseActivity {
 
         mStartBtn = findViewById(R.id.start_broadcast_button);
         if (TextUtils.isEmpty(mTopicEdit.getText())) mStartBtn.setEnabled(false);
+
+
+        MainActivity.this.runOnUiThread(() -> {
+            String sdkVersion = LiveStreamingPresenter.getSdkVersion();
+            TextView VerText = findViewById(R.id.sdk_version_text);
+            if (VerText != null) {
+                VerText.setText("Version " + sdkVersion);
+            }
+        });
     }
 
     @Override
@@ -237,8 +307,26 @@ public class MainActivity extends BaseActivity {
 
     private void resetLayoutAndForward() {
         closeImeDialogIfNeeded();
-        Log.d(TAG, "gotoLiveActivity befor");
-        gotoLiveActivity();
+        Log.d(TAG, "gotoLiveActivity before");
+
+        RadioGroup rb = findViewById(R.id.capture_mode);
+        int r_id = rb.getCheckedRadioButtonId();
+        if (r_id == R.id.capture_mode_camera) {
+            gotoLiveActivity();
+        } else {
+            if (mpm == null) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    mpm = (MediaProjectionManager) getSystemService(Context.MEDIA_PROJECTION_SERVICE);
+                }
+            }
+            if (mediaProjectionIntent == null) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    mediaProjectionIntent = mpm.createScreenCaptureIntent();
+                }
+            }
+            startActivityForResult(mediaProjectionIntent, PROJECTION_REQ_CODE);
+        }
+
         Log.d(TAG, "gotoLiveActivity after");
     }
 
@@ -251,10 +339,10 @@ public class MainActivity extends BaseActivity {
 
     private void gotoLiveActivity() {
         int screenOrientation =
-            PrefManager.SCREEN_ORIENTATIONS[PrefManager.getScreenOrientationIndex(this)];
+                PrefManager.SCREEN_ORIENTATIONS[PrefManager.getScreenOrientationIndex(this)];
         Class<?> cls = (screenOrientation == Configuration.ORIENTATION_PORTRAIT) ? LiveActivity.class
-            : (screenOrientation == Configuration.ORIENTATION_LANDSCAPE) ? LandscapeLiveActivity.class
-            : DynamicLiveActivity.class;
+                : (screenOrientation == Configuration.ORIENTATION_LANDSCAPE) ? LandscapeLiveActivity.class
+                : DynamicLiveActivity.class;
         Intent intent = new Intent(getApplicationContext(), cls);
         intent.putExtra(LiveActivity.KEY_ROOM_NAME, mTopicEdit.getText().toString());
         startActivity(intent);
