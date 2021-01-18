@@ -56,8 +56,7 @@ public class StreamingKitWrapper {
         videoDimensions.width, videoDimensions.height,
         PrefManager.VIDEO_FRAMERATES[PrefManager.getVideoFramerateIndex(mAppContext)].getValue(),
         PrefManager.VIDEO_BITRATES[PrefManager.getVideoBitrateIndex(mAppContext)],
-        PrefManager.VIDEO_ORIENTATION_MODES[PrefManager.getVideoOrientationModeIndex(mAppContext)],
-            VideoMirrorMode.VIDEO_MIRROR_MODE_AUTO);
+        PrefManager.VIDEO_ORIENTATION_MODES[PrefManager.getVideoOrientationModeIndex(mAppContext)]);
 
     AudioStreamConfiguration audioStreamConfig = new AudioStreamConfiguration(
         PrefManager.AUDIO_SAMPLE_RATES[PrefManager.getAudioSampleRateIndex(mAppContext)],

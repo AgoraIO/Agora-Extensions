@@ -50,8 +50,7 @@ public class DocsHelper {
         VideoStreamConfiguration.VD_640x360,
         VideoStreamConfiguration.FRAME_RATE.FRAME_RATE_FPS_15,
         VideoStreamConfiguration.STANDARD_BITRATE,
-        VideoStreamConfiguration.ORIENTATION_MODE.ORIENTATION_MODE_FIXED_PORTRAIT,
-            VideoMirrorMode.VIDEO_MIRROR_MODE_AUTO);
+        VideoStreamConfiguration.ORIENTATION_MODE.ORIENTATION_MODE_FIXED_PORTRAIT);
 
     StreamingContext streamingContext = new StreamingContext(
         streamingEventHandler, appId, appContext, videoStreamConfig);
