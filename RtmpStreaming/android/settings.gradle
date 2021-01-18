@@ -6,9 +6,9 @@ Properties properties = new Properties()
 File propertyFile = new File(rootDir.getAbsolutePath() + "/local.properties")
 properties.load(propertyFile.newDataInputStream())
 
-gradle.ext.buildWithAgoraProjAndroidStreaming = properties.getProperty('buildWithBeauty') == "true";
+gradle.ext.buildWithBeauty = properties.getProperty('buildWithBeauty') == "true";
 
-if (gradle.ext.buildWithAgoraProjAndroidStreaming) {
+if (gradle.ext.buildWithBeauty) {
     include ':fulivedemo'
     include ":faceunity"
 }

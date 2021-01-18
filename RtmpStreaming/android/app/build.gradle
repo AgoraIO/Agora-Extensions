@@ -84,8 +84,8 @@ android {
 dependencies {
     implementation 'io.agora.rtc:full-sdk:3.2.1'
 
-    if (gradle.ext.buildWithAgoraProjAndroidStreaming) {
-        implementation project(path: ':fulivedemo')
+    if (gradle.ext.buildWithBeauty) {
+        fuImplementation project(path: ':fulivedemo')
     }
 
     implementation 'io.agora:streamingkit:1.1.0.0'
