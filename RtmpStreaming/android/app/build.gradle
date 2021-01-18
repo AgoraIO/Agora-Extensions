@@ -22,7 +22,7 @@ android {
     flavorDimensions "beauty", "dev_mode"
 
     productFlavors {
-        std {
+        _std {
             // no any beauty
             dimension "beauty"
             resValue "string", "app_name", "AgoraSKDemo"
