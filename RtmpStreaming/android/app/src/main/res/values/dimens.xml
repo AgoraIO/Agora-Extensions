@@ -23,7 +23,9 @@
     <dimen name="start_broadcast_radius">25dp</dimen>
     <dimen name="start_broadcast_padding">45dp</dimen>
     <dimen name="info_margin_bottom">48dp</dimen>
+    <dimen name="version_margin_bottom">70dp</dimen>
 
+    <dimen name="service_btn_radius">5dp</dimen>
     <!-- Setting Activity -->
     <dimen name="setting_title_layout_height">56dp</dimen>
     <dimen name="setting_title_content_margin">12dp</dimen>

@@ -9,9 +9,9 @@ import java.util.List;
 import java.util.concurrent.Callable;
 
 import io.agora.base.AudioFrame;
-import io.agora.base.internal.video.RendererCommon;
 import io.agora.base.TextureBufferHelper;
 import io.agora.base.VideoFrame;
+import io.agora.base.internal.video.RendererCommon;
 import io.agora.base.internal.video.YuvHelper;
 import io.agora.demo.streaming.R;
 import io.agora.demo.streaming.utils.FileUtil;

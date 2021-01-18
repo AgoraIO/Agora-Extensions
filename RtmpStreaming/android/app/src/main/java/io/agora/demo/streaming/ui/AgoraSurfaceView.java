@@ -6,9 +6,9 @@ import android.graphics.Paint;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.util.Log;
 
 import io.agora.demo.streaming.utils.ScreenUtil;
 

@@ -16,16 +16,16 @@ import io.agora.rtc.video.VideoEncoderConfiguration;
 import io.agora.streaming.AgoraCameraCapturer;
 import io.agora.streaming.AudioFrameObserver;
 import io.agora.streaming.AudioStreamConfiguration;
-import io.agora.streaming.CameraCaptureObserverHandler;
 import io.agora.streaming.CameraSource;
 import io.agora.streaming.SnapshotCallback;
-import io.agora.streaming.VideoFrameObserver;
-import io.agora.streaming.VideoRenderMode;
 import io.agora.streaming.StreamingContext;
 import io.agora.streaming.StreamingEventHandler;
 import io.agora.streaming.StreamingKit;
 import io.agora.streaming.VideoFilter;
+import io.agora.streaming.VideoFrameObserver;
+import io.agora.streaming.VideoMirrorMode;
 import io.agora.streaming.VideoPreviewRenderer;
+import io.agora.streaming.VideoRenderMode;
 import io.agora.streaming.VideoStreamConfiguration;
 import io.agora.streaming.internal.StreamingKitImpl;
 
@@ -277,5 +277,21 @@ public class StreamingKitWrapper {
   public void stopScreenCapture(){
     mStreamingKit.stopScreenCapture();
   }
+
+  public static String getSdkVersion(){
+    if (PrefManager.IS_DEV_DEBUG) {
+      Field f_lib = null;
+      try {
+        f_lib = StreamingKitImpl.class.getDeclaredField("LIB_NAME");
+        f_lib.setAccessible(true);
+        f_lib.set(null, "streaming_kit_shared-jni");
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+
+    }
+    return StreamingKit.getSdkVersion();
+  }
+
 
 }

@@ -3,8 +3,6 @@ package io.agora.demo.streaming;
 import android.content.Context;
 import android.view.SurfaceView;
 
-import java.util.ArrayList;
-
 import io.agora.base.AudioFrame;
 import io.agora.base.VideoFrame;
 import io.agora.rtc.IRtcEngineEventHandler;

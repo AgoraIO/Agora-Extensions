@@ -4,17 +4,20 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 
+import io.agora.demo.streaming.BuildConfig;
+import io.agora.demo.streaming.R;
 import io.agora.rtc.Constants;
 import io.agora.rtc.video.VideoEncoderConfiguration;
 import io.agora.streaming.AudioStreamConfiguration;
 import io.agora.streaming.StreamingKit;
+import io.agora.streaming.VideoMirrorMode;
 import io.agora.streaming.VideoStreamConfiguration;
 
 
 public class PrefManager {
-    public static final boolean IS_DEV_DEBUG = true;
+    public static final boolean IS_DEV_DEBUG = BuildConfig.IS_DEV_DEBUG;
     public static final boolean IS_SIMUL_TEST = false;
-    private static final String DEFAULT_RTMP_URL = "rtmp://ks-push.broadcastapp.agoraio.cn/live/yutest";
+    private static final String DEFAULT_RTMP_URL = BuildConfig.default_rtmp_url;
     private static final String DEFAULT_VIDEO_LOCAL_STORE_PATH = "";
 
     public static final String PREF_FILE_NAME = "io.agora.demo.streaming";

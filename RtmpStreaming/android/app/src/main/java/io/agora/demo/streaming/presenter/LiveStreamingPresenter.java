@@ -22,7 +22,6 @@ import io.agora.rtc.IRtcEngineEventHandler;
 import io.agora.rtc.video.VideoCanvas;
 import io.agora.rtc.video.VideoEncoderConfiguration;
 import io.agora.streaming.AgoraCameraCapturer;
-import io.agora.streaming.CameraCaptureObserverHandler;
 import io.agora.streaming.SnapshotCallback;
 import io.agora.streaming.StreamingEventHandler;
 import io.agora.streaming.VideoDeviceEventHandler;
@@ -46,12 +45,12 @@ public class LiveStreamingPresenter {
 
     private RtcEngineWrapper mRtcEngineWrapper;
     private final IRtcEngineEventHandler mRtcEngineEventHandlerWrapper =
-        new RtcEngineEventHandlerWrapper();
+            new RtcEngineEventHandlerWrapper();
     private IRtcEngineEventHandler mRtcEngineEventHandlerReal;
 
     private StreamingKitWrapper mStreamingKitWrapper;
     private final StreamingEventHandler mStreamingEventHandlerWrapper =
-        new StreamingEventHandlerWrapper();
+            new StreamingEventHandlerWrapper();
     private StreamingEventHandler mStreamingEventHandlerReal;
 
     // TODO(Haonong Yu): 2020/8/10 thread safety for belows?
@@ -137,7 +136,7 @@ public class LiveStreamingPresenter {
                 if (capturer != null) {
                     Log.d(TAG, "Get camera success");
                     capturer.registerEventHandler(handler);
-                }else{
+                } else {
                     Log.d(TAG, "Can not get camera");
                 }
             }
@@ -236,6 +235,7 @@ public class LiveStreamingPresenter {
             }
         });
     }
+
     public int snapshot(SnapshotCallback callback) {
         return invokeOnWorkerThread(new Callable<Integer>() {
             @Override
@@ -244,6 +244,7 @@ public class LiveStreamingPresenter {
             }
         });
     }
+
     public boolean isCameraFacingFront() {
         return invokeOnWorkerThread(new Callable<Integer>() {
             @Override
@@ -301,8 +302,8 @@ public class LiveStreamingPresenter {
                     public void run() {
                         // this has to be called in UI thread
                         mRtcEngineWrapper.setupRemoteVideo(
-                            new VideoCanvas(null, VideoCanvas.RENDER_MODE_HIDDEN, uid,
-                            PrefManager.getMirrorRemoteMode(mContext)));
+                                new VideoCanvas(null, VideoCanvas.RENDER_MODE_HIDDEN, uid,
+                                        PrefManager.getMirrorRemoteMode(mContext)));
                     }
                 });
             }
@@ -310,12 +311,12 @@ public class LiveStreamingPresenter {
     }
 
     public int setRtcLiveTranscoding(List<Integer> uidList, int width, int height,
-        int videoBitrate, int videoFramerate) {
+                                     int videoBitrate, int videoFramerate) {
         return invokeOnWorkerThread(new Callable<Integer>() {
             @Override
             public Integer call() throws Exception {
                 return mRtcEngineWrapper.setLiveTranscoding(uidList, width, height, videoBitrate,
-                    videoFramerate);
+                        videoFramerate);
             }
         });
     }
@@ -354,8 +355,8 @@ public class LiveStreamingPresenter {
         mWorkHandler.post(new Runnable() {
             @Override
             public void run() {
-                synchronized (lockObject){
-                    if(!mPendingServerStreaming){
+                synchronized (lockObject) {
+                    if (!mPendingServerStreaming) {
                         mPendingServerStreaming = true;
                         mRtcEngineWrapper.setExternalAudioSource(true);
                         mStreamingKitWrapper.registerAudioFrameObserver(mRtcEngineWrapper);
@@ -373,8 +374,8 @@ public class LiveStreamingPresenter {
         mWorkHandler.post(new Runnable() {
             @Override
             public void run() {
-                synchronized (lockObject){
-                    if(mPendingServerStreaming == true){
+                synchronized (lockObject) {
+                    if (mPendingServerStreaming == true) {
                         mPendingServerStreaming = false;
                         if (mIsServerStreaming) {
                             mRtcEngineWrapper.removePublishStreamUrl();
@@ -390,7 +391,7 @@ public class LiveStreamingPresenter {
         });
     }
 
-    public void registerVideoFrameObserver(){
+    public void registerVideoFrameObserver() {
         mWorkHandler.post(new Runnable() {
             @Override
             public void run() {
@@ -399,7 +400,7 @@ public class LiveStreamingPresenter {
         });
     }
 
-    public void unregisterVideoFrameObserver(){
+    public void unregisterVideoFrameObserver() {
         mWorkHandler.post(new Runnable() {
             @Override
             public void run() {
@@ -509,7 +510,7 @@ public class LiveStreamingPresenter {
                 public void run() {
                     if (mRtcEngineEventHandlerReal != null) {
                         mRtcEngineEventHandlerReal.onFirstRemoteVideoDecoded(uid, width, height,
-                            elapsed);
+                                elapsed);
                     }
                 }
             });
@@ -598,57 +599,81 @@ public class LiveStreamingPresenter {
         }
     }
 
-    public int setZoom(float zoomValue){
-        return mStreamingKitWrapper.setZoom(zoomValue);
-    }
-
-    public float getMaxZoom(){
-        return mStreamingKitWrapper.getMaxZoom();
-    }
-
-    public boolean isFocusSupported(){
-        return mStreamingKitWrapper.isFocusSupported();
-    }
-
-    public boolean isAutoFaceFocusSupported(){
-        return mStreamingKitWrapper.isAutoFaceFocusSupported();
-    }
-
-    public int setFocus(float x, float y){
-        return mStreamingKitWrapper.setFocus(x, y);
-    }
-
-    public int setAutoFaceFocus(boolean enable){
-        return mStreamingKitWrapper.setAutoFaceFocus(enable);
-    }
-
-    public void autoFaceFocus(boolean enable){
+    public void setZoom(float zoomValue) {
         mWorkHandler.post(new Runnable() {
             @Override
             public void run() {
-                if(isAutoFaceFocusSupported()){
+                int ret = mStreamingKitWrapper.setZoom(zoomValue);
+                if (ret < 0) {
+                    Log.d(TAG, "set zoom error");
+                }
+            }
+        });
+    }
+
+    public float getMaxZoom() {
+        return mStreamingKitWrapper.getMaxZoom();
+    }
+
+    public boolean isFocusSupported() {
+        return mStreamingKitWrapper.isFocusSupported();
+    }
+
+    public boolean isAutoFaceFocusSupported() {
+        return mStreamingKitWrapper.isAutoFaceFocusSupported();
+    }
+
+    public void setFocus(float x, float y) {
+        mWorkHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                int ret = mStreamingKitWrapper.setFocus(x, y);
+                if (ret < 0) {
+                    Log.d(TAG, "set focus error");
+                }
+            }
+        });
+    }
+
+    public void setAutoFaceFocus(boolean enable) {
+        mWorkHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                int ret = mStreamingKitWrapper.setAutoFaceFocus(enable);
+                if (ret < 0) {
+                    Log.d(TAG, "setAutoFaceFocus error");
+                }
+            }
+        });
+    }
+
+    public void autoFaceFocus(boolean enable) {
+        mWorkHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                if (isAutoFaceFocusSupported()) {
                     setAutoFaceFocus(enable);
-                }else{
+                } else {
                     Log.d(TAG, "face focus can not support");
                 }
             }
         });
     }
 
-    public void startScreenCapture(Intent intent, int width, int height){
+    public void startScreenCapture(Intent intent, int width, int height) {
         Log.d(TAG, "start screen capture");
         mWorkHandler.post(new Runnable() {
             @Override
             public void run() {
                 int result = mStreamingKitWrapper.startScreenCapture(intent, width, height);
-                if(result < 0){
+                if (result < 0) {
                     Log.d(TAG, "start screen capture error");
                 }
             }
         });
     }
 
-    public void stopScreenCapture(){
+    public void stopScreenCapture() {
         Log.d(TAG, "stop screen capture");
         mWorkHandler.post(new Runnable() {
             @Override
@@ -656,5 +681,11 @@ public class LiveStreamingPresenter {
                 mStreamingKitWrapper.stopScreenCapture();
             }
         });
+    }
+
+    public static String getSdkVersion() {
+        String sdk_ver = StreamingKitWrapper.getSdkVersion();
+        Log.d(TAG, "get sdk version " + sdk_ver);
+        return sdk_ver;
     }
 }

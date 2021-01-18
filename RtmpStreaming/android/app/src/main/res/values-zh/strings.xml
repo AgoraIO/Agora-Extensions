@@ -4,6 +4,9 @@
     <string name="start_broadcast_title">开始预览</string>
     <string name="topic_edit_hint">输入一个聊天话题</string>
     <string name="need_necessary_permissions">缺少必要权限</string>
+    <string name="main_capture_mode_camera">摄像头采集模式</string>
+    <string name="main_capture_mode_screen">屏幕采集模式</string>
+    <string name="main_capturing_screen_warning">屏幕采集服务正在运行，请从通知栏操作！</string>
 
     <!-- Setting Activity -->
     <string name="setting_title">设置</string>
@@ -53,5 +56,17 @@
     <string name="snapshot_video_frame_title">截图</string>
     <string name="operation_collection_title">操作选项</string>
     <string name="stop_screen_share_title">停止屏幕共享</string>
+
+    <!--  service  -->
+    <string name="btn_screen_capture_start_rtmp">开始推流\nRTMP</string>
+    <string name="btn_screen_capture_start_rtc">开始推\n声网频道</string>
+    <string name="btn_screen_capture_snapshot">截  屏</string>
+    <string name="btn_screen_capture_stop">停  止</string>
+    <string name="status_text_default">屏幕\n采集</string>
+
+
+    <!--  snapshot  -->
+    <string name="save_pic_success">图片保存成功</string>
+    <string name="save_pic_failed">图片保存失败</string>
 
 </resources>
