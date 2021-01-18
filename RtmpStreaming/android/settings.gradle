@@ -1,5 +1,14 @@
 include ':app'
-include ':fulivedemo'
-include ":faceunity"
-// To compile streaming sdk, set 'buildWithAgoraProjAndroidStreaming = true'
+
 // The other variable is in Build.gradle
+
+Properties properties = new Properties()
+File propertyFile = new File(rootDir.getAbsolutePath() + "/local.properties")
+properties.load(propertyFile.newDataInputStream())
+
+gradle.ext.buildWithAgoraProjAndroidStreaming = properties.getProperty('buildWithBeauty') == "true";
+
+if (gradle.ext.buildWithAgoraProjAndroidStreaming) {
+    include ':fulivedemo'
+    include ":faceunity"
+}

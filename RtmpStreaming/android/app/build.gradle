@@ -19,10 +19,6 @@ android {
         }
     }
 
-    if (gradle.ext.buildWithAgoraProjAndroidStreaming) {
-        is_dev = "true"
-    }
-
     flavorDimensions "beauty", "dev_mode"
 
     productFlavors {
@@ -32,7 +28,10 @@ android {
             resValue "string", "app_name", "AgoraSKDemo"
         }
         fu {
-            //faceunity
+            // NOTICE
+            // if you want use beauty funtions with faceunity
+            // you should set follow setting on "local.properties"
+            // buildWithBeauty=true
             dimension "beauty"
             applicationIdSuffix ".withfu"
             versionNameSuffix "(withfu)"
@@ -45,8 +44,8 @@ android {
 
             // Get your own App ID at https://dashboard.agora.io/
             // PLEASE KEEP THIS App ID IN SAFE PLACE
-            // you must give one to replace "xxxxxxxxxxxx"
-            resValue "string", "private_app_id", "xxxxxxx"
+            // you must give one to replace xxxxxxxxxxxx
+            resValue "string", "private_app_id", xxxxxxxxxxxx
 
             // default rtmp pushing-url
             // you must give one like "\"xxxxx_url\""
@@ -85,7 +84,9 @@ android {
 dependencies {
     implementation 'io.agora.rtc:full-sdk:3.2.1'
 
-    fuImplementation project(path: ':fulivedemo')
+    if (gradle.ext.buildWithAgoraProjAndroidStreaming) {
+        implementation project(path: ':fulivedemo')
+    }
 
     implementation 'io.agora:streamingkit:1.1.0.0'
     // bugly crash report

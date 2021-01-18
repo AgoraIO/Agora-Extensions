@@ -423,6 +423,8 @@ public class FURenderer implements OnFUControlListener {
         }
         // 获取 Nama SDK 版本信息
         Log.e(TAG, "fu sdk version " + faceunity.fuGetVersion());
+
+        // 注意： 如果你想使用相芯科技提供的faceunity美颜功能，您需要从起官网申请密钥文件authpack.java
         fuSetup(context, BUNDLE_AI_MODEL_FACE_PROCESSOR, authpack.A());
         loadTongueModel(context, BUNDLE_TONGUE);
         sIsInited = true;
