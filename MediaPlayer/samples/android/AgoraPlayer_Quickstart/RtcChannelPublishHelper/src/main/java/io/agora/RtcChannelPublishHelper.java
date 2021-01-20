@@ -234,10 +234,11 @@ public class RtcChannelPublishHelper extends IRtcEngineEventHandler implements A
             this.agoraMediaPlayerKit.unregisterAudioFrameObserver(this);
             mRtcEngine.setParameters("{\"che.audio.enable.aec\":false}");
         }
+        enablePushAudioToRtc = true;
         nativeEnableLocalPlayoutVolume(enable);
     }
 
-    private int adjustPublishLocalVoiceVolume(int volume) {
+    public int adjustPublishLocalVoiceVolume(int volume) {
         if (mRtcEngine == null || this.agoraMediaPlayerKit == null) {
             return ERROR_CODE;
         }

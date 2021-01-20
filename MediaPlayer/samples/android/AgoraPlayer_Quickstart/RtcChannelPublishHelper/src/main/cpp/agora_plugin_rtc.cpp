@@ -148,7 +148,7 @@ public:
             return true;
         }
 
-        //XLOGI("tjy onRecordAudioFrame got audio frame %f,%f",audio_sonSum,audio_voiceSum);
+        XLOGI("tjy onRecordAudioFrame got audio frame %f,%f",audio_sonSum,audio_voiceSum);
         char *data = (char *) malloc(sizeof(short) * bytes);
         recordMux.lock();
         agoraAudioBuf->Pop(data, (int)bytes);
@@ -191,7 +191,6 @@ public:
     }
 
     virtual bool onPlaybackAudioFrame(AudioFrame &audioFrame) override {
-           //XLOGI("tjy onPlaybackAudioFrame");playBackBuf
        if (!enable_local_playout_volume){
            return true;
        }
@@ -199,8 +198,8 @@ public:
        if (playBackBuf->mAvailSamples < bytes) {
            return true;
        }
-       XLOGI("tjy onPlaybackAudioFrame want bytes: %d,%d,%d,%d,%d  available bytes: %d",
-           audioFrame.bytesPerSample,audioFrame.channels,audioFrame.samples,audioFrame.samplesPerSec,bytes,agoraAudioBuf->mAvailSamples);
+       //XLOGI("tjy onPlaybackAudioFrame want bytes: %d,%d,%d,%d,%d  available bytes: %d",
+       //    audioFrame.bytesPerSample,audioFrame.channels,audioFrame.samples,audioFrame.samplesPerSec,bytes,agoraAudioBuf->mAvailSamples);
 
        char *data = (char *) malloc(sizeof(short) * bytes);
        playoutMux.lock();
@@ -352,7 +351,7 @@ Java_io_agora_RtcChannelPublishHelper_adjustPublishVoiceVolume(JNIEnv *env, jobj
 extern "C"
 JNIEXPORT void JNICALL
 Java_io_agora_RtcChannelPublishHelper_nativeEnablePushAudioToRtc(JNIEnv *env, jobject instance,jboolean enable) {
-    XLOGI("TJY nativeEnablePushAudioToRtc %d",enable);
+    XLOGI("TJY nativeEnablePushAudioToRtc %d %p",enable,rtcEngine);
     s_audioFrameObserver.enable_push_playout_volume = enable;
     if(!enable) {
         destroyAudioBuffer();
