@@ -66,6 +66,8 @@ public abstract class VideoCapture extends VideoProducer {
         void onFirstCapturedFrame(int width, int height);
 
         void onCameraCaptureError(int error, String message);
+
+        void onCameraClosed();
     }
 
     private static final String TAG = VideoCapture.class.getSimpleName();

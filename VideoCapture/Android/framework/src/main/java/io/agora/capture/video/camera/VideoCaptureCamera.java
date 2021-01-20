@@ -319,6 +319,10 @@ public class VideoCaptureCamera
         synchronized (mCameraStateLock) {
             mCameraState = CameraState.STOPPED;
         }
+
+        if (stateListener != null) {
+            stateListener.onCameraClosed();
+        }
     }
 
     @Override
