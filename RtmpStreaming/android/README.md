@@ -15,10 +15,8 @@
   - [3.4. flavor](#34-flavor)
   - [3.5. About the beauty function](#35-about-the-beauty-function)
   - [3.6. Run the Application](#36-run-the-application)
-- [4. NOTICE for using Agora Streaming SDK](#4-notice-for-using-agora-streaming-sdk)
-  - [4.1. APIc](#41-apic)
-- [5. Resources](#5-resources)
-- [6. Demo License](#6-demo-license)
+- [4. Resources](#4-resources)
+- [5. Demo License](#5-demo-license)
 
 ## 1. Summary
 
@@ -158,8 +156,8 @@ The SDK must be integrated into the sample project before it can opened and buil
 
 The demo project provides two kinds of `flavor`, std and fu
 
--std: standard project
--fu: Use faceunity to realize the beauty function
+- std: standard project
+- fu: Use faceunity to realize the beauty function
 
 By default, fu is disabled. If you want to enable the beauty function, you need to set the following options in `local.properties`
 
@@ -176,9 +174,9 @@ After the synchronization is complete, you can see fu-related build options in t
 
 ### 3.5. About the beauty function
 
--The demo uses the VideoFilter mechanism of `Agora Streaming Kit` to integrate faceunity.
--If you want to use faceunity related functions, you need to go to [faceunity official website](https://www.faceunity.com/en) to register and get the key file `authpack.java`, and copy this file to `faceunity/src/ main/java/com/faceunity` directory
--Developers can also integrate other third-party beauty components by themselves
+- The demo uses the VideoFilter mechanism of `Agora Streaming Kit` to integrate faceunity.
+- If you want to use faceunity related functions, you need to go to [faceunity official website](https://www.faceunity.com/en) to register and get the key file `authpack.java`, and copy this file to `faceunity/src/ main/java/com/faceunity` directory
+- Developers can also integrate other third-party beauty components by themselves
 
 **NOTICE**
 
@@ -190,11 +188,7 @@ Open project with Android Studio, connect your Android device, build and run.
 
 Or use `Gradle` to build and run.
 
-## 4. NOTICE for using Agora Streaming SDK
-
-### 4.1. APIc
-
-## 5. Resources
+## 4. Resources
 
 - [Agora Streaming Kit official documentation](https://docs.agora.io/cn/Interactive%20Broadcast/streamingkit_android?platform=Android#%E9%9B%86%E6%88%90-streaming-kit)
 - For potential issues, take a look at our [FAQ](https://docs.agora.io/cn/faq) first
@@ -205,6 +199,6 @@ Or use `Gradle` to build and run.
 - If you encounter problems during integration, you can ask question in [Stack Overflow](https://stackoverflow.com/questions/tagged/agora.io)
 - You can file bugs about this sample at [issue](https://github.com/AgoraIO/Basic-Video-Broadcasting/issues)
 
-## 6. Demo License
+## 5. Demo License
 
 The MIT License (MIT)
