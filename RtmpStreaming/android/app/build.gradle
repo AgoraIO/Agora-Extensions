@@ -27,17 +27,18 @@ android {
             dimension "beauty"
             resValue "string", "app_name", "AgoraSKDemo"
         }
-        fu {
-            // NOTICE
-            // if you want use beauty funtions with faceunity
-            // you should set follow setting on "local.properties"
-            // buildWithBeauty=true
-            dimension "beauty"
-            applicationIdSuffix ".withfu"
-            versionNameSuffix "(withfu)"
-            resValue "string", "app_name", "AgoraSK(fu)"
+        if (gradle.ext.buildWithBeauty) {
+            fu {
+                // NOTICE
+                // if you want use beauty funtions with faceunity
+                // you should set follow setting on "local.properties"
+                // buildWithBeauty=true
+                dimension "beauty"
+                applicationIdSuffix ".withfu"
+                versionNameSuffix "(withfu)"
+                resValue "string", "app_name", "AgoraSK(fu)"
+            }
         }
-
         ga {
             // General Availability
             dimension "dev_mode"
