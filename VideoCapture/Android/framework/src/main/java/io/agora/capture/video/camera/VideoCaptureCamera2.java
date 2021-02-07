@@ -89,6 +89,10 @@ public class VideoCaptureCamera2 extends VideoCapture {
                 mPendingStartRequest = false;
                 startCaptureMaybeAsync(false);
             }
+
+            if (stateListener != null) {
+                stateListener.onCameraClosed();
+            }
         }
     };
 
