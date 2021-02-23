@@ -89,10 +89,10 @@ dependencies {
         fuImplementation project(path: ':fulivedemo')
     }
 
-    implementation 'io.agora:streamingkit:1.1.0.0'
+    implementation 'io.agora:streamingkit:1.1.1'
     // bugly crash report
-    implementation 'com.tencent.bugly:crashreport:3.3.3'
-    implementation 'com.tencent.bugly:nativecrashreport:3.7.700'
+    implementation 'com.tencent.bugly:crashreport:3.3.6'
+    implementation 'com.tencent.bugly:nativecrashreport:3.7.800'
 
     implementation 'com.github.yuzhiqiang1993:zxing:2.2.8'
     implementation 'androidx.appcompat:appcompat:1.2.0'

@@ -29,9 +29,10 @@
     <string name="setting_log_filter_title">Logs Level</string>
     <string name="setting_stream_type_title">Stream Type</string>
     <string name="setting_stats_title">Show video statistics</string>
+    <string name="setting_mirror_encode_title">Local video encode mirror mode</string>
     <string name="setting_mirror_local_title">Local video preview mirror mode</string>
     <string name="setting_mirror_remote_title">Remote video render mirror mode</string>
-    <string name="setting_mirror_encode_title">Local video encode mirror mode</string>
+    <string name="setting_mirror_push_stream_title">Push stream mirror mode</string>
 
     <string-array name="string_array_resolutions">
         <item>320x240</item>
