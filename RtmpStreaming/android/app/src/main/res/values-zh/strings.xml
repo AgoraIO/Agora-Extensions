@@ -38,6 +38,7 @@
     <string name="setting_mirror_encode_title">本地视频编码镜像模式</string>
     <string name="setting_mirror_local_title">本地视频预览镜像模式</string>
     <string name="setting_mirror_remote_title">远端视频渲染镜像模式</string>
+    <string name="setting_mirror_push_stream_title">推流镜像</string>
 
     <!-- Streaming Activity -->
     <string name="start_rtmp_streaming">开启RTMP推流</string>

@@ -23,7 +23,6 @@ import io.agora.streaming.StreamingEventHandler;
 import io.agora.streaming.StreamingKit;
 import io.agora.streaming.VideoFilter;
 import io.agora.streaming.VideoFrameObserver;
-import io.agora.streaming.VideoMirrorMode;
 import io.agora.streaming.VideoPreviewRenderer;
 import io.agora.streaming.VideoRenderMode;
 import io.agora.streaming.VideoStreamConfiguration;
@@ -52,11 +51,14 @@ public class StreamingKitWrapper {
     VideoEncoderConfiguration.VideoDimensions videoDimensions = new VideoEncoderConfiguration.VideoDimensions(
             PrefManager.getResolutionWidth(mAppContext),
             PrefManager.getResolutionHeight(mAppContext));
+
+
     VideoStreamConfiguration videoStreamConfig = new VideoStreamConfiguration(
         videoDimensions.width, videoDimensions.height,
         PrefManager.VIDEO_FRAMERATES[PrefManager.getVideoFramerateIndex(mAppContext)].getValue(),
         PrefManager.VIDEO_BITRATES[PrefManager.getVideoBitrateIndex(mAppContext)],
-        PrefManager.VIDEO_ORIENTATION_MODES[PrefManager.getVideoOrientationModeIndex(mAppContext)]);
+        PrefManager.VIDEO_ORIENTATION_MODES[PrefManager.getVideoOrientationModeIndex(mAppContext)],
+            PrefManager.getPushStreamMirrorMode(mAppContext));
 
     AudioStreamConfiguration audioStreamConfig = new AudioStreamConfiguration(
         PrefManager.AUDIO_SAMPLE_RATES[PrefManager.getAudioSampleRateIndex(mAppContext)],
@@ -112,7 +114,7 @@ public class StreamingKitWrapper {
       }
       mPreviewRenderer.setView(view);
       mPreviewRenderer.setRenderMode(VideoRenderMode.RENDER_MODE_FIT);
-      mPreviewRenderer.setMirrorMode(PrefManager.VIDEO_MIRROR_MODES[PrefManager.getMirrorLocalIndex(mAppContext)]);
+      mPreviewRenderer.setMirrorMode(PrefManager.VIDEO_MIRROR_MODES[PrefManager.getLocalViewMirrorIndex(mAppContext)]);
     }
   }
 

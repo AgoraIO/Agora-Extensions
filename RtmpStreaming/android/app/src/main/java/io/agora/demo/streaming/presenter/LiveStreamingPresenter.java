@@ -132,6 +132,9 @@ public class LiveStreamingPresenter {
         mWorkHandler.post(new Runnable() {
             @Override
             public void run() {
+                if(mStreamingKitWrapper == null){
+                    return;
+                }
                 AgoraCameraCapturer capturer = mStreamingKitWrapper.getCameraCapturer();
                 if (capturer != null) {
                     Log.d(TAG, "Get camera success");
@@ -147,6 +150,9 @@ public class LiveStreamingPresenter {
         mWorkHandler.post(new Runnable() {
             @Override
             public void run() {
+                if(mStreamingKitWrapper == null){
+                    return;
+                }
                 AgoraCameraCapturer capturer = mStreamingKitWrapper.getCameraCapturer();
                 if (capturer != null) {
                     capturer.unregisterEventHandler(handler);
@@ -159,13 +165,13 @@ public class LiveStreamingPresenter {
         mWorkHandler.post(new Runnable() {
             @Override
             public void run() {
-                if (mStreamingKitWrapper == null) {
-                    return;
-                }
                 mUiHandler.post(new Runnable() {
                     @Override
                     public void run() {
                         // this has to be called in UI thread
+                        if(mStreamingKitWrapper == null){
+                            return;
+                        }
                         mStreamingKitWrapper.setPreview(view);
                     }
                 });
@@ -177,6 +183,9 @@ public class LiveStreamingPresenter {
         mWorkHandler.post(new Runnable() {
             @Override
             public void run() {
+                if(mStreamingKitWrapper == null){
+                    return;
+                }
                 mStreamingKitWrapper.enableAudioRecording(enable);
             }
         });
@@ -186,6 +195,9 @@ public class LiveStreamingPresenter {
         mWorkHandler.post(new Runnable() {
             @Override
             public void run() {
+                if(mStreamingKitWrapper == null){
+                    return;
+                }
                 mStreamingKitWrapper.enableVideoCapturing(enable);
             }
         });
@@ -195,6 +207,9 @@ public class LiveStreamingPresenter {
         mWorkHandler.post(new Runnable() {
             @Override
             public void run() {
+                if(mStreamingKitWrapper == null){
+                    return;
+                }
                 mStreamingKitWrapper.startStreaming();
             }
         });
@@ -204,6 +219,9 @@ public class LiveStreamingPresenter {
         mWorkHandler.post(new Runnable() {
             @Override
             public void run() {
+                if(mStreamingKitWrapper == null){
+                    return;
+                }
                 mStreamingKitWrapper.stopStreaming();
             }
         });
@@ -213,6 +231,9 @@ public class LiveStreamingPresenter {
         return invokeOnWorkerThread(new Callable<Integer>() {
             @Override
             public Integer call() throws Exception {
+                if(mStreamingKitWrapper == null){
+                    return -100;
+                }
                 return mStreamingKitWrapper.switchCamera();
             }
         });
@@ -222,6 +243,9 @@ public class LiveStreamingPresenter {
         return invokeOnWorkerThread(new Callable<Integer>() {
             @Override
             public Integer call() throws Exception {
+                if(mStreamingKitWrapper == null){
+                    return -100;
+                }
                 return mStreamingKitWrapper.switchCameraSource();
             }
         });
@@ -231,6 +255,9 @@ public class LiveStreamingPresenter {
         return invokeOnWorkerThread(new Callable<Integer>() {
             @Override
             public Integer call() throws Exception {
+                if(mStreamingKitWrapper == null){
+                    return -100;
+                }
                 return mStreamingKitWrapper.switchResolution(width, height);
             }
         });
@@ -240,6 +267,9 @@ public class LiveStreamingPresenter {
         return invokeOnWorkerThread(new Callable<Integer>() {
             @Override
             public Integer call() throws Exception {
+                if(mStreamingKitWrapper == null){
+                    return -100;
+                }
                 return mStreamingKitWrapper.snapshot(callback);
             }
         });
@@ -249,6 +279,9 @@ public class LiveStreamingPresenter {
         return invokeOnWorkerThread(new Callable<Integer>() {
             @Override
             public Integer call() throws Exception {
+                if(mStreamingKitWrapper == null){
+                    return 0;
+                }
                 return mStreamingKitWrapper.isCameraFacingFront() ? 1 : 0;
             }
         }) == 1;
@@ -258,6 +291,9 @@ public class LiveStreamingPresenter {
         return invokeOnWorkerThread(new Callable<Integer>() {
             @Override
             public Integer call() throws Exception {
+                if(mStreamingKitWrapper == null){
+                    return 0;
+                }
                 return mStreamingKitWrapper.addVideoFilter(videoFilter) ? 1 : 0;
             }
         }) == 1;
@@ -303,7 +339,7 @@ public class LiveStreamingPresenter {
                         // this has to be called in UI thread
                         mRtcEngineWrapper.setupRemoteVideo(
                                 new VideoCanvas(null, VideoCanvas.RENDER_MODE_HIDDEN, uid,
-                                        PrefManager.getMirrorRemoteMode(mContext)));
+                                        PrefManager.getRemoteViewMirrorMode(mContext)));
                     }
                 });
             }
@@ -603,6 +639,9 @@ public class LiveStreamingPresenter {
         mWorkHandler.post(new Runnable() {
             @Override
             public void run() {
+                if(mStreamingKitWrapper == null){
+                    return;
+                }
                 int ret = mStreamingKitWrapper.setZoom(zoomValue);
                 if (ret < 0) {
                     Log.d(TAG, "set zoom error");
@@ -612,14 +651,23 @@ public class LiveStreamingPresenter {
     }
 
     public float getMaxZoom() {
+        if(mStreamingKitWrapper == null){
+            return 1.0f;
+        }
         return mStreamingKitWrapper.getMaxZoom();
     }
 
     public boolean isFocusSupported() {
+        if(mStreamingKitWrapper == null){
+            return false;
+        }
         return mStreamingKitWrapper.isFocusSupported();
     }
 
     public boolean isAutoFaceFocusSupported() {
+        if(mStreamingKitWrapper == null){
+            return false;
+        }
         return mStreamingKitWrapper.isAutoFaceFocusSupported();
     }
 
@@ -627,6 +675,9 @@ public class LiveStreamingPresenter {
         mWorkHandler.post(new Runnable() {
             @Override
             public void run() {
+                if(mStreamingKitWrapper == null){
+                    return;
+                }
                 int ret = mStreamingKitWrapper.setFocus(x, y);
                 if (ret < 0) {
                     Log.d(TAG, "set focus error");
@@ -639,6 +690,9 @@ public class LiveStreamingPresenter {
         mWorkHandler.post(new Runnable() {
             @Override
             public void run() {
+                if(mStreamingKitWrapper == null){
+                    return;
+                }
                 int ret = mStreamingKitWrapper.setAutoFaceFocus(enable);
                 if (ret < 0) {
                     Log.d(TAG, "setAutoFaceFocus error");
@@ -665,6 +719,9 @@ public class LiveStreamingPresenter {
         mWorkHandler.post(new Runnable() {
             @Override
             public void run() {
+                if(mStreamingKitWrapper == null){
+                    return;
+                }
                 int result = mStreamingKitWrapper.startScreenCapture(intent, width, height);
                 if (result < 0) {
                     Log.d(TAG, "start screen capture error");
@@ -678,6 +735,9 @@ public class LiveStreamingPresenter {
         mWorkHandler.post(new Runnable() {
             @Override
             public void run() {
+                if(mStreamingKitWrapper == null){
+                    return;
+                }
                 mStreamingKitWrapper.stopScreenCapture();
             }
         });

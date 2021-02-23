@@ -51,6 +51,7 @@ public class SettingsActivity extends BaseActivity {
     private TextView mVideoStatCheck;
     private TextView mMirrorLocalText;
     private TextView mMirrorRemoteText;
+    private TextView mMirrorPushStreamText;
     private TextView mScreenRationText;
 
     private RadioGroup mGroupVideoRatio;
@@ -160,11 +161,15 @@ public class SettingsActivity extends BaseActivity {
 
         mMirrorLocalText = findViewById(R.id.setting_mirror_local_value);
         mMirrorLocalText.setText(PrefManager.VIDEO_MIRROR_MODE_STRINGS[
-                PrefManager.VIDEO_MIRROR_MODES[PrefManager.getMirrorLocalIndex(this)]]);
+                PrefManager.VIDEO_MIRROR_MODES[PrefManager.getLocalViewMirrorIndex(this)]]);
 
         mMirrorRemoteText = findViewById(R.id.setting_mirror_remote_value);
         mMirrorRemoteText.setText(PrefManager.VIDEO_MIRROR_MODE_STRINGS[
-                PrefManager.VIDEO_MIRROR_MODES[PrefManager.getMirrorRemoteIndex(this)]]);
+                PrefManager.VIDEO_MIRROR_MODES[PrefManager.getRemoteViewMirrorIndex(this)]]);
+
+        mMirrorPushStreamText = findViewById(R.id.setting_mirror_push_stream_value);
+        mMirrorPushStreamText.setText(PrefManager.PUSH_STREAM_MODE_STRINGS[
+                PrefManager.getPushStreamMirrorIndex(this)]);
 
         mScreenRationText = findViewById(R.id.setting_screen_ratio_value);
         mScreenRationText.setText(PrefManager.SCREEN_RATION_MODE_STRINGS[
@@ -398,11 +403,15 @@ public class SettingsActivity extends BaseActivity {
                 break;
             case R.id.setting_mirror_local_view:
                 showChoiceDialog(PrefManager.VIDEO_MIRROR_MODE_STRINGS,
-                        PrefManager.PREF_MIRROR_LOCAL, mMirrorLocalText);
+                        PrefManager.PREF_MIRROR_LOCAL_VIEW, mMirrorLocalText);
                 break;
             case R.id.setting_mirror_remote_view:
                 showChoiceDialog(PrefManager.VIDEO_MIRROR_MODE_STRINGS,
-                        PrefManager.PREF_MIRROR_REMOTE, mMirrorRemoteText);
+                        PrefManager.PREF_MIRROR_REMOTE_VIEW, mMirrorRemoteText);
+                break;
+            case R.id.setting_mirror_push_stream:
+                showChoiceDialog(PrefManager.PUSH_STREAM_MODE_STRINGS,
+                        PrefManager.PREF_MIRROR_PUSH_STREAM, mMirrorPushStreamText);
                 break;
             case R.id.setting_screen_ratio_view:
                 showChoiceDialog(PrefManager.SCREEN_RATION_MODE_STRINGS,

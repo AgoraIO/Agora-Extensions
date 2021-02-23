@@ -5,12 +5,10 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 
 import io.agora.demo.streaming.BuildConfig;
-import io.agora.demo.streaming.R;
 import io.agora.rtc.Constants;
 import io.agora.rtc.video.VideoEncoderConfiguration;
 import io.agora.streaming.AudioStreamConfiguration;
 import io.agora.streaming.StreamingKit;
-import io.agora.streaming.VideoMirrorMode;
 import io.agora.streaming.VideoStreamConfiguration;
 
 
@@ -36,8 +34,9 @@ public class PrefManager {
     public static final String PREF_LOG_FILE_SIZE = "pref_log_file_size";
     public static final String PREF_STREAM_TYPE_INDEX = "pref_stream_type_index";
     public static final String PREF_ENABLE_STATS = "pref_enable_stats";
-    public static final String PREF_MIRROR_LOCAL = "pref_mirror_local";
-    public static final String PREF_MIRROR_REMOTE = "pref_mirror_remote";
+    public static final String PREF_MIRROR_LOCAL_VIEW = "pref_mirror_local";
+    public static final String PREF_MIRROR_REMOTE_VIEW = "pref_mirror_remote";
+    public static final String PREF_MIRROR_PUSH_STREAM = "pref_mirror_push_stream";
     public static final String PREF_SCREEN_RATION = "pref_screen_ration";
     public static final String PREF_VIDEO_LOCAL_STORE = "pref_video_local_store";
     public static final String PREF_VIDEO_RATIO_INDEX = "pref_video_ratio_index";
@@ -103,23 +102,29 @@ public class PrefManager {
     public static final String[] VIDEO_MIRROR_MODE_STRINGS = new String[] {
         "Auto", "Enabled", "Disabled"
     };
-    private static final int DEFAULT_LOCAL_VIDEO_MIRROR_INDEX = 0;
-    private static final int DEFAULT_REMOTE_VIDEO_MIRROR_INDEX = 0;
+    private static final int DEFAULT_LOCAL_VIEW_VIDEO_MIRROR_INDEX = 0;
+    private static final int DEFAULT_REMOTE_VIEW_VIDEO_MIRROR_INDEX = 0;
+
+    public static final String[] PUSH_STREAM_MODE_STRINGS = new String[] {
+            "Enabled", "Disabled"
+    };
+
+    private static final int DEFAULT_PUSH_STREAM_MIRROR_VIDEO_MIRROR_INDEX = 1;
 
     //screen ration
-    public static String[] SCREEN_RATION_MODE_STRINGS = new String[] {
+    public static final String[] SCREEN_RATION_MODE_STRINGS = new String[] {
         "1:1", "16:9", "4:3"
     };
     public static final int DEFAULT_SCREEN_RATION_INDEX = 1;
 
     //screen ration
-    public static String[] VIDEO_RATIO_MODE_STRINGS = new String[] {
+    public static final String[] VIDEO_RATIO_MODE_STRINGS = new String[] {
             "1:1", "16:9", "4:3", "Custom"
     };
     public static final int DEFAULT_VIDEO_RATIO_INDEX = 1;
 
     //screen definition
-    public static String[] VIDEO_DEFINITION_MODE_STRINGS = new String[] {
+    public static final String[] VIDEO_DEFINITION_MODE_STRINGS = new String[] {
         "Low", "Middle", "High", "Custom"
     };
     public static final int DEFAULT_VIDEO_DEFINITION_INDEX = 1;
@@ -225,10 +230,6 @@ public class PrefManager {
         return getPreferences(context).getInt(PREF_SCREEN_ORIENTATION_INDEX, DEFAULT_SCREEN_ORIENTATION_INDEX);
     }
 
-    public static int getMirrorLocalIndex(Context context) {
-        return getPreferences(context).getInt(PREF_MIRROR_LOCAL, DEFAULT_LOCAL_VIDEO_MIRROR_INDEX);
-    }
-
     public static int getScreenRationIndex(Context context) {
         return getPreferences(context).getInt(PREF_SCREEN_RATION, DEFAULT_SCREEN_RATION_INDEX);
     }
@@ -248,18 +249,37 @@ public class PrefManager {
         getPreferences(context).edit().putInt(PREF_VIDEO_DEFINITION_INDEX, index).apply();
     }
 
-
-    public static int getMirrorLocalMode(Context context) {
-        return VIDEO_MIRROR_MODES[getMirrorLocalIndex(context)];
+    public static int getLocalViewMirrorIndex(Context context) {
+        return getPreferences(context).getInt(PREF_MIRROR_LOCAL_VIEW, DEFAULT_LOCAL_VIEW_VIDEO_MIRROR_INDEX);
     }
 
-    public static int getMirrorRemoteIndex(Context context) {
-        return getPreferences(context).getInt(PREF_MIRROR_REMOTE, DEFAULT_REMOTE_VIDEO_MIRROR_INDEX);
+    public static int getLocalViewMirrorMode(Context context) {
+        return VIDEO_MIRROR_MODES[getLocalViewMirrorIndex(context)];
     }
 
-    public static int getMirrorRemoteMode(Context context) {
-        return VIDEO_MIRROR_MODES[getMirrorRemoteIndex(context)];
+    public static int getRemoteViewMirrorIndex(Context context) {
+        return getPreferences(context).getInt(PREF_MIRROR_REMOTE_VIEW, DEFAULT_REMOTE_VIEW_VIDEO_MIRROR_INDEX);
     }
+
+    public static int getRemoteViewMirrorMode(Context context) {
+        return VIDEO_MIRROR_MODES[getRemoteViewMirrorIndex(context)];
+    }
+
+    public static int getPushStreamMirrorIndex(Context context) {
+        return getPreferences(context).getInt(PREF_MIRROR_PUSH_STREAM, DEFAULT_PUSH_STREAM_MIRROR_VIDEO_MIRROR_INDEX);
+    }
+
+    public static int getPushStreamMirrorMode(Context context) {
+        int pushStreamMirrorIndex = getPushStreamMirrorIndex(context);
+        if(pushStreamMirrorIndex == 0){
+            // enable push mirror
+            return VIDEO_MIRROR_MODES[1];
+        }else{
+            // auto = disable push mirror
+            return VIDEO_MIRROR_MODES[0];
+        }
+    }
+
 
     public static int getAudioSampleRateIndex(Context context) {
         return getPreferences(context).getInt(PREF_AUDIO_SAMPLE_RATE_INDEX, DEFAULT_AUDIO_SAMPLE_RATE_INDEX);
