@@ -177,6 +177,7 @@ public class RtcChannelPublishHelper extends IRtcEngineEventHandler implements A
         this.rotation = 0;
         nativeEnablePushAudioToRtc(false);
         nativeEnableLocalPlayoutVolume(false);
+        nativeUnregisterAudioFrameObserver();
         mediaVideoSource = null;
         nativeRelease();
         Log.i(TAG, "detachPlayerFromRtc");
@@ -194,6 +195,7 @@ public class RtcChannelPublishHelper extends IRtcEngineEventHandler implements A
         enablePushAudioToRtc = false;
         nativeEnablePushAudioToRtc(false);
         nativeEnableLocalPlayoutVolume(false);
+        nativeUnregisterAudioFrameObserver();
         // mRtcEngine.setVideoSource(new AgoraDefaultSource());
         adjustPublishSignalVolume(400, 0);
         mediaVideoSource = null;
@@ -281,6 +283,8 @@ public class RtcChannelPublishHelper extends IRtcEngineEventHandler implements A
     private native int nativeEnableLocalPlayoutVolume(boolean enable);
 
     private native int adjustPublishVoiceVolume(float volume);
+
+    private native int nativeUnregisterAudioFrameObserver();
 
     public void onJoinChannelSuccess(String channel, int uid, int elapsed) {
         if (!enablePushVideoToRtc) {

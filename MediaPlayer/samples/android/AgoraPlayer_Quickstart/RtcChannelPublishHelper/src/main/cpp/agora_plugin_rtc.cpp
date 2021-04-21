@@ -269,9 +269,12 @@ loadAgoraRtcEnginePlugin(agora::rtc::IRtcEngine *engine) {
 void __attribute__((visibility("default")))
 unloadAgoraRtcEnginePlugin(agora::rtc::IRtcEngine *engine) {
     XLOGI("TJY unloadAgoraRtcEnginePlugin--------- ");
+    if(mediaEngine_){
+        mediaEngine_->registerAudioFrameObserver(nullptr);
+    }
     is_init_new_agora_rtc_ = false;
     rtcEngine = nullptr;
-
+    mediaEngine_ = nullptr;
 }
 }
 
@@ -388,6 +391,18 @@ extern "C"
 JNIEXPORT void JNICALL
 Java_io_agora_RtcChannelPublishHelper_nativeRelease(JNIEnv *env, jobject instance) {
     XLOGI("TJY nativeRelease");
+    if (is_init_new_agora_rtc_) {
+        is_init_new_agora_rtc_ = false;
+    }
+}
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_io_agora_RtcChannelPublishHelper_nativeUnregisterAudioFrameObserver(JNIEnv *env, jobject instance){
+    XLOGI("TJY nativeUnregisterAudioFrameObserver");
+    if(mediaEngine_){
+        mediaEngine_->registerAudioFrameObserver(nullptr);
+    }
     if (is_init_new_agora_rtc_) {
         is_init_new_agora_rtc_ = false;
     }

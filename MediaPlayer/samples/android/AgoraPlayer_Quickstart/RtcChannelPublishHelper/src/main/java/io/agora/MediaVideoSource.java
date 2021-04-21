@@ -52,6 +52,7 @@ public class MediaVideoSource implements IVideoSource {
         return MediaIO.BufferType.BYTE_ARRAY.intValue();
     }
 
+    /*
     @Override
     public int getCaptureType() {
         return 0;
@@ -60,7 +61,7 @@ public class MediaVideoSource implements IVideoSource {
     @Override
     public int getContentHint() {
         return 0;
-    }
+    }*/
 
     public IVideoFrameConsumer getFrameConsumer () {
         return this.mVideoFrameConsumer;

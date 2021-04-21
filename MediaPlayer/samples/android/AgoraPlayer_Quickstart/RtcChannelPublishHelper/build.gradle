@@ -56,7 +56,7 @@ dependencies {
     //dependencies { compile fileTree(dir:'../../../../build/android/arm/android/lib/agora-rtc-sdk',include:['*.jar'])}
     //provided files('../../../../build/android/arm/android/lib/agora-rtc-sdk/agora-rtc-sdk.jar')
     compile 'com.android.support:support-v4:23.2.0'
-    implementation 'io.agora.rtc:full-sdk:3.2.0'
+    implementation 'io.agora.rtc:full-sdk:2.9.0.107'
     //dependencies { compile fileTree(dir:'../../build/android/arm/android/lib/agora-rtc-sdk',include:['*.jar'])}
     //implementation 'net.butterflytv.utils:rtmp-client:0.2.6'
     //implementation 'net.butterflytv.utils:rtmp-client:3.1.0'

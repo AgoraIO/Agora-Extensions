@@ -25,12 +25,11 @@ class IAgoraService
 {
 protected:
     virtual ~IAgoraService(){}
-
 public:
-    AGORA_CPP_API static void release ();
+    virtual void release() = 0;
 
 	/** Initializes the engine.
-
+     
     @param context RtcEngine context.
     @return
      - 0: Success.
@@ -51,7 +50,7 @@ public:
 } // namespace agora
 
 /** Gets the SDK version number.
-
+ 
  @param build Build number of the Agora SDK.
  @return
  - 0: Success.

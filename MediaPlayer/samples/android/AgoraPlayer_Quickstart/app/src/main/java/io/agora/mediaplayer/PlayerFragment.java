@@ -652,6 +652,7 @@ public class PlayerFragment extends Fragment implements SurfaceHolder.Callback, 
             streamInfos = streamInfos + streamInfo + "\n";
             LogUtil.i( "streamInfo:" + streamInfo);
         }
+
         agoraMediaPlayerKit1.getStreamInfo(streamCount);
         setInfo1Text("streamInfos:" + streamInfos);
     }
@@ -691,7 +692,7 @@ public class PlayerFragment extends Fragment implements SurfaceHolder.Callback, 
             video1Connect.setTag(true);
             video1Connect.setText("断开");
             rtcChannelPublishHelper.attachPlayerToRtc(agoraMediaPlayerKit1, this.mRtcEngine);
-            //rtcChannelPublishHelper.enableLocalPlayoutVolume(true);
+            rtcChannelPublishHelper.enableLocalPlayoutVolume(true);
             //agoraMediaPlayerKit1.mute(true);
         } else {
             video1Connect.setTag(false);
