@@ -2,6 +2,7 @@ RtmpStreaming/ios/LiveStreaming-iOS-Objective-C/LiveStreaming/Model/KeyCenter.m
 RtmpStreaming/ios/LiveStreaming-iOS-Objective-C/LiveStreaming/Beautify/FaceUnity/authpack.h
 *.DS_Store
 *.framework
+*.xcframework
 *.mp4
 *.dll
 *.lib
