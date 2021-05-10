@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <AgoraMediaPlayer/AgoraMediaPlayerKit.h>
-#import <AgoraRtcEngineKit/AgoraRtcEngineKit.h>
+#import <AgoraRtcKit/AgoraRtcEngineKit.h>
 NS_ASSUME_NONNULL_BEGIN
 @protocol AgoraRtcChannelPublishHelperDelegate <NSObject>
 

@@ -7,14 +7,10 @@
 //
 
 #import "AgoraRtcChannelPublishHelper.h"
-#import <AgoraRtcEngineKit/IAgoraRtcEngine.h>
-#import <AgoraRtcEngineKit/IAgoraMediaEngine.h>
-#import "AudioCircularBuffer.h"
-#import "scoped_ptr.h"
+#import <AgoraRtcKit/IAgoraRtcEngine.h>
+#import <AgoraRtcKit/IAgoraMediaEngine.h>
+#import "AudioCircleBuffer.h"
 #import <mutex>
-using namespace AgoraRTC;
-static NSObject *threadLockPush = [[NSObject alloc] init];
-static NSObject *threadLockPlay = [[NSObject alloc] init];
 
 class AgoraAudioFrameObserver:public agora::media::IAudioFrameObserver
 {
@@ -26,15 +22,15 @@ private:
     int16_t * play_buf_tmp_ = nullptr;
     char  *   play_audio_mix_ = nullptr;
     int16_t * play_send_buf_ = nullptr;
-    scoped_ptr<AudioCircularBuffer<char>> record_audio_buf_;
-    scoped_ptr<AudioCircularBuffer<char>> play_audio_buf_;
+    std::shared_ptr<AudioCircularBuffer<char>> record_audio_buf_;
+    std::shared_ptr<AudioCircularBuffer<char>> play_audio_buf_;
 public:
     std::atomic<float>  publishSignalValue_{1.0f};
     std::atomic<float>  playOutSignalValue_{1.0f};
     std::atomic<bool>   isOnlyAudioPlay_{false};
     AgoraAudioFrameObserver(){
-        record_audio_buf_.reset(new AudioCircularBuffer<char>(true,2048));
-        play_audio_buf_.reset(new AudioCircularBuffer<char>(true,2048));
+        record_audio_buf_.reset(new AudioCircularBuffer<char>(2048));
+        play_audio_buf_.reset(new AudioCircularBuffer<char>(2048));
     }
     ~AgoraAudioFrameObserver()
     {
@@ -60,21 +56,17 @@ public:
     }
     void resetAudioBuffer(){
         
-        record_audio_buf_.reset(new AudioCircularBuffer<char>(2048,true));
-        play_audio_buf_.reset(new AudioCircularBuffer<char>(2048,true));
+        record_audio_buf_.reset(new AudioCircularBuffer<char>(2048));
+        play_audio_buf_.reset(new AudioCircularBuffer<char>(2048));
     }
     void setPublishSignalVolume(int volume){
-        @synchronized (threadLockPush) {
-            publishSignalValue_ = volume/100.0f;
-        }
+        publishSignalValue_ = volume/100.0f;
     }
     void enableOnlyAudioPlay(bool isEnable){
         isOnlyAudioPlay_ = isEnable;
     }
     void setPlayoutSignalVolume(int volume){
-         @synchronized (threadLockPlay) {
              playOutSignalValue_ = volume/100.0f;
-         }
      }
     void pushData(char *data,int length){
         {
@@ -88,40 +80,39 @@ public:
 
     }
     virtual bool onRecordAudioFrame(AudioFrame& audioFrame){
-        @synchronized (threadLockPush) {
-            int bytes = audioFrame.samples * audioFrame.channels * audioFrame.bytesPerSample;
-            int ret = record_audio_buf_->mAvailSamples - bytes;
-            if ( ret < 0) {
-                return false;
-            }
-            //计算重采样钱的数据大小 重采样的采样率 * SDK回调时间 * 声道数 * 字节数
-            if (!record_buf_tmp_) {
-                record_buf_tmp_ = (int16_t *)malloc(bytes);
-            }
-            if(!record_audio_mix_){
-                record_audio_mix_ = (char *)malloc(bytes);
-            }
-            if(!record_send_buf_){
-                record_send_buf_ = (int16_t *)malloc(bytes);
-            }
-            record_audio_buf_->Pop(record_audio_mix_, bytes);
-            int16_t* p16 = (int16_t*) record_audio_mix_;
-            memcpy(record_buf_tmp_, audioFrame.buffer, bytes);
-            for (int i = 0; i < bytes / 2; ++i) {
-                record_buf_tmp_[i] += (p16[i] * publishSignalValue_);
-                //audio overflow
-                if (record_buf_tmp_[i] > 32767) {
-                    record_send_buf_[i] = 32767;
-                }
-                else if (record_buf_tmp_[i] < -32768) {
-                    record_send_buf_[i] = -32768;
-                }
-                else {
-                    record_send_buf_[i] = record_buf_tmp_[i];
-                }
-            }
-            memcpy(audioFrame.buffer, record_send_buf_,bytes);
+        int bytes = audioFrame.samples * audioFrame.channels * audioFrame.bytesPerSample;
+        int ret = record_audio_buf_->getSize() - bytes;
+        if ( ret < 0) {
+            return false;
         }
+        //计算重采样钱的数据大小 重采样的采样率 * SDK回调时间 * 声道数 * 字节数
+        if (!record_buf_tmp_) {
+            record_buf_tmp_ = (int16_t *)malloc(bytes);
+        }
+        if(!record_audio_mix_){
+            record_audio_mix_ = (char *)malloc(bytes);
+        }
+        if(!record_send_buf_){
+            record_send_buf_ = (int16_t *)malloc(bytes);
+        }
+        record_audio_buf_->Pop(record_audio_mix_, bytes);
+        int16_t* p16 = (int16_t*) record_audio_mix_;
+        memcpy(record_buf_tmp_, audioFrame.buffer, bytes);
+        for (int i = 0; i < bytes / 2; ++i) {
+            record_buf_tmp_[i] += (p16[i] * publishSignalValue_);
+            //audio overflow
+            if (record_buf_tmp_[i] > 32767) {
+                record_send_buf_[i] = 32767;
+            }
+            else if (record_buf_tmp_[i] < -32768) {
+                record_send_buf_[i] = -32768;
+            }
+            else {
+                record_send_buf_[i] = record_buf_tmp_[i];
+            }
+        }
+        memcpy(audioFrame.buffer, record_send_buf_,bytes);
+    
         return true;
     }
     /**
@@ -132,10 +123,9 @@ public:
      * - false: The playback audio frame is invalid and is not encoded or sent.
      */
     virtual bool onPlaybackAudioFrame(AudioFrame& audioFrame){
-    @synchronized (threadLockPlay) {
         
         int bytes = audioFrame.samples * audioFrame.channels * audioFrame.bytesPerSample;
-        int ret = play_audio_buf_->mAvailSamples - bytes;
+        int ret = play_audio_buf_->getSize() - bytes;
         if (ret < 0) {
             return false;
         }
@@ -166,7 +156,7 @@ public:
             }
         }
         memcpy(audioFrame.buffer, play_buf_tmp_,bytes);
-    }
+    
         return true;
     }
     /**
@@ -361,6 +351,36 @@ static AgoraRtcChannelPublishHelper *instance = NULL;
     
 }
 
+/** Gets the capture type of the custom video source.
+
+ @since v3.1.0
+
+ Before you initialize the custom video source, the SDK triggers this callback to query the capture type
+ of the video source. You must specify the capture type in the return value and then pass it to the SDK.
+ The SDK enables the corresponding video processing algorithm according to the capture type after
+ receiving the video frame.
+
+ @return AgoraVideoCaptureType
+ */
+- (AgoraVideoCaptureType)captureType{
+    return AgoraVideoCaptureTypeUnknown;
+}
+/** Gets the content hint of the custom video source.
+
+ @since v3.1.0
+
+ If you specify the custom video source as a screen-sharing video, the SDK triggers this callback to query
+ the content hint of the video source before you initialize the video source. You must specify the content
+ hint in the return value and then pass it to the SDK. The SDK enables the corresponding video processing
+ algorithm according to the content hint after receiving the video frame.
+
+ @return AgoraVideoContentHint
+ */
+- (AgoraVideoContentHint)contentHint
+{
+    return AgoraVideoContentHintNone;
+}
+
 /// Description of state of Mediaplayer's state
 /// @param playerKit AgoraMediaPlayer
 /// @param state AgoraMediaPlayerState
@@ -445,5 +465,6 @@ static AgoraRtcChannelPublishHelper *instance = NULL;
 }
 
 @end
+
 
 
