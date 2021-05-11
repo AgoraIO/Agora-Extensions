@@ -6,7 +6,7 @@
 #define LINKLIST_CIRCLEQUEUE_H
 #include <iostream>
 ///
-/// 动态数组实现循环队列 支持单数据和多数据
+/// 动态数组实现循环队列 支持单个数据和多个数据插入删除
 ///
 
 #define ELEMENT_NOT_FOUND -1
@@ -93,15 +93,16 @@ public:
     ~CircleQueue()
     {
         clear();
+        if(elements)
+            delete[] elements;
+        elements = nullptr;
+        capacity = 0;
     }
     void clear()
     {
-        if(elements)
-            delete[] elements;
-        capacity = 0;
+        memset(&elements[0], 0, size);
         size = 0;
         front_ = 0;
-        elements = nullptr;
     }
 private:
     int index(int index) //模运算优化

@@ -125,6 +125,9 @@ public:
     virtual bool onPlaybackAudioFrame(AudioFrame& audioFrame){
         
         int bytes = audioFrame.samples * audioFrame.channels * audioFrame.bytesPerSample;
+        if(play_audio_buf_->getSize() > (960 * 80)){//队列中的数据淤积大于800ms时 就丢弃数据
+            play_audio_buf_->Reset();
+        }
         int ret = play_audio_buf_->getSize() - bytes;
         if (ret < 0) {
             return false;
