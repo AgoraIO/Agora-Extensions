@@ -51,7 +51,7 @@ bool CExtendAudioFrameObserver::onRecordAudioFrame(AudioFrame& audioFrame){
             audioBuf[i] = -32768;
         }
         else {
-            audioBuf[i] += tmp;
+            audioBuf[i] = tmp;
         }
     }
     memcpy(audioFrame.buffer, audioBuf,  bytes);

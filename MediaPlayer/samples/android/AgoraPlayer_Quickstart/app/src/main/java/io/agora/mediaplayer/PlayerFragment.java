@@ -182,6 +182,11 @@ public class PlayerFragment extends Fragment implements SurfaceHolder.Callback, 
                     }
                 });
             }
+
+            @Override
+            public void onPlayBufferUpdated(long l) {
+
+            }
         });
 
         agoraMediaPlayerKit1.registerVideoFrameObserver(new VideoFrameObserver() {
@@ -250,6 +255,11 @@ public class PlayerFragment extends Fragment implements SurfaceHolder.Callback, 
                             setInfo2Text("metaData:" + new String(data));
                         }
                     });
+                }
+
+                @Override
+                public void onPlayBufferUpdated(long l) {
+
                 }
             });
 
@@ -372,7 +382,10 @@ public class PlayerFragment extends Fragment implements SurfaceHolder.Callback, 
         //video1Container.addView(videoView1);
         //rtc.setupLocalVideo(new VideoCanvas(videoView1, VideoCanvas.RENDER_MODE_FIT, 0));
         //rtc.startPreview();
-        agoraMediaPlayerKit1.setView(videoView1);
+        if (agoraMediaPlayerKit1!=null) {
+            agoraMediaPlayerKit1.setView(videoView1);
+        }
+
         video1Container.addView(videoView1);
 
 
@@ -491,8 +504,13 @@ public class PlayerFragment extends Fragment implements SurfaceHolder.Callback, 
     public void onStop() {
         super.onStop();
         leaveChannel();
-        agoraMediaPlayerKit1.stop();
-        agoraMediaPlayerKit2.stop();
+        if (agoraMediaPlayerKit1 !=null) {
+            agoraMediaPlayerKit1.stop();
+        }
+        if (agoraMediaPlayerKit2 !=null) {
+            agoraMediaPlayerKit2.stop();
+        }
+
         LogUtil.i("onStop:");
 
     }
@@ -634,6 +652,7 @@ public class PlayerFragment extends Fragment implements SurfaceHolder.Callback, 
             streamInfos = streamInfos + streamInfo + "\n";
             LogUtil.i( "streamInfo:" + streamInfo);
         }
+
         agoraMediaPlayerKit1.getStreamInfo(streamCount);
         setInfo1Text("streamInfos:" + streamInfos);
     }
@@ -673,7 +692,7 @@ public class PlayerFragment extends Fragment implements SurfaceHolder.Callback, 
             video1Connect.setTag(true);
             video1Connect.setText("断开");
             rtcChannelPublishHelper.attachPlayerToRtc(agoraMediaPlayerKit1, this.mRtcEngine);
-            //rtcChannelPublishHelper.enableLocalPlayoutVolume(true);
+            rtcChannelPublishHelper.enableLocalPlayoutVolume(true);
             //agoraMediaPlayerKit1.mute(true);
         } else {
             video1Connect.setTag(false);
