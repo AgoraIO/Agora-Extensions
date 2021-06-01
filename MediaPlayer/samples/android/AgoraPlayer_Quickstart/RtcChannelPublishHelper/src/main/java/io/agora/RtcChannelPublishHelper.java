@@ -170,6 +170,7 @@ public class RtcChannelPublishHelper extends IRtcEngineEventHandler implements A
         }
         //mRtcEngine.setVideoSource(new AgoraDefaultSource());
         //adjustPublishSignalVolume(400,0);
+        nativeUnregisterAudioFrameObserver();
         this.agoraMediaPlayerKit.unregisterAudioFrameObserver(this);
         this.agoraMediaPlayerKit.unregisterVideoFrameObserver(this);
         enablePushVideoToRtc = false;
@@ -177,7 +178,6 @@ public class RtcChannelPublishHelper extends IRtcEngineEventHandler implements A
         this.rotation = 0;
         nativeEnablePushAudioToRtc(false);
         nativeEnableLocalPlayoutVolume(false);
-        nativeUnregisterAudioFrameObserver();
         mediaVideoSource = null;
         nativeRelease();
         Log.i(TAG, "detachPlayerFromRtc");
