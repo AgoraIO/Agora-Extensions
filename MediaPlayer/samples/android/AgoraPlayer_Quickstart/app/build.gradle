@@ -46,9 +46,9 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation(name: 'RtcChannelPublishHelper', ext: 'aar')
-    // api project(':RtcChannelPublishHelper')
-    implementation 'io.agora.rtc:full-sdk:2.9.0.107'
+    // implementation(name: 'RtcChannelPublishHelper', ext: 'aar')
+    api project(':RtcChannelPublishHelper')
+    implementation 'io.agora.rtc:full-sdk:3.3.0'
     //implementation files('lib/AgoraMediaPlayer.jar')
     //implementation files('lib/agora-rtc-sdk.jar')
     implementation 'io.agora:agoraplayer:1.2.2'

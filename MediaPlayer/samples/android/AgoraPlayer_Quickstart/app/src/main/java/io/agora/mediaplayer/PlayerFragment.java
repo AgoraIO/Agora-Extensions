@@ -947,7 +947,7 @@ public class PlayerFragment extends Fragment implements SurfaceHolder.Callback, 
         mRtcEngine.setChannelProfile(Constants.CHANNEL_PROFILE_LIVE_BROADCASTING);
         mRtcEngine.setClientRole(Constants.CLIENT_ROLE_BROADCASTER);
         mRtcEngine.enableVideo();
-        mRtcEngine.setAudioProfile(AUDIO_PROFILE_DEFAULT,AUDIO_SCENARIO_CHATROOM_GAMING);
+        mRtcEngine.setAudioProfile(AUDIO_PROFILE_DEFAULT,AUDIO_SCENARIO_GAME_STREAMING);
         //mRtcEngine.muteLocalAudioStream(true);
         //mRtcEngine.setExternalVideoSource(true,false,true);
 //      mRtcEngine.setVideoProfile(Constants.VIDEO_PROFILE_360P, false); // Earlier than 2.3.0
