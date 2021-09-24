@@ -83,7 +83,7 @@ public:
         int bytes = audioFrame.samples * audioFrame.channels * audioFrame.bytesPerSample;
         int ret = record_audio_buf_->getSize() - bytes;
         if ( ret < 0) {
-            return false;
+            return true;
         }
         //计算重采样钱的数据大小 重采样的采样率 * SDK回调时间 * 声道数 * 字节数
         if (!record_buf_tmp_) {
@@ -130,7 +130,7 @@ public:
         }
         int ret = play_audio_buf_->getSize() - bytes;
         if (ret < 0) {
-            return false;
+            return true;
         }
         //计算重采样钱的数据大小 重采样的采样率 * SDK回调时间 * 声道数 * 字节数
         if(!play_buf_tmp_){
