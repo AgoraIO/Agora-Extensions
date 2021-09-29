@@ -9,7 +9,7 @@
 #import "ViewController.h"
 #import <AgoraMediaPlayer/AgoraMediaPlayerKit.h>
 #import "AgoraRtcChannelPublishHelper.h"
-#include <AgoraRtcEngineKit/AgoraRtcEngineKit.h>
+#include <AgoraRtcKit/AgoraRtcEngineKit.h>
 
 @interface ViewController ()<AgoraMediaPlayerDelegate,AgoraRtcChannelPublishHelperDelegate,AgoraRtcEngineDelegate>
 {
