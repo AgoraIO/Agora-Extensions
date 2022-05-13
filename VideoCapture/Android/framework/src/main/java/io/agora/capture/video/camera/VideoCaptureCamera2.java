@@ -489,6 +489,7 @@ public class VideoCaptureCamera2 extends VideoCapture {
         if (pPreviewTextureId != -1) {
             int[] textures = new int[]{pPreviewTextureId};
             GLES20.glDeleteTextures(1, textures, 0);
+            pPreviewTextureId = -1;
         }
     }
 

@@ -16,6 +16,7 @@ import androidx.core.content.ContextCompat;
 import io.agora.capture.video.camera.CameraVideoManager;
 import io.agora.capture.video.camera.Constant;
 import io.agora.capture.video.camera.VideoCapture;
+import io.agora.capture.video.camera.VideoModule;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
@@ -103,6 +104,11 @@ public class MainActivity extends AppCompatActivity {
                     mCameraVideoManager.stopCapture();
                 }
             }
+
+            @Override
+            public void onCameraClosed() {
+
+            }
         });
 
         // Set camera capture configuration
@@ -154,6 +160,7 @@ public class MainActivity extends AppCompatActivity {
         super.finish();
         mFinished = true;
         if (mCameraVideoManager != null) mCameraVideoManager.stopCapture();
+        VideoModule.instance().stopAllChannels();
     }
 
     @Override
