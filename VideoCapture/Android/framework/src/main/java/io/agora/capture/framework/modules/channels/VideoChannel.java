@@ -159,7 +159,7 @@ public class VideoChannel extends HandlerThread {
         mOffScreenConsumers.clear();
 
         removeOnScreenConsumer();
-        quit();
+        quitSafely();
     }
 
     private void resetOpenGLSurface() {

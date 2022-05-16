@@ -53,8 +53,10 @@ public class ChannelManager {
     }
 
     public void disconnectConsumer(IVideoConsumer consumer, int id) {
-        ensureChannelRunning(id);
-        mChannels[id].disconnectConsumer(consumer);
+        //ensureChannelRunning(id);
+        if(mChannels[id] != null){
+            mChannels[id].disconnectConsumer(consumer);
+        }
     }
 
     public void ensureChannelRunning(int channelId) {
